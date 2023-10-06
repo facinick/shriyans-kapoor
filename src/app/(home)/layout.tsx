@@ -1,6 +1,6 @@
-import './globals.css'
+import SessionProvider from '@/components/client/providers/SessionProvider'
 import { Inter } from 'next/font/google'
-
+import '../globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -15,7 +15,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <SessionProvider>
+        <body className={inter.className}>{children}</body>
+      </SessionProvider>
     </html>
   )
 }
