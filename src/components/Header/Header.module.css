@@ -1,0 +1,9 @@
+.header {
+  height: 60px;
+  padding: 2px 15px;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
