@@ -1,0 +1,12 @@
+:root[data-theme="summer"] {
+  color-scheme: light;
+}
+
+:root[data-color-scheme="dark"][data-theme="summer"] {
+  color-scheme: dark;
+}
+
+body {
+  /* color: rgb(var(--foreground-rgb));
+  background-co: rgb(var(--background-rgb)); */
+}
