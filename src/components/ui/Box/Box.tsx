@@ -1,20 +1,27 @@
-import { Box as RadixBox } from "@radix-ui/themes";
-import { ComponentPropsWithoutRef, ElementRef, forwardRef } from "react";
+import { Slot } from '@radix-ui/react-slot';
+import React from 'react';
 
-const Box = forwardRef<
-  ElementRef<typeof RadixBox>,
-  ComponentPropsWithoutRef<typeof RadixBox>
->(({ className, ...props }, ref) => (
+export interface BoxProps
+  extends React.HTMLAttributes<HTMLDivElement> {
+  asChild?: boolean
+}
 
-  <RadixBox
-    className={className}
-    ref={ref}
-    {...props}
-  />
-))
 
+const Box = React.forwardRef<HTMLDivElement, BoxProps>(
+  ({ className, asChild = false, ...props }, ref) => {
+    const Comp = asChild ? Slot : "div"
+    return (
+      <Comp
+        className={className}
+        ref={ref}
+        {...props}
+      />
+    )
+  }
+)
 Box.displayName = "Box"
 
 export {
   Box
 };
+

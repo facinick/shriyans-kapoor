@@ -1,7 +1,22 @@
-@import url('./reset.css');
-@import url('../themes/summer.css');
-@import url('../themes/winter.css');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-* {
-  outline: 1px solid red
+@import url("./reset.css");
+@import url("../themes/shadcnui/orange.css");
+@import url("../themes/shadcnui/blue.css");
+@import url("../themes/shadcnui/black.css");
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+html,
+body {
+  height: 100%;
 }

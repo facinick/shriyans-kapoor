@@ -1,5 +1,4 @@
-import { PrismaClient } from '@prisma/client'
-
+import { PrismaClient } from '@prisma/client/edge'
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient }
 
 export const prisma: PrismaClient =

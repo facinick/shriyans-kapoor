@@ -3,7 +3,8 @@ import { THEMES } from "@/lib/constants";
 import { Theme } from "@/types/Theme";
 import { useContext, useId } from "react";
 import { ThemeContext } from "../providers/ThemeProvider";
-import { Select } from "../ui/Select/Select";
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger } from "../ui/Select/Select";
+import styles from './ThemeSelect.module.css';
 
 interface Props {
 
@@ -21,15 +22,20 @@ export const ThemeSelect = ({ }: Props): JSX.Element => {
 
   return (
     <>
-      <Select.Root onValueChange={handleChange} value={theme}>
-        <Select.Trigger />
-        <Select.Content>
+      <Select onValueChange={handleChange} value={theme}>
+        <SelectTrigger  className={styles.trigger}>
+            {theme}
+        </SelectTrigger>
+        <SelectContent>
+        <SelectGroup>
+          <SelectLabel>Themes</SelectLabel>
           {THEMES.map(
             (value) =>
-              (<Select.Item key={`${id}${value}`} value={value}>{value}</Select.Item>)
+              (<SelectItem key={`${id}${value}`} value={value}>{value}</SelectItem>)
           )}
-        </Select.Content>
-      </Select.Root>
+        </SelectGroup>
+        </SelectContent>
+      </Select>
     </>
   );
 }

@@ -1,62 +1,120 @@
 "use client"
+import { LogIn, LogOut, LucideIcon, User } from 'lucide-react';
 import { useSession } from "next-auth/react";
-import { User } from "react-feather";
-import { Avatar } from "../ui/Avatar/Avatar";
-import { DropdownMenu } from "../ui/DropdownMenu/DropdownMenu";
-import { IconButton } from "../ui/IconButton/IconButton";
-import { Link } from "../ui/Link/Link";
+import { useRouter } from "next/navigation";
+import { ComponentProps } from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/Avatar/Avatar";
+import { Button } from "../ui/Button/Button";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "../ui/DropdownMenu/DropdownMenu";
+import { Flex } from "../ui/Flex/Flex";
 import styles from './UserDropdown.module.css';
+
 interface Props {
 
 }
+
+interface Item {
+  id: number,
+  label: string
+  href: string
+  Icon: LucideIcon,
+  color?: ComponentProps<typeof DropdownMenuItem>['color']
+}
+
+const UNAUTHENTICATED_MENU_ITEMS: Item[] = [
+  {
+    id: 0,
+    label: 'Sign In',
+    href: "/api/auth/signin",
+    Icon: LogIn
+  },
+]
+
+const AUTHENTICATED_MENU_ITEMS: Item[] = [
+  {
+    id: 0,
+    label: 'Profile',
+    href: "#",
+    Icon: User
+  },
+  {
+    id: 1,
+    label: 'Sign Out',
+    href: "/api/auth/signout",
+    Icon: LogOut,
+    color: "red"
+  },
+]
 
 export const UserDropdown = ({ }: Props): JSX.Element => {
 
   const { data: session } = useSession()
 
+  const router = useRouter()
+
   const loggedIn = session?.user ? true : false
+
+  const handleClick = (item: Item) => {
+    router.push(item.href)
+  }
 
   return (
     <>
-      <DropdownMenu.Root>
-        <DropdownMenu.Trigger>
-          <IconButton
-            variant="solid">
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button size={"icon"}>
             {
               loggedIn &&
               <Avatar
-                variant="solid"
                 className={styles['trigger-icon']}
-                src={session?.user?.image!!}
-                fallback={session?.user?.email?.substring(0,2)!!}
-              />
+              >
+                <AvatarImage src={session?.user?.image!!} />
+                <AvatarFallback>
+                  {session?.user?.email?.substring(0, 2)!!}
+                </AvatarFallback>
+              </Avatar>
             }
             {
               !loggedIn &&
               <User className={styles['trigger-icon']} />
             }
-          </IconButton>
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent loop className={styles.content}>
+          {
+            loggedIn &&
+            AUTHENTICATED_MENU_ITEMS.map((item) => {
 
-        </DropdownMenu.Trigger>
-        <DropdownMenu.Content variant="soft">
-          {
-            loggedIn &&
-            <DropdownMenu.Item>Profile</DropdownMenu.Item>
-          }
-          {
-            loggedIn &&
-            <DropdownMenu.Item color="red">
-              <Link href={'/api/auth/signout'}>Sign Out</Link>
-            </DropdownMenu.Item>
+              const {Icon, label, id, color} = item
+
+              return (
+                <DropdownMenuItem onClick={() => handleClick(item)} key={id} {...(color && {color})} className={styles.item}>
+                  <Flex align={"center"} justify={"between"}>
+                    <Icon />
+                    {label}
+                  </Flex>
+                </DropdownMenuItem>
+              )
+            })
           }
           {
             !loggedIn &&
-            <DropdownMenu.Item>
-              <Link href={'/api/auth/signin'}>Sign in</Link>
-            </DropdownMenu.Item>
+            UNAUTHENTICATED_MENU_ITEMS.map((item) => {
+
+              const {Icon, label, id} = item
+
+              return (
+                <DropdownMenuItem onClick={() => handleClick(item)} key={id} className={styles.item}>
+                  <Flex align={"center"} justify={"between"}>
+                    <Icon />
+                    {label}
+                  </Flex>
+                </DropdownMenuItem>
+              )
+            })
           }
-        </DropdownMenu.Content>
-      </DropdownMenu.Root>
+        </DropdownMenuContent>
+      </DropdownMenu>
     </>
   );
 }

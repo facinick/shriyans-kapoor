@@ -4,9 +4,14 @@ import { ColorScheme, Theme } from '@/types/Theme';
 import Cookie from 'js-cookie';
 import React, { createContext, useEffect, useMemo } from 'react';
 
-export const ThemeContext = createContext({
-  colorScheme: 'light' as ColorScheme,
-  theme: 'summer' as Theme,
+export const ThemeContext = createContext<{
+  colorScheme: ColorScheme
+  theme: Theme
+  toggleColorScheme: () => void
+  changeTheme: (to: Theme) => void
+}>({
+  colorScheme: 'light',
+  theme: 'blue',
   toggleColorScheme: () => {},
   changeTheme: (to: Theme) => {},
 })

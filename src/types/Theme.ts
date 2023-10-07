@@ -1,2 +1,2 @@
-export type Theme = 'summer' | 'winter'
+export type Theme = 'orange' | 'black' | 'blue'
 export type ColorScheme = 'light' | 'dark'
