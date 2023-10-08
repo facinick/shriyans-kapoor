@@ -7,9 +7,16 @@
 @import url("../themes/shadcnui/blue.css");
 @import url("../themes/shadcnui/black.css");
 
+html {
+  --padding: 20px;
+}
+
 @layer base {
   * {
     @apply border-border;
+  }
+  html {
+    @apply bg-foreground text-background;
   }
   body {
     @apply bg-background text-foreground;
@@ -18,5 +25,5 @@
 
 html,
 body {
-  height: 100%;
+  min-height: 100vh;
 }

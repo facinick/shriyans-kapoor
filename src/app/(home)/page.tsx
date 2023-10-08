@@ -1,8 +1,35 @@
+import { Posts } from "@/components/Posts/Posts";
+import { Flex } from "@/components/ui/Flex/Flex";
+import { Heading } from "@/components/ui/Typography/Heading";
+import { APP_DESCRIPTION, APP_TITLE } from "@/lib/constants";
+import { sourceSans3 } from "@/lib/helpers/font-helper";
+import { getPostsForPage } from "@/lib/helpers/post-helper";
 
-export default function Home() {
-  return (
-    <>
-
-    </>
-  )
+interface PageProps {
+  searchParams: {
+    page?: number;
+  };
 }
+
+export const metadata = {
+  title: APP_TITLE,
+  description: APP_DESCRIPTION,
+};
+
+async function Home({ searchParams }: PageProps) {
+  const page = searchParams.page || 1;
+
+  const paginationResponse = await getPostsForPage({ page });
+
+  return (
+    <Flex direction={"column"} gap={5}>
+      <Heading level={2} asChild className={sourceSans3.className}>
+        <h2>LATEST POSTS</h2>
+      </Heading>
+      <Posts posts={paginationResponse.data} />
+      {/* pagination */}
+    </Flex>
+  );
+}
+
+export default Home;

@@ -20,7 +20,7 @@ export const Posts = ({ posts }: Props): JSX.Element => {
 
   return (
     <>
-      <Flex gap={9} direction={"column"}>
+      <Flex gap={12} direction={"column"}>
         {posts.map((post) => {
           return <Post key={post.slug} post={post} />;
         })}

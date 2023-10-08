@@ -1,9 +1,39 @@
 .header {
-  height: 60px;
-  padding: 2px 15px;
+  height: 70px;
+  padding: 15px 15px;
+
+  position: sticky;
+  top: 0;
+}
+
+.content {
+  position: relative;
 }
 
 .title {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: bold;
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  /* Extend backdrop surface to the bottom */
+  --extended-by: 100px;
+  bottom: calc(-1 * var(--extended-by));
+  /* Mask out the part falling outside the nav */
+  --cutoff: calc(100% - var(--extended-by));
+
+  --blur: 15px;
+  -webkit-backdrop-filter: blur(var(--blur));
+  backdrop-filter: blur (var(--blur));
+
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0,
+    black var(--cutoff),
+    transparent var(--cutoff)
+  );
+
+  pointer-events: none;
 }
