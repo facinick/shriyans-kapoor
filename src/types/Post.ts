@@ -25,6 +25,7 @@ type PaginationResponse = {
     end: boolean;
     count: number;
     totalPages: number;
+    totalCount: number;
   };
 };
 

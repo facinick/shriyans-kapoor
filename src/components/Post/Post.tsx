@@ -3,6 +3,7 @@ import { formatDate } from "@/lib/utils";
 import { Frontmatter } from "@/types/Post";
 import Link from "next/link";
 import { ReadMore } from "../ReadMore/ReadMore";
+import VisuallyHidden from "../VisuallyHidden/VisuallyHidden";
 import { Box } from "../ui/Box/Box";
 import { Heading } from "../ui/Typography/Heading";
 import { Paragraph } from "../ui/Typography/Paragraph";
@@ -25,6 +26,7 @@ export const Post = ({ post }: Props): JSX.Element => {
           </Heading>
         </Link>
         <Paragraph variant={"muted"} asChild>
+          <VisuallyHidden>Published On </VisuallyHidden>
           <time dateTime={publishedOn}>{formatDate(publishedOn)}</time>
         </Paragraph>
         <Paragraph>

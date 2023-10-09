@@ -1,3 +1,4 @@
+import { HomePagePagination } from "@/components/HomePagePagination/HomePagePagination";
 import { Posts } from "@/components/Posts/Posts";
 import { Flex } from "@/components/ui/Flex/Flex";
 import { Heading } from "@/components/ui/Typography/Heading";
@@ -7,7 +8,7 @@ import { getPostsForPage } from "@/lib/helpers/post-helper";
 
 interface PageProps {
   searchParams: {
-    page?: number;
+    page?: string;
   };
 }
 
@@ -17,7 +18,7 @@ export const metadata = {
 };
 
 async function Home({ searchParams }: PageProps) {
-  const page = searchParams.page || 1;
+  const page = Number(searchParams.page || 1);
 
   const paginationResponse = await getPostsForPage({ page });
 
@@ -27,7 +28,10 @@ async function Home({ searchParams }: PageProps) {
         <h2>LATEST POSTS</h2>
       </Heading>
       <Posts posts={paginationResponse.data} />
-      {/* pagination */}
+      <HomePagePagination
+        count={paginationResponse.pagination.totalPages}
+        page={page}
+      />
     </Flex>
   );
 }

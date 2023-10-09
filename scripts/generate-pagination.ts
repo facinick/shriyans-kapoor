@@ -22,6 +22,7 @@ async function generatePagination() {
           end: i > files.length,
           count: currentPage.length,
           totalPages,
+          totalCount: files.length,
         },
       };
       paginationIndex += 1;
@@ -38,6 +39,7 @@ async function generatePagination() {
         end: true,
         count: currentPage.length,
         totalPages,
+        totalCount: files.length,
       },
     };
     paginationIndex += 1;
