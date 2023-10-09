@@ -26,9 +26,15 @@
 
   --blur: 15px;
   -webkit-backdrop-filter: blur(var(--blur));
-  backdrop-filter: blur (var(--blur));
+  backdrop-filter: blur(var(--blur));
 
   -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 0,
+    black var(--cutoff),
+    transparent var(--cutoff)
+  );
+  mask-image: linear-gradient(
     to bottom,
     black 0,
     black var(--cutoff),

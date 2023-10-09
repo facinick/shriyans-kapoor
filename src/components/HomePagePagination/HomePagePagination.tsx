@@ -2,7 +2,6 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { Pagination } from "../Pagination/Pagination";
-import { Flex } from "../ui/Flex/Flex";
 interface Props {
   count: number;
   page: number;
@@ -23,14 +22,12 @@ export const HomePagePagination = ({ count, page }: Props): JSX.Element => {
 
   return (
     <>
-      <Flex justify={"center"} align={"center"}>
-        <Pagination
-          count={count}
-          siblingCount={1}
-          page={page}
-          onChange={handlePageChange}
-        />
-      </Flex>
+      <Pagination
+        count={count}
+        siblingCount={1}
+        page={page}
+        onChange={handlePageChange}
+      />
     </>
   );
 };

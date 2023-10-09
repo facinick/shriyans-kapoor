@@ -33,7 +33,11 @@ export const ThemeSelect = ({}: Props): JSX.Element => {
         <Label htmlFor="theme">Select Theme</Label>
       </VisuallyHidden>
       <Select onValueChange={handleChange} value={theme}>
-        <SelectTrigger id="theme" className={styles.trigger}>
+        <SelectTrigger
+          title={"Change Theme"}
+          id="theme"
+          className={styles.trigger}
+        >
           <SelectValue aria-label={theme}>{theme}</SelectValue>
         </SelectTrigger>
         <SelectContent>

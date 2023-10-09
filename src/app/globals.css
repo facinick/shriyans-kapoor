@@ -11,6 +11,11 @@ html {
   --padding: 20px;
 }
 
+html,
+body {
+  min-height: 100vh;
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -21,9 +26,4 @@ html {
   body {
     @apply bg-background text-foreground;
   }
-}
-
-html,
-body {
-  min-height: 100vh;
 }

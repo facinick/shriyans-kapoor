@@ -1,10 +1,11 @@
 "use client";
+import { CHARACTERS } from "@/lib/constants";
 import { usePagination } from "@/lib/hooks/usePagination";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import VisuallyHidden from "../VisuallyHidden/VisuallyHidden";
 import { Button } from "../ui/Button/Button";
+import { Flex } from "../ui/Flex/Flex";
 interface Props {
-  children?: React.ReactNode;
   count: number;
   siblingCount: number;
   page: number;
@@ -41,11 +42,12 @@ export const Pagination = ({
   };
 
   return (
-    <div style={{ display: "flex", gap: "10px" }}>
+    <Flex gap={1} justify={"center"}>
       {/* Left navigation arrow */}
       <Button
-        data-key={"previou"}
-        key={"previou"}
+        title="Previous Page"
+        data-key={"previous"}
+        key={"previous"}
         variant={"secondary"}
         disabled={page == 1}
         onClick={onPrevious}
@@ -63,13 +65,14 @@ export const Pagination = ({
               key={pageNumber}
               asChild
             >
-              <span>&#8230;</span>
+              <span>{CHARACTERS.ellipsis}</span>
             </Button>
           );
         }
 
         return (
           <Button
+            title={`Page ${pageNumber}`}
             data-key={pageNumber}
             key={pageNumber}
             disabled={page == pageNumber}
@@ -83,6 +86,7 @@ export const Pagination = ({
       })}
       {/*  Right Navigation arrow */}
       <Button
+        title="Next Page"
         data-key={"next"}
         key={"next"}
         variant={"secondary"}
@@ -92,6 +96,6 @@ export const Pagination = ({
         <ChevronRight />
         <VisuallyHidden>Goo Next Page</VisuallyHidden>
       </Button>
-    </div>
+    </Flex>
   );
 };

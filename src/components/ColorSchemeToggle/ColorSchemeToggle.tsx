@@ -1,27 +1,31 @@
-"use client"
-import { Moon, Sun } from 'lucide-react';
+"use client";
+import { Moon, Sun } from "lucide-react";
 import { useContext } from "react";
-import VisuallyHidden from '../VisuallyHidden/VisuallyHidden';
+import VisuallyHidden from "../VisuallyHidden/VisuallyHidden";
 import { ThemeContext } from "../providers/ThemeProvider";
 import { Button } from "../ui/Button/Button";
-interface Props { }
+interface Props {}
 
-const ColorSchemeToggle = ({ }: Props): JSX.Element => {
-
-  const { colorScheme, toggleColorScheme } = useContext(ThemeContext)
+const ColorSchemeToggle = ({}: Props): JSX.Element => {
+  const { colorScheme, toggleColorScheme } = useContext(ThemeContext);
 
   const handleToggle = async (): Promise<void> => {
-    await toggleColorScheme()
-  }
+    await toggleColorScheme();
+  };
 
   return (
     <>
-      <Button size="icon" variant={"secondary"} onClick={handleToggle}>
-        {colorScheme === 'dark' ? <Sun/> : <Moon/>}
+      <Button
+        title={colorScheme === "dark" ? "Light Mode" : "Dark Mode"}
+        size="icon"
+        variant={"secondary"}
+        onClick={handleToggle}
+      >
+        {colorScheme === "dark" ? <Sun /> : <Moon />}
         <VisuallyHidden>Color Scheme Toggle</VisuallyHidden>
       </Button>
     </>
   );
-}
+};
 
-export default ColorSchemeToggle
+export default ColorSchemeToggle;
