@@ -1,5 +1,5 @@
 import { APP_TITLE } from "@/lib/constants";
-import { sourceSans3 } from "@/lib/helpers/font-helper";
+import { hedingFont } from "@/lib/helpers/font-helper";
 import clsx from "clsx";
 import ColorSchemeToggle from "../ColorSchemeToggle";
 import { ThemeSelect } from "../ThemeSelect/ThemeSelect";
@@ -22,7 +22,7 @@ export const Header = ({ children }: Props): JSX.Element => {
           <Link href={"/"}>
             <Heading
               asChild
-              className={clsx(styles.title, sourceSans3.className)}
+              className={clsx(styles.title, hedingFont.className)}
             >
               <h1>{APP_TITLE}</h1>
             </Heading>

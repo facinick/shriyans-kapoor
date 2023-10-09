@@ -1,4 +1,4 @@
-import { sourceSans3 } from "@/lib/helpers/font-helper";
+import { hedingFont } from "@/lib/helpers/font-helper";
 import { formatDate } from "@/lib/utils";
 import { Frontmatter } from "@/types/Post";
 import Link from "next/link";
@@ -21,7 +21,7 @@ export const Post = ({ post }: Props): JSX.Element => {
     <Box asChild>
       <article>
         <Link href={slug}>
-          <Heading level={3} asChild className={sourceSans3.className}>
+          <Heading level={3} asChild className={hedingFont.className}>
             <h3>{title} </h3>
           </Heading>
         </Link>

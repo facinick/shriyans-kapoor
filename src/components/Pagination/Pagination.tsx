@@ -51,7 +51,7 @@ export const Pagination = ({
               <Button
                 title="Previous Page"
                 variant={"secondary"}
-                disabled={page == 1}
+                disabled={page <= 1}
                 onClick={onPrevious}
               >
                 <ChevronLeft />
@@ -94,7 +94,7 @@ export const Pagination = ({
               <Button
                 title="Next Page"
                 variant={"secondary"}
-                disabled={page == count}
+                disabled={page >= count}
                 onClick={onNext}
               >
                 <ChevronRight />

@@ -1,5 +1,17 @@
-import { Montserrat, Source_Sans_3 } from "next/font/google";
+import { Bodoni_Moda, Quattrocento, Questrial } from "next/font/google";
 
-export const montserrat = Montserrat({ subsets: ['latin'] })
+export const acccentFont = Bodoni_Moda({
+  weight: "variable",
+  style: "italic",
+  subsets: ["latin"],
+});
 
-export const sourceSans3 = Source_Sans_3({ subsets: ['latin'] })
+export const mainFont = Questrial({
+  weight: "400",
+  subsets: ["latin"],
+});
+
+export const hedingFont = Quattrocento({
+  weight: "400",
+  subsets: ["latin"],
+});
