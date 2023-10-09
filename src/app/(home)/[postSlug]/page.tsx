@@ -2,9 +2,8 @@ import { Flex } from "@/components/ui/Flex/Flex";
 import { APP_TITLE } from "@/lib/constants";
 import MDX_COMPONENTS_MAP from "@/lib/helpers/mdx-components";
 import { loadBlogPost } from "@/lib/helpers/post-helper";
-import { MDXRemote } from "next-mdx-remote/rsc";
-
 import { getPreviousLinkOrHome } from "@/lib/server/referer";
+import { MDXRemote } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
 import { PostHeader } from "./PostHeader";
 import styles from "./page.module.css";
@@ -52,11 +51,11 @@ async function BlogPost({ params }: PageProps) {
   return (
     <>
       <Flex direction={"column"} gap={5} asChild>
-        <article>
+        <article className={styles.article}>
           <PostHeader backLink={backLink}>{frontmatter.title}</PostHeader>
-          <div className={styles.page}>
-            <MDXRemote components={MDX_COMPONENTS_MAP} source={content} />
-          </div>
+          {/* <div className={styles.page}> */}
+          <MDXRemote components={MDX_COMPONENTS_MAP} source={content} />
+          {/* </div> */}
         </article>
       </Flex>
     </>
