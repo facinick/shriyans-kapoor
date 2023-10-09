@@ -3,7 +3,7 @@ import { Posts } from "@/components/Posts/Posts";
 import { Flex } from "@/components/ui/Flex/Flex";
 import { Heading } from "@/components/ui/Typography/Heading";
 import { APP_DESCRIPTION, APP_TITLE } from "@/lib/constants";
-import { hedingFont } from "@/lib/helpers/font-helper";
+import { headingFont } from "@/lib/helpers/font-helper";
 import { getPostsForPage } from "@/lib/helpers/post-helper";
 
 interface PageProps {
@@ -24,7 +24,7 @@ async function Home({ searchParams }: PageProps) {
 
   return (
     <Flex direction={"column"} gap={5}>
-      <Heading level={2} asChild className={hedingFont.className}>
+      <Heading level={2} asChild className={headingFont.className}>
         <h2>LATEST POSTS</h2>
       </Heading>
       <Posts posts={paginationResponse.data} />

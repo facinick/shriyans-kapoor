@@ -1,5 +1,5 @@
 import { APP_TITLE } from "@/lib/constants";
-import { hedingFont } from "@/lib/helpers/font-helper";
+import { headingFont } from "@/lib/helpers/font-helper";
 import clsx from "clsx";
 import ColorSchemeToggle from "../ColorSchemeToggle";
 import { ThemeSelect } from "../ThemeSelect/ThemeSelect";
@@ -9,11 +9,9 @@ import { Link } from "../ui/Link/Link";
 import { Heading } from "../ui/Typography/Heading";
 import styles from "./Header.module.css";
 
-interface Props {
-  children?: React.ReactNode;
-}
+interface Props {}
 
-export const Header = ({ children }: Props): JSX.Element => {
+export const Header = ({}: Props): JSX.Element => {
   return (
     <>
       <header className={styles.header}>
@@ -22,7 +20,7 @@ export const Header = ({ children }: Props): JSX.Element => {
           <Link href={"/"}>
             <Heading
               asChild
-              className={clsx(styles.title, hedingFont.className)}
+              className={clsx(styles.title, headingFont.className)}
             >
               <h1>{APP_TITLE}</h1>
             </Heading>

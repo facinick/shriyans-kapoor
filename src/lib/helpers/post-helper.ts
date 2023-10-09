@@ -43,6 +43,7 @@ const getDataFromCacheOrNull = async ({
       end: true,
       count: 0,
       totalPages: Object.keys(paginationJson).length,
+      totalCount: 0,
     },
   };
 };
@@ -92,11 +93,12 @@ export async function getBlogPostList({
 /* 
   read `/content/${slug}` file, parse it using gray-matter and return it's meta and content
 */
-export async function loadBlogPost(slug: string) {
+export async function loadBlogPost({ slug }: { slug: string }) {
   try {
     const rawContent = await readFile(`${POSTS_DIRECTORY}/${slug}.mdx`);
-
-    const { data: frontmatter, content } = rawContent as unknown as Post;
+    const { data: frontmatter, content } = matter(
+      rawContent as unknown as Post
+    );
     return { frontmatter, content };
   } catch (error) {
     if (error instanceof Error) {
@@ -112,6 +114,5 @@ export async function loadBlogPost(slug: string) {
 
 export async function getPostsForPage({ page = 1 }: { page?: number }) {
   const data = await getDataFromCacheOrNull({ page });
-
   return data;
 }

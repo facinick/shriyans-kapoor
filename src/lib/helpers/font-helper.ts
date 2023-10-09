@@ -1,4 +1,4 @@
-import { Bodoni_Moda, Quattrocento, Questrial } from "next/font/google";
+import { Bodoni_Moda, Roboto, Roboto_Condensed } from "next/font/google";
 
 export const acccentFont = Bodoni_Moda({
   weight: "variable",
@@ -6,12 +6,12 @@ export const acccentFont = Bodoni_Moda({
   subsets: ["latin"],
 });
 
-export const mainFont = Questrial({
+export const mainFont = Roboto({
   weight: "400",
   subsets: ["latin"],
 });
 
-export const hedingFont = Quattrocento({
-  weight: "400",
+export const headingFont = Roboto_Condensed({
+  weight: "700",
   subsets: ["latin"],
 });
