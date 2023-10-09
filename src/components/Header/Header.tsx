@@ -17,7 +17,7 @@ export const Header = ({}: Props): JSX.Element => {
       <header className={styles.header}>
         <div className={styles.backdrop}></div>
         <Flex className={styles.content} align={"center"} justify={"between"}>
-          <Link href={"/"}>
+          <Link href={"/"} className={styles.link}>
             <Heading
               asChild
               className={clsx(styles.title, headingFont.className)}
