@@ -42,60 +42,68 @@ export const Pagination = ({
   };
 
   return (
-    <Flex gap={1} justify={"center"}>
+    <Flex asChild>
       {/* Left navigation arrow */}
-      <Button
-        title="Previous Page"
-        data-key={"previous"}
-        key={"previous"}
-        variant={"secondary"}
-        disabled={page == 1}
-        onClick={onPrevious}
-      >
-        <ChevronLeft />
-        <VisuallyHidden>Goto Previous Page</VisuallyHidden>
-      </Button>
-      {paginationRange.map((pageNumber) => {
-        if (pageNumber === "left-ellipsis" || pageNumber === "right-ellipsis") {
-          return (
-            <Button
-              data-key={pageNumber}
-              disabled
-              variant={"ghost"}
-              key={pageNumber}
-              asChild
-            >
-              <span>{CHARACTERS.ellipsis}</span>
-            </Button>
-          );
-        }
+      <nav>
+        <Flex asChild justify={"center"} align={"center"} gap={2}>
+          <ul>
+            <li key={"previous"}>
+              <Button
+                title="Previous Page"
+                variant={"secondary"}
+                disabled={page == 1}
+                onClick={onPrevious}
+              >
+                <ChevronLeft />
+                <VisuallyHidden>Goto Previous Page</VisuallyHidden>
+              </Button>
+            </li>
 
-        return (
-          <Button
-            title={`Page ${pageNumber}`}
-            data-key={pageNumber}
-            key={pageNumber}
-            disabled={page == pageNumber}
-            onClick={() => onPageChange(Number(pageNumber))}
-            variant={page == pageNumber ? "default" : "secondary"}
-          >
-            {pageNumber}
-            <VisuallyHidden>{`Goto Page ${pageNumber}`}</VisuallyHidden>
-          </Button>
-        );
-      })}
-      {/*  Right Navigation arrow */}
-      <Button
-        title="Next Page"
-        data-key={"next"}
-        key={"next"}
-        variant={"secondary"}
-        disabled={page == count}
-        onClick={onNext}
-      >
-        <ChevronRight />
-        <VisuallyHidden>Goo Next Page</VisuallyHidden>
-      </Button>
+            {paginationRange.map((pageNumber) => {
+              if (
+                pageNumber === "left-ellipsis" ||
+                pageNumber === "right-ellipsis"
+              ) {
+                return (
+                  <li key={pageNumber}>
+                    <Button disabled variant={"ghost"} asChild>
+                      <span>{CHARACTERS.ellipsis}</span>
+                    </Button>
+                  </li>
+                );
+              }
+
+              return (
+                <li key={pageNumber}>
+                  <Button
+                    title={`Page ${pageNumber}`}
+                    key={pageNumber}
+                    disabled={page == pageNumber}
+                    onClick={() => onPageChange(Number(pageNumber))}
+                    variant={page == pageNumber ? "default" : "secondary"}
+                  >
+                    {pageNumber}
+                    <VisuallyHidden>{`Goto Page ${pageNumber}`}</VisuallyHidden>
+                  </Button>
+                </li>
+              );
+            })}
+
+            {/*  Right Navigation arrow */}
+            <li key={"next"}>
+              <Button
+                title="Next Page"
+                variant={"secondary"}
+                disabled={page == count}
+                onClick={onNext}
+              >
+                <ChevronRight />
+                <VisuallyHidden>Goo Next Page</VisuallyHidden>
+              </Button>
+            </li>
+          </ul>
+        </Flex>
+      </nav>
     </Flex>
   );
 };

@@ -26,8 +26,10 @@ export const Post = ({ post }: Props): JSX.Element => {
           </Heading>
         </Link>
         <Paragraph variant={"muted"} asChild>
-          <VisuallyHidden>Published On </VisuallyHidden>
-          <time dateTime={publishedOn}>{formatDate(publishedOn)}</time>
+          <time dateTime={publishedOn}>
+            <VisuallyHidden>Published On </VisuallyHidden>
+            {formatDate(publishedOn)}
+          </time>
         </Paragraph>
         <Paragraph>
           {`${abstract} `} <ReadMore href={slug} />

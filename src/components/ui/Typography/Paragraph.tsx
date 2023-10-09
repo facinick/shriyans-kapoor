@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { Slot } from "@radix-ui/react-slot";
 import { VariantProps, cva } from "class-variance-authority";
 import React from "react";
 
@@ -25,8 +26,9 @@ export interface ParagraphProps
 
 const Paragraph = React.forwardRef<HTMLParagraphElement, ParagraphProps>(
   ({ className, variant, asChild = false, ...props }, ref) => {
+    const Comp = asChild ? Slot : "p";
     return (
-      <p
+      <Comp
         className={cn(paragraphVariants({ variant, className }))}
         ref={ref}
         {...props}
