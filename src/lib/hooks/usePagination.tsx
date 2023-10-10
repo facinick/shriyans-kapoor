@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { range } from "../utils";
+import { range } from "../helpers/utils";
 
 interface Props {
   // total number of pages

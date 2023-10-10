@@ -1,5 +1,5 @@
-import { Link } from "../ui/Link/Link";
-
+import { Link } from "../ui/Link";
+import styles from "./ReadMore.module.css";
 interface Props {
   href: string;
 }
@@ -7,7 +7,11 @@ interface Props {
 export const ReadMore = ({ href }: Props): JSX.Element => {
   return (
     <>
-      <Link href={href}>Read More</Link>
+      <Link className={styles.link} href={href}>
+        Read More
+      </Link>
     </>
   );
 };
+
+export default ReadMore;

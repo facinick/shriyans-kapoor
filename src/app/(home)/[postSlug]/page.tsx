@@ -1,11 +1,11 @@
+import PostPagePostHeader from "@/components/PostPagePostHeader";
 import { Flex } from "@/components/ui/Flex/Flex";
 import { APP_TITLE } from "@/lib/constants";
 import MDX_COMPONENTS_MAP from "@/lib/helpers/mdx-components";
 import { loadBlogPost } from "@/lib/helpers/post-helper";
-import { getPreviousLinkOrHome } from "@/lib/server/referer";
+import { getBackLinkFromRequest } from "@/lib/helpers/request-helpers";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
-import { PostHeader } from "./PostHeader";
 import styles from "./page.module.css";
 
 interface PageProps {
@@ -46,13 +46,15 @@ async function BlogPost({ params }: PageProps) {
 
   const { frontmatter, content } = post;
 
-  const backLink = getPreviousLinkOrHome();
+  const backLink = getBackLinkFromRequest();
 
   return (
     <>
       <Flex direction={"column"} gap={5} asChild>
         <article className={styles.article}>
-          <PostHeader backLink={backLink}>{frontmatter.title}</PostHeader>
+          <PostPagePostHeader backLink={backLink}>
+            {frontmatter.title}
+          </PostPagePostHeader>
           {/* <div className={styles.page}> */}
           <MDXRemote components={MDX_COMPONENTS_MAP} source={content} />
           {/* </div> */}

@@ -7,10 +7,6 @@
 @import url("../themes/shadcnui/blue.css");
 @import url("../themes/shadcnui/black.css");
 
-html {
-  --padding: 20px;
-}
-
 html,
 body {
   min-height: 100vh;

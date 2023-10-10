@@ -1,7 +1,7 @@
 "use client";
 import { Moon, Sun } from "lucide-react";
 import { useContext } from "react";
-import VisuallyHidden from "../VisuallyHidden/VisuallyHidden";
+import VisuallyHidden from "../VisuallyHidden";
 import { ThemeContext } from "../providers/ThemeProvider";
 import { Button } from "../ui/Button/Button";
 interface Props {}

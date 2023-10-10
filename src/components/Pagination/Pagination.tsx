@@ -1,10 +1,12 @@
 "use client";
-import { CHARACTERS } from "@/lib/constants";
+
+import { CHARACTERS } from "@/lib/helpers/string-helper";
 import { usePagination } from "@/lib/hooks/usePagination";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import VisuallyHidden from "../VisuallyHidden/VisuallyHidden";
-import { Button } from "../ui/Button/Button";
-import { Flex } from "../ui/Flex/Flex";
+import VisuallyHidden from "../VisuallyHidden";
+import { Button } from "../ui/Button";
+import { Flex } from "../ui/Flex";
+
 interface Props {
   count: number;
   siblingCount: number;
@@ -12,7 +14,7 @@ interface Props {
   onChange: (nextPage: number) => void;
 }
 
-export const Pagination = ({
+const Pagination = ({
   count,
   siblingCount,
   page,
@@ -107,3 +109,5 @@ export const Pagination = ({
     </Flex>
   );
 };
+
+export default Pagination;

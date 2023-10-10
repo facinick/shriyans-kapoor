@@ -1,5 +1,5 @@
-import { HomePagePagination } from "@/components/HomePagePagination/HomePagePagination";
-import { Posts } from "@/components/Posts/Posts";
+import HomePagePagination from "@/components/HomePagePagination";
+import HomePagePostList from "@/components/HomePagePostList";
 import { Flex } from "@/components/ui/Flex/Flex";
 import { Heading } from "@/components/ui/Typography/Heading";
 import { APP_DESCRIPTION, APP_TITLE } from "@/lib/constants";
@@ -27,7 +27,7 @@ async function Home({ searchParams }: PageProps) {
       <Heading level={2} asChild className={headingFont.className}>
         <h2>LATEST POSTS</h2>
       </Heading>
-      <Posts posts={paginationResponse.data} />
+      <HomePagePostList posts={paginationResponse.data} />
       <HomePagePagination
         count={paginationResponse.pagination.totalPages}
         page={page}

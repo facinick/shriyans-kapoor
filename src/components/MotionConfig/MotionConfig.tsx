@@ -2,9 +2,10 @@
 import { MotionConfig as MC } from "framer-motion";
 
 interface Props {
-  children?: React.ReactNode
+  children?: React.ReactNode;
 }
-
-export const MotionConfig = ({ children }: Props) => (
+const MotionConfig = ({ children }: Props) => (
   <MC reducedMotion="user">{children}</MC>
 );
+
+export default MotionConfig;

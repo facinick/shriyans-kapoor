@@ -1,5 +1,5 @@
 import { Frontmatter } from "@/types/Post";
-import { Post } from "../Post/Post";
+import HomescreenPost from "../HomescreenPost";
 import { Flex } from "../ui/Flex/Flex";
 import { Paragraph } from "../ui/Typography/Paragraph";
 
@@ -9,7 +9,7 @@ interface Props {
   })[];
 }
 
-export const Posts = ({ posts }: Props): JSX.Element => {
+const HomePagePostList = ({ posts }: Props): JSX.Element => {
   if (posts.length === 0) {
     return (
       <>
@@ -25,7 +25,7 @@ export const Posts = ({ posts }: Props): JSX.Element => {
           {posts.map((post) => {
             return (
               <li key={post.slug}>
-                <Post post={post} />
+                <HomescreenPost post={post} />
               </li>
             );
           })}
@@ -34,3 +34,5 @@ export const Posts = ({ posts }: Props): JSX.Element => {
     </>
   );
 };
+
+export default HomePagePostList;

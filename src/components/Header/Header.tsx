@@ -2,16 +2,16 @@ import { APP_TITLE } from "@/lib/constants";
 import { headingFont } from "@/lib/helpers/font-helper";
 import clsx from "clsx";
 import ColorSchemeToggle from "../ColorSchemeToggle";
-import { ThemeSelect } from "../ThemeSelect/ThemeSelect";
-import { Box } from "../ui/Box/Box";
-import { Flex } from "../ui/Flex/Flex";
-import { Link } from "../ui/Link/Link";
-import { Heading } from "../ui/Typography/Heading";
+import ThemeSelect from "../ThemeSelect";
+import { Box } from "../ui/Box";
+import { Flex } from "../ui/Flex";
+import { Link } from "../ui/Link";
+import { Heading } from "../ui/Typography";
 import styles from "./Header.module.css";
 
 interface Props {}
 
-export const Header = ({}: Props): JSX.Element => {
+const Header = ({}: Props): JSX.Element => {
   return (
     <>
       <header className={styles.header}>
@@ -37,3 +37,5 @@ export const Header = ({}: Props): JSX.Element => {
     </>
   );
 };
+
+export default Header;

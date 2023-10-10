@@ -1,13 +1,12 @@
 import { headingFont } from "@/lib/helpers/font-helper";
-import { formatDate } from "@/lib/utils";
+import { formatDate } from "@/lib/helpers/utils";
 import { Frontmatter } from "@/types/Post";
 import Link from "next/link";
 import { ReadMore } from "../ReadMore/ReadMore";
-import VisuallyHidden from "../VisuallyHidden/VisuallyHidden";
-import { Flex } from "../ui/Flex/Flex";
-import { Heading } from "../ui/Typography/Heading";
-import { Paragraph } from "../ui/Typography/Paragraph";
-import styles from "./Post.module.css";
+import VisuallyHidden from "../VisuallyHidden";
+import { Flex } from "../ui/Flex";
+import { Heading, Paragraph } from "../ui/Typography";
+import styles from "./HomePagePost.module.css";
 
 interface Props {
   post: Frontmatter & {
@@ -15,7 +14,7 @@ interface Props {
   };
 }
 
-export const Post = ({ post }: Props): JSX.Element => {
+const HomePagePost = ({ post }: Props): JSX.Element => {
   const { author, publishedOn, abstract, title, slug } = post;
 
   return (
@@ -42,3 +41,5 @@ export const Post = ({ post }: Props): JSX.Element => {
     </Flex>
   );
 };
+
+export default HomePagePost;

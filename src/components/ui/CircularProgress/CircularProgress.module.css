@@ -1,0 +1,38 @@
+/* size variants */
+.thin {
+  --stroke-width: 5px;
+}
+
+.medium {
+  --stroke-width: 10px;
+}
+
+.thick {
+  --stroke-width: 15px;
+}
+
+.primary {
+  --track-color: hsl(var(--secondary));
+  --fill-color: hsl(var(--primary));
+}
+
+.progress {
+  transform: rotate(-90deg);
+}
+
+.track {
+  stroke: var(--track-color);
+}
+
+.filled {
+  stroke: var(--fill-color);
+  stroke-dasharray: 0px, 1px;
+}
+
+.circle {
+  stroke-dashoffset: 0px;
+  stroke-width: var(--stroke-width);
+  fill: none;
+  width: 100%;
+  height: 100%;
+}

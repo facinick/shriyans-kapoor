@@ -1,14 +1,18 @@
-import { Link } from "@/components/ui/Link/Link";
-import { Heading } from "@/components/ui/Typography/Heading";
+import { Link } from "@/components/ui/Link";
+import { Heading } from "@/components/ui/Typography";
 import { headingFont } from "@/lib/helpers/font-helper";
 import { ArrowLeft } from "lucide-react";
-import styles from "./PostHeader.module.css";
+import styles from "./PostPagePostHeader.module.css";
+
 interface Props {
   children?: React.ReactNode;
   backLink: string;
 }
 
-export const PostHeader = ({ children, backLink }: Props): JSX.Element => {
+export const PostPagePostHeader = ({
+  children,
+  backLink,
+}: Props): JSX.Element => {
   return (
     <>
       <Heading level={2} asChild className={headingFont.className}>
@@ -23,3 +27,5 @@ export const PostHeader = ({ children, backLink }: Props): JSX.Element => {
     </>
   );
 };
+
+export default PostPagePostHeader;

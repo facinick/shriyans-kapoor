@@ -1,8 +1,12 @@
-import { Header } from "@/components/Header/Header";
-import ThemeProvider from "@/components/providers/ThemeProvider";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
+import ThemeProvider from "@/components/providers/ThemeProvider/ThemeProvider";
 import { mainFont } from "@/lib/helpers/font-helper";
-import { getColorSchemeFromRequest } from "@/lib/server/color-scheme";
-import { getThemeFromRequest } from "@/lib/server/theme";
+import {
+  getColorSchemeFromRequest,
+  getThemeFromRequest,
+} from "@/lib/helpers/request-helpers";
 import { ColorScheme, Theme } from "@/types/Theme";
 import "../globals.css";
 import styles from "./layout.module.css";
@@ -25,6 +29,8 @@ export default function RootLayout({
         <ThemeProvider initialColorScheme={colorScheme} initialTheme={theme}>
           <Header />
           <main className={styles.main}>{children}</main>
+          <Footer />
+          <ScrollToTop />
         </ThemeProvider>
         {/* </SessionProvider> */}
       </body>

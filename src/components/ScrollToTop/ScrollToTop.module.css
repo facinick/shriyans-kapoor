@@ -1,0 +1,32 @@
+.trigger {
+  top: 100px;
+  position: absolute;
+  pointer-events: none;
+  width: 0px;
+  height: 0px;
+}
+
+.wrapper {
+  --size: 50px;
+  --offset: 10px;
+  position: fixed;
+  right: var(--offset);
+  bottom: var(--offset);
+  width: calc(var(--size) + var(--offset));
+  height: calc(var(--size) + var(--offset));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button {
+  border-radius: 9999px;
+  width: var(--size);
+  height: var(--size);
+}
+
+.progress {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
