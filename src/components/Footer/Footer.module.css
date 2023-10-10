@@ -1,4 +1,5 @@
 .footer {
-  height: 70px;
+  height: 160px;
   padding: 15px 15px;
+  position: relative;
 }

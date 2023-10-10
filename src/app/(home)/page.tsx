@@ -1,3 +1,4 @@
+import Clock from "@/components/Clock";
 import HomePagePagination from "@/components/HomePagePagination";
 import HomePagePostList from "@/components/HomePagePostList";
 import { Flex } from "@/components/ui/Flex/Flex";
@@ -5,7 +6,8 @@ import { Heading } from "@/components/ui/Typography/Heading";
 import { APP_DESCRIPTION, APP_TITLE } from "@/lib/constants";
 import { headingFont } from "@/lib/helpers/font-helper";
 import { getPostsForPage } from "@/lib/helpers/post-helper";
-
+import clsx from "clsx";
+import styles from "./page.module.css";
 interface PageProps {
   searchParams: {
     page?: string;
@@ -24,9 +26,17 @@ async function Home({ searchParams }: PageProps) {
 
   return (
     <Flex direction={"column"} gap={5}>
-      <Heading level={2} asChild className={headingFont.className}>
-        <h2>LATEST POSTS</h2>
+      <Heading
+        level={2}
+        asChild
+        className={clsx(headingFont.className, styles.heading)}
+      >
+        <h2>
+          RECENT
+          <Clock />
+        </h2>
       </Heading>
+
       <HomePagePostList posts={paginationResponse.data} />
       <HomePagePagination
         count={paginationResponse.pagination.totalPages}

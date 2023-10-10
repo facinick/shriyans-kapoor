@@ -9,7 +9,7 @@
 .wrapper {
   --size: 50px;
   --ring-width: 10px;
-  --offset: 10px;
+  --offset: 15px;
   position: fixed;
   right: var(--offset);
   bottom: var(--offset);

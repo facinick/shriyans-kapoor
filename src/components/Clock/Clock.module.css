@@ -1,0 +1,28 @@
+.wrapper {
+  --digit-size: 30px;
+  --separator-size: var(var(--digit-size))
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 160px;
+  width: calc(var(--digit-size) * 6 + var(--separator-size) * 2);
+  overflow: hidden;
+  position: relative;
+  overflow-y: hidden;
+  height: var(--digit-size);
+  font-size: var(--digit-size);
+}
+
+.separator {
+  width: var(--separator-size);
+  /* font-size: var(--digit-size); */
+}
+
+.number-wrapper {
+  width: var(--digit-size);
+}
+
+.number {
+  position: absolute;
+  /* font-size: var(--digit-size); */
+}

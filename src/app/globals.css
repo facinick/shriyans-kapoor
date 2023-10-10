@@ -17,7 +17,7 @@ body {
     @apply border-border;
   }
   html {
-    @apply bg-foreground text-background;
+    @apply bg-background text-foreground;
   }
   body {
     @apply bg-background text-foreground;
