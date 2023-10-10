@@ -70,24 +70,11 @@ const ScrollToTop = ({}: Props): JSX.Element => {
           opacity,
         }}
       >
-        <Button
-          // style={{ filter: `hue-rotate(${Math.round(scroll * 360)}deg)` }}
-          onClick={scrollToTop}
-          className={styles.button}
-          ref={buttonRef}
-        >
+        <Button onClick={scrollToTop} className={styles.button} ref={buttonRef}>
           <MoveUp />
         </Button>
         <div className={styles.progress}>
-          <CircularProgress
-            trackStyle={
-              {
-                // stroke: "transparent",
-              }
-            }
-            size={"thick"}
-            progressInDecimal={scroll}
-          />
+          <CircularProgress size={"thick"} progressInDecimal={scroll} />
         </div>
       </motion.div>
     </>

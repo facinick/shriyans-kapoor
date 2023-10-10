@@ -8,12 +8,13 @@
 
 .wrapper {
   --size: 50px;
+  --ring-width: 10px;
   --offset: 10px;
   position: fixed;
   right: var(--offset);
   bottom: var(--offset);
-  width: calc(var(--size) + var(--offset));
-  height: calc(var(--size) + var(--offset));
+  width: calc(var(--size) + var(--ring-width) * 2);
+  height: calc(var(--size) + var(--ring-width) * 2);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,10 +24,15 @@
   border-radius: 9999px;
   width: var(--size);
   height: var(--size);
+  z-index: 1;
+  box-shadow: none;
+  border: none;
+  outline: none;
 }
 
 .progress {
   position: absolute;
   width: 100%;
   height: 100%;
+  z-index: 0;
 }
