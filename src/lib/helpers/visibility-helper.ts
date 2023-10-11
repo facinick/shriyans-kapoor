@@ -29,7 +29,13 @@ const vendorEvents = [
 
 export const isSupported = hasDocument && Boolean(document.addEventListener);
 
-export const visibility = (() => {
+export interface VisibilityEvent {
+  hidden: string;
+  event: string;
+  state: string;
+}
+
+export const visibility = ((): VisibilityEvent | null => {
   if (!isSupported) {
     return null;
   }
@@ -46,6 +52,8 @@ export const getHandlerArgs = (): [boolean, string] => {
   if (!visibility) {
     return [true, "visible"];
   }
-  const { hidden, state } = visibility;
-  return [!document[hidden], document[state]];
+  const { hidden, state } = visibility as VisibilityEvent;
+  const isHidden = document[hidden as keyof Document];
+  const stateValue = document[state as keyof Document];
+  return [!isHidden, stateValue as string];
 };
