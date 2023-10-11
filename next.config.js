@@ -1,4 +1,10 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  experimental: {
+    outputFileTracingIncludes: {
+      "/*": ["./public/pagination.json"],
+    },
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
