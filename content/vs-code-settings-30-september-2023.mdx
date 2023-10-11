@@ -1,0 +1,137 @@
+---
+title: "VS Code settings"
+abstract: My Basic VS Code settings for React Application with Formatting and Linting, Font Ligatures, Organised imports and theming.
+publishedOn: "2023-09-30T12:00:00-0400"
+author: "Shriyans Kapoor"
+---
+
+## Explorer
+
+```json
+"editor.accessibilitySupport": "off",
+"explorer.confirmDelete": false,
+"explorer.confirmDragAndDrop": false,
+"javascript.updateImportsOnFileMove.enabled": "always",
+```
+
+## Prettier + ESLint
+
+Install following Extensions
+
+1. [Prettier ESLint](https://marketplace.visualstudio.com/items?itemName=rvest.vs-code-prettier-eslint)
+2. [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+
+```bash
+pnpm i -D prettier@^2.5.1 eslint@^8.7.0 @typescript-eslint/parser@^5.0.1 typescript
+```
+
+```json
+// prettier + eslint (in order)
+"editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+"editor.formatOnPaste": false, // required
+"editor.formatOnType": false, // required
+"editor.formatOnSave": true,
+"editor.formatOnSaveMode": "file",
+"vs-code-prettier-eslint.prettierLast": false, // run prettier first,
+"editor.tabSize": 2,
+```
+
+## Organize imports (reorder, remove unused)
+
+```json
+"editor.codeActionsOnSave": {
+  "source.organizeImports": true
+},
+```
+
+## Theme
+
+Install following Extensions
+
+1. [Material Icon Theme](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme)
+2. [Github Theme](https://marketplace.visualstudio.com/items?itemName=GitHub.github-vscode-theme) / [Night Owl Theme](https://marketplace.visualstudio.com/items?itemName=sdras.night-owl)
+3. [Emoji FIle Icons](https://marketplace.visualstudio.com/items?itemName=mightbesimon.emoji-icons)
+
+```json
+"window.zoomLevel": 1,
+"workbench.iconTheme": "material-icon-theme",
+"workbench.productIconTheme": "emoji-product-icons-fun",
+"workbench.colorTheme": "Night Owl",
+```
+
+## Font
+
+Install following fonts
+
+1. Fira Code
+2. Operator Mono
+
+```json
+"editor.fontFamily": "Operator Mono, Fira Code",
+"editor.fontLigatures": true,
+"editor.fontSize": 16,
+"editor.tokenColorCustomizations": {
+  "textMateRules": [
+    {
+      "scope": [
+        // following will be in italic
+        "comment", // comments
+        "constant", // String, Number, Boolean…, this, super
+        "storage.modifier", // static keyword
+        "storage.type.class.js", // class keyword
+        "entity.other.attribute-name", // html attributes
+        "keyword.control" // return, if else etc
+      ],
+      "settings": {
+        "fontStyle": "italic"
+      }
+    },
+  ]
+},
+```
+
+---
+
+## Update (30 Sep 2023)
+
+```json
+{
+  // turn off annoying sounds
+  "editor.accessibilitySupport": "off",
+
+  // organize imports (reorder imports, remove unused imports)
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+  },
+
+  // prettier + eslint (in order)
+  /* run following in terminal to install locally. 
+    pnpm i -D prettier@^2.5.1 eslint@^8.7.0 @typescript-eslint/parser@^5.0.1 typescript
+  */
+  "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+  "editor.formatOnPaste": false, // required
+  "editor.formatOnType": false, // required
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
+  "vs-code-prettier-eslint.prettierLast": false, // run prettier first,
+  "editor.tabSize": 2,
+
+  // explorer
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+
+  // theme
+  "window.zoomLevel": 1,
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.productIconTheme": "emoji-product-icons-fun",
+  "workbench.colorTheme": "Night Owl",
+  "workbench.statusBar.visible": false,
+  "workbench.layoutControl.enabled": false,
+
+  // font
+  "editor.fontFamily": "Operator Mono, Fira Code",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 14
+}
+```
