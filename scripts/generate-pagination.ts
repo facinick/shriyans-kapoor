@@ -49,6 +49,7 @@ async function generatePagination() {
   const jsonContent = JSON.stringify(paginationInfo, null, 2);
 
   await writeFile(PAGINATION_FILE_PATH, jsonContent);
+  console.log(`generated pagination.json`);
 }
 
 generatePagination();
