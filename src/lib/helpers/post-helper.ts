@@ -5,7 +5,6 @@ import {
   PostOrderBy,
 } from "@/types/Post";
 import matter from "gray-matter";
-import path from "path";
 import { PAGINATION_READ_FILE_PATH, POSTS_DIRECTORY } from "../constants";
 import {
   FileError,
@@ -27,13 +26,9 @@ const getDataFromCacheOrNull = async ({
   }
 
   console.log(
-    `about to read pagination.json file: ${path.resolve(
-      `public/${PAGINATION_READ_FILE_PATH}`
-    )}`
+    `about to read pagination.json file: ${PAGINATION_READ_FILE_PATH}`
   );
-  const paginationData = await readFile2(
-    path.resolve(`public/${PAGINATION_READ_FILE_PATH}`)
-  );
+  const paginationData = await readFile2(PAGINATION_READ_FILE_PATH);
   console.log(`read it baby`);
 
   const paginationJson = JSON.parse(paginationData) as Record<
