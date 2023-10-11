@@ -5,7 +5,7 @@ import {
   PostOrderBy,
 } from "@/types/Post";
 import matter from "gray-matter";
-import { PAGINATION_FILE_PATH, POSTS_DIRECTORY } from "../constants";
+import { PAGINATION_READ_FILE_PATH, POSTS_DIRECTORY } from "../constants";
 import {
   FileError,
   getErrorMessage,
@@ -24,7 +24,7 @@ const getDataFromCacheOrNull = async ({
     return cache.get(page) as PaginationResponse;
   }
 
-  const paginationData = await readFile(PAGINATION_FILE_PATH);
+  const paginationData = await readFile(PAGINATION_READ_FILE_PATH);
 
   const paginationJson = JSON.parse(paginationData) as Record<
     number,

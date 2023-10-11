@@ -1,4 +1,4 @@
-import { PAGINATION_FILE_PATH, POSTS_PER_PAGE } from "@/lib/constants";
+import { PAGINATION_WRITE_FILE_PATH, POSTS_PER_PAGE } from "@/lib/constants";
 import { writeFile } from "@/lib/helpers/file-helper";
 import { getBlogPostList } from "@/lib/helpers/post-helper";
 import { PaginationResponse } from "@/types/Post";
@@ -48,7 +48,7 @@ async function generatePagination() {
 
   const jsonContent = JSON.stringify(paginationInfo, null, 2);
 
-  await writeFile(PAGINATION_FILE_PATH, jsonContent);
+  await writeFile(PAGINATION_WRITE_FILE_PATH, jsonContent);
   console.log(`generated pagination.json`);
 }
 
