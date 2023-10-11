@@ -2,6 +2,7 @@
 
 import { extractTimeDigitsFromDate } from "@/lib/helpers/utils";
 import { useCurrentTime } from "@/lib/hooks/useCurrentTime";
+import usePageVisibility from "@/lib/hooks/usePageVisibility";
 import clsx from "clsx";
 import { AnimatePresence, MotionProps, motion } from "framer-motion";
 import { ComponentProps, useId } from "react";
@@ -14,8 +15,6 @@ type ClockProps = ComponentProps<typeof Box>;
 const Clock = ({ className }: ClockProps): JSX.Element => {
   const currentTime = useCurrentTime({ unit: "ms", every: 50 });
 
-  const id = useId();
-
   const {
     hourTensDigit,
     hourUnitDigit,
@@ -25,9 +24,12 @@ const Clock = ({ className }: ClockProps): JSX.Element => {
     secondUnitDigit,
   } = extractTimeDigitsFromDate(currentTime);
 
+  const isVisible = usePageVisibility();
+
   return (
     <Box className={clsx(styles.wrapper, className)} asChild>
       <time
+        suppressHydrationWarning
         title={currentTime.toISOString()}
         dateTime={currentTime.toISOString()}
       >
@@ -37,32 +39,14 @@ const Clock = ({ className }: ClockProps): JSX.Element => {
             align={"center"}
             className={styles["number-wrapper"]}
           >
-            <AnimatePresence initial={false}>
-              <motion.div
-                {...MOTION_VALUES}
-                suppressHydrationWarning
-                key={`${id}-hourTensDigit-${hourTensDigit}`}
-                className={styles.number}
-              >
-                {hourTensDigit}
-              </motion.div>
-            </AnimatePresence>
+            <AnimatedDigit digit={hourTensDigit} isVisible={isVisible} />
           </Flex>
           <Flex
             justify={"center"}
             align={"center"}
             className={styles["number-wrapper"]}
           >
-            <AnimatePresence initial={false}>
-              <motion.div
-                {...MOTION_VALUES}
-                suppressHydrationWarning
-                key={`${id}-hourUnitDigit-${hourUnitDigit}`}
-                className={styles.number}
-              >
-                {hourUnitDigit}
-              </motion.div>
-            </AnimatePresence>
+            <AnimatedDigit digit={hourUnitDigit} isVisible={isVisible} />
           </Flex>
           <Box className={styles.separator}>:</Box>
           <Flex
@@ -70,32 +54,14 @@ const Clock = ({ className }: ClockProps): JSX.Element => {
             align={"center"}
             className={styles["number-wrapper"]}
           >
-            <AnimatePresence initial={false}>
-              <motion.div
-                {...MOTION_VALUES}
-                suppressHydrationWarning
-                key={`${id}-minuteTensDigit-${minuteTensDigit}`}
-                className={styles.number}
-              >
-                {minuteTensDigit}
-              </motion.div>
-            </AnimatePresence>
+            <AnimatedDigit digit={minuteTensDigit} isVisible={isVisible} />
           </Flex>
           <Flex
             justify={"center"}
             align={"center"}
             className={styles["number-wrapper"]}
           >
-            <AnimatePresence initial={false}>
-              <motion.div
-                {...MOTION_VALUES}
-                suppressHydrationWarning
-                key={`${id}-minuteUnitDigit-${minuteUnitDigit}`}
-                className={styles.number}
-              >
-                {minuteUnitDigit}
-              </motion.div>
-            </AnimatePresence>
+            <AnimatedDigit digit={minuteUnitDigit} isVisible={isVisible} />
           </Flex>
           <Box className={styles.separator}>:</Box>
           <Flex
@@ -103,36 +69,51 @@ const Clock = ({ className }: ClockProps): JSX.Element => {
             align={"center"}
             className={styles["number-wrapper"]}
           >
-            <AnimatePresence initial={false}>
-              <motion.div
-                {...MOTION_VALUES}
-                suppressHydrationWarning
-                key={`${id}-secondTensDigit-${secondTensDigit}`}
-                className={styles.number}
-              >
-                {secondTensDigit}
-              </motion.div>
-            </AnimatePresence>
+            <AnimatedDigit digit={secondTensDigit} isVisible={isVisible} />
           </Flex>
           <Flex
             justify={"center"}
             align={"center"}
             className={styles["number-wrapper"]}
           >
-            <AnimatePresence initial={false}>
-              <motion.div
-                {...MOTION_VALUES}
-                suppressHydrationWarning
-                key={`${id}-secondUnitDigit-${secondUnitDigit}`}
-                className={styles.number}
-              >
-                {secondUnitDigit}
-              </motion.div>
-            </AnimatePresence>
+            <AnimatedDigit digit={secondUnitDigit} isVisible={isVisible} />
           </Flex>
         </Flex>
       </time>
     </Box>
+  );
+};
+
+const AnimatedDigit = ({
+  isVisible,
+  digit,
+}: {
+  isVisible: boolean;
+  digit: number;
+}) => {
+  const id = useId();
+
+  return isVisible ? (
+    <AnimatePresence initial={false}>
+      <motion.div
+        {...MOTION_VALUES}
+        suppressHydrationWarning
+        key={`${id}-${digit}`}
+        className={styles.number}
+        data-key={`${id}-${digit}`}
+      >
+        {digit}
+      </motion.div>
+    </AnimatePresence>
+  ) : (
+    <div
+      suppressHydrationWarning
+      key={`${id}-${digit}`}
+      className={styles.number}
+      data-key={`${id}-${digit}`}
+    >
+      {digit}
+    </div>
   );
 };
 

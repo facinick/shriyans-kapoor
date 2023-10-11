@@ -25,23 +25,26 @@ async function Home({ searchParams }: PageProps) {
   const paginationResponse = await getPostsForPage({ page });
 
   return (
-    <Flex direction={"column"} gap={5}>
-      <Heading
-        level={2}
-        asChild
-        className={clsx(headingFont.className, styles.heading)}
-      >
-        <h2>
-          RECENT
-          <Clock />
-        </h2>
-      </Heading>
+    <Flex direction={"column"} gap={5} asChild>
+      <section>
+        <Heading
+          level={2}
+          asChild
+          className={clsx(headingFont.className, styles.heading)}
+        >
+          <h2>
+            RECENT
+            <Clock />
+          </h2>
+        </Heading>
 
-      <HomePagePostList posts={paginationResponse.data} />
-      <HomePagePagination
-        count={paginationResponse.pagination.totalPages}
-        page={page}
-      />
+        <HomePagePostList posts={paginationResponse.data} />
+
+        <HomePagePagination
+          count={paginationResponse.pagination.totalPages}
+          page={page}
+        />
+      </section>
     </Flex>
   );
 }

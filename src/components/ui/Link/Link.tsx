@@ -1,22 +1,18 @@
-import NextLink from 'next/link';
-import { ComponentPropsWithoutRef, ElementRef, forwardRef } from "react";
+import NextLink from "next/link";
+import { ComponentProps, ElementRef, forwardRef } from "react";
 import { Button } from "../Button/Button";
 
-const Link = forwardRef<
-  ElementRef<typeof NextLink>,
-  ComponentPropsWithoutRef<typeof NextLink>
->(({ className, ...props }, ref) => (
+type LinkProps = ComponentProps<typeof Button> &
+  Pick<ComponentProps<typeof NextLink>, "href">;
 
-  <Button variant={"link"} asChild>
-    <NextLink
-      className={className}
-      ref={ref}
-      {...props} />
-  </Button>
-))
+const Link = forwardRef<ElementRef<typeof Button>, LinkProps>(
+  ({ href, children, ...props }, ref) => (
+    <Button variant={"link"} ref={ref} {...props} asChild>
+      <NextLink href={href}>{children}</NextLink>
+    </Button>
+  )
+);
 
-Link.displayName = "Link"
+Link.displayName = "Link";
 
-export {
-  Link
-};
+export { Link };

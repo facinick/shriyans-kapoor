@@ -6,7 +6,6 @@ import ThemeSelect from "../ThemeSelect";
 import { Box } from "../ui/Box";
 import { Flex } from "../ui/Flex";
 import { Link } from "../ui/Link";
-import { Heading } from "../ui/Typography";
 import styles from "./Header.module.css";
 
 interface Props {}
@@ -17,13 +16,12 @@ const Header = ({}: Props): JSX.Element => {
       <header className={styles.header}>
         <div className={styles.backdrop}></div>
         <Flex className={styles.content} align={"center"} justify={"between"}>
-          <Link href={"/"} className={styles.link}>
-            <Heading
-              asChild
-              className={clsx(styles.title, headingFont.className)}
-            >
-              <h1>{APP_TITLE}</h1>
-            </Heading>
+          <Link
+            href={"/"}
+            size={"lg"}
+            className={clsx(styles.link, styles.title, headingFont.className)}
+          >
+            {APP_TITLE}
           </Link>
           <Box>
             <Flex align={"center"} gap={2}>

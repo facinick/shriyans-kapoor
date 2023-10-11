@@ -1,5 +1,6 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import MotionConfig from "@/components/MotionConfig";
 import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
 import ThemeProvider from "@/components/providers/ThemeProvider/ThemeProvider";
 import { mainFont } from "@/lib/helpers/font-helper";
@@ -27,10 +28,12 @@ export default function RootLayout({
       <body className={mainFont.className}>
         {/* <SessionProvider> */}
         <ThemeProvider initialColorScheme={colorScheme} initialTheme={theme}>
-          <Header />
-          <main className={styles.main}>{children}</main>
-          <Footer />
-          <ScrollToTop />
+          <MotionConfig>
+            <Header />
+            <main className={styles.main}>{children}</main>
+            <Footer />
+            <ScrollToTop />
+          </MotionConfig>
         </ThemeProvider>
         {/* </SessionProvider> */}
       </body>

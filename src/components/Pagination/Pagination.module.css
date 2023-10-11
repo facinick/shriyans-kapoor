@@ -1,0 +1,17 @@
+.outline {
+  border-radius: var(--radius);
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.list-item:hover {
+  border-radius: var(--radius);
+  position: relative;
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: 2px;
+}

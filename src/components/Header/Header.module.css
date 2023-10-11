@@ -11,16 +11,17 @@
   position: relative;
 }
 
-.link {
+.title.link {
   padding: 0;
 }
-.title {
+
+.title.link {
   font-size: 2rem;
   font-weight: bold;
 }
 
 @media (max-width: 480px) {
-  .title {
+  .title.link {
     font-size: 1.5rem;
   }
 }

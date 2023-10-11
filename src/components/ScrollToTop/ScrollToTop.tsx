@@ -2,6 +2,7 @@
 import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import { MoveUp } from "lucide-react";
 import { useEffect, useId, useRef, useState } from "react";
+import VisuallyHidden from "../VisuallyHidden";
 import { Button } from "../ui/Button";
 import CircularProgress from "../ui/CircularProgress";
 import styles from "./ScrollToTop.module.css";
@@ -72,6 +73,7 @@ const ScrollToTop = ({}: Props): JSX.Element => {
       >
         <Button onClick={scrollToTop} className={styles.button} ref={buttonRef}>
           <MoveUp />
+          <VisuallyHidden>Scroll To Top</VisuallyHidden>
         </Button>
         <div className={styles.progress}>
           <CircularProgress size={"thick"} progressInDecimal={scroll} />
