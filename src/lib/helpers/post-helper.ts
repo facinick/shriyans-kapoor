@@ -11,6 +11,7 @@ import {
   getErrorMessage,
   readDirectory,
   readFile,
+  readFile2,
 } from "./file-helper";
 
 const cache = new Map<number, PaginationResponse>();
@@ -27,7 +28,7 @@ const getDataFromCacheOrNull = async ({
   console.log(
     `about to read pagination.json file: ${PAGINATION_READ_FILE_PATH}`
   );
-  const paginationData = await readFile(PAGINATION_READ_FILE_PATH);
+  const paginationData = await readFile2(PAGINATION_READ_FILE_PATH);
   console.log(`read it baby`);
 
   const paginationJson = JSON.parse(paginationData) as Record<

@@ -38,6 +38,19 @@ export async function readFile(localPath: string): Promise<string> {
   }
 }
 
+export async function readFile2(localPath: string): Promise<string> {
+  console.log(`trying to read: ${localPath}`);
+  try {
+    const fileContent = await fs.readFile(localPath, "utf-8");
+    return fileContent;
+  } catch (error) {
+    const fileError: FileError = {
+      message: getErrorMessage(error),
+    };
+    throw fileError;
+  }
+}
+
 /* 
   read content to a file at localPath parameter
 */
