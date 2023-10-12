@@ -4,10 +4,8 @@ import {
   Post,
   PostOrderBy,
 } from "@/types/Post";
-import fs from "fs/promises";
 import matter from "gray-matter";
-import path from "path";
-import { POSTS_DIRECTORY } from "../constants";
+import { PAGINATION_READ_PATH, POSTS_DIRECTORY } from "../constants";
 import {
   FileError,
   getErrorMessage,
@@ -26,15 +24,7 @@ const getDataFromCacheOrNull = async ({
     return cache.get(page) as PaginationResponse;
   }
 
-  // const paginationData = await readFile(PAGINATION_READ_PATH);
-
-  const paginationJsonPath = path.join(
-    process.cwd(),
-    "public",
-    "pagination.json"
-  );
-
-  const paginationData = await fs.readFile(paginationJsonPath, "utf-8");
+  const paginationData = await readFile(PAGINATION_READ_PATH);
 
   const paginationJson = JSON.parse(paginationData) as Record<
     number,
