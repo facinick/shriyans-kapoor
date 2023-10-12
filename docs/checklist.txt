@@ -12,3 +12,13 @@ seo {
 
 global not found
 per route not found
+
+theme {
+  <meta name="theme-color" content={"hsl(var(--background))"} /> in header for mobile status bar
+  2 pass rendering to enable ssr theming, set variable in html tag
+}
+
+code {
+  props: if you're using it to set state inside component, make sure props arent changing.
+  name props as "initialXXX"
+}
