@@ -1,7 +1,8 @@
 import { Theme } from "@/types/Theme";
 
 export const APP_TITLE = "Shriyans Kapoor";
-export const APP_DESCRIPTION = "";
+export const APP_DESCRIPTION =
+  "Notes on Frontend, Backend and miscellaneous coding stuff";
 export const APP_THEMES: Theme[] = ["blue", "orange", "black"];
 export const POSTS_DIRECTORY = "/content";
 export const PAGINATION_READ_PATH = `/pagination/pagination.json`;

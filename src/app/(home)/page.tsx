@@ -4,21 +4,16 @@ import HomePagePostList from "@/components/HomePagePostList";
 import { Flex } from "@/components/ui/Flex/Flex";
 import { Separator } from "@/components/ui/Separator";
 import { Heading } from "@/components/ui/Typography/Heading";
-import { APP_DESCRIPTION, APP_TITLE } from "@/lib/constants";
 import { headingFont } from "@/lib/helpers/font-helper";
 import { getPostsForPage } from "@/lib/helpers/post-helper";
 import clsx from "clsx";
 import styles from "./page.module.css";
+
 interface PageProps {
   searchParams: {
     page?: string;
   };
 }
-
-export const metadata = {
-  title: APP_TITLE,
-  description: APP_DESCRIPTION,
-};
 
 async function Home({ searchParams }: PageProps) {
   const page = Number(searchParams.page || 1);

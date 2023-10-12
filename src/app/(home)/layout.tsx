@@ -3,14 +3,24 @@ import Header from "@/components/Header";
 import MotionConfig from "@/components/MotionConfig";
 import ScrollToTop from "@/components/ScrollToTop/ScrollToTop";
 import ThemeProvider from "@/components/providers/ThemeProvider/ThemeProvider";
+import { APP_DESCRIPTION, APP_TITLE } from "@/lib/constants";
 import { mainFont } from "@/lib/helpers/font-helper";
 import {
   getColorSchemeFromRequest,
   getThemeFromRequest,
 } from "@/lib/helpers/request-helpers";
 import { ColorScheme, Theme } from "@/types/Theme";
+import { Metadata } from "next";
 import "../globals.css";
 import styles from "./layout.module.css";
+
+export const metadata: Metadata = {
+  title: {
+    default: APP_TITLE,
+    template: `%s • ${APP_TITLE}`,
+  },
+  description: APP_DESCRIPTION,
+};
 
 export default function RootLayout({
   children,

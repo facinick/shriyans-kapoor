@@ -28,12 +28,6 @@ export async function generateMetadata({ params }: PageProps) {
   return {
     title: metadataTitle,
     description: abstract,
-    openGraph: {
-      title: metadataTitle,
-      description: abstract,
-      type: "article",
-      publishedTime: publishedOn,
-    },
   };
 }
 
