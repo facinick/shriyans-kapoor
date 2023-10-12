@@ -1,6 +1,6 @@
 .header {
-  height: 70px;
-  padding: 15px 15px;
+  height: var(--header-height);
+  padding: var(--padding-edges) var(--padding-edges) 15px var(--padding-edges);
 
   position: sticky;
   top: 0;

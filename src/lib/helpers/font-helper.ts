@@ -1,4 +1,9 @@
-import { Bodoni_Moda, Roboto, Roboto_Condensed } from "next/font/google";
+import {
+  Bodoni_Moda,
+  Roboto,
+  Roboto_Condensed,
+  Roboto_Mono,
+} from "next/font/google";
 
 export const acccentFont = Bodoni_Moda({
   weight: "variable",
@@ -7,6 +12,11 @@ export const acccentFont = Bodoni_Moda({
 });
 
 export const mainFont = Roboto({
+  weight: "400",
+  subsets: ["latin"],
+});
+
+export const monoFont = Roboto_Mono({
   weight: "400",
   subsets: ["latin"],
 });

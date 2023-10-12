@@ -6,6 +6,7 @@
 @import url("../themes/shadcnui/orange.css");
 @import url("../themes/shadcnui/blue.css");
 @import url("../themes/shadcnui/black.css");
+@import url("./blog-layout.css");
 
 html,
 body {
