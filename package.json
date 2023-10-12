@@ -9,7 +9,8 @@
     "dev": "dotenv -e .env.local -- next dev",
     "build": "next build",
     "generate-pagination": "tsx ./scripts/generate-pagination.ts",
-    "postbuild": "npm run generate-pagination",
+    "clear-pagination": "rimraf './src/static/pagination.json'",
+    "prebuild": "npm run clear-pagination && npm run generate-pagination",
     "start": "next start",
     "lint": "next lint",
     "db:migrate-create:local": "dotenv -e .env.local -- npx prisma migrate create",
@@ -44,6 +45,7 @@
     "next-mdx-remote": "^4.4.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "rimraf": "^5.0.5",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.22.4"

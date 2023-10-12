@@ -33,3 +33,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# ignore static files to be generated during build
+**/*pagination.json
+**/*rss.json
