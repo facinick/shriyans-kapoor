@@ -9,3 +9,6 @@ seo {
     semantic html
   }
 }
+
+global not found
+per route not found
