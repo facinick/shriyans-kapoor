@@ -3,7 +3,7 @@ import { Theme } from "@/types/Theme";
 export const APP_TITLE = "Shriyans Kapoor";
 export const APP_DESCRIPTION = "";
 export const APP_THEMES: Theme[] = ["blue", "orange", "black"];
-export const POSTS_DIRECTORY = "content";
+export const POSTS_DIRECTORY = "/content";
 export const PAGINATION_READ_PATH = `/pagination/pagination.json`;
 export const PAGINATION_WRITE_PATH = `/pagination/pagination.json`;
 export const POSTS_PER_PAGE = 4;
