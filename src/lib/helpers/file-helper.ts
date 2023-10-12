@@ -1,4 +1,5 @@
 import fs from "fs/promises";
+import getConfig from "next/config";
 import path from "path";
 
 export type FileError = {
@@ -24,9 +25,8 @@ export async function readDirectory(localPath: string): Promise<string[]> {
   read a file and return it's content as string
 */
 export async function readFile(localPath: string): Promise<string> {
-  console.log(`trying to read: ${localPath}`);
-  console.log(`full path: ${path.join(process.cwd(), localPath)}`);
-  const filePath = path.join(process.cwd(), localPath);
+  console.log(`trying to read: ${serverPath(localPath)}`);
+  const filePath = serverPath(localPath);
   try {
     const fileContent = await fs.readFile(filePath, "utf-8");
     return fileContent;
@@ -69,3 +69,10 @@ export function getErrorMessage(error: unknown): string {
     }
   }
 }
+
+const serverPath = (staticFilePath: string) => {
+  return path.join(
+    getConfig().serverRuntimeConfig.PROJECT_ROOT,
+    staticFilePath
+  );
+};
