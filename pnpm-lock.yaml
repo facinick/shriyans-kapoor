@@ -7,6 +7,7 @@ specifiers:
   '@radix-ui/react-dropdown-menu': ^2.0.6
   '@radix-ui/react-label': ^2.0.2
   '@radix-ui/react-select': ^2.0.0
+  '@radix-ui/react-separator': ^1.0.3
   '@radix-ui/react-slot': ^1.0.2
   '@types/js-cookie': ^3.0.4
   '@types/node': 20.8.2
@@ -46,6 +47,7 @@ dependencies:
   '@radix-ui/react-dropdown-menu': 2.0.6_mi74boqf2vfg3nvlr7tbycjxwy
   '@radix-ui/react-label': 2.0.2_mi74boqf2vfg3nvlr7tbycjxwy
   '@radix-ui/react-select': 2.0.0_mi74boqf2vfg3nvlr7tbycjxwy
+  '@radix-ui/react-separator': 1.0.3_mi74boqf2vfg3nvlr7tbycjxwy
   '@radix-ui/react-slot': 1.0.2_2un522rsefzocghoy2w4cfzkfa
   bright: 0.8.4_react@18.2.0
   class-variance-authority: 0.7.0
@@ -1066,6 +1068,27 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       react-remove-scroll: 2.5.5_2un522rsefzocghoy2w4cfzkfa
+    dev: false
+
+  /@radix-ui/react-separator/1.0.3_mi74boqf2vfg3nvlr7tbycjxwy:
+    resolution: {integrity: sha512-itYmTy/kokS21aiV5+Z56MZB54KrhPgn6eHDKkFeOLR34HMN2s8PaN47qZZAGnvupcjxHaFZnW4pQEh0BvvVuw==}
+    peerDependencies:
+      '@types/react': '*'
+      '@types/react-dom': '*'
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.23.1
+      '@radix-ui/react-primitive': 1.0.3_mi74boqf2vfg3nvlr7tbycjxwy
+      '@types/react': 18.2.25
+      '@types/react-dom': 18.2.10
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /@radix-ui/react-slot/1.0.2_2un522rsefzocghoy2w4cfzkfa:

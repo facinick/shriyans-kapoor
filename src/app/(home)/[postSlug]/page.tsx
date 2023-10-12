@@ -1,5 +1,6 @@
 import PostPagePostHeader from "@/components/PostPagePostHeader";
 import { Flex } from "@/components/ui/Flex/Flex";
+import { Separator } from "@/components/ui/Separator";
 import { APP_TITLE } from "@/lib/constants";
 import MDX_COMPONENTS_MAP from "@/lib/helpers/mdx-components";
 import { loadBlogPost } from "@/lib/helpers/post-helper";
@@ -55,6 +56,7 @@ async function BlogPost({ params }: PageProps) {
           <PostPagePostHeader backLink={backLink}>
             {frontmatter.title}
           </PostPagePostHeader>
+          <Separator />
           {/* <div className={styles.page}> */}
           <MDXRemote components={MDX_COMPONENTS_MAP} source={content} />
           {/* </div> */}

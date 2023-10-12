@@ -2,6 +2,7 @@ import Clock from "@/components/Clock";
 import HomePagePagination from "@/components/HomePagePagination";
 import HomePagePostList from "@/components/HomePagePostList";
 import { Flex } from "@/components/ui/Flex/Flex";
+import { Separator } from "@/components/ui/Separator";
 import { Heading } from "@/components/ui/Typography/Heading";
 import { APP_DESCRIPTION, APP_TITLE } from "@/lib/constants";
 import { headingFont } from "@/lib/helpers/font-helper";
@@ -37,6 +38,8 @@ async function Home({ searchParams }: PageProps) {
             <Clock />
           </h2>
         </Heading>
+
+        <Separator />
 
         <HomePagePostList posts={paginationResponse.data} />
 
