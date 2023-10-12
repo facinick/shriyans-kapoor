@@ -1,0 +1,11 @@
+dev / prod builds and branches
+no hydration warning
+seo {
+  favicon.ico
+  global metadata
+  per page metadata
+  open graph data
+  reader mode: {
+    semantic html
+  }
+}
