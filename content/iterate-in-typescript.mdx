@@ -4,3 +4,98 @@ abstract: "This article delves into two methods for iterating in TypeScript, foc
 publishedOn: "2023-10-12T12:00:00-0400"
 author: "Shriyans Kapoor"
 ---
+
+## Terminology
+
+`Aggregate` or `Collection` is the Class you want to iterate using for…of for…in etc.
+
+`Item` is the object, many of which are is inside the `Collection`/`Aggregate`
+
+_example: A Collection is `Students`, where you want to iterate over every individual Item which is a `Student`_
+
+`Iterable` is a built-in interface in Typescript
+
+You want to do something like:
+
+```tsx
+for (const student of students) {
+  console.log(student);
+}
+```
+
+---
+
+## Method one (Iterator and Iterable separate classes)
+
+Item Class:
+
+```tsx
+class Item {}
+```
+
+Collection Iterator Class:
+
+```tsx
+// This class' sole purpose is to encapsulate iteration for the Aggregate/Collection
+class CollectionIterator implements Iterator<Item> {
+  // The collection of items over which you want to iterate
+  collection: Array<Item> = [];
+
+  constructor(collection: Array<Item>) {
+    this.collection = collection;
+  }
+
+  next(value?: any): IteratorResult<Item> {
+    // Return the next value and done (is iteration completed or not)
+    return {
+      done: false,
+      value: new Item(),
+    };
+  }
+}
+```
+
+Collection (or an Aggregate) Class:
+
+```tsx
+// A class that holds collection to a bunch of similar items, and other related things
+class Collection implements Iterable<Item> {
+		collection: Array<Item> = []
+
+		// Override this method to implement Iterable interface
+		// Return the AggregateIterator class object
+    [Symbol.iterator](): Iterator<Item> {
+        return new CollectionIterator(this.collection)
+    }
+}
+```
+
+## Method two (All in one, al ways fun)
+
+Item Class:
+
+```tsx
+class Item {}
+```
+
+Collection (or an Aggregate) Class:
+
+```tsx
+class Collection { // No need to explicitly implement any build-in interface
+
+    collection: Array<Item> = []
+
+		// No need to explicitly have IterableIterator<Item> as return type
+    [Symbol.iterator]() {
+        return this;
+    }
+
+		// No need to explicitly have IteratorResult<Item> as return type
+    next() {
+        return {
+					done: false,
+					value: new Item()
+				}
+    }
+}
+```
