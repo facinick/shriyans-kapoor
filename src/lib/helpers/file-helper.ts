@@ -25,10 +25,8 @@ export async function readDirectory(localPath: string): Promise<string[]> {
 */
 export async function readFile(localPath: string): Promise<string> {
   const filePath = path.join(process.cwd(), localPath);
-  console.log(`reading path: ${filePath}`);
-  console.log(`reading path: ${process.cwd() + localPath}`);
   try {
-    const fileContent = await fs.readFile(process.cwd() + localPath, "utf-8");
+    const fileContent = await fs.readFile(filePath, "utf-8");
     return fileContent;
   } catch (error) {
     const fileError: FileError = {
