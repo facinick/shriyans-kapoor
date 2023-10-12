@@ -1,5 +1,11 @@
 import TerminalAnimationText from "@/components/TerminalAnimationText";
-import { Card, CardHeader, CardTitle } from "@/components/ui/Card";
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/Card";
+import { Link } from "@/components/ui/Link";
 import { APP_TITLE } from "@/lib/constants";
 import styles from "./not-found.module.css";
 
@@ -16,6 +22,9 @@ async function NotFound() {
         <CardTitle className={styles.title}>
           <TerminalAnimationText>{ERROR_MESSAGE}</TerminalAnimationText>
         </CardTitle>
+        <CardDescription style={{ textAlign: "center" }}>
+          <Link href={"/"}>Go Home</Link>
+        </CardDescription>
       </CardHeader>
     </Card>
   );
