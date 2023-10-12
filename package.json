@@ -1,11 +1,15 @@
 {
-  "name": "social-blog",
+  "name": "shriyanskapoor",
   "version": "0.1.0",
   "private": true,
+  "author": {
+    "name": "Shriyans Kapoor"
+  },
   "scripts": {
     "dev": "dotenv -e .env.local -- next dev",
     "build": "next build",
     "generate-pagination": "tsx ./scripts/generate-pagination.ts",
+    "postbuild": "npm run generate-pagination",
     "start": "next start",
     "lint": "next lint",
     "db:migrate-create:local": "dotenv -e .env.local -- npx prisma migrate create",

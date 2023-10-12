@@ -2,7 +2,7 @@
 const nextConfig = {
   experimental: {
     outputFileTracingIncludes: {
-      "/*": ["./pagination/pagination.json"],
+      "/*": ["./public/pagination.json"],
       "/*": ["./content/**/*.mdx"],
     },
   },
