@@ -10,7 +10,7 @@
     "build": "next build",
     "generate-pagination": "tsx ./scripts/generate-pagination.ts",
     "clear-pagination": "rimraf './src/static/pagination.json'",
-    "prebuild": "npm run clear-pagination && npm run generate-pagination",
+    "prebuild": "npm run db:generate:prod && npm run clear-pagination && npm run generate-pagination",
     "start": "next start",
     "lint": "next lint",
     "db:migrate-create:local": "dotenv -e .env.local -- npx prisma migrate create",
