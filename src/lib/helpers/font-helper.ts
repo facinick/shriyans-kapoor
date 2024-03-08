@@ -1,8 +1,8 @@
 import {
+  Albert_Sans,
   Bodoni_Moda,
-  Roboto,
-  Roboto_Condensed,
-  Roboto_Mono,
+  Merriweather,
+  Open_Sans,
 } from "next/font/google";
 
 export const acccentFont = Bodoni_Moda({
@@ -11,17 +11,17 @@ export const acccentFont = Bodoni_Moda({
   subsets: ["latin"],
 });
 
-export const mainFont = Roboto({
-  weight: "400",
-  subsets: ["latin"],
-});
-
-export const monoFont = Roboto_Mono({
-  weight: "400",
-  subsets: ["latin"],
-});
-
-export const headingFont = Roboto_Condensed({
+export const headingFont = Merriweather({
   weight: "700",
+  subsets: ["latin"],
+});
+
+export const mainFont = Open_Sans({
+  weight: "400",
+  subsets: ["latin"],
+});
+
+export const monoFont = Open_Sans({
+  weight: "400",
   subsets: ["latin"],
 });

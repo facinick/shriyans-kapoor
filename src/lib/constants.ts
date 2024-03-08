@@ -2,7 +2,7 @@ import { Theme } from "@/types/Theme";
 
 export const APP_TITLE = "@facinick";
 export const APP_DESCRIPTION =
-  "Code, Games, Music and Rant.";
+  "Record of stuff.";
 export const APP_THEMES: Theme[] = ["blue", "orange", "black"];
 export const POSTS_DIRECTORY = "/posts";
 export const PAGINATION_DIRECTORY = '/pagination';

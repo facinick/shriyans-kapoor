@@ -36,7 +36,6 @@ export async function generateMetadata({ params }: PageProps) {
 async function BlogPost({ params }: PageProps) {
   let post;
   try {
-    console.log(`loading page ${params.postSlug} `)
     post = await loadBlogPost({ slug: params.postSlug });
   } catch (error) {
     notFound();

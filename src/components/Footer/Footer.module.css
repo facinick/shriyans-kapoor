@@ -13,3 +13,7 @@
 .nav {
   margin-top: 10px;
 }
+
+.links-category {
+  color: hsl(var(--muted-foreground));
+}

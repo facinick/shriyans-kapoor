@@ -21,7 +21,7 @@ export const PostPagePostFooter = ({
 }: Props): JSX.Element => {
   return (
     <>
-       <Flex className={styles["author-time"]} gap={3}>
+       <Flex className={styles["author-time"]} justify={"end"} gap={3}>
           <address className={styles["author"]}>{author}</address>
           <time dateTime={publishedOn}>
             <VisuallyHidden>Published On </VisuallyHidden>
