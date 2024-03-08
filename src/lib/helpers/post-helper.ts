@@ -104,7 +104,6 @@ export async function getBlogPostList({
 */
 export async function loadBlogPost({ slug }: { slug: string }) {
   try {
-    console.log(`reading blog post from ${`${CONTENT_DIRECTORY}/${slug}.mdx`} `)
     const rawContent = await readFile(`${CONTENT_DIRECTORY}/${slug}.mdx`);
     const { data: frontmatter, content } = matter(
       rawContent as unknown as Post
