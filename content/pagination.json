@@ -1,0 +1,88 @@
+{
+  "1": {
+    "data": [
+      {
+        "slug": "ddd-unleashing-the-power-of-strategic-design-thinking",
+        "title": "Domain-Driven Design: Unleashing the Power of Strategic Design Thinking",
+        "abstract": "Enter the world of Domain-Driven Design (DDD), where software development meets strategic design thinking. Explore the principles, patterns, and practices that empower teams to create software systems that reflect the real-world domains they inhabit. Dive into the concepts of bounded contexts, ubiquitous language, and aggregate roots, and learn how to model complex business domains with clarity and precision. Join us on a journey to unlock the full potential of DDD and revolutionize your approach to software development.",
+        "publishedOn": "2024-03-01T08:00:00-0800",
+        "author": "CodeCraftsman",
+        "category": "Software Engineering"
+      },
+      {
+        "slug": "journey-to-singularity",
+        "title": "Exploring the Depths of Singularity: A Journey into Technological Transcendence",
+        "abstract": "Embark on a voyage into the realms of singularity, where the boundaries between humanity and technology blur into obscurity. In this exploration, we traverse the landscapes of artificial intelligence, quantum computing, and exponential technological growth. Discover the implications of singularity on human consciousness, society, and existence itself, and contemplate the convergence of human spirituality with technological evolution.",
+        "publishedOn": "2024-03-01T08:00:00-0800",
+        "author": "AI Explorer",
+        "category": "Physics"
+      },
+      {
+        "slug": "psychology-of-humor",
+        "title": "The Psychology of Humor: Exploring the Science Behind Laughter",
+        "abstract": "Dive into the fascinating world of humor psychology, where laughter is more than just a reaction – it's a complex interplay of cognitive processes, social dynamics, and emotional responses. Discover the evolutionary origins of humor, the theories that explain why we find certain things funny, and the psychological benefits of laughter. Unravel the mysteries of humor and gain insights into its profound impact on human behavior and well-being.",
+        "publishedOn": "2024-03-01T08:00:00-0800",
+        "author": "Laughs McChuckler",
+        "category": "Humor"
+      },
+      {
+        "slug": "the-art-of-self-journey",
+        "title": "The Art of Self-Discovery: Navigating the Depths of the Human Psyche",
+        "abstract": "Embark on a transformative journey of self-discovery, where the mysteries of the human psyche unfold before your eyes. Explore the realms of psychology, spirituality, and personal growth as you delve into the depths of your own consciousness. Learn techniques for introspection, mindfulness, and self-reflection, and uncover hidden aspects of yourself that hold the key to fulfillment and inner peace. Join us as we embark on a quest to unlock the secrets of the self and embrace the journey of self-realization.",
+        "publishedOn": "2024-03-01T08:00:00-0800",
+        "author": "Soul Voyager",
+        "category": "Psychology"
+      }
+    ],
+    "pagination": {
+      "page": 1,
+      "end": false,
+      "count": 4,
+      "totalPages": 2,
+      "totalCount": 8
+    }
+  },
+  "2": {
+    "data": [
+      {
+        "slug": "the-science-of-decision-making",
+        "title": "The Science of Decision-Making: Exploring the Mind's Choices",
+        "abstract": "Delve into the intricate world of decision-making, where the mind navigates through a maze of options to arrive at choices that shape our lives. Explore the cognitive processes, biases, and heuristics that influence our decisions, and uncover strategies for making more informed and rational choices. From simple everyday decisions to complex life-altering ones, gain insights into the science behind decision-making and empower yourself to navigate the complexities of choice with clarity and confidence.",
+        "publishedOn": "2024-03-01T08:00:00-0800",
+        "author": "Choice Connoisseur",
+        "category": "Psychology"
+      },
+      {
+        "slug": "the-spiritual-journey",
+        "title": "The Spiritual Journey: Navigating the Path to Inner Peace",
+        "abstract": "Embark on a profound spiritual journey, where the destination is not a place but a state of being – inner peace. Explore ancient wisdom traditions, modern spiritual practices, and personal experiences that illuminate the path to spiritual fulfillment. Discover techniques for mindfulness, meditation, and self-reflection, and learn how to cultivate gratitude, compassion, and acceptance in your daily life. Join us as we embark on a quest to uncover the essence of spirituality and awaken the divine spark within.",
+        "publishedOn": "2024-03-01T08:00:00-0800",
+        "author": "Soul Seeker",
+        "category": "Spirituality"
+      },
+      {
+        "slug": "iterate-in-typescript",
+        "title": "[quick notes] Iterate in Typescript",
+        "abstract": "This article delves into two methods for iterating in TypeScript, focusing on collections or aggregates of items. The first method involves separate classes for items and iterators, encapsulating the iteration process. The second method, a more concise approach, combines item and collection logic into one class, making it a straightforward and engaging experience. Gain insights into TypeScript's iteration capabilities and choose the method that suits your needs.",
+        "publishedOn": "2023-10-12T12:00:00-0400",
+        "author": "Shriyans Kapoor",
+        "category": "Programming"
+      },
+      {
+        "slug": "vs-code-settings-30-september-2023",
+        "title": "VS Code settings",
+        "abstract": "My Basic VS Code settings for React Application with Formatting and Linting, Font Ligatures, Organised imports and theming.",
+        "publishedOn": "2023-09-30T12:00:00-0400",
+        "author": "Shriyans Kapoor",
+        "category": "Setup"
+      }
+    ],
+    "pagination": {
+      "page": 2,
+      "end": true,
+      "count": 4,
+      "totalPages": 2,
+      "totalCount": 8
+    }
+  }
+}
