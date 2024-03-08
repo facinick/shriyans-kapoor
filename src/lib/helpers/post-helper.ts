@@ -26,6 +26,7 @@ const getDataFromCacheOrNull = async ({
 
   console.log(`_reading blog post from ${`${CONTENT_DIRECTORY}/${"iterate-in-typescript"}.mdx`} `)
   const rawContent = await readFile(`${`${CONTENT_DIRECTORY}/${"iterate-in-typescript"}.mdx`}`);
+  console.log(rawContent)
   console.log(`_reading paginationData from ${CONTENT_DIRECTORY}/pagination.json`)
   const paginationData = await readFile(`${CONTENT_DIRECTORY}/pagination.json`);
 
