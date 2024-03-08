@@ -4,7 +4,7 @@ export const APP_TITLE = "@facinick";
 export const APP_DESCRIPTION =
   "Code, Games, Music and Rant.";
 export const APP_THEMES: Theme[] = ["blue", "orange", "black"];
-export const POSTS_DIRECTORY = "/content";
+export const CONTENT_DIRECTORY = "/content";
 export const PAGINATION_READ_PATH = `/content/pagination.json`;
 export const PAGINATION_WRITE_PATH = `/content/pagination.json`;
 export const POSTS_PER_PAGE = 4;

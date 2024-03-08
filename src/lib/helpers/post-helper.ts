@@ -5,7 +5,7 @@ import {
   PostOrderBy,
 } from "@/types/Post";
 import matter from "gray-matter";
-import { PAGINATION_READ_PATH, POSTS_DIRECTORY } from "../constants";
+import { PAGINATION_READ_PATH, CONTENT_DIRECTORY } from "../constants";
 import {
   FileError,
   getErrorMessage,
@@ -24,8 +24,10 @@ const getDataFromCacheOrNull = async ({
     return cache.get(page) as PaginationResponse;
   }
 
-  console.log(`reading paginationData from ${PAGINATION_READ_PATH} `)
-  const paginationData = await readFile(`${PAGINATION_READ_PATH}`);
+  console.log(`_reading blog post from ${`${CONTENT_DIRECTORY}/${"iterate-in-typescript"}.mdx`} `)
+  const rawContent = await readFile(`${`${CONTENT_DIRECTORY}/${"iterate-in-typescript"}.mdx`}`);
+  console.log(`_reading paginationData from ${CONTENT_DIRECTORY}/pagination.json`)
+  const paginationData = await readFile(`${CONTENT_DIRECTORY}/pagination.json`);
 
   const paginationJson = JSON.parse(paginationData) as Record<
     number,
@@ -58,11 +60,11 @@ export async function getBlogPostList({
   orderBy?: PostOrderBy;
 }) {
   try {
-    const fileNames = await readDirectory(POSTS_DIRECTORY);
+    const fileNames = await readDirectory(CONTENT_DIRECTORY);
     const blogPosts: Array<Frontmatter & { slug: string }> = [];
 
     for (let fileName of fileNames) {
-      const rawContent = await readFile(`${POSTS_DIRECTORY}/${fileName}`);
+      const rawContent = await readFile(`${CONTENT_DIRECTORY}/${fileName}`);
 
       const { data: frontmatter } = matter(rawContent) as unknown as {
         data: Frontmatter;
@@ -96,8 +98,8 @@ export async function getBlogPostList({
 */
 export async function loadBlogPost({ slug }: { slug: string }) {
   try {
-    console.log(`reading blog post from ${`${POSTS_DIRECTORY}/${slug}.mdx`} `)
-    const rawContent = await readFile(`${POSTS_DIRECTORY}/${slug}.mdx`);
+    console.log(`reading blog post from ${`${CONTENT_DIRECTORY}/${slug}.mdx`} `)
+    const rawContent = await readFile(`${CONTENT_DIRECTORY}/${slug}.mdx`);
     const { data: frontmatter, content } = matter(
       rawContent as unknown as Post
     );
