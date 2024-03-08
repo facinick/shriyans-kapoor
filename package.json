@@ -7,10 +7,10 @@
   },
   "scripts": {
     "dev": "dotenv -e .env.local -- next dev",
-    "build": "next build",
+    "build": "pnpm run prebuild && next build",
     "generate-pagination": "tsx ./scripts/generate-pagination.ts",
     "clear-pagination": "rimraf './public/pagination.json'",
-    "prebuild": "npm run db:generate:prod && npm run clear-pagination && npm run generate-pagination",
+    "prebuild": "pnpm run db:generate:prod && pnpm run clear-pagination && pnpm run generate-pagination",
     "start": "next start",
     "lint": "next lint",
     "db:migrate-create:local": "dotenv -e .env.local -- npx prisma migrate create",
