@@ -1,2 +1,2 @@
 [functions]
-  included_files = ["pagination/pagination.json", "posts/**/*.mdx]
+  included_files = ["pagination/**", "posts/**]
