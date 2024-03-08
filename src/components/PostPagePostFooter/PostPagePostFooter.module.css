@@ -1,0 +1,8 @@
+.author-time {
+  color: hsl(var(--muted-foreground));
+}
+
+.author {
+  font-style: normal;
+  font-weight: bold;
+}

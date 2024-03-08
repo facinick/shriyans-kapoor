@@ -7,6 +7,7 @@ import VisuallyHidden from "../VisuallyHidden";
 import { Flex } from "../ui/Flex";
 import { Heading, Paragraph } from "../ui/Typography";
 import styles from "./HomePagePost.module.css";
+import clsx from "clsx";
 
 interface Props {
   post: Frontmatter & {
@@ -21,7 +22,9 @@ const HomePagePost = ({ post }: Props): JSX.Element => {
     <Flex asChild direction={"column"} gap={1}>
       <article>
         <Link href={slug}>
-          <Heading level={3} asChild className={headingFont.className}>
+          <Heading level={3} asChild 
+            className={clsx(styles['heading'], headingFont.className)}
+          >
             <h3>{title} </h3>
           </Heading>
         </Link>

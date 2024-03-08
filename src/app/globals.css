@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @import url("./reset.css");
+@import url("../themes/shadcnui/base.css");
 @import url("../themes/shadcnui/orange.css");
 @import url("../themes/shadcnui/blue.css");
 @import url("../themes/shadcnui/black.css");

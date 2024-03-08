@@ -6,3 +6,11 @@
   font-style: normal;
   font-weight: bold;
 }
+
+.heading {
+  transition: var(--title-hover-color-transition);
+}
+
+.heading:hover {
+  color: hsl(var(--primary));
+}

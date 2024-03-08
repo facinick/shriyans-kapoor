@@ -8,6 +8,7 @@ import { getBackLinkFromRequest } from "@/lib/helpers/request-helpers";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
 import styles from "./page.module.css";
+import PostPagePostFooter from "@/components/PostPagePostFooter";
 
 interface PageProps {
   params: { postSlug: string };
@@ -54,6 +55,7 @@ async function BlogPost({ params }: PageProps) {
           {/* <div className={styles.page}> */}
           <MDXRemote components={MDX_COMPONENTS_MAP} source={content} />
           {/* </div> */}
+          <PostPagePostFooter author={frontmatter.author} publishedOn={frontmatter.publishedOn} />
         </article>
       </Flex>
     </>
