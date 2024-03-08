@@ -3,6 +3,7 @@ interface Frontmatter {
   abstract: string;
   publishedOn: string;
   author: string;
+  category: string;
 }
 
 type Post = {

@@ -13,6 +13,7 @@ import { ColorScheme, Theme } from "@/types/Theme";
 import { Metadata } from "next";
 import "../globals.css";
 import styles from "./layout.module.css";
+import { Box } from "@/components/ui/Box";
 
 export const metadata: Metadata = {
   title: {

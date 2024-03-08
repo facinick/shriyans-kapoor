@@ -4,3 +4,7 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.main-content {
+  padding: 30px var(--padding-edges);
+}

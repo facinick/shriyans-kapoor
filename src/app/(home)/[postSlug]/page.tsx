@@ -9,6 +9,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
 import styles from "./page.module.css";
 import PostPagePostFooter from "@/components/PostPagePostFooter";
+import clsx from "clsx";
 
 interface PageProps {
   params: { postSlug: string };
@@ -47,7 +48,7 @@ async function BlogPost({ params }: PageProps) {
   return (
     <>
       <Flex direction={"column"} gap={5} asChild>
-        <article className={styles.article}>
+        <article className={clsx(styles.article, styles.content)}>
           <PostPagePostHeader backLink={backLink}>
             {frontmatter.title}
           </PostPagePostHeader>

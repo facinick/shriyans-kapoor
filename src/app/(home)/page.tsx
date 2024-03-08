@@ -22,7 +22,7 @@ async function Home({ searchParams }: PageProps) {
 
   return (
     <Flex direction={"column"} gap={5} asChild>
-      <section>
+      <section className={styles['main-content']}>
         <Heading
           level={2}
           asChild

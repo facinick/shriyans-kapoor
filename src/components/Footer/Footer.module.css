@@ -1,5 +1,15 @@
 .footer {
   height: var(--footer-height);
-  padding: 15px var(--padding-edges) var(--padding-edges) var(--padding-edges);
   position: relative;
+
+  max-width: var(--main-max-width);
+  margin: auto;
+}
+
+.footer-content {
+  padding: 15px var(--padding-edges) var(--padding-edges) var(--padding-edges);
+}
+
+.nav {
+  margin-top: 10px;
 }

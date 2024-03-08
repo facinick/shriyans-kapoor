@@ -5,6 +5,10 @@
   border-radius: 3px;
 }
 
+.content {
+  padding: 30px var(--padding-edges);
+}
+
 [data-color-scheme="light"] .article p code {
   background-color: hsl(var(--secondary));
   color: hsl(var(--secondary-foreground));

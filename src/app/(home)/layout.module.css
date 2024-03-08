@@ -2,5 +2,4 @@
   max-width: var(--main-max-width);
   min-height: var(--main-min-height);
   margin: auto;
-  padding: 30px var(--padding-edges);
 }

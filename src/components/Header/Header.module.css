@@ -1,7 +1,5 @@
 .header {
   height: var(--header-height);
-  padding: var(--padding-edges) var(--padding-edges) 15px var(--padding-edges);
-
   position: sticky;
   top: 0;
   z-index: 1;
@@ -9,6 +7,8 @@
 
 .content {
   position: relative;
+  padding: var(--padding-edges) var(--padding-edges) 15px var(--padding-edges);
+
 }
 
 .title.link {
