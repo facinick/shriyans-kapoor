@@ -18,6 +18,7 @@ interface PageProps {
 async function Home({ searchParams }: PageProps) {
   const page = Number(searchParams.page || 1);
 
+  console.log(`at home page, about to load posts for page :${page}`)
   const paginationResponse = await getPostsForPage({ page });
 
   return (

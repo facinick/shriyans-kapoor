@@ -24,6 +24,7 @@ const getDataFromCacheOrNull = async ({
     return cache.get(page) as PaginationResponse;
   }
 
+  console.log(`reading paginationData from ${PAGINATION_READ_PATH} `)
   const paginationData = await readFile(PAGINATION_READ_PATH);
 
   const paginationJson = JSON.parse(paginationData) as Record<
@@ -95,6 +96,7 @@ export async function getBlogPostList({
 */
 export async function loadBlogPost({ slug }: { slug: string }) {
   try {
+    console.log(`reading blog post from ${`${POSTS_DIRECTORY}/${slug}.mdx`} `)
     const rawContent = await readFile(`${POSTS_DIRECTORY}/${slug}.mdx`);
     const { data: frontmatter, content } = matter(
       rawContent as unknown as Post
