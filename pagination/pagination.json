@@ -2,9 +2,6 @@
   "1": {
     "data": [
       {
-        "slug": "pagination.json"
-      },
-      {
         "slug": "ddd-unleashing-the-power-of-strategic-design-thinking",
         "title": "Domain-Driven Design: Unleashing the Power of Strategic Design Thinking",
         "abstract": "Enter the world of Domain-Driven Design (DDD), where software development meets strategic design thinking. Explore the principles, patterns, and practices that empower teams to create software systems that reflect the real-world domains they inhabit. Dive into the concepts of bounded contexts, ubiquitous language, and aggregate roots, and learn how to model complex business domains with clarity and precision. Join us on a journey to unlock the full potential of DDD and revolutionize your approach to software development.",
@@ -27,18 +24,7 @@
         "publishedOn": "2024-03-01T08:00:00-0800",
         "author": "Laughs McChuckler",
         "category": "Humor"
-      }
-    ],
-    "pagination": {
-      "page": 1,
-      "end": false,
-      "count": 4,
-      "totalPages": 3,
-      "totalCount": 9
-    }
-  },
-  "2": {
-    "data": [
+      },
       {
         "slug": "the-art-of-self-journey",
         "title": "The Art of Self-Discovery: Navigating the Depths of the Human Psyche",
@@ -46,7 +32,18 @@
         "publishedOn": "2024-03-01T08:00:00-0800",
         "author": "Soul Voyager",
         "category": "Psychology"
-      },
+      }
+    ],
+    "pagination": {
+      "page": 1,
+      "end": false,
+      "count": 4,
+      "totalPages": 2,
+      "totalCount": 8
+    }
+  },
+  "2": {
+    "data": [
       {
         "slug": "the-science-of-decision-making",
         "title": "The Science of Decision-Making: Exploring the Mind's Choices",
@@ -70,18 +67,7 @@
         "publishedOn": "2023-10-12T12:00:00-0400",
         "author": "Shriyans Kapoor",
         "category": "Programming"
-      }
-    ],
-    "pagination": {
-      "page": 2,
-      "end": false,
-      "count": 4,
-      "totalPages": 3,
-      "totalCount": 9
-    }
-  },
-  "3": {
-    "data": [
+      },
       {
         "slug": "vs-code-settings-30-september-2023",
         "title": "VS Code settings",
@@ -92,11 +78,11 @@
       }
     ],
     "pagination": {
-      "page": 3,
+      "page": 2,
       "end": true,
-      "count": 1,
-      "totalPages": 3,
-      "totalCount": 9
+      "count": 4,
+      "totalPages": 2,
+      "totalCount": 8
     }
   }
 }
