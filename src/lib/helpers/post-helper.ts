@@ -25,7 +25,7 @@ const getDataFromCacheOrNull = async ({
   }
 
   console.log(`reading paginationData from ${PAGINATION_READ_PATH} `)
-  const paginationData = await readFile(PAGINATION_READ_PATH);
+  const paginationData = await readFile(`${PAGINATION_READ_PATH}`);
 
   const paginationJson = JSON.parse(paginationData) as Record<
     number,
