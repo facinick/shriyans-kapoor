@@ -28,6 +28,7 @@ const getDataFromCacheOrNull = async ({
   const rawContent = await readFile(`${CONTENT_DIRECTORY}/${"iterate-in-typescript"}.mdx`);
   console.log(`_reading directory: ${CONTENT_DIRECTORY}`)
   const fileNames = await readDirectory(CONTENT_DIRECTORY);
+  console.log(fileNames)
   console.log(`_reading directory: ${PAGINATION_DIRECTORY}`)
   const fileNames2 = await readDirectory(PAGINATION_DIRECTORY);
   console.log(fileNames2)

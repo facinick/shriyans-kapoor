@@ -9,7 +9,7 @@
     "dev": "dotenv -e .env.local -- next dev",
     "build": "pnpm run prebuild && next build",
     "generate-pagination": "tsx ./scripts/generate-pagination.ts",
-    "clear-pagination": "rimraf './public/pagination.json'",
+    "clear-pagination": "rimraf './pagination/pagination.json'",
     "prebuild": "pnpm run db:generate:prod",
     "start": "next start",
     "lint": "next lint",
