@@ -48,7 +48,8 @@
     "react-dom": "18.2.0",
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7",
-    "zod": "^3.22.4"
+    "zod": "^3.22.4",
+    "husky": "^9.0.11"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.4",
@@ -60,7 +61,6 @@
     "dotenv-cli": "^7.3.0",
     "eslint": "8.50.0",
     "eslint-config-next": "13.5.4",
-    "husky": "^9.0.11",
     "pinst": "^3.0.0",
     "postcss": "^8.4.31",
     "prettier": "^2.8.8",
