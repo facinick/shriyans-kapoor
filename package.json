@@ -6,12 +6,11 @@
     "name": "Shriyans Kapoor"
   },
   "scripts": {
-    "dev": "dotenv -e .env.development -- next dev",
-    "build": "pnpm run prebuild && next build",
+    "dev": "next dev",
     "generate-pagination": "tsx ./scripts/generate-pagination.ts",
     "clear-pagination": "rimraf './pagination/pagination.json'",
-    "prebuild": "pnpm run db:generate:prod",
-    "start": "dotenv -e .env.production -- next start",
+    "build": "next build",
+    "start": "next start",
     "lint": "next lint",
     "prepare": "husky"
   },
@@ -37,8 +36,7 @@
     "tailwind-merge": "^1.14.0",
     "tailwindcss-animate": "^1.0.7",
     "zod": "^3.22.4",
-    "husky": "^9.0.11",
-    "dotenv-cli": "^7.3.0"
+    "husky": "^9.0.11"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.4",
