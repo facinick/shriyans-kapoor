@@ -32,7 +32,11 @@ const getBackLinkFromRequest = () => {
 
   // referer is not on same domain
   if (url.hostname !== HOSTNAME) {
-    return APP_SITE_URL;
+    if(process.env.NODE_ENV === 'development') {
+      return APP_SITE_URL
+    } else {
+      return PROD_APP_SITE_URL
+    }
   }
 
   return referer;
