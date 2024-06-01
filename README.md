@@ -16,7 +16,7 @@ The blog is built using the following technologies:
 
 ## Features
 
-- **SSR Supported Dark/Light Mode**: Prevents initial white flicker for a smoother user experience.
+- **SSR Supported Dark/Light Mode**: Prevents initial white flicker for a smoother user experience. (2 pass rendering to enable ssr theming)
 - **SSR Supported Black/Blue/Orange Themes**: Offers multiple theme options without initial white flicker.
 - **.mdx Posts**: Supports markdown-based posts for easy content creation.
 - **Pagination**: Implements pagination for better navigation through posts.
