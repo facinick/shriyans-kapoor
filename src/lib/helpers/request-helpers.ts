@@ -17,6 +17,7 @@ const getThemeFromRequest = (): null | Theme => {
 };
 
 const getBackLinkFromRequest = () => {
+  console.log({nodeENV: process.env.NODE_ENV})
   const referer = headers().get("Referer");
   // referer is null
   if (!referer) {
