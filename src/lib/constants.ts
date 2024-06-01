@@ -9,11 +9,17 @@ export const PAGINATION_DIRECTORY = '/pagination';
 export const PAGINATION_READ_PATH = `/pagination/pagination.json`;
 export const PAGINATION_WRITE_PATH = `/pagination/pagination.json`;
 export const POSTS_PER_PAGE = 4;
+// Dev
 export const HOSTNAME = "localhost";
 export const PORT = "3000";
 export const HOST = `${HOSTNAME}:${PORT}`;
 export const PROTOCOL = "http";
 export const APP_SITE_URL = `${PROTOCOL}://${HOST}`;
+// Prod
+export const PROD_HOST = `https://shriyans-kapoor.netlify.app/`;
+export const PROD_PROTOCOL = "https";
+export const PROD_APP_SITE_URL = `${PROTOCOL}://${HOST}`;
+
 export const SOCIALS = {
   telegram: "https://telegram.me/facinick",
   github: "https://github.com/facinick",
