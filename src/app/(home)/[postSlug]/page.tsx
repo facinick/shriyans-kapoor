@@ -15,6 +15,11 @@ interface PageProps {
   params: { postSlug: string };
 }
 
+export async function generateStaticParams() {
+  const posts = await getBlogPostList({});
+  return posts.map(post => ({ postSlug: post.slug }));
+}
+
 export async function generateMetadata({ params }: PageProps) {
   let post;
   try {
@@ -31,11 +36,6 @@ export async function generateMetadata({ params }: PageProps) {
     title: metadataTitle,
     description: abstract,
   };
-}
-
-export async function generateStaticParams() {
-  const posts = await getBlogPostList({});
-  return posts.map(post => ({ postSlug: post.slug }));
 }
 
 async function BlogPost({ params }: PageProps) {

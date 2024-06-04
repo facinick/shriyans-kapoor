@@ -16,7 +16,7 @@ export const HOST = `${HOSTNAME}:${PORT}`;
 export const PROTOCOL = "http";
 export const APP_SITE_URL = `${PROTOCOL}://${HOST}`;
 // Prod
-export const PROD_HOST = `shriyans-kapoor.netlify.app`;
+export const PROD_HOST = `facinick.xyz`;
 export const PROD_PROTOCOL = "https";
 export const PROD_APP_SITE_URL = `${PROD_PROTOCOL}://${PROD_HOST}`;
 

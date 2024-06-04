@@ -15,13 +15,14 @@ interface PageProps {
   };
 }
 
-export async function generateStaticParams() {
-  const totalPages = await getNumberOfPages();
+// how to use generateStaticParams with searchParams??
+// export async function generateStaticParams() {
+//   const totalPages = await getNumberOfPages();
   
-  return Array.from({ length: totalPages }, (_, index) => ({
-    page: (index + 1).toString(),
-  }));
-}
+//   return Array.from({ length: totalPages }, (_, index) => ({
+//     page: (index + 1).toString(),
+//   }));
+// }
 
 async function Home({ searchParams }: PageProps) {
   const page = Number(searchParams.page || 1);
