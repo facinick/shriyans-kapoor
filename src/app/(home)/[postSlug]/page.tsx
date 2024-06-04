@@ -3,7 +3,7 @@ import { Flex } from "@/components/ui/Flex/Flex";
 import { Separator } from "@/components/ui/Separator";
 import { APP_TITLE } from "@/lib/constants";
 import MDX_COMPONENTS_MAP from "@/lib/helpers/mdx-components";
-import { loadBlogPost } from "@/lib/helpers/post-helper";
+import { getBlogPostList, loadBlogPost } from "@/lib/helpers/post-helper";
 import { getBackLinkFromRequest } from "@/lib/helpers/request-helpers";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: PageProps) {
     return null;
   }
 
-  const { title, abstract, publishedOn } = post.frontmatter;
+  const { title, abstract } = post.frontmatter;
 
   const metadataTitle = `${title} • ${APP_TITLE}`;
 
@@ -33,7 +33,13 @@ export async function generateMetadata({ params }: PageProps) {
   };
 }
 
+export async function generateStaticParams() {
+  const posts = await getBlogPostList({});
+  return posts.map(post => ({ postSlug: post.slug }));
+}
+
 async function BlogPost({ params }: PageProps) {
+  console.log(params)
   let post;
   try {
     post = await loadBlogPost({ slug: params.postSlug });
