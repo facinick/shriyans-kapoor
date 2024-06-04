@@ -48,6 +48,18 @@ const getDataFromCacheOrNull = async ({
   };
 };
 
+export async function getNumberOfPages() {
+  const paginationData = await readFile(`${PAGINATION_DIRECTORY}/pagination.json`);
+
+  const paginationJson = JSON.parse(paginationData) as Record<
+    number,
+    PaginationResponse
+  >;
+
+  console.log(Object.keys(paginationJson).length)
+  return Object.keys(paginationJson).length
+}
+
 /* 
   read `/content` directory and return all the filenames from it
 */
