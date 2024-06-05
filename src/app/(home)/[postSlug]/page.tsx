@@ -4,7 +4,7 @@ import { Separator } from "@/components/ui/Separator";
 import { APP_TITLE } from "@/lib/constants";
 import MDX_COMPONENTS_MAP from "@/lib/helpers/mdx-components";
 import { getBlogPostList, loadBlogPost } from "@/lib/helpers/post-helper";
-import { getBackLinkFromRequest } from "@/lib/helpers/request-helpers";
+import { getBackLinkOrNullFromRequest } from "@/lib/helpers/request-helpers";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { notFound } from "next/navigation";
 import styles from "./page.module.css";
@@ -49,13 +49,13 @@ async function BlogPost({ params }: PageProps) {
 
   const { frontmatter, content } = post;
 
-  const backLink = getBackLinkFromRequest();
+  const backLinkOrNull = getBackLinkOrNullFromRequest();
 
   return (
     <>
       <Flex direction={"column"} gap={5} asChild>
         <article className={clsx(styles.article, styles.content)}>
-          <PostPagePostHeader backLink={backLink}>
+          <PostPagePostHeader backLinkOrNull={backLinkOrNull}>
             {frontmatter.title}
           </PostPagePostHeader>
           <Separator />

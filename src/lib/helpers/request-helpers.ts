@@ -42,6 +42,24 @@ const getBackLinkFromRequest = () => {
   return referer;
 };
 
+const getBackLinkOrNullFromRequest = (): string | null => {
+  console.log({nodeENV: process.env.NODE_ENV})
+  const referer = headers().get("Referer");
+  // referer is null
+  if (!referer) {
+    return null
+  }
+
+  const url = new URL(referer);
+
+  // referer is not on same domain
+  if (url.hostname !== HOSTNAME) {
+    return null
+  }
+
+  return referer;
+};
+
 const getColorSchemeFromRequest = (): null | ColorScheme => {
   const headersList = headers();
   const cookiesList = cookies();
@@ -61,4 +79,5 @@ export {
   getBackLinkFromRequest,
   getColorSchemeFromRequest,
   getThemeFromRequest,
+  getBackLinkOrNullFromRequest,
 };

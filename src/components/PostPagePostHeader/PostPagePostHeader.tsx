@@ -6,21 +6,22 @@ import styles from "./PostPagePostHeader.module.css";
 
 interface Props {
   children?: React.ReactNode;
-  backLink: string;
+  backLinkOrNull: string | null;
 }
 
 export const PostPagePostHeader = ({
   children,
-  backLink,
+  backLinkOrNull,
 }: Props): JSX.Element => {
   return (
     <>
       <Heading level={2} asChild className={headingFont.className}>
         <h2>
-          <Link href={backLink} title="Go Back">
-            {" "}
-            <ArrowLeft />
-          </Link>
+          {backLinkOrNull &&
+            <Link href={backLinkOrNull} title="Go Back">
+              {" "}
+              <ArrowLeft />
+            </Link>}
           <span className={styles["title"]}>{children}</span>
         </h2>
       </Heading>
