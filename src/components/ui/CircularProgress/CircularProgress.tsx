@@ -72,7 +72,7 @@ const CircularProgress = React.forwardRef<SVGSVGElement, CircularProgressProps>(
           cx="50"
           cy="50"
           r="42"
-          pathLength="1"
+          pathLength="0.99"
           className={clsx(
             styles.filled,
             styles.circle,
