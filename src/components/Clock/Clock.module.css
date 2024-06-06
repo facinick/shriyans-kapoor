@@ -1,6 +1,6 @@
 .wrapper {
   --digit-size: 30px;
-  --separator-size: var(--digit-size)
+  --separator-size: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
