@@ -8,7 +8,7 @@ export const ReadMore = ({ href }: Props): JSX.Element => {
   return (
     <>
       <Link className={styles.link} href={href}>
-        Read More
+        View the entire post
       </Link>
     </>
   );

@@ -13,7 +13,7 @@ const Footer = ({ }: Props): JSX.Element => {
     <footer className={styles.footer}>
       <Box className={styles['footer-content']}>
         <Heading level={6} asChild className={styles['links-category']}>
-          <h6>contact</h6>
+          <h2>contact</h2>
         </Heading>
 
         <Flex asChild direction={"column"} className={styles['nav']}>
