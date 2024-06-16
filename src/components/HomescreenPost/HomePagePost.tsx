@@ -1,14 +1,13 @@
 import { headingFont } from "@/lib/helpers/font-helper";
 import { formatDate } from "@/lib/helpers/utils";
 import { Frontmatter } from "@/types/Post";
-import Link from "next/link";
 import { ReadMore } from "../ReadMore/ReadMore";
 import VisuallyHidden from "../VisuallyHidden";
 import { Flex } from "../ui/Flex";
 import { Heading, Paragraph } from "../ui/Typography";
 import styles from "./HomePagePost.module.css";
 import clsx from "clsx";
-
+import { Link } from "../ui/Link";
 interface Props {
   post: Frontmatter & {
     slug: string;
@@ -21,7 +20,7 @@ const HomePagePost = ({ post }: Props): JSX.Element => {
   return (
     <Flex asChild direction={"column"} gap={1}>
       <article>
-        <Link href={slug}>
+        <Link className={styles.link} href={slug}>
           <Heading level={3} asChild 
             className={clsx(styles['heading'], headingFont.className)}
           >

@@ -1,14 +1,14 @@
-import NextLink from "next/link";
+import { Link as TransitionLink } from 'next-view-transitions'
 import { ComponentProps, ElementRef, forwardRef } from "react";
 import { Button } from "../Button/Button";
 
 type LinkProps = ComponentProps<typeof Button> &
-  Pick<ComponentProps<typeof NextLink>, "href" | "target">;
-
+  Pick<ComponentProps<typeof TransitionLink>, "href" | "target">;
+  
 const Link = forwardRef<ElementRef<typeof Button>, LinkProps>(
   ({ href, target, children, ...props }, ref) => (
     <Button variant={"link"} ref={ref} {...props} asChild>
-      <NextLink href={href}>{children}</NextLink>
+      <TransitionLink href={href}>{children}</TransitionLink>
     </Button>
   )
 );

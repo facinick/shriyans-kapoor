@@ -14,3 +14,15 @@
 .heading:hover {
   color: hsl(var(--primary));
 }
+
+.link {
+  color: inherit;
+  margin: inherit;
+  padding: inherit;
+  height: inherit;
+  justify-content: flex-start;
+}
+
+.link:hover {
+  text-decoration: none;
+}
