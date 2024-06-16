@@ -4,13 +4,16 @@ import { extractTimeDigitsFromDate } from "@/lib/helpers/utils";
 import { useCurrentTime } from "@/lib/hooks/useCurrentTime";
 import usePageVisibility from "@/lib/hooks/usePageVisibility";
 import clsx from "clsx";
-import { AnimatePresence, MotionProps, motion } from "framer-motion";
+import { AnimatePresence, LazyMotion, MotionProps, m } from "framer-motion";
 import { ComponentProps, useId } from "react";
 import { Box } from "../ui/Box";
 import { Flex } from "../ui/Flex";
 import styles from "./Clock.module.css";
 
 type ClockProps = ComponentProps<typeof Box>;
+
+const loadFeatures = () =>
+  import("../../lib/motion-features").then(res => res.default)
 
 const Clock = ({ className }: ClockProps): JSX.Element => {
   const currentTime = useCurrentTime({ unit: "ms", every: 50 });
@@ -27,6 +30,7 @@ const Clock = ({ className }: ClockProps): JSX.Element => {
   const isVisible = usePageVisibility();
 
   return (
+    <LazyMotion features={loadFeatures} strict>
     <Box className={clsx(styles.wrapper, className)} asChild>
       <time
         suppressHydrationWarning
@@ -81,6 +85,7 @@ const Clock = ({ className }: ClockProps): JSX.Element => {
         </Flex>
       </time>
     </Box>
+    </LazyMotion>
   );
 };
 
@@ -95,7 +100,7 @@ const AnimatedDigit = ({
 
   return isVisible ? (
     <AnimatePresence initial={false}>
-      <motion.div
+      <m.div
         {...MOTION_VALUES}
         suppressHydrationWarning
         key={`${id}-${digit}`}
@@ -103,7 +108,7 @@ const AnimatedDigit = ({
         data-key={`${id}-${digit}`}
       >
         {digit}
-      </motion.div>
+      </m.div>
     </AnimatePresence>
   ) : (
     <div

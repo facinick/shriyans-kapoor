@@ -1,14 +1,17 @@
 "use client";
-import { motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { LazyMotion, m, useMotionValueEvent, useScroll } from "framer-motion";
 import { MoveUp } from "lucide-react";
 import { useEffect, useId, useRef, useState } from "react";
 import VisuallyHidden from "../VisuallyHidden";
 import { Button } from "../ui/Button";
 import CircularProgress from "../ui/CircularProgress";
 import styles from "./ScrollToTop.module.css";
-interface Props {}
+interface Props { }
 
-const ScrollToTop = ({}: Props): JSX.Element => {
+const loadFeatures = () =>
+  import("../../lib/motion-features").then(res => res.default)
+
+const ScrollToTop = ({ }: Props): JSX.Element => {
   const triggerRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -55,30 +58,31 @@ const ScrollToTop = ({}: Props): JSX.Element => {
 
   return (
     <>
-      <div ref={triggerRef} className={styles.trigger} />
-
-      <motion.div
-        className={styles.wrapper}
-        initial={false}
-        transition={{
-          type: "spring",
-          stiffness: appear ? 300 : 600,
-          damping: appear ? 70 : 40,
-          restDelta: 0.01,
-        }}
-        animate={{
-          y: translateY,
-          opacity,
-        }}
-      >
-        <Button onClick={scrollToTop} className={styles.button} ref={buttonRef}>
-          <MoveUp />
-          <VisuallyHidden>Scroll To Top</VisuallyHidden>
-        </Button>
-        <div className={styles.progress}>
-          <CircularProgress size={"thick"} progressInDecimal={scroll} />
-        </div>
-      </motion.div>
+      <LazyMotion features={loadFeatures} strict>
+        <div ref={triggerRef} className={styles.trigger} />
+        <m.div
+          className={styles.wrapper}
+          initial={false}
+          transition={{
+            type: "spring",
+            stiffness: appear ? 300 : 600,
+            damping: appear ? 70 : 40,
+            restDelta: 0.01,
+          }}
+          animate={{
+            y: translateY,
+            opacity,
+          }}
+        >
+          <Button title="Scroll to top" onClick={scrollToTop} className={styles.button} ref={buttonRef}>
+            <MoveUp />
+            <VisuallyHidden>Scroll To Top</VisuallyHidden>
+          </Button>
+          <div className={styles.progress}>
+            <CircularProgress size={"thick"} progressInDecimal={scroll} />
+          </div>
+        </m.div>
+      </LazyMotion>
     </>
   );
 };
