@@ -15,7 +15,7 @@
   color: hsl(var(--primary));
 }
 
-.link {
+.head.link {
   color: inherit;
   margin: inherit;
   padding: inherit;
@@ -23,6 +23,6 @@
   justify-content: flex-start;
 }
 
-.link:hover {
+.head.link:hover {
   text-decoration: none;
 }

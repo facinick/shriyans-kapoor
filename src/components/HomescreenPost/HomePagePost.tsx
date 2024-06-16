@@ -20,7 +20,7 @@ const HomePagePost = ({ post }: Props): JSX.Element => {
   return (
     <Flex asChild direction={"column"} gap={1}>
       <article>
-        <Link className={styles.link} href={slug}>
+        <Link className={clsx(styles.link, styles.head)} href={slug}>
           <Heading level={3} asChild 
             className={clsx(styles['heading'], headingFont.className)}
           >
