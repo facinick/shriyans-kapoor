@@ -10,6 +10,11 @@
   padding: 15px var(--padding-edges) var(--padding-edges) var(--padding-edges);
 }
 
+.footer-link {
+  /* to tackle px-4 from button */
+  margin-left: -16px;
+}
+
 .nav {
   margin-top: 10px;
 }

@@ -1,6 +1,6 @@
 html {
   --header-height: 70px;
-  --footer-height: 160px;
+  --footer-height: 190px;
   --main-min-height: calc(100vh - var(--header-height) - var(--footer-height));
   --main-max-width: 720px;
   --padding-edges: 15px;

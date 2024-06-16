@@ -9,6 +9,7 @@ const CodeSnippet = ({ className, ...props }: CodeSnippetProps) => {
   return (
     <Code
       {...props}
+      lineNumbers
       theme={{
         dark: "github-dark",
         light: "github-light",

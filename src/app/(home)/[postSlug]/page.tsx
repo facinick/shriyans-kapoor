@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: PageProps) {
 
   const { title, abstract } = post.frontmatter;
 
-  const metadataTitle = `${title} • ${APP_TITLE}`;
+  const metadataTitle = `${title}`;
 
   return {
     title: metadataTitle,
