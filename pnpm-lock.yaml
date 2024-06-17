@@ -80,9 +80,6 @@ dependencies:
   next-mdx-remote:
     specifier: ^4.4.1
     version: 4.4.1(react-dom@18.3.1)(react@18.3.1)
-  next-view-transitions:
-    specifier: ^0.2.0
-    version: 0.2.0(next@14.2.3)(react-dom@18.3.1)(react@18.3.1)
   pinst:
     specifier: ^3.0.0
     version: 3.0.0
@@ -3816,18 +3813,6 @@ packages:
       vfile-matter: 3.0.1
     transitivePeerDependencies:
       - supports-color
-    dev: false
-
-  /next-view-transitions@0.2.0(next@14.2.3)(react-dom@18.3.1)(react@18.3.1):
-    resolution: {integrity: sha512-dFxevMIJy8irIstytJivLEtgYT4IJ7Gy7fnDCKHJtNZAsuQgmewYcdA/o/mRkMd1zwxTfyGALiOlZYxvtsn5jg==}
-    peerDependencies:
-      next: ^14.0.0
-      react: ^18.2.0
-      react-dom: ^18.2.0
-    dependencies:
-      next: 14.2.3(react-dom@18.3.1)(react@18.3.1)
-      react: 18.3.1
-      react-dom: 18.3.1(react@18.3.1)
     dev: false
 
   /next@14.2.3(react-dom@18.3.1)(react@18.3.1):

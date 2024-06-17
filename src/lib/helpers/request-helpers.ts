@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 import { ColorScheme } from "@/types/Theme";
 import { headers } from "next/headers";
 import { URL } from "url";
-import { APP_SITE_URL, HOSTNAME, PROD_APP_SITE_URL } from "../constants";
+import { APP_SITE_URL, HOSTNAME, PROD_APP_SITE_URL, PROD_HOST, PROD_HOSTNAME } from "../constants";
 
 const getThemeFromRequest = (): null | Theme => {
   const cookiesList = cookies();
@@ -53,8 +53,14 @@ const getBackLinkOrNullFromRequest = (): string | null => {
   const url = new URL(referer);
 
   // referer is not on same domain
-  if (url.hostname !== HOSTNAME) {
-    return null
+  if(process.env.NODE_ENV === 'development') {
+    if (url.hostname !== HOSTNAME) {
+      return null
+    }
+  } else {
+    if (url.hostname !== PROD_HOSTNAME) {
+      return null
+    }
   }
 
   return referer;
