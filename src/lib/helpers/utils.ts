@@ -15,6 +15,15 @@ export function formatDate(isoDateString: string) {
   });
 }
 
+export function min(a: number, b: number): number {
+  return Math.min(a, b)
+}
+
+export function minWithCap(a: number, b: number, cap: number): number {
+  const min = Math.min(a, b);
+  return min < cap ? cap : min;
+}
+
 export function range(start: number, end: number) {
   let length = end - start + 1;
   return Array.from({ length }, (_, idx) => idx + start);

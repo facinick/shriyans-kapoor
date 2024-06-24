@@ -33,7 +33,7 @@ export default function RootLayout({
   return (
       <html lang="en" data-color-scheme={colorScheme} data-theme={theme}>
         <head>
-          <meta name="theme-color" content={"hsl(var(--background))"} />
+          {/* <meta name="theme-color" content={"hsl(var(--background))"} /> */}
         </head>
         <body className={mainFont.className}>
           {/* <SessionProvider> */}
