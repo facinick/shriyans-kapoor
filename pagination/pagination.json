@@ -2,13 +2,48 @@
   "1": {
     "data": [
       {
+        "slug": "javascript-modulo-operator",
+        "title": "Understanding the JavaScript Modulo Operator",
+        "abstract": "One of the most commonly-misunderstood operators is Modulo (%). In this tutorial, we'll unpack exactly what this little bugger does, and learn how it can help us solve practical problems.",
+        "publishedOn": "2024-06-27T08:50:18.327Z",
+        "author": "Joshua Comeau",
+        "category": "maths"
+      },
+      {
+        "slug": "javascript-closures",
+        "title": "Demystifying JavaScript Closures",
+        "abstract": "Closures, a core concept in JavaScript, can seem cryptic and challenging to grasp. This post delves into the world of JavaScript closures, unraveling their intricacies and shedding light on their power in managing scope and preserving data across function executions.",
+        "publishedOn": "2024-06-26T08:50:18.327Z",
+        "author": "Joshua Comeau",
+        "category": "maths"
+      },
+      {
+        "slug": "facinick-xyz",
+        "title": "facinick.xyz",
+        "abstract": "A Personal blog built with NestJS 14 (App router, SSR and SSG), RadixUI, MDX supporting features like server side code syntax highlighting, Motion-Framer.",
+        "publishedOn": "2024-06-25T08:50:18.327Z",
+        "author": "facinick",
+        "category": "Software Engineering"
+      },
+      {
         "slug": "ddd-unleashing-the-power-of-strategic-design-thinking",
         "title": "Domain-Driven Design: Unleashing the Power of Strategic Design Thinking",
         "abstract": "Enter the world of Domain-Driven Design (DDD), where software development meets strategic design thinking. Explore the principles, patterns, and practices that empower teams to create software systems that reflect the real-world domains they inhabit. Dive into the concepts of bounded contexts, ubiquitous language, and aggregate roots, and learn how to model complex business domains with clarity and precision. Join us on a journey to unlock the full potential of DDD and revolutionize your approach to software development.",
         "publishedOn": "2024-03-01T08:00:00-0800",
         "author": "CodeCraftsman",
         "category": "Software Engineering"
-      },
+      }
+    ],
+    "pagination": {
+      "page": 1,
+      "end": false,
+      "count": 4,
+      "totalPages": 3,
+      "totalCount": 11
+    }
+  },
+  "2": {
+    "data": [
       {
         "slug": "journey-to-singularity",
         "title": "Exploring the Depths of Singularity: A Journey into Technological Transcendence",
@@ -32,18 +67,7 @@
         "publishedOn": "2024-03-01T08:00:00-0800",
         "author": "Soul Voyager",
         "category": "Psychology"
-      }
-    ],
-    "pagination": {
-      "page": 1,
-      "end": false,
-      "count": 4,
-      "totalPages": 2,
-      "totalCount": 8
-    }
-  },
-  "2": {
-    "data": [
+      },
       {
         "slug": "the-science-of-decision-making",
         "title": "The Science of Decision-Making: Exploring the Mind's Choices",
@@ -51,7 +75,18 @@
         "publishedOn": "2024-03-01T08:00:00-0800",
         "author": "Choice Connoisseur",
         "category": "Psychology"
-      },
+      }
+    ],
+    "pagination": {
+      "page": 2,
+      "end": false,
+      "count": 4,
+      "totalPages": 3,
+      "totalCount": 11
+    }
+  },
+  "3": {
+    "data": [
       {
         "slug": "the-spiritual-journey",
         "title": "The Spiritual Journey: Navigating the Path to Inner Peace",
@@ -78,11 +113,11 @@
       }
     ],
     "pagination": {
-      "page": 2,
+      "page": 3,
       "end": true,
-      "count": 4,
-      "totalPages": 2,
-      "totalCount": 8
+      "count": 3,
+      "totalPages": 3,
+      "totalCount": 11
     }
   }
 }

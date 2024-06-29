@@ -1,0 +1,12 @@
+.wrapper {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.remainderPhrase {
+  color: hsl(var(--muted-foreground));
+}
+.remainderDigit {
+  color: hsl(var(--primary));
+}

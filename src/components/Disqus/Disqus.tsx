@@ -1,5 +1,4 @@
 "use client";
-
 import { Children, useContext, useEffect, useRef, useState } from "react";
 import styles from "./Disqus.module.css";
 import { DISQUS_SHORT_NAME } from "@/lib/constants";
