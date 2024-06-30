@@ -29,11 +29,14 @@ export const usePagination = ({
     /*
     If count (total number of pages) is same or less
     than min number of items in pagination, then
-    we are showing all of them, a we dont need dots 
+    we are showing all of them, as we dont need dots 
   */
 
+    /*
+      range returns inclusive of start, exclusive of end.
+    */
     if (count <= totalPaginationRowItems) {
-      return range(1, count);
+      return range(1, count + 1);
     }
 
     /*
