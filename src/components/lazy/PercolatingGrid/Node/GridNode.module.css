@@ -1,0 +1,22 @@
+.gridnode {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1/1;
+
+  transition: all 0.3s linear;
+}
+
+.flooding {
+  background-color: #2F6CB2;
+  color: white;
+}
+
+.closed {
+  background-color: black;
+  color: white;
+}
+
+.open {
+  background-color: white;
+  color: black;
+}

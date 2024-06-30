@@ -1,0 +1,18 @@
+.grid {
+  display: flex;
+}
+
+.hovered-node {
+  position: absolute;
+  background: hsla(0, 0%, 0%, 0);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 30px;
+}
