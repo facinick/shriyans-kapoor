@@ -6,7 +6,7 @@ import { useEffect, useId, useRef, useState } from "react";
 import { Pause, Play, RotateCcw } from "lucide-react";
 
 import styles from "./CircularColorsDemo.module.css";
-import { Card } from "../ui/Card";
+import { Card } from "../../ui/Card";
 
 const COLORS = [
   { label: "red", value: "hsl(348deg 100% 60%)" },
@@ -15,7 +15,7 @@ const COLORS = [
 ];
 
 const loadFeatures = () =>
-  import("../../lib/motion-features").then(res => res.default)
+  import("../../../lib/motion-features").then(res => res.default)
 
 function CircularColorsDemo() {
   // TODO: This value should increase by 1 every second:

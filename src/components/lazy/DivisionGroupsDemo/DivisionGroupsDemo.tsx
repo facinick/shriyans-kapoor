@@ -6,8 +6,8 @@ import { LayoutGroup, LazyMotion, m, motion } from "framer-motion";
 import styles from "./DivisionGroupsDemo.module.css";
 import Equation from "./Equation";
 import { range } from "@/lib/helpers/utils";
-import SliderControl from "../SliderControl";
-import { Card } from "../ui/Card";
+import SliderControl from "../../SliderControl";
+import { Card } from "../../ui/Card";
 
 interface Props {
   numOfItems: number
@@ -16,7 +16,7 @@ interface Props {
 }
 
 const loadFeatures = () =>
-  import("../../lib/max-motion-features").then(res => res.default)
+  import("../../../lib/max-motion-features").then(res => res.default)
 
 
 function DivisionGroupsDemo({
