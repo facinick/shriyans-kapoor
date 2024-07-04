@@ -1,0 +1,49 @@
+/* .slider {
+  --handle-width: 12px;
+  --handle-height: 24px;
+  --track-color: hsl(var(--muted-foreground));
+  --handle-color: hsl(var(--primary));
+  --handle-active-color: hsl(var(--primary));
+  --background-color: hsl(var(--primary-foreground));
+  display: block;
+  width: 100%;
+  height: var(--handle-height);
+  background: transparent;
+  appearance: none;
+  outline-offset: 6px;
+  cursor: pointer;
+}
+
+.slider::-webkit-slider-thumb {
+  appearance: none;
+  width: var(--handle-width);
+  height: var(--handle-height);
+  border-radius: 50px;
+  background: hsl(var(--primary));
+  cursor: grab;
+  transform: translateY(calc(-50% + 1.5px));
+  outline: 2px solid var(--secondary);
+}
+
+.slider:active::-webkit-slider-thumb {
+  cursor: grabbing;
+}
+
+.slider:focus::-webkit-slider-thumb {
+  background: var(--handle-active-color);
+}
+
+.slider:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.slider::-webkit-slider-runnable-track {
+  width: calc(100% - 1.5rem);
+  height: 3px;
+  background: var(--track-color);
+  border-radius: 1.5px;
+  margin: calc(var(--handle-size) / 2) 0;
+}
+.slider::-moz-range-track {
+  background: var(--track-color);
+} */
