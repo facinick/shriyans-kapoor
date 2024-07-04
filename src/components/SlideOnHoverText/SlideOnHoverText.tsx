@@ -1,18 +1,13 @@
-"use client"
-import { motion, AnimatePresence } from "framer-motion"
-import { useState } from "react";
+'use client';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
 
-function SlideOnHoverText({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-
-  const [hovered, setHovered] = useState(false)
+function SlideOnHoverText({ children }: { children: React.ReactNode }) {
+  const [hovered, setHovered] = useState(false);
 
   return (
-    <span 
-      onMouseEnter={() => setHovered(true)} 
+    <span
+      onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{ display: 'inline-block', position: 'relative' }}
     >
@@ -29,11 +24,17 @@ function SlideOnHoverText({
           </motion.span>
         )}
       </AnimatePresence>
-      <span style={{ position: 'relative', left: hovered ? '1em' : '0', transition: 'left 0.3s' }}>
+      <span
+        style={{
+          position: 'relative',
+          left: hovered ? '1em' : '0',
+          transition: 'left 0.3s',
+        }}
+      >
         {children}
       </span>
     </span>
   );
 }
 
-export default SlideOnHoverText
+export default SlideOnHoverText;
