@@ -20,6 +20,7 @@ const Header = ({}: Props): JSX.Element => {
             href={"/"}
             size={"lg"}
             className={clsx(styles.link, styles.title, headingFont.className)}
+            title="Goto Home"
           >
             {APP_TITLE}
           </Link>
