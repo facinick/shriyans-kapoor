@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 interface Props {
   unit?: "ms" | "s" | "m" | "h" | "d" | "y";
   every?: number;
+  timezone?: string;
 }
 
 const INTERVAL_MAP = {
@@ -57,8 +58,17 @@ const INTERVAL_MAP = {
 //   return time;
 // };
 
-export const useCurrentTime = ({ unit = "ms", every = 1 }: Props): Date => {
-  const [time, setTime] = useState<Date>(new Date());
+const getTime = (timezone?: string) => {
+  if (!timezone) return new Date();
+  return new Date(new Date().toLocaleString("en-US", { timeZone: timezone }));
+};
+
+export const useCurrentTime = ({
+  unit = "ms",
+  every = 1,
+  timezone,
+}: Props): Date => {
+  const [time, setTime] = useState<Date>(getTime(timezone));
   const timeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
   const nextUpdateTimeRef = useRef<number | undefined>(undefined);
 
