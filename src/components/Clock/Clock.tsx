@@ -9,14 +9,20 @@ import { ComponentProps, useId } from "react";
 import { Box } from "../ui/Box";
 import { Flex } from "../ui/Flex";
 import styles from "./Clock.module.css";
+import VisuallyHidden from "../VisuallyHidden";
+import { APP_TIMEZONE } from "@/lib/constants";
 
 type ClockProps = ComponentProps<typeof Box>;
 
 const loadFeatures = () =>
-  import("../../lib/motion-features").then(res => res.default)
+  import("../../lib/motion-features").then((res) => res.default);
 
 const Clock = ({ className }: ClockProps): JSX.Element => {
-  const currentTime = useCurrentTime({ unit: "ms", every: 50 });
+  const currentTime = useCurrentTime({
+    unit: "s",
+    every: 1,
+    timezone: APP_TIMEZONE,
+  });
 
   const {
     hourTensDigit,
@@ -31,60 +37,98 @@ const Clock = ({ className }: ClockProps): JSX.Element => {
 
   return (
     <LazyMotion features={loadFeatures} strict>
-    <Box className={clsx(styles.wrapper, className)} asChild>
-      <time
-        suppressHydrationWarning
-        title={currentTime.toISOString()}
-        dateTime={currentTime.toISOString()}
-      >
-        <Flex justify={"center"} align={"center"}>
-          <Flex
-            justify={"center"}
-            align={"center"}
-            className={styles["number-wrapper"]}
-          >
-            <AnimatedDigit digit={hourTensDigit} isVisible={isVisible} />
+      <Box className={clsx(styles.wrapper, className)} asChild>
+        <time
+          suppressHydrationWarning
+          title={currentTime.toISOString()}
+          dateTime={currentTime.toISOString()}
+        >
+          <VisuallyHidden>Author&apos;s local time: </VisuallyHidden>
+          <Flex direction={"row"} asChild>
+            {/* span so that when page loads without css, "Author's local time" and clock show size by side */}
+            <span>
+              <Flex
+                asChild
+                justify={"center"}
+                align={"center"}
+                className={styles["number-wrapper"]}
+              >
+                <span>
+                  <AnimatedDigit digit={hourTensDigit} isVisible={isVisible} />
+                </span>
+              </Flex>
+              <Flex
+                asChild
+                justify={"center"}
+                align={"center"}
+                className={styles["number-wrapper"]}
+              >
+                <span>
+                  <AnimatedDigit digit={hourUnitDigit} isVisible={isVisible} />
+                </span>
+              </Flex>
+              <Box asChild className={styles.separator}>
+                <span>:</span>
+              </Box>
+              <Flex
+                asChild
+                justify={"center"}
+                align={"center"}
+                className={styles["number-wrapper"]}
+              >
+                <span>
+                  <AnimatedDigit
+                    digit={minuteTensDigit}
+                    isVisible={isVisible}
+                  />
+                </span>
+              </Flex>
+              <Flex
+                asChild
+                justify={"center"}
+                align={"center"}
+                className={styles["number-wrapper"]}
+              >
+                <span>
+                  <AnimatedDigit
+                    digit={minuteUnitDigit}
+                    isVisible={isVisible}
+                  />
+                </span>
+              </Flex>
+              <Box asChild className={styles.separator}>
+                <span>:</span>
+              </Box>
+              <Flex
+                asChild
+                justify={"center"}
+                align={"center"}
+                className={styles["number-wrapper"]}
+              >
+                <span>
+                  <AnimatedDigit
+                    digit={secondTensDigit}
+                    isVisible={isVisible}
+                  />
+                </span>
+              </Flex>
+              <Flex
+                asChild
+                justify={"center"}
+                align={"center"}
+                className={styles["number-wrapper"]}
+              >
+                <span>
+                  <AnimatedDigit
+                    digit={secondUnitDigit}
+                    isVisible={isVisible}
+                  />
+                </span>
+              </Flex>
+            </span>
           </Flex>
-          <Flex
-            justify={"center"}
-            align={"center"}
-            className={styles["number-wrapper"]}
-          >
-            <AnimatedDigit digit={hourUnitDigit} isVisible={isVisible} />
-          </Flex>
-          <Box className={styles.separator}>:</Box>
-          <Flex
-            justify={"center"}
-            align={"center"}
-            className={styles["number-wrapper"]}
-          >
-            <AnimatedDigit digit={minuteTensDigit} isVisible={isVisible} />
-          </Flex>
-          <Flex
-            justify={"center"}
-            align={"center"}
-            className={styles["number-wrapper"]}
-          >
-            <AnimatedDigit digit={minuteUnitDigit} isVisible={isVisible} />
-          </Flex>
-          <Box className={styles.separator}>:</Box>
-          <Flex
-            justify={"center"}
-            align={"center"}
-            className={styles["number-wrapper"]}
-          >
-            <AnimatedDigit digit={secondTensDigit} isVisible={isVisible} />
-          </Flex>
-          <Flex
-            justify={"center"}
-            align={"center"}
-            className={styles["number-wrapper"]}
-          >
-            <AnimatedDigit digit={secondUnitDigit} isVisible={isVisible} />
-          </Flex>
-        </Flex>
-      </time>
-    </Box>
+        </time>
+      </Box>
     </LazyMotion>
   );
 };
@@ -100,7 +144,7 @@ const AnimatedDigit = ({
 
   return isVisible ? (
     <AnimatePresence initial={false}>
-      <m.div
+      <m.span
         {...MOTION_VALUES}
         suppressHydrationWarning
         key={`${id}-${digit}`}
@@ -108,17 +152,17 @@ const AnimatedDigit = ({
         data-key={`${id}-${digit}`}
       >
         {digit}
-      </m.div>
+      </m.span>
     </AnimatePresence>
   ) : (
-    <div
+    <span
       suppressHydrationWarning
       key={`${id}-${digit}`}
       className={styles.number}
       data-key={`${id}-${digit}`}
     >
       {digit}
-    </div>
+    </span>
   );
 };
 
