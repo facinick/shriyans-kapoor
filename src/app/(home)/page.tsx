@@ -39,7 +39,7 @@ async function Home({ searchParams }: PageProps) {
         >
           {/* css fallback styles */}
           <h1 style={{ display: "flex", justifyContent: "space-between" }}>
-            Posts
+            » Posts
             <Clock />
           </h1>
         </Heading>
