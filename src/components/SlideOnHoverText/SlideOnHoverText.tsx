@@ -2,7 +2,7 @@
 import { motion, AnimatePresence } from "framer-motion"
 import { useState } from "react";
 
-export function SlideOnHoverText({
+function SlideOnHoverText({
   children,
 }: {
   children: React.ReactNode;
@@ -35,3 +35,5 @@ export function SlideOnHoverText({
     </span>
   );
 }
+
+export default SlideOnHoverText

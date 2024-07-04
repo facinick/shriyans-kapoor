@@ -48,25 +48,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const Comp = asChild ? Slot : 'button';
-    const vibrateOnClick = useVibrateOnce();
-
-    console.log({ vibrate, onClick: props.onClick });
-    const onClick = vibrate
-      ? (event: React.MouseEvent<HTMLButtonElement>) => {
-          console.log('suedueh');
-          vibrateOnClick();
-          alert('hello');
-          props.onClick?.(event);
-        }
-      : props.onClick;
-
-    console.log({ onClick });
 
     return (
       <Comp
         className={cn(buttonVariants({ variant, size, className }))}
         ref={ref}
-        onClick={onClick}
         {...props}
       />
     );

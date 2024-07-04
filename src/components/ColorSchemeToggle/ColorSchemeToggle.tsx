@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import VisuallyHidden from '../VisuallyHidden/VisuallyHidden';
 import { ThemeContext } from '../providers/ThemeProvider';
 import { Button } from '../ui/Button/Button';
+import { motion } from 'framer-motion';
 interface Props {}
 
 const ColorSchemeToggle = ({}: Props): JSX.Element => {
@@ -20,9 +21,15 @@ const ColorSchemeToggle = ({}: Props): JSX.Element => {
         size="icon"
         variant={'secondary'}
         onClick={handleToggle}
+        asChild
       >
-        {colorScheme === 'dark' ? <Sun /> : <Moon />}
-        <VisuallyHidden>Color Scheme Toggle</VisuallyHidden>
+        <motion.button
+          whileTap={{ scale: 0.9 }}
+          // transition={{ duration: 0.2 }}
+        >
+          {colorScheme === 'dark' ? <Sun /> : <Moon />}
+          <VisuallyHidden>Color Scheme Toggle</VisuallyHidden>
+        </motion.button>
       </Button>
     </>
   );

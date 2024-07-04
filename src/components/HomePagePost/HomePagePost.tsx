@@ -9,7 +9,7 @@ import styles from './HomePagePost.module.css';
 import clsx from 'clsx';
 import {motion} from 'framer-motion'
 import { Link } from '../ui/Link';
-import { SlideOnHoverText } from '../SlideOnHoverText/SlideOnHoverText';
+import SlideOnHoverText from '../SlideOnHoverText';
 
 interface Props {
   post: Frontmatter & {

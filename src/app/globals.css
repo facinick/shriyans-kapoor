@@ -17,6 +17,7 @@ body {
 @layer base {
   * {
     @apply border-border;
+    transition: background 0.5s ease 0s;
   }
   html {
     @apply bg-background text-foreground;
