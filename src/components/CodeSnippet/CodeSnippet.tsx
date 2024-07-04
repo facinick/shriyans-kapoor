@@ -1,6 +1,6 @@
 import { Code } from 'bright';
 import clsx from 'clsx';
-import { ComponentProps, ReactNode } from 'react';
+import { ComponentProps, isValidElement, ReactNode } from 'react';
 import styles from './CodeSnippet.module.css';
 import { Box } from '../ui/Box';
 import CopyToClipboardButton from '../CopyToClipboardButton/CopyToClipboardButton';
@@ -23,8 +23,8 @@ const CodeSnippet = ({ children, className, ...props }: CodeSnippetProps) => {
       >
         {children}
       </Code>
-      {React.isValidElement(children) && (
-        <CopyToClipboardButton copyText={children.props.children } />
+      {isValidElement(children) && (
+        <CopyToClipboardButton copyText={children.props.children} />
       )}
     </Box>
   );
