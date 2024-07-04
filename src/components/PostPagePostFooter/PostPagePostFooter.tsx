@@ -22,7 +22,9 @@ export const PostPagePostFooter = ({
   return (
     <>
        <Flex className={styles["author-time"]} justify={"end"} gap={3}>
-          <address className={styles["author"]}>{author}</address>
+          <address className={styles["author"]}>
+            <VisuallyHidden>Published By </VisuallyHidden>
+          </address>
           <time dateTime={publishedOn}>
             <VisuallyHidden>Published On </VisuallyHidden>
             {formatDate(publishedOn)}
