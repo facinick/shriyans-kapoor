@@ -13,9 +13,6 @@ const COLORS = [
   { label: "blue", value: "hsl(235deg 100% 65%)", key: 3 },
 ];
 
-const loadFeatures = () =>
-  import("../../../lib/motion-features").then((res) => res.default);
-
 function CircularColorsDemo() {
   const [timeElapsed, setTimeElapsed] = useState(0);
 
@@ -60,7 +57,6 @@ function CircularColorsDemo() {
   };
 
   return (
-    <LazyMotion features={loadFeatures} strict>
       <Card className={styles.wrapper}>
         <ul className={styles.colorsWrapper}>
           {COLORS.map((color, index) => {
@@ -69,7 +65,7 @@ function CircularColorsDemo() {
             return (
               <li className={styles.color} key={color.key}>
                 {isSelected && (
-                  <m.div
+                  <motion.div
                     layoutId={borderId}
                     key={borderId}
                     className={styles.selectedColorOutline}
@@ -118,7 +114,6 @@ function CircularColorsDemo() {
           </div>
         </div>
       </Card>
-    </LazyMotion>
   );
 }
 

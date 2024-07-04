@@ -15,10 +15,6 @@ interface Props {
   includeRemainderArea: boolean
 }
 
-const loadFeatures = () =>
-  import("../../../lib/max-motion-features").then(res => res.default)
-
-
 function DivisionGroupsDemo({
   numOfItems = 12,
   initialNumOfGroups = 1,
@@ -45,7 +41,6 @@ function DivisionGroupsDemo({
       };
 
   return (
-    <LazyMotion features={loadFeatures}>
       <LayoutGroup>
         <Card className={styles.wrapper}>
           <header className={styles.header}>
@@ -70,7 +65,7 @@ function DivisionGroupsDemo({
                       }`;
 
                     return (
-                      <m.div
+                      <motion.div
                         layoutId={consistentId}
                         data-key={consistentId}
                         key={consistentId}
@@ -93,7 +88,7 @@ function DivisionGroupsDemo({
                   const consistentId = `${id}-${numOfItems - remainder + index}`;
 
                   return (
-                    <m.div
+                    <motion.div
                       layout
                       layoutId={consistentId}
                       data-key={consistentId}
@@ -112,7 +107,6 @@ function DivisionGroupsDemo({
           />
         </Card>
       </LayoutGroup>
-    </LazyMotion>
   );
 }
 
