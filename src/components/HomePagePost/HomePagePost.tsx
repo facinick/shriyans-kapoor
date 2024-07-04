@@ -7,7 +7,10 @@ import { Flex } from '../ui/Flex';
 import { Heading, Paragraph } from '../ui/Typography';
 import styles from './HomePagePost.module.css';
 import clsx from 'clsx';
+import {motion} from 'framer-motion'
 import { Link } from '../ui/Link';
+import { SlideOnHoverText } from '../SlideOnHoverText/SlideOnHoverText';
+
 interface Props {
   post: Frontmatter & {
     slug: string;
@@ -26,7 +29,9 @@ const HomePagePost = ({ post }: Props): JSX.Element => {
             asChild
             className={clsx(styles['heading'], headingFont.className)}
           >
-            <h2>{title} </h2>
+            <h2>
+              <SlideOnHoverText>{title}</SlideOnHoverText>
+            </h2>
           </Heading>
         </Link>
         {/* <Flex asChild> */}

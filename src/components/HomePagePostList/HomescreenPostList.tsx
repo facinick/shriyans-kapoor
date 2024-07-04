@@ -1,5 +1,5 @@
 import { Frontmatter } from '@/types/Post';
-import HomescreenPost from '../HomescreenPost';
+import HomescreenPost from '../HomePagePost';
 import { Flex } from '../ui/Flex/Flex';
 import { Paragraph } from '../ui/Typography/Paragraph';
 
