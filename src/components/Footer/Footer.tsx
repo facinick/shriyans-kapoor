@@ -22,13 +22,13 @@ const Footer = ({ }: Props): JSX.Element => {
             <Flex asChild justify={"center"} direction={"column"} align={"start"} gap={2}>
               <ul>
                 <li>
-                  <Link className={styles['footer-link']} href={SOCIALS.telegram} target="_blank" rel="noopener noreferrer">telegram</Link>
+                  <Link className={styles['footer-link']} href={SOCIALS.telegram} target="_blank" rel="noopener noreferrer">message on telegram</Link>
                 </li>
                 <li>
-                  <Link className={styles['footer-link']} href={SOCIALS.github} target="_blank" rel="noopener noreferrer">github</Link>
+                  <Link className={styles['footer-link']} href={SOCIALS.github} target="_blank" rel="noopener noreferrer">view github</Link>
                 </li>
                 <li>
-                  <Link className={styles['footer-link']} href={SOCIALS.gmail}>gmail</Link>
+                  <Link className={styles['footer-link']} href={SOCIALS.gmail}>mail on gmail</Link>
                 </li>
               </ul>
             </Flex>
