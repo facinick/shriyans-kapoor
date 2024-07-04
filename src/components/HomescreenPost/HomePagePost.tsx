@@ -21,15 +21,20 @@ const HomePagePost = ({ post }: Props): JSX.Element => {
     <Flex asChild direction={"column"} gap={1}>
       <article>
         <Link className={clsx(styles.link, styles.head)} href={slug}>
-          <Heading level={3} asChild 
-            className={clsx(styles['heading'], headingFont.className)}
+          <Heading
+            level={3}
+            asChild
+            className={clsx(styles["heading"], headingFont.className)}
           >
-            <h3>{title} </h3>
+            <h2>{title} </h2>
           </Heading>
         </Link>
         {/* <Flex asChild> */}
         <Flex className={styles["author-time"]} gap={3}>
-          <address className={styles["author"]}>{author}</address>
+          <address className={styles["author"]}>
+            <VisuallyHidden>Published By </VisuallyHidden>
+            {author}
+          </address>
           <time dateTime={publishedOn}>
             <VisuallyHidden>Published On </VisuallyHidden>
             {formatDate(publishedOn)}
