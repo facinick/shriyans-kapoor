@@ -2,23 +2,21 @@
 import VisuallyHidden from "@/components/VisuallyHidden";
 import clsx from "clsx";
 import { LazyMotion, m, motion } from "framer-motion";
-import { useEffect, useId, useRef, useState } from "react";
 import { Pause, Play, RotateCcw } from "lucide-react";
-
-import styles from "./CircularColorsDemo.module.css";
+import { useEffect, useId, useRef, useState } from "react";
 import { Card } from "../../ui/Card";
+import styles from "./CircularColorsDemo.module.css";
 
 const COLORS = [
-  { label: "red", value: "hsl(348deg 100% 60%)" },
-  { label: "yellow", value: "hsl(50deg 100% 55%)" },
-  { label: "blue", value: "hsl(235deg 100% 65%)" },
+  { label: "red", value: "hsl(348deg 100% 60%)", key: 0 },
+  { label: "yellow", value: "hsl(50deg 100% 55%)", key: 2 },
+  { label: "blue", value: "hsl(235deg 100% 65%)", key: 3 },
 ];
 
 const loadFeatures = () =>
-  import("../../../lib/motion-features").then(res => res.default)
+  import("../../../lib/motion-features").then((res) => res.default);
 
 function CircularColorsDemo() {
-  // TODO: This value should increase by 1 every second:
   const [timeElapsed, setTimeElapsed] = useState(0);
 
   const timerRef = useRef<NodeJS.Timeout>();
@@ -29,15 +27,18 @@ function CircularColorsDemo() {
 
   const borderId = useId();
 
-  // TODO: This value should cycle through the colors in the
   // COLORS array:
   const selectedColor = COLORS[colorIndex];
 
   useEffect(() => {
     if (playing) {
-      timerRef.current = setInterval(() => {
-        setTimeElapsed((timeElapsed) => timeElapsed + 1);
-      }, 1000);
+      const updateTimeElapsed = () => {
+        setTimeElapsed((timeElapsed) => {
+          return timeElapsed + 1;
+        });
+      };
+
+      timerRef.current = setInterval(updateTimeElapsed, 1000);
 
       return () => {
         clearInterval(timerRef.current);
@@ -66,7 +67,7 @@ function CircularColorsDemo() {
             const isSelected = color.value === selectedColor.value;
 
             return (
-              <li className={styles.color} key={index}>
+              <li className={styles.color} key={color.key}>
                 {isSelected && (
                   <m.div
                     layoutId={borderId}
