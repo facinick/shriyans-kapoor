@@ -27,7 +27,7 @@ export const Stats = ({ percolation, siteState }: Props): JSX.Element => {
     setNFLoodedSites(nextNFloodedSites)
     setPercolating(nextPercolating)
 
-  }, [siteState])
+  }, [siteState, percolation])
 
   return (
     // <Card>
