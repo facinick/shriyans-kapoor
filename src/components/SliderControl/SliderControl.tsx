@@ -1,25 +1,30 @@
-import React from 'react';
+import React, { ComponentProps } from 'react';
 
-import Slider from '@/components/Slider';
 import styles from './SliderControl.module.css';
+import { Slider } from '../ui/Slider';
 
 export interface SliderControlProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {
-    label: string
-  }
+  extends ComponentProps<typeof Slider> {
+  label: string
+}
 
-function SliderControl({ label, value, ...delegated }: SliderControlProps) {
-  const id = React.useId();
+function SliderControl({ id, label, value, ...delegated }: SliderControlProps) {
+  const generatedId = React.useId();
+
+  const inputId = id || generatedId
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.header}>
-        <label htmlFor={id} className={styles.label}>
+        <label htmlFor={inputId} className={styles.label}>
           {label}
         </label>
         <span className={styles.value}>{value}</span>
       </div>
-      <Slider {...delegated} value={value} id={id} />
+      <Slider 
+        id={inputId}
+        {...delegated} 
+        />
     </div>
   );
 }
