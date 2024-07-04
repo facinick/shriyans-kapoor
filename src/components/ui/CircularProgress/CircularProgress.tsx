@@ -52,6 +52,8 @@ const CircularProgress = React.forwardRef<SVGSVGElement, CircularProgressProps>(
         height="100%"
         viewBox="0 0 100 100"
         ref={ref}
+        // fallback styles incase css doesn't load on page
+        style={{ width: '70px', height: '70px' }}
         {...rest}
       >
         <circle
