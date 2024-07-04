@@ -55,8 +55,9 @@ function DivisionGroupsDemo({
               step={1}
               min={1}
               max={4}
-              value={numOfGroups}
-              onChange={(ev: React.ChangeEvent<HTMLInputElement>) => setNumOfGroups(Number(ev.target.value))}
+              defaultValue={[3]}
+              value={[numOfGroups]}
+              onValueChange={v => setNumOfGroups(v[0])}
             />
           </header>
 
