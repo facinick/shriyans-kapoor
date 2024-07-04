@@ -1,0 +1,7 @@
+.button {
+  position: absolute;
+  top: 2em;
+  right: 1em;
+  padding: 8px;
+  background: hsl(var(--background));
+}
