@@ -16,14 +16,15 @@ export const PostPagePostHeader = ({
   return (
     <>
       <Heading level={2} asChild className={headingFont.className}>
-        <h2>
-          {backLinkOrNull &&
+        <h1>
+          {backLinkOrNull && (
             <Link href={backLinkOrNull} title="Go Back">
               {" "}
               <ArrowLeft />
-            </Link>}
+            </Link>
+          )}
           <span className={styles["title"]}>{children}</span>
-        </h2>
+        </h1>
       </Heading>
     </>
   );
