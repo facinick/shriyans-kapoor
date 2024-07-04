@@ -18,7 +18,7 @@ interface PageProps {
 // how to use generateStaticParams with searchParams??
 // export async function generateStaticParams() {
 //   const totalPages = await getNumberOfPages();
-  
+
 //   return Array.from({ length: totalPages }, (_, index) => ({
 //     page: (index + 1).toString(),
 //   }));
@@ -31,19 +31,25 @@ async function Home({ searchParams }: PageProps) {
 
   return (
     <Flex direction={"column"} gap={5} asChild>
-      <section className={styles['main-content']}>
+      <section className={styles["main-content"]}>
         <Heading
           level={2}
           asChild
           className={clsx(headingFont.className, styles.heading)}
         >
-          <h2>
-            RECENT
+          {/* css fallback styles */}
+          <h1 style={{ display: "flex", justifyContent: "space-between" }}>
+            Posts
             <Clock />
-          </h2>
+          </h1>
         </Heading>
 
         <Separator />
+
+        <HomePagePagination
+          count={paginationResponse.pagination.totalPages}
+          page={page}
+        />
 
         <HomePagePostList posts={paginationResponse.data} />
 
