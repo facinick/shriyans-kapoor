@@ -1,2 +1,2 @@
-export * from "./PostPagePostHeader";
-export { default } from "./PostPagePostHeader";
+export * from './PostPagePostHeader';
+export { default } from './PostPagePostHeader';

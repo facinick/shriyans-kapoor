@@ -1,5 +1,5 @@
-"use client";
-import { MotionConfig as MC } from "framer-motion";
+'use client';
+import { MotionConfig as MC } from 'framer-motion';
 
 interface Props {
   children?: React.ReactNode;

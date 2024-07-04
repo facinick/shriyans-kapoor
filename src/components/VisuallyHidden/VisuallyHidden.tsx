@@ -1,7 +1,7 @@
-import clsx from "clsx";
-import React from "react";
+import clsx from 'clsx';
+import React from 'react';
 
-import styles from "./VisuallyHidden.module.css";
+import styles from './VisuallyHidden.module.css';
 
 interface Props {
   as?: React.ElementType;
@@ -10,7 +10,7 @@ interface Props {
 }
 
 const VisuallyHidden = React.forwardRef<HTMLElement, Props>(
-  ({ as: Element = "span", className, children, ...delegated }, ref) => {
+  ({ as: Element = 'span', className, children, ...delegated }, ref) => {
     return (
       <Element className={clsx(styles.wrapper, className)} {...delegated}>
         {children}
@@ -19,6 +19,6 @@ const VisuallyHidden = React.forwardRef<HTMLElement, Props>(
   }
 );
 
-VisuallyHidden.displayName = "VisuallyHidden";
+VisuallyHidden.displayName = 'VisuallyHidden';
 
 export default VisuallyHidden;

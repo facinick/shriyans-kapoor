@@ -1,2 +1,2 @@
-export * from "./ScrollToTop";
-export { default } from "./ScrollToTop";
+export * from './ScrollToTop';
+export { default } from './ScrollToTop';

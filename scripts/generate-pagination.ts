@@ -1,10 +1,10 @@
-import { PAGINATION_WRITE_PATH, POSTS_PER_PAGE } from "@/lib/constants";
-import { writeFile } from "@/lib/helpers/file-helper";
-import { getBlogPostList } from "@/lib/helpers/post-helper";
-import { PaginationResponse } from "@/types/Post";
+import { PAGINATION_WRITE_PATH, POSTS_PER_PAGE } from '@/lib/constants';
+import { writeFile } from '@/lib/helpers/file-helper';
+import { getBlogPostList } from '@/lib/helpers/post-helper';
+import { PaginationResponse } from '@/types/Post';
 
 async function generatePagination() {
-  const files = await getBlogPostList({ orderBy: { publishedOn: "desc" } });
+  const files = await getBlogPostList({ orderBy: { publishedOn: 'desc' } });
 
   const totalPages = Math.ceil(files.length / POSTS_PER_PAGE);
 

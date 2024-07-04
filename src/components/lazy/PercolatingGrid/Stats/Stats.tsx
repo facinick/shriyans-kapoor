@@ -1,40 +1,43 @@
-"use client";
+'use client';
 import { Card } from '@/components/ui/Card';
 import styles from './Stats.module.css';
 import { Percolation, SiteState } from '../percolation';
 import { useState, useRef, useEffect } from 'react';
 import { Paragraph } from '@/components/ui/Typography';
 
-
 interface Props {
-  percolation: Percolation
-  siteState: Array<SiteState>
+  percolation: Percolation;
+  siteState: Array<SiteState>;
 }
 
 export const Stats = ({ percolation, siteState }: Props): JSX.Element => {
-
-  const [nOpenSites, setNOpenSites] = useState<number>(() => percolation.getNSitesOpen());
-  const [nFLoodedSites, setNFLoodedSites] = useState<number>(() => percolation.getNSitesFlooded());
-  const [percolating, setPercolating] = useState<boolean>(() => percolation.isPercolating());
-  const nTotalSites = useRef<number>(percolation.getNSites())
+  const [nOpenSites, setNOpenSites] = useState<number>(() =>
+    percolation.getNSitesOpen()
+  );
+  const [nFLoodedSites, setNFLoodedSites] = useState<number>(() =>
+    percolation.getNSitesFlooded()
+  );
+  const [percolating, setPercolating] = useState<boolean>(() =>
+    percolation.isPercolating()
+  );
+  const nTotalSites = useRef<number>(percolation.getNSites());
 
   useEffect(() => {
-    const nextNOpenSites = percolation.getNSitesOpen()
-    const nextNFloodedSites = percolation.getNSitesFlooded()
-    const nextPercolating = percolation.isPercolating()
+    const nextNOpenSites = percolation.getNSitesOpen();
+    const nextNFloodedSites = percolation.getNSitesFlooded();
+    const nextPercolating = percolation.isPercolating();
 
-    setNOpenSites(nextNOpenSites)
-    setNFLoodedSites(nextNFloodedSites)
-    setPercolating(nextPercolating)
-
-  }, [siteState, percolation])
+    setNOpenSites(nextNOpenSites);
+    setNFLoodedSites(nextNFloodedSites);
+    setPercolating(nextPercolating);
+  }, [siteState, percolation]);
 
   return (
     // <Card>
-      <Paragraph>
-        {percolating ? "System percolates" : "System doesn't percolate"}
-      </Paragraph>
-       /* <DataList.Item align="center">
+    <Paragraph>
+      {percolating ? 'System percolates' : "System doesn't percolate"}
+    </Paragraph>
+    /* <DataList.Item align="center">
           <DataList.Label minWidth="88px">Percolationg</DataList.Label>
           <DataList.Value>
             {percolating &&
@@ -62,5 +65,5 @@ export const Stats = ({ percolation, siteState }: Props): JSX.Element => {
           <DataList.Value>{nFLoodedSites}</DataList.Value>
         </DataList.Item> */
     // </Card>
-  )
-}
+  );
+};

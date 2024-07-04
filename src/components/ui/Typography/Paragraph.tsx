@@ -1,20 +1,20 @@
-import { cn } from "@/lib/helpers/utils";
-import { Slot } from "@radix-ui/react-slot";
-import { VariantProps, cva } from "class-variance-authority";
-import React from "react";
+import { cn } from '@/lib/helpers/utils';
+import { Slot } from '@radix-ui/react-slot';
+import { VariantProps, cva } from 'class-variance-authority';
+import React from 'react';
 
-const paragraphVariants = cva("", {
+const paragraphVariants = cva('', {
   variants: {
     variant: {
-      medium: "leading-7 [&:not(:first-child)]:mt-3",
-      large: "text-lg font-semibold",
-      small: "text-sm font-medium leading-none",
-      muted: "text-sm text-muted-foreground",
-      lead: "text-xl text-muted-foreground",
+      medium: 'leading-7 [&:not(:first-child)]:mt-3',
+      large: 'text-lg font-semibold',
+      small: 'text-sm font-medium leading-none',
+      muted: 'text-sm text-muted-foreground',
+      lead: 'text-xl text-muted-foreground',
     },
   },
   defaultVariants: {
-    variant: "medium",
+    variant: 'medium',
   },
 });
 
@@ -26,7 +26,7 @@ export interface ParagraphProps
 
 const Paragraph = React.forwardRef<HTMLParagraphElement, ParagraphProps>(
   ({ className, variant, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : "p";
+    const Comp = asChild ? Slot : 'p';
     return (
       <Comp
         className={cn(paragraphVariants({ variant, className }))}
@@ -36,6 +36,6 @@ const Paragraph = React.forwardRef<HTMLParagraphElement, ParagraphProps>(
     );
   }
 );
-Paragraph.displayName = "Paragraph";
+Paragraph.displayName = 'Paragraph';
 
 export { Paragraph, paragraphVariants };

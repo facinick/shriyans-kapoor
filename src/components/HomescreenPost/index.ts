@@ -1,2 +1,2 @@
-export * from "./HomePagePost";
-export { default } from "./HomePagePost";
+export * from './HomePagePost';
+export { default } from './HomePagePost';

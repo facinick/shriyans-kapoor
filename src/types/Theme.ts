@@ -1,2 +1,2 @@
-export type Theme = 'orange' | 'black' | 'blue'
-export type ColorScheme = 'light' | 'dark'
+export type Theme = 'orange' | 'black' | 'blue';
+export type ColorScheme = 'light' | 'dark';

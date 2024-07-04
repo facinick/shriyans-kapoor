@@ -1,16 +1,16 @@
-"use client";
-import VisuallyHidden from "@/components/VisuallyHidden";
-import clsx from "clsx";
-import { LazyMotion, m, motion } from "framer-motion";
-import { Pause, Play, RotateCcw } from "lucide-react";
-import { useEffect, useId, useRef, useState } from "react";
-import { Card } from "../../ui/Card";
-import styles from "./CircularColorsDemo.module.css";
+'use client';
+import VisuallyHidden from '@/components/VisuallyHidden';
+import clsx from 'clsx';
+import { LazyMotion, m, motion } from 'framer-motion';
+import { Pause, Play, RotateCcw } from 'lucide-react';
+import { useEffect, useId, useRef, useState } from 'react';
+import { Card } from '../../ui/Card';
+import styles from './CircularColorsDemo.module.css';
 
 const COLORS = [
-  { label: "red", value: "hsl(348deg 100% 60%)", key: 0 },
-  { label: "yellow", value: "hsl(50deg 100% 55%)", key: 2 },
-  { label: "blue", value: "hsl(235deg 100% 65%)", key: 3 },
+  { label: 'red', value: 'hsl(348deg 100% 60%)', key: 0 },
+  { label: 'yellow', value: 'hsl(50deg 100% 55%)', key: 2 },
+  { label: 'blue', value: 'hsl(235deg 100% 65%)', key: 3 },
 ];
 
 function CircularColorsDemo() {
@@ -57,63 +57,63 @@ function CircularColorsDemo() {
   };
 
   return (
-      <Card className={styles.wrapper}>
-        <ul className={styles.colorsWrapper}>
-          {COLORS.map((color, index) => {
-            const isSelected = color.value === selectedColor.value;
+    <Card className={styles.wrapper}>
+      <ul className={styles.colorsWrapper}>
+        {COLORS.map((color, index) => {
+          const isSelected = color.value === selectedColor.value;
 
-            return (
-              <li className={styles.color} key={color.key}>
-                {isSelected && (
-                  <motion.div
-                    layoutId={borderId}
-                    key={borderId}
-                    className={styles.selectedColorOutline}
-                  />
+          return (
+            <li className={styles.color} key={color.key}>
+              {isSelected && (
+                <motion.div
+                  layoutId={borderId}
+                  key={borderId}
+                  className={styles.selectedColorOutline}
+                />
+              )}
+              <div
+                className={clsx(
+                  styles.colorBox,
+                  isSelected && styles.selectedColorBox
                 )}
-                <div
-                  className={clsx(
-                    styles.colorBox,
-                    isSelected && styles.selectedColorBox
-                  )}
-                  style={{
-                    backgroundColor: color.value,
-                  }}
-                >
-                  <VisuallyHidden>{color.label}</VisuallyHidden>
-                </div>
-              </li>
-            );
-          })}
-        </ul>
+                style={{
+                  backgroundColor: color.value,
+                }}
+              >
+                <VisuallyHidden>{color.label}</VisuallyHidden>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
 
-        <div className={styles.timeWrapper}>
-          <dl className={styles.timeDisplay}>
-            <dt>Time Elapsed</dt>
-            <dd>{timeElapsed}</dd>
-          </dl>
-          <div className={styles.actions}>
-            {playing && (
-              <button onClick={handlePause}>
-                <Pause />
-                <VisuallyHidden>Pause</VisuallyHidden>
-              </button>
-            )}
-
-            {!playing && (
-              <button onClick={handlePlay}>
-                <Play />
-                <VisuallyHidden>Play</VisuallyHidden>
-              </button>
-            )}
-
-            <button onClick={handleReset}>
-              <RotateCcw />
-              <VisuallyHidden>Reset</VisuallyHidden>
+      <div className={styles.timeWrapper}>
+        <dl className={styles.timeDisplay}>
+          <dt>Time Elapsed</dt>
+          <dd>{timeElapsed}</dd>
+        </dl>
+        <div className={styles.actions}>
+          {playing && (
+            <button onClick={handlePause}>
+              <Pause />
+              <VisuallyHidden>Pause</VisuallyHidden>
             </button>
-          </div>
+          )}
+
+          {!playing && (
+            <button onClick={handlePlay}>
+              <Play />
+              <VisuallyHidden>Play</VisuallyHidden>
+            </button>
+          )}
+
+          <button onClick={handleReset}>
+            <RotateCcw />
+            <VisuallyHidden>Reset</VisuallyHidden>
+          </button>
         </div>
-      </Card>
+      </div>
+    </Card>
   );
 }
 

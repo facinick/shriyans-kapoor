@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 
 interface Breakpoints {
-  'xs': boolean;
-  'sm': boolean;
-  'md': boolean;
-  'lg': boolean;
-  'xl': boolean;
+  xs: boolean;
+  sm: boolean;
+  md: boolean;
+  lg: boolean;
+  xl: boolean;
 }
 
 const breakpointValues: { [key: string]: number } = {
@@ -31,7 +31,8 @@ function useBreakpoint() {
       const currentBreakpoints: Breakpoints = {} as Breakpoints;
 
       for (const key in breakpointValues) {
-        currentBreakpoints[key as keyof Breakpoints] = currentWidth >= breakpointValues[key];
+        currentBreakpoints[key as keyof Breakpoints] =
+          currentWidth >= breakpointValues[key];
       }
 
       setBreakpoint(currentBreakpoints);

@@ -14,11 +14,11 @@ declare global {
     page: {
       url: string;
       identifier: string;
-    }
+    };
     callbacks: {
-      onReady: [() => void]
-    }
+      onReady: [() => void];
+    };
   }
 }
 
-export {}
+export {};

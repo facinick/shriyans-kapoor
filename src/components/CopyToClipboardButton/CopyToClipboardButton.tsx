@@ -1,14 +1,14 @@
-"use client";
-import { Code } from "bright";
-import clsx from "clsx";
-import { ComponentProps, useState } from "react";
-import styles from "./CopyToClipboardButton.module.css";
-import { Button } from "../ui/Button";
-import { Check, Copy } from "lucide-react";
-import VisuallyHidden from "../VisuallyHidden";
-import { copyToClipboard } from "@/lib/helpers/utils";
-import useVibrate from "@/lib/hooks/useVibrate";
-import { useVibrateOnce } from "@/lib/hooks/useVibrateOnce";
+'use client';
+import { Code } from 'bright';
+import clsx from 'clsx';
+import { ComponentProps, useState } from 'react';
+import styles from './CopyToClipboardButton.module.css';
+import { Button } from '../ui/Button';
+import { Check, Copy } from 'lucide-react';
+import VisuallyHidden from '../VisuallyHidden';
+import { copyToClipboard } from '@/lib/helpers/utils';
+import useVibrate from '@/lib/hooks/useVibrate';
+import { useVibrateOnce } from '@/lib/hooks/useVibrateOnce';
 
 type CopyToClipboardButtonProps = {
   copyText: string;
@@ -29,12 +29,12 @@ const CopyToClipboardButton = ({ copyText }: CopyToClipboardButtonProps) => {
   return (
     <Button
       onClick={handleCopy}
-      title={copied ? "Copied" : "Copy Code"}
-      size={"icon"}
-      variant={"outline"}
+      title={copied ? 'Copied' : 'Copy Code'}
+      size={'icon'}
+      variant={'outline'}
       className={styles.button}
       style={{
-        pointerEvents: copied ? "none" : "auto",
+        pointerEvents: copied ? 'none' : 'auto',
       }}
       vibrate={true}
     >

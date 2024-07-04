@@ -1,2 +1,2 @@
-export * from "./MotionConfig";
-export { default } from "./MotionConfig";
+export * from './MotionConfig';
+export { default } from './MotionConfig';

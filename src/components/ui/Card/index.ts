@@ -5,4 +5,4 @@ export {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "./Card";
+} from './Card';

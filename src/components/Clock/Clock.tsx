@@ -1,22 +1,28 @@
-"use client";
+'use client';
 
-import { extractTimeDigitsFromDate } from "@/lib/helpers/utils";
-import { useCurrentTime } from "@/lib/hooks/useCurrentTime";
-import usePageVisibility from "@/lib/hooks/usePageVisibility";
-import clsx from "clsx";
-import { AnimatePresence, LazyMotion, MotionProps, m, motion } from "framer-motion";
-import { ComponentProps, useId } from "react";
-import { Box } from "../ui/Box";
-import { Flex } from "../ui/Flex";
-import styles from "./Clock.module.css";
-import VisuallyHidden from "../VisuallyHidden";
-import { APP_TIMEZONE } from "@/lib/constants";
+import { extractTimeDigitsFromDate } from '@/lib/helpers/utils';
+import { useCurrentTime } from '@/lib/hooks/useCurrentTime';
+import usePageVisibility from '@/lib/hooks/usePageVisibility';
+import clsx from 'clsx';
+import {
+  AnimatePresence,
+  LazyMotion,
+  MotionProps,
+  m,
+  motion,
+} from 'framer-motion';
+import { ComponentProps, useId } from 'react';
+import { Box } from '../ui/Box';
+import { Flex } from '../ui/Flex';
+import styles from './Clock.module.css';
+import VisuallyHidden from '../VisuallyHidden';
+import { APP_TIMEZONE } from '@/lib/constants';
 
 type ClockProps = ComponentProps<typeof Box>;
 
 const Clock = ({ className }: ClockProps): JSX.Element => {
   const currentTime = useCurrentTime({
-    unit: "s",
+    unit: 's',
     every: 1,
     timezone: APP_TIMEZONE,
   });
@@ -40,14 +46,14 @@ const Clock = ({ className }: ClockProps): JSX.Element => {
         dateTime={currentTime.toISOString()}
       >
         <VisuallyHidden>Author&apos;s local time: </VisuallyHidden>
-        <Flex direction={"row"} asChild>
+        <Flex direction={'row'} asChild>
           {/* span so that when page loads without css, "Author's local time" and clock show size by side */}
           <span>
             <Flex
               asChild
-              justify={"center"}
-              align={"center"}
-              className={styles["number-wrapper"]}
+              justify={'center'}
+              align={'center'}
+              className={styles['number-wrapper']}
             >
               <span>
                 <AnimatedDigit digit={hourTensDigit} isVisible={isVisible} />
@@ -55,9 +61,9 @@ const Clock = ({ className }: ClockProps): JSX.Element => {
             </Flex>
             <Flex
               asChild
-              justify={"center"}
-              align={"center"}
-              className={styles["number-wrapper"]}
+              justify={'center'}
+              align={'center'}
+              className={styles['number-wrapper']}
             >
               <span>
                 <AnimatedDigit digit={hourUnitDigit} isVisible={isVisible} />
@@ -68,9 +74,9 @@ const Clock = ({ className }: ClockProps): JSX.Element => {
             </Box>
             <Flex
               asChild
-              justify={"center"}
-              align={"center"}
-              className={styles["number-wrapper"]}
+              justify={'center'}
+              align={'center'}
+              className={styles['number-wrapper']}
             >
               <span>
                 <AnimatedDigit digit={minuteTensDigit} isVisible={isVisible} />
@@ -78,9 +84,9 @@ const Clock = ({ className }: ClockProps): JSX.Element => {
             </Flex>
             <Flex
               asChild
-              justify={"center"}
-              align={"center"}
-              className={styles["number-wrapper"]}
+              justify={'center'}
+              align={'center'}
+              className={styles['number-wrapper']}
             >
               <span>
                 <AnimatedDigit digit={minuteUnitDigit} isVisible={isVisible} />
@@ -91,9 +97,9 @@ const Clock = ({ className }: ClockProps): JSX.Element => {
             </Box>
             <Flex
               asChild
-              justify={"center"}
-              align={"center"}
-              className={styles["number-wrapper"]}
+              justify={'center'}
+              align={'center'}
+              className={styles['number-wrapper']}
             >
               <span>
                 <AnimatedDigit digit={secondTensDigit} isVisible={isVisible} />
@@ -101,9 +107,9 @@ const Clock = ({ className }: ClockProps): JSX.Element => {
             </Flex>
             <Flex
               asChild
-              justify={"center"}
-              align={"center"}
-              className={styles["number-wrapper"]}
+              justify={'center'}
+              align={'center'}
+              className={styles['number-wrapper']}
             >
               <span>
                 <AnimatedDigit digit={secondUnitDigit} isVisible={isVisible} />
@@ -150,12 +156,12 @@ const AnimatedDigit = ({
 };
 
 const MOTION_VALUES: MotionProps = {
-  initial: { y: "100%" },
-  animate: { y: "0%" },
-  exit: { y: "-100%" },
+  initial: { y: '100%' },
+  animate: { y: '0%' },
+  exit: { y: '-100%' },
   transition: {
     duration: 1,
-    ease: "linear",
+    ease: 'linear',
   },
 };
 

@@ -75,7 +75,7 @@
 //     radius: RADIUS_MAP[theme][colorScheme] as ThemeProps['radius'],
 //     scaling: SCALING_MAP[theme][colorScheme] as ThemeProps['scaling'],
 //   }), [theme, colorScheme])
-  
+
 //   return (
 //     <RadixThemeProvider {...config}>
 //       {children}

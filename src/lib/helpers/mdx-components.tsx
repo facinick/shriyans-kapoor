@@ -1,13 +1,13 @@
-import CircularColorsDemo from "@/components/lazy/CircularColorsDemo";
-import CodeSnippet from "@/components/CodeSnippet";
-import DivisionGroupsDemo from "@/components/lazy/DivisionGroupsDemo";
-import { Heading } from "@/components/ui/Typography/Heading";
-import { Paragraph } from "@/components/ui/Typography/Paragraph";
-import { MDXRemote } from "next-mdx-remote/rsc";
-import { ComponentProps } from "react";
-import PercolatingGrid from "@/components/lazy/PercolatingGrid";
+import CircularColorsDemo from '@/components/lazy/CircularColorsDemo';
+import CodeSnippet from '@/components/CodeSnippet';
+import DivisionGroupsDemo from '@/components/lazy/DivisionGroupsDemo';
+import { Heading } from '@/components/ui/Typography/Heading';
+import { Paragraph } from '@/components/ui/Typography/Paragraph';
+import { MDXRemote } from 'next-mdx-remote/rsc';
+import { ComponentProps } from 'react';
+import PercolatingGrid from '@/components/lazy/PercolatingGrid';
 
-const MDX_COMPONENTS_MAP: ComponentProps<typeof MDXRemote>["components"] = {
+const MDX_COMPONENTS_MAP: ComponentProps<typeof MDXRemote>['components'] = {
   pre: CodeSnippet,
   DivisionGroupsDemo,
   CircularColorsDemo,

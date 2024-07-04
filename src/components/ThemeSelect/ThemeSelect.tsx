@@ -1,10 +1,10 @@
-"use client";
-import { APP_THEMES } from "@/lib/constants";
-import { Theme } from "@/types/Theme";
-import { Label } from "@radix-ui/react-label";
-import { useContext, useId } from "react";
-import VisuallyHidden from "../VisuallyHidden";
-import { ThemeContext } from "../providers/ThemeProvider";
+'use client';
+import { APP_THEMES } from '@/lib/constants';
+import { Theme } from '@/types/Theme';
+import { Label } from '@radix-ui/react-label';
+import { useContext, useId } from 'react';
+import VisuallyHidden from '../VisuallyHidden';
+import { ThemeContext } from '../providers/ThemeProvider';
 import {
   Select,
   SelectContent,
@@ -13,8 +13,8 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "../ui/Select/Select";
-import styles from "./ThemeSelect.module.css";
+} from '../ui/Select/Select';
+import styles from './ThemeSelect.module.css';
 
 interface Props {}
 
@@ -34,7 +34,7 @@ const ThemeSelect = ({}: Props): JSX.Element => {
       </VisuallyHidden>
       <Select onValueChange={handleChange} value={theme}>
         <SelectTrigger
-          title={"Change Theme"}
+          title={'Change Theme'}
           id="theme"
           className={styles.trigger}
         >

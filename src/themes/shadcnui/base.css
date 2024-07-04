@@ -1,8 +1,6 @@
 :root {
-    --title-hover-color-transition: color 0.1s linear;
-  }
-  
-  :root[data-color-scheme="dark"] {
-    
-  }
-  
+  --title-hover-color-transition: color 0.1s linear;
+}
+
+:root[data-color-scheme='dark'] {
+}

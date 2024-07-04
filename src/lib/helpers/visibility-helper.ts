@@ -1,29 +1,29 @@
-const hasDocument = typeof document !== "undefined";
+const hasDocument = typeof document !== 'undefined';
 const vendorEvents = [
   {
-    hidden: "hidden",
-    event: "visibilitychange",
-    state: "visibilityState",
+    hidden: 'hidden',
+    event: 'visibilitychange',
+    state: 'visibilityState',
   },
   {
-    hidden: "webkitHidden",
-    event: "webkitvisibilitychange",
-    state: "webkitVisibilityState",
+    hidden: 'webkitHidden',
+    event: 'webkitvisibilitychange',
+    state: 'webkitVisibilityState',
   },
   {
-    hidden: "mozHidden",
-    event: "mozvisibilitychange",
-    state: "mozVisibilityState",
+    hidden: 'mozHidden',
+    event: 'mozvisibilitychange',
+    state: 'mozVisibilityState',
   },
   {
-    hidden: "msHidden",
-    event: "msvisibilitychange",
-    state: "msVisibilityState",
+    hidden: 'msHidden',
+    event: 'msvisibilitychange',
+    state: 'msVisibilityState',
   },
   {
-    hidden: "oHidden",
-    event: "ovisibilitychange",
-    state: "oVisibilityState",
+    hidden: 'oHidden',
+    event: 'ovisibilitychange',
+    state: 'oVisibilityState',
   },
 ];
 
@@ -50,7 +50,7 @@ export const visibility = ((): VisibilityEvent | null => {
 
 export const getHandlerArgs = (): [boolean, string] => {
   if (!visibility) {
-    return [true, "visible"];
+    return [true, 'visible'];
   }
   const { hidden, state } = visibility as VisibilityEvent;
   const isHidden = document[hidden as keyof Document];

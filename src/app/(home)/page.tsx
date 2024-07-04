@@ -1,13 +1,13 @@
-import Clock from "@/components/Clock";
-import HomePagePagination from "@/components/HomePagePagination";
-import HomePagePostList from "@/components/HomePagePostList";
-import { Flex } from "@/components/ui/Flex/Flex";
-import { Separator } from "@/components/ui/Separator";
-import { Heading } from "@/components/ui/Typography/Heading";
-import { headingFont } from "@/lib/helpers/font-helper";
-import { getNumberOfPages, getPostsForPage } from "@/lib/helpers/post-helper";
-import clsx from "clsx";
-import styles from "./page.module.css";
+import Clock from '@/components/Clock';
+import HomePagePagination from '@/components/HomePagePagination';
+import HomePagePostList from '@/components/HomePagePostList';
+import { Flex } from '@/components/ui/Flex/Flex';
+import { Separator } from '@/components/ui/Separator';
+import { Heading } from '@/components/ui/Typography/Heading';
+import { headingFont } from '@/lib/helpers/font-helper';
+import { getNumberOfPages, getPostsForPage } from '@/lib/helpers/post-helper';
+import clsx from 'clsx';
+import styles from './page.module.css';
 
 interface PageProps {
   searchParams: {
@@ -30,15 +30,15 @@ async function Home({ searchParams }: PageProps) {
   const paginationResponse = await getPostsForPage({ page });
 
   return (
-    <Flex direction={"column"} gap={5} asChild>
-      <section className={styles["main-content"]}>
+    <Flex direction={'column'} gap={5} asChild>
+      <section className={styles['main-content']}>
         <Heading
           level={2}
           asChild
           className={clsx(headingFont.className, styles.heading)}
         >
           {/* css fallback styles */}
-          <h1 style={{ display: "flex", justifyContent: "space-between" }}>
+          <h1 style={{ display: 'flex', justifyContent: 'space-between' }}>
             » Posts
             <Clock />
           </h1>

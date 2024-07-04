@@ -1,4 +1,4 @@
-:root[data-theme="orange"] {
+:root[data-theme='orange'] {
   --background: 0 0% 100%;
   --foreground: 20 14.3% 4.1%;
   --card: 0 0% 100%;
@@ -21,7 +21,7 @@
   --radius: 1rem;
 }
 
-:root[data-color-scheme="dark"][data-theme="orange"] {
+:root[data-color-scheme='dark'][data-theme='orange'] {
   --background: 20 14.3% 4.1%;
   --foreground: 60 9.1% 97.8%;
   --card: 20 14.3% 4.1%;

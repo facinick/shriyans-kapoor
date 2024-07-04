@@ -3,15 +3,14 @@ import React, { ComponentProps } from 'react';
 import styles from './SliderControl.module.css';
 import { Slider } from '../ui/Slider';
 
-export interface SliderControlProps
-  extends ComponentProps<typeof Slider> {
-  label: string
+export interface SliderControlProps extends ComponentProps<typeof Slider> {
+  label: string;
 }
 
 function SliderControl({ id, label, value, ...delegated }: SliderControlProps) {
   const generatedId = React.useId();
 
-  const inputId = id || generatedId
+  const inputId = id || generatedId;
 
   return (
     <div className={styles.wrapper}>
@@ -21,10 +20,7 @@ function SliderControl({ id, label, value, ...delegated }: SliderControlProps) {
         </label>
         <span className={styles.value}>{value}</span>
       </div>
-      <Slider 
-        id={inputId}
-        {...delegated} 
-        />
+      <Slider id={inputId} {...delegated} />
     </div>
   );
 }

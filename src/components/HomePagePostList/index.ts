@@ -1,2 +1,2 @@
-export * from "./HomescreenPostList";
-export { default } from "./HomescreenPostList";
+export * from './HomescreenPostList';
+export { default } from './HomescreenPostList';

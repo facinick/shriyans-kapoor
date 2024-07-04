@@ -1,2 +1,2 @@
-export * from "./ThemeSelect";
-export { default } from "./ThemeSelect";
+export * from './ThemeSelect';
+export { default } from './ThemeSelect';

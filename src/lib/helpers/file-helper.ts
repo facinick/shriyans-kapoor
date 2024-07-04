@@ -1,5 +1,5 @@
-import fs from "fs/promises";
-import path from "path";
+import fs from 'fs/promises';
+import path from 'path';
 
 export type FileError = {
   message: string;
@@ -26,7 +26,7 @@ export async function readDirectory(localPath: string): Promise<string[]> {
 export async function readFile(localPath: string): Promise<string> {
   const filePath = path.join(process.cwd(), localPath);
   try {
-    const fileContent = await fs.readFile(filePath, "utf8");
+    const fileContent = await fs.readFile(filePath, 'utf8');
     return fileContent;
   } catch (error) {
     const fileError: FileError = {
@@ -45,7 +45,7 @@ export async function writeFile(
 ): Promise<void> {
   const filePath = path.join(process.cwd(), localPath);
   try {
-    await fs.writeFile(filePath, content, "utf8");
+    await fs.writeFile(filePath, content, 'utf8');
   } catch (error) {
     const fileError: FileError = {
       message: getErrorMessage(error),
@@ -57,13 +57,13 @@ export async function writeFile(
 export function getErrorMessage(error: unknown): string {
   if (error instanceof Error) {
     return error.message;
-  } else if (typeof error === "string") {
+  } else if (typeof error === 'string') {
     return error;
   } else {
     try {
       return JSON.stringify(error);
     } catch {
-      return "Unknown Error";
+      return 'Unknown Error';
     }
   }
 }

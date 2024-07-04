@@ -1,15 +1,15 @@
-"use client";
-import { useEffect, useMemo, useRef, useState } from "react";
-import { GridNode } from "./Node";
-import styles from "./PercolatingGrid.module.css";
-import { Stats } from "./Stats/Stats";
-import { Percolation, SiteState } from "./percolation";
-import { Card } from "@/components/ui/Card";
-import { Grid } from "@/components/ui/Grid";
-import { Flex } from "@/components/ui/Flex";
-import { Button } from "@/components/ui/Button";
-import { getRandomIntBetween } from "@/lib/helpers/utils";
-import { Heading } from "@/components/ui/Typography";
+'use client';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { GridNode } from './Node';
+import styles from './PercolatingGrid.module.css';
+import { Stats } from './Stats/Stats';
+import { Percolation, SiteState } from './percolation';
+import { Card } from '@/components/ui/Card';
+import { Grid } from '@/components/ui/Grid';
+import { Flex } from '@/components/ui/Flex';
+import { Button } from '@/components/ui/Button';
+import { getRandomIntBetween } from '@/lib/helpers/utils';
+import { Heading } from '@/components/ui/Typography';
 
 const SETTINGS = {
   ROWS: 15,
@@ -17,23 +17,29 @@ const SETTINGS = {
   NUMBER_OF_TRIALS: 100,
   FLOOD_STAGGER_DELAY: 70,
   NODE_WIDTH: 20,
-  NODE_HEIGHT: 20
-}
+  NODE_HEIGHT: 20,
+};
 
 export const PercolatingGrid = (): JSX.Element => {
-
   const nRows: number = SETTINGS.ROWS;
   const nCols: number = SETTINGS.COLS;
   const nLength = nRows * nCols + 2;
 
-  const percolation = useMemo(() => new Percolation(nRows, nCols), [nRows, nCols]);
+  const percolation = useMemo(
+    () => new Percolation(nRows, nCols),
+    [nRows, nCols]
+  );
   const [id, setId] = useState<Array<number>>(() => percolation.getData());
-  const [siteState, setSiteState] = useState<Array<SiteState>>(() => percolation.getSiteState());
+  const [siteState, setSiteState] = useState<Array<SiteState>>(() =>
+    percolation.getSiteState()
+  );
 
   const GRID_WIDTH = SETTINGS.NODE_WIDTH * nCols;
   const GRID_HEIGHT = SETTINGS.NODE_HEIGHT * nRows;
   const [flooding, setFlooding] = useState<Array<boolean>>(() => {
-    return percolation.getSiteState().map((siteState => siteState === SiteState.FULL ? true : false));
+    return percolation
+      .getSiteState()
+      .map((siteState) => (siteState === SiteState.FULL ? true : false));
   });
 
   const wetElements = useRef<Set<number>>(new Set([0]));
@@ -79,19 +85,17 @@ export const PercolatingGrid = (): JSX.Element => {
   };
 
   const wetNeighbours = (p: number) => {
-
     let neighbours;
     if (p === 0) {
       neighbours = percolation.getTopVirtualNeighbours();
-    }
-    else {
+    } else {
       neighbours = [percolation.getNetighbours(p)];
     }
     neighbours.forEach((fourNeighbour) => {
       Object.entries(fourNeighbour).forEach(([position, index]) => {
         if (index && elementsToWet.current.has(index)) {
           setTimeout(() => {
-            setFlooding(prevFlooding => {
+            setFlooding((prevFlooding) => {
               const newFlooding = [...prevFlooding];
               newFlooding[index] = true;
               return newFlooding;
@@ -108,16 +112,21 @@ export const PercolatingGrid = (): JSX.Element => {
     let neighbours;
     if (p === 0) {
       neighbours = percolation.getTopVirtualNeighbours();
-    }
-    else {
+    } else {
       neighbours = [percolation.getNetighbours(p)];
     }
 
     neighbours.forEach((fourNeighbour) => {
-      if (fourNeighbour.bottom && siteState[fourNeighbour.bottom] === SiteState.FULL &&
-        fourNeighbour.top && siteState[fourNeighbour.top] === SiteState.FULL &&
-        fourNeighbour.left && siteState[fourNeighbour.left] === SiteState.FULL &&
-        fourNeighbour.right && siteState[fourNeighbour.right] === SiteState.FULL) {
+      if (
+        fourNeighbour.bottom &&
+        siteState[fourNeighbour.bottom] === SiteState.FULL &&
+        fourNeighbour.top &&
+        siteState[fourNeighbour.top] === SiteState.FULL &&
+        fourNeighbour.left &&
+        siteState[fourNeighbour.left] === SiteState.FULL &&
+        fourNeighbour.right &&
+        siteState[fourNeighbour.right] === SiteState.FULL
+      ) {
         drownedElements.current.add(p);
         wetElements.current.delete(p);
       }
@@ -131,7 +140,11 @@ export const PercolatingGrid = (): JSX.Element => {
 
   const reset = () => {
     percolation.reset();
-    setFlooding(percolation.getSiteState().map((siteState => siteState === SiteState.FULL ? true : false)));
+    setFlooding(
+      percolation
+        .getSiteState()
+        .map((siteState) => (siteState === SiteState.FULL ? true : false))
+    );
     wetElements.current = new Set([0]);
     elementsToWet.current = new Set();
     drownedElements.current = new Set();
@@ -150,41 +163,47 @@ export const PercolatingGrid = (): JSX.Element => {
   };
 
   useEffect(() => {
-    randomize()
-  }, [])
+    randomize();
+  }, []);
 
   return (
     <>
       <Card className={styles.wrapper}>
-        <Flex justify={"center"} align={"center"}>
-          <Flex gap={3} direction={"column"} justify={"center"} align={"center"}>
-            <header className={styles.header}>
-              <Heading>Percolating Grid</Heading> 
-            </header>
-          <Grid
-            style={{
-              gridTemplateColumns: `repeat(${nCols}, ${SETTINGS.NODE_WIDTH}px)`,
-              gridTemplateRows: `repeat(${nCols}, ${SETTINGS.NODE_WIDTH}px)`
-            }}
+        <Flex justify={'center'} align={'center'}>
+          <Flex
+            gap={3}
+            direction={'column'}
+            justify={'center'}
+            align={'center'}
           >
-            {id.map((_, index, id) => {
-              if (index !== 0 && index !== nLength - 1) {
-                return (
-                  <GridNode
-                    key={index}
-                    flooding={flooding[index]}
-                    onClick={() => onGridNodeClick(index)}
-                    id={index}
-                    parentId={id[index]}
-                    siteState={siteState[index]} />
-                );
-              } else return null;
-            })}
-            {/* </div> */}
-          </Grid>
+            <header className={styles.header}>
+              <Heading>Percolating Grid</Heading>
+            </header>
+            <Grid
+              style={{
+                gridTemplateColumns: `repeat(${nCols}, ${SETTINGS.NODE_WIDTH}px)`,
+                gridTemplateRows: `repeat(${nCols}, ${SETTINGS.NODE_WIDTH}px)`,
+              }}
+            >
+              {id.map((_, index, id) => {
+                if (index !== 0 && index !== nLength - 1) {
+                  return (
+                    <GridNode
+                      key={index}
+                      flooding={flooding[index]}
+                      onClick={() => onGridNodeClick(index)}
+                      id={index}
+                      parentId={id[index]}
+                      siteState={siteState[index]}
+                    />
+                  );
+                } else return null;
+              })}
+              {/* </div> */}
+            </Grid>
           </Flex>
         </Flex>
-        <Flex justify={"center"} align={"center"} direction={"column"} gap={3}>
+        <Flex justify={'center'} align={'center'} direction={'column'} gap={3}>
           <Stats percolation={percolation} siteState={siteState} />
           <Button onClick={randomize}>Randomize</Button>
         </Flex>
@@ -193,4 +212,4 @@ export const PercolatingGrid = (): JSX.Element => {
   );
 };
 
-export default PercolatingGrid
+export default PercolatingGrid;

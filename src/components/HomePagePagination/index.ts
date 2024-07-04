@@ -1,2 +1,2 @@
-export * from "./HomePagePagination";
-export { default } from "./HomePagePagination";
+export * from './HomePagePagination';
+export { default } from './HomePagePagination';

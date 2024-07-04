@@ -9,7 +9,7 @@
 
 // function MantimeTheme({ children }: Props) {
 //   const {theme, colorScheme} = React.useContext(ThemeContext);
-  
+
 //   return (
 //     <MantimeThemeProvider>
 //       {children}

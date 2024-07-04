@@ -2,12 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("./reset.css");
-@import url("../themes/shadcnui/base.css");
-@import url("../themes/shadcnui/orange.css");
-@import url("../themes/shadcnui/blue.css");
-@import url("../themes/shadcnui/black.css");
-@import url("./blog-layout.css");
+@import url('./reset.css');
+@import url('../themes/shadcnui/base.css');
+@import url('../themes/shadcnui/orange.css');
+@import url('../themes/shadcnui/blue.css');
+@import url('../themes/shadcnui/black.css');
+@import url('./blog-layout.css');
 
 html,
 body {
@@ -41,7 +41,11 @@ html {
       hsl(var(--background)) 25%,
       hsl(var(--secondary)) 25%
     );
-  background-position: 22px 0, 22px 0, 0 0, 0 0;
+  background-position:
+    22px 0,
+    22px 0,
+    0 0,
+    0 0;
   background-size: 44px 44px;
   background-repeat: repeat;
 }

@@ -1,8 +1,8 @@
-"use client";
-import { monoFont } from "@/lib/helpers/font-helper";
-import clsx from "clsx";
-import { useEffect, useRef, useState } from "react";
-import styles from "./TerminalAnimatedText.module.css";
+'use client';
+import { monoFont } from '@/lib/helpers/font-helper';
+import clsx from 'clsx';
+import { useEffect, useRef, useState } from 'react';
+import styles from './TerminalAnimatedText.module.css';
 
 interface Props {
   children: string;
@@ -13,7 +13,7 @@ const TerminalAnimationText = ({ children }: Props): JSX.Element => {
   const intervalTimerRef = useRef<undefined | NodeJS.Timeout>(undefined);
 
   useEffect(() => {
-    const char = children.split("");
+    const char = children.split('');
 
     intervalTimerRef.current = setInterval(() => {
       const charToAdd = char.shift();
@@ -35,7 +35,7 @@ const TerminalAnimationText = ({ children }: Props): JSX.Element => {
       {characters.map((character, index) => (
         <span key={index}>{character}</span>
       ))}
-      <span className={styles.cursor}>_</span>
+      <span className={styles.cursor}> </span>
     </p>
   );
 };

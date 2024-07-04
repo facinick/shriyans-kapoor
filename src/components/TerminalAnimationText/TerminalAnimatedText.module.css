@@ -6,8 +6,10 @@
 }
 
 .cursor {
+  color: hsl(var(--foreground));
   background: hsl(var(--foreground));
   user-select: none;
+  text-decoration: none;
   animation: opacityAnimation 1s infinite cubic-bezier(0.4, 0.2, 0.2, 1);
 }
 

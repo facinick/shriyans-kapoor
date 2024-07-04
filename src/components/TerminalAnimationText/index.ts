@@ -1,2 +1,2 @@
-export * from "./TerminalAnimationText";
-export { default } from "./TerminalAnimationText";
+export * from './TerminalAnimationText';
+export { default } from './TerminalAnimationText';

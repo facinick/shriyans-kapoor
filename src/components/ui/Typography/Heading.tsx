@@ -1,19 +1,19 @@
-import { cn } from "@/lib/helpers/utils";
-import { Slot } from "@radix-ui/react-slot";
-import { VariantProps, cva } from "class-variance-authority";
-import React from "react";
+import { cn } from '@/lib/helpers/utils';
+import { Slot } from '@radix-ui/react-slot';
+import { VariantProps, cva } from 'class-variance-authority';
+import React from 'react';
 
-const headingVariants = cva("", {
+const headingVariants = cva('', {
   variants: {
     level: {
-      1: "scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl",
-      2: "scroll-m-20 pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0",
-      3: "scroll-m-20 text-2xl font-semibold tracking-tight",
-      4: "scroll-m-20 text-xl font-semibold tracking-tight",
-      5: "scroll-m-20 text-lg font-semibold tracking-tight",
-      6: "scroll-m-20 text-base font-semibold tracking-tight",
-      7: "scroll-m-20 text-sm font-semibold tracking-tight",
-      8: "scroll-m-20 text-xs font-semibold tracking-tight",
+      1: 'scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl',
+      2: 'scroll-m-20 pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0',
+      3: 'scroll-m-20 text-2xl font-semibold tracking-tight',
+      4: 'scroll-m-20 text-xl font-semibold tracking-tight',
+      5: 'scroll-m-20 text-lg font-semibold tracking-tight',
+      6: 'scroll-m-20 text-base font-semibold tracking-tight',
+      7: 'scroll-m-20 text-sm font-semibold tracking-tight',
+      8: 'scroll-m-20 text-xs font-semibold tracking-tight',
     },
   },
   defaultVariants: {
@@ -29,7 +29,7 @@ export interface HeadingProps
 
 const Heading = React.forwardRef<HTMLDivElement, HeadingProps>(
   ({ className, level, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : "h3";
+    const Comp = asChild ? Slot : 'h3';
     return (
       <Comp
         className={cn(headingVariants({ level, className }))}
@@ -39,6 +39,6 @@ const Heading = React.forwardRef<HTMLDivElement, HeadingProps>(
     );
   }
 );
-Heading.displayName = "Heading";
+Heading.displayName = 'Heading';
 
 export { Heading, headingVariants };

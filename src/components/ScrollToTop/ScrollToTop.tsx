@@ -1,11 +1,17 @@
-"use client";
-import { LazyMotion, m, motion, useMotionValueEvent, useScroll } from "framer-motion";
-import { MoveUp } from "lucide-react";
-import { useEffect, useId, useRef, useState } from "react";
-import VisuallyHidden from "../VisuallyHidden";
-import { Button } from "../ui/Button";
-import CircularProgress from "../ui/CircularProgress";
-import styles from "./ScrollToTop.module.css";
+'use client';
+import {
+  LazyMotion,
+  m,
+  motion,
+  useMotionValueEvent,
+  useScroll,
+} from 'framer-motion';
+import { MoveUp } from 'lucide-react';
+import { useEffect, useId, useRef, useState } from 'react';
+import VisuallyHidden from '../VisuallyHidden';
+import { Button } from '../ui/Button';
+import CircularProgress from '../ui/CircularProgress';
+import styles from './ScrollToTop.module.css';
 interface Props {}
 
 const ScrollToTop = ({}: Props): JSX.Element => {
@@ -16,7 +22,7 @@ const ScrollToTop = ({}: Props): JSX.Element => {
 
   const [scroll, setScroll] = useState(0);
 
-  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
     setScroll(latest);
   });
 
@@ -46,11 +52,11 @@ const ScrollToTop = ({}: Props): JSX.Element => {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth",
+      behavior: 'smooth',
     });
   };
 
-  const translateY = appear ? "0%" : "calc(100% + 20px)";
+  const translateY = appear ? '0%' : 'calc(100% + 20px)';
   const opacity = appear ? 1 : 0;
 
   return (
@@ -60,7 +66,7 @@ const ScrollToTop = ({}: Props): JSX.Element => {
         className={styles.wrapper}
         initial={false}
         transition={{
-          type: "spring",
+          type: 'spring',
           stiffness: appear ? 300 : 600,
           damping: appear ? 70 : 40,
           restDelta: 0.01,
@@ -80,7 +86,7 @@ const ScrollToTop = ({}: Props): JSX.Element => {
           <VisuallyHidden>Scroll To Top</VisuallyHidden>
         </Button>
         <div className={styles.progress}>
-          <CircularProgress size={"thick"} progressInDecimal={scroll} />
+          <CircularProgress size={'thick'} progressInDecimal={scroll} />
         </div>
       </motion.div>
     </>

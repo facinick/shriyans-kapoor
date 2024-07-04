@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 import {
   getHandlerArgs,
   isSupported,
   visibility,
-} from "../helpers/visibility-helper";
+} from '../helpers/visibility-helper';
 
 const isSupportedLocal = isSupported && visibility;
 

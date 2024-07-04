@@ -1,1 +1,1 @@
-export { Flex, flexVariants } from "./Flex";
+export { Flex, flexVariants } from './Flex';

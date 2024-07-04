@@ -8,7 +8,6 @@
 .content {
   position: relative;
   padding: var(--padding-edges) var(--padding-edges) 15px var(--padding-edges);
-
 }
 
 .title.link {

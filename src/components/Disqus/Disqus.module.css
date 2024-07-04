@@ -1,17 +1,17 @@
 .skeleton {
-    border-radius: var('--radius');
-    position: absolute;
-    top: 0;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
+  border-radius: var('--radius');
+  position: absolute;
+  top: 0;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
 }
 
 .disqus {
-    color: hsl(var(--primary));
-    background-color: hsl(var(--background));
+  color: hsl(var(--primary));
+  background-color: hsl(var(--background));
 }
 
 .section {
-    position: relative;
+  position: relative;
 }

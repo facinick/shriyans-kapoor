@@ -1,4 +1,4 @@
-:root[data-theme="winter"] {
+:root[data-theme='winter'] {
   color-scheme: light;
 
   --color-gray-0: white;
@@ -69,9 +69,9 @@
   --border-full: 9999px;
 }
 
-:root[data-color-scheme="dark"][data-theme="winter"] {
+:root[data-color-scheme='dark'][data-theme='winter'] {
   color-scheme: dark;
-  
+
   --color-gray-A: white;
   --color-gray-900: hsla(210, 17%, 98%, 1);
   --color-gray-800: hsla(210, 16%, 93%, 1);

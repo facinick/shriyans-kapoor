@@ -1,2 +1,2 @@
-export * from "./Disqus";
-export { default } from "./Disqus";
+export * from './Disqus';
+export { default } from './Disqus';

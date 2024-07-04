@@ -3,15 +3,19 @@ import {
   PaginationResponse,
   Post,
   PostOrderBy,
-} from "@/types/Post";
-import matter from "gray-matter";
-import { PAGINATION_READ_PATH, POSTS_DIRECTORY, PAGINATION_DIRECTORY } from "../constants";
+} from '@/types/Post';
+import matter from 'gray-matter';
+import {
+  PAGINATION_READ_PATH,
+  POSTS_DIRECTORY,
+  PAGINATION_DIRECTORY,
+} from '../constants';
 import {
   FileError,
   getErrorMessage,
   readDirectory,
   readFile,
-} from "./file-helper";
+} from './file-helper';
 
 const cache = new Map<number, PaginationResponse>();
 
@@ -24,7 +28,9 @@ const getDataFromCacheOrNull = async ({
     return cache.get(page) as PaginationResponse;
   }
 
-  const paginationData = await readFile(`${PAGINATION_DIRECTORY}/pagination.json`);
+  const paginationData = await readFile(
+    `${PAGINATION_DIRECTORY}/pagination.json`
+  );
 
   const paginationJson = JSON.parse(paginationData) as Record<
     number,
@@ -49,21 +55,23 @@ const getDataFromCacheOrNull = async ({
 };
 
 export async function getNumberOfPages() {
-  const paginationData = await readFile(`${PAGINATION_DIRECTORY}/pagination.json`);
+  const paginationData = await readFile(
+    `${PAGINATION_DIRECTORY}/pagination.json`
+  );
 
   const paginationJson = JSON.parse(paginationData) as Record<
     number,
     PaginationResponse
   >;
 
-  return Object.keys(paginationJson).length
+  return Object.keys(paginationJson).length;
 }
 
 /* 
   read `/content` directory and return all the filenames from it
 */
 export async function getBlogPostList({
-  orderBy = { publishedOn: "desc" },
+  orderBy = { publishedOn: 'desc' },
 }: {
   orderBy?: PostOrderBy;
 }) {
@@ -79,7 +87,7 @@ export async function getBlogPostList({
       };
 
       blogPosts.push({
-        slug: fileName.replace(".mdx", ""),
+        slug: fileName.replace('.mdx', ''),
         ...frontmatter,
       });
     }
@@ -88,7 +96,7 @@ export async function getBlogPostList({
       const key = Object.keys(orderBy)[0] as keyof PostOrderBy;
       const direction = orderBy[key];
 
-      if (direction === "asc") {
+      if (direction === 'asc') {
         return post1[key].localeCompare(post2[key]);
       } else {
         return post2[key].localeCompare(post1[key]);

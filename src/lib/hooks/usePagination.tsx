@@ -1,5 +1,5 @@
-import { useMemo } from "react";
-import { range } from "../helpers/utils";
+import { useMemo } from 'react';
+import { range } from '../helpers/utils';
 
 interface Props {
   // total number of pages
@@ -57,7 +57,7 @@ export const usePagination = ({
     if (!showLeftEllipsis && showRightEllipsis) {
       const leftRangeItems = 1 + 1 + siblingCount + 1 + siblingCount;
       let leftRange = range(1, leftRangeItems);
-      return [...leftRange, "right-ellipsis", count];
+      return [...leftRange, 'right-ellipsis', count];
     }
     /*
     	Case 3: left dots to show, but no rights dots to be shown
@@ -65,14 +65,14 @@ export const usePagination = ({
     if (showLeftEllipsis && !showRightEllipsis) {
       const rightRangeItems = 1 + 1 + siblingCount + 1 + siblingCount;
       let rightRange = range(count - rightRangeItems + 1, count);
-      return [1, "left-ellipsis", ...rightRange];
+      return [1, 'left-ellipsis', ...rightRange];
     }
     /*
     	Case 4: left dots to show, rights dots to show
     */
     if (showLeftEllipsis && showRightEllipsis) {
       let middleRange = range(leftMostSiblingPage, rightMostSiblingPage);
-      return [1, "left-ellipsis", ...middleRange, "right-ellipsis", count];
+      return [1, 'left-ellipsis', ...middleRange, 'right-ellipsis', count];
     }
 
     /*

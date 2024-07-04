@@ -1,8 +1,8 @@
-import { Link } from "@/components/ui/Link";
-import { Heading } from "@/components/ui/Typography";
-import { headingFont } from "@/lib/helpers/font-helper";
-import { ArrowLeft } from "lucide-react";
-import styles from "./PostPagePostHeader.module.css";
+import { Link } from '@/components/ui/Link';
+import { Heading } from '@/components/ui/Typography';
+import { headingFont } from '@/lib/helpers/font-helper';
+import { ArrowLeft } from 'lucide-react';
+import styles from './PostPagePostHeader.module.css';
 
 interface Props {
   children?: React.ReactNode;
@@ -19,11 +19,11 @@ export const PostPagePostHeader = ({
         <h1>
           {backLinkOrNull && (
             <Link href={backLinkOrNull} title="Go Back">
-              {" "}
+              {' '}
               <ArrowLeft />
             </Link>
           )}
-          <span className={styles["title"]}>{children}</span>
+          <span className={styles['title']}>{children}</span>
         </h1>
       </Heading>
     </>

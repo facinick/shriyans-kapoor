@@ -1,18 +1,18 @@
-"use client";
-import clsx from "clsx";
-import React, { ChangeEvent, useId } from "react";
+'use client';
+import clsx from 'clsx';
+import React, { ChangeEvent, useId } from 'react';
 
-import { LayoutGroup, LazyMotion, m, motion } from "framer-motion";
-import styles from "./DivisionGroupsDemo.module.css";
-import Equation from "./Equation";
-import { range } from "@/lib/helpers/utils";
-import SliderControl from "../../SliderControl";
-import { Card } from "../../ui/Card";
+import { LayoutGroup, LazyMotion, m, motion } from 'framer-motion';
+import styles from './DivisionGroupsDemo.module.css';
+import Equation from './Equation';
+import { range } from '@/lib/helpers/utils';
+import SliderControl from '../../SliderControl';
+import { Card } from '../../ui/Card';
 
 interface Props {
-  numOfItems: number
-  initialNumOfGroups: number
-  includeRemainderArea: boolean
+  numOfItems: number;
+  initialNumOfGroups: number;
+  includeRemainderArea: boolean;
 }
 
 function DivisionGroupsDemo({
@@ -33,63 +33,40 @@ function DivisionGroupsDemo({
   const gridStructure =
     numOfGroups < 4
       ? {
-        gridTemplateColumns: `repeat(${numOfGroups}, 1fr)`,
-      }
+          gridTemplateColumns: `repeat(${numOfGroups}, 1fr)`,
+        }
       : {
-        gridTemplateColumns: "1fr 1fr",
-        gridTemplateRows: "1fr 1fr",
-      };
+          gridTemplateColumns: '1fr 1fr',
+          gridTemplateRows: '1fr 1fr',
+        };
 
   return (
-      <LayoutGroup>
-        <Card className={styles.wrapper}>
-          <header className={styles.header}>
-            <SliderControl
-              label="Number of Groups"
-              className={styles.slider}
-              step={1}
-              min={1}
-              max={4}
-              defaultValue={[3]}
-              value={[numOfGroups]}
-              onValueChange={v => setNumOfGroups(v[0])}
-            />
-          </header>
+    <LayoutGroup>
+      <Card className={styles.wrapper}>
+        <header className={styles.header}>
+          <SliderControl
+            label="Number of Groups"
+            className={styles.slider}
+            step={1}
+            min={1}
+            max={4}
+            defaultValue={[3]}
+            value={[numOfGroups]}
+            onValueChange={(v) => setNumOfGroups(v[0])}
+          />
+        </header>
 
-          <div className={styles.demoWrapper}>
-            <div className={clsx(styles.demoArea)} style={gridStructure}>
-              {range(numOfGroups).map((groupIndex) => (
-                <div key={groupIndex} className={styles.group}>
-                  {range(numOfItemsPerGroup).map((index) => {
-                    const consistentId = `${id}-${groupIndex * numOfItemsPerGroup + index
-                      }`;
-
-                    return (
-                      <motion.div
-                        layoutId={consistentId}
-                        data-key={consistentId}
-                        key={consistentId}
-                        className={styles.item}
-                      />
-                    );
-                  })}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {includeRemainderArea && (
-            <div className={styles.remainderArea}>
-              <p className={styles.remainderHeading}>Remainder Area</p>
-
-              {range(remainder)
-                .reverse()
-                .map((index) => {
-                  const consistentId = `${id}-${numOfItems - remainder + index}`;
+        <div className={styles.demoWrapper}>
+          <div className={clsx(styles.demoArea)} style={gridStructure}>
+            {range(numOfGroups).map((groupIndex) => (
+              <div key={groupIndex} className={styles.group}>
+                {range(numOfItemsPerGroup).map((index) => {
+                  const consistentId = `${id}-${
+                    groupIndex * numOfItemsPerGroup + index
+                  }`;
 
                   return (
                     <motion.div
-                      layout
                       layoutId={consistentId}
                       data-key={consistentId}
                       key={consistentId}
@@ -97,16 +74,40 @@ function DivisionGroupsDemo({
                     />
                   );
                 })}
-            </div>
-          )}
+              </div>
+            ))}
+          </div>
+        </div>
 
-          <Equation
-            dividend={numOfItems}
-            divisor={numOfGroups}
-            remainder={remainder}
-          />
-        </Card>
-      </LayoutGroup>
+        {includeRemainderArea && (
+          <div className={styles.remainderArea}>
+            <p className={styles.remainderHeading}>Remainder Area</p>
+
+            {range(remainder)
+              .reverse()
+              .map((index) => {
+                const consistentId = `${id}-${numOfItems - remainder + index}`;
+
+                return (
+                  <motion.div
+                    layout
+                    layoutId={consistentId}
+                    data-key={consistentId}
+                    key={consistentId}
+                    className={styles.item}
+                  />
+                );
+              })}
+          </div>
+        )}
+
+        <Equation
+          dividend={numOfItems}
+          divisor={numOfGroups}
+          remainder={remainder}
+        />
+      </Card>
+    </LayoutGroup>
   );
 }
 

@@ -1,13 +1,13 @@
-import { VariantProps, cva } from "class-variance-authority";
-import clsx from "clsx";
-import React from "react";
-import styles from "./CircularProgress.module.css";
+import { VariantProps, cva } from 'class-variance-authority';
+import clsx from 'clsx';
+import React from 'react';
+import styles from './CircularProgress.module.css';
 
 interface Props {
   progressInDecimal: number;
 }
 
-const circularProgressVariants = cva("", {
+const circularProgressVariants = cva('', {
   variants: {
     variant: {
       primary: styles.primary,
@@ -19,8 +19,8 @@ const circularProgressVariants = cva("", {
     },
   },
   defaultVariants: {
-    variant: "primary",
-    size: "thin",
+    variant: 'primary',
+    size: 'thin',
   },
 });
 
@@ -90,6 +90,6 @@ const CircularProgress = React.forwardRef<SVGSVGElement, CircularProgressProps>(
   }
 );
 
-CircularProgress.displayName = "CircularProgress";
+CircularProgress.displayName = 'CircularProgress';
 
 export default CircularProgress;

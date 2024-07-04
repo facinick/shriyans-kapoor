@@ -1,2 +1,2 @@
-export * from "./PostPagePostFooter";
-export { default } from "./PostPagePostFooter";
+export * from './PostPagePostFooter';
+export { default } from './PostPagePostFooter';

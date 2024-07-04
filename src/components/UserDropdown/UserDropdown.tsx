@@ -1,18 +1,18 @@
-"use client";
-import { LogIn, LogOut, LucideIcon, User } from "lucide-react";
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import { ComponentProps } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/Avatar";
-import { Button } from "../ui/Button";
+'use client';
+import { LogIn, LogOut, LucideIcon, User } from 'lucide-react';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { ComponentProps } from 'react';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/Avatar';
+import { Button } from '../ui/Button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "../ui/DropdownMenu/DropdownMenu";
-import { Flex } from "../ui/Flex/Flex";
-import styles from "./UserDropdown.module.css";
+} from '../ui/DropdownMenu/DropdownMenu';
+import { Flex } from '../ui/Flex/Flex';
+import styles from './UserDropdown.module.css';
 
 interface Props {}
 
@@ -21,14 +21,14 @@ interface Item {
   label: string;
   href: string;
   Icon: LucideIcon;
-  color?: ComponentProps<typeof DropdownMenuItem>["color"];
+  color?: ComponentProps<typeof DropdownMenuItem>['color'];
 }
 
 const UNAUTHENTICATED_MENU_ITEMS: Item[] = [
   {
     id: 0,
-    label: "Sign In",
-    href: "/api/auth/signin",
+    label: 'Sign In',
+    href: '/api/auth/signin',
     Icon: LogIn,
   },
 ];
@@ -36,16 +36,16 @@ const UNAUTHENTICATED_MENU_ITEMS: Item[] = [
 const AUTHENTICATED_MENU_ITEMS: Item[] = [
   {
     id: 0,
-    label: "Profile",
-    href: "#",
+    label: 'Profile',
+    href: '#',
     Icon: User,
   },
   {
     id: 1,
-    label: "Sign Out",
-    href: "/api/auth/signout",
+    label: 'Sign Out',
+    href: '/api/auth/signout',
     Icon: LogOut,
-    color: "red",
+    color: 'red',
   },
 ];
 
@@ -64,16 +64,16 @@ const UserDropdown = ({}: Props): JSX.Element => {
     <>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button size={"icon"}>
+          <Button size={'icon'}>
             {loggedIn && (
-              <Avatar className={styles["trigger-icon"]}>
+              <Avatar className={styles['trigger-icon']}>
                 <AvatarImage src={session?.user?.image!!} />
                 <AvatarFallback>
                   {session?.user?.email?.substring(0, 2)!!}
                 </AvatarFallback>
               </Avatar>
             )}
-            {!loggedIn && <User className={styles["trigger-icon"]} />}
+            {!loggedIn && <User className={styles['trigger-icon']} />}
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent loop className={styles.content}>
@@ -88,7 +88,7 @@ const UserDropdown = ({}: Props): JSX.Element => {
                   {...(color && { color })}
                   className={styles.item}
                 >
-                  <Flex align={"center"} justify={"between"}>
+                  <Flex align={'center'} justify={'between'}>
                     <Icon />
                     {label}
                   </Flex>
@@ -105,7 +105,7 @@ const UserDropdown = ({}: Props): JSX.Element => {
                   key={id}
                   className={styles.item}
                 >
-                  <Flex align={"center"} justify={"between"}>
+                  <Flex align={'center'} justify={'between'}>
                     <Icon />
                     {label}
                   </Flex>

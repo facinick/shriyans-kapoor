@@ -11,9 +11,9 @@ type Post = {
   content: string;
 };
 
-type OrderKey = "publishedOn";
+type OrderKey = 'publishedOn';
 
-type OrderDirection = "asc" | "desc";
+type OrderDirection = 'asc' | 'desc';
 
 type PostOrderBy = {
   [key in OrderKey]?: OrderDirection;

@@ -1,7 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from 'react';
 
 interface Props {
-  unit?: "ms" | "s" | "m" | "h" | "d" | "y";
+  unit?: 'ms' | 's' | 'm' | 'h' | 'd' | 'y';
   every?: number;
   timezone?: string;
 }
@@ -60,11 +60,11 @@ const INTERVAL_MAP = {
 
 const getTime = (timezone?: string) => {
   if (!timezone) return new Date();
-  return new Date(new Date().toLocaleString("en-US", { timeZone: timezone }));
+  return new Date(new Date().toLocaleString('en-US', { timeZone: timezone }));
 };
 
 export const useCurrentTime = ({
-  unit = "ms",
+  unit = 'ms',
   every = 1,
   timezone,
 }: Props): Date => {
