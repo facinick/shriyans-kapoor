@@ -56,7 +56,6 @@ export async function getNumberOfPages() {
     PaginationResponse
   >;
 
-  console.log(Object.keys(paginationJson).length)
   return Object.keys(paginationJson).length
 }
 
