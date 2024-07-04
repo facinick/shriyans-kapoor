@@ -16,7 +16,7 @@ export function formatDate(isoDateString: string) {
 }
 
 export function min(a: number, b: number): number {
-  return Math.min(a, b)
+  return Math.min(a, b);
 }
 
 export function minWithCap(a: number, b: number, cap: number): number {
@@ -26,7 +26,7 @@ export function minWithCap(a: number, b: number, cap: number): number {
 
 export const range = (start: number, end?: number, step = 1) => {
   let output = [];
-  if (typeof end === 'undefined') {
+  if (typeof end === "undefined") {
     end = start;
     start = 0;
   }
@@ -40,8 +40,17 @@ export const getRandomIntBetween = (min: number, max: number): number => {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+};
 
+export const copyToClipboard = async (text: string) => {
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const noop = () => {};
 
 export function extractTimeDigitsFromDate(date: Date) {
   const hour = date.getHours();
