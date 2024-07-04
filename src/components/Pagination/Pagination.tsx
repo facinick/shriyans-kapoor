@@ -6,6 +6,11 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import VisuallyHidden from "../VisuallyHidden";
 import { Button } from "../ui/Button";
 import { Flex } from "../ui/Flex";
+import { motion } from "framer-motion";
+import { useId, useState } from "react";
+import styles from "./Pagination.module.css";
+import { clsx } from "clsx";
+import { usePrevious } from "@/lib/hooks/usePrevious";
 
 interface Props {
   count: number;
@@ -13,6 +18,14 @@ interface Props {
   page: number;
   onChange: (nextPage: number) => void;
 }
+
+type HoveredItem = 
+  'outside' | 
+  'previous' | 
+  'next' | 
+  number |
+  'left-ellipsis' |
+  'right-ellipsis'
 
 const Pagination = ({
   count,
@@ -25,6 +38,13 @@ const Pagination = ({
     page,
     siblingCount,
   });
+
+  const [hoveredNavItem, setHoveredNavItem] = 
+    useState<HoveredItem>('Outside');
+
+  const id = useId();
+
+  const previousHoveredElement = usePrevious(hoveredNavItem);
 
   // If there are less than 2 times in pagination range we shall not render the component
   if (page === 0 || paginationRange.length < 2) {
@@ -43,21 +63,46 @@ const Pagination = ({
     onChange(Number(nextPage));
   };
 
+  const isUserComingFromOutsidePagination = () => {
+    return previousHoveredElement === "outside"
+  }
+
+  const isHovered = (hoveredItem: HoveredItem) => {
+    return hoveredItem === hoveredNavItem
+  }
+
   return (
     <Flex asChild>
       {/* Left navigation arrow */}
-      <nav>
-        <Flex asChild justify={"center"} align={"center"} gap={2}>
+      <nav style={{ margin: "auto", width: "auto" }}>
+        <Flex
+          onMouseLeave={() => setHoveredNavItem("outside")}
+          asChild
+          justify={"center"}
+          align={"center"}
+          gap={2}
+        >
           <ul>
             <li key={"previous"}>
               <Button
-                title="Previous Page"
-                variant={"secondary"}
+                title="previous"
+                variant={"link"}
                 disabled={page <= 1}
                 onClick={onPrevious}
+                onMouseEnter={() => setHoveredNavItem("previous")}
+                style={{
+                  position: "relative",
+                  textDecoration: "none",
+                  fontWeight: "bold",
+                  color: "inherit"
+                }}
               >
-                <ChevronLeft />
-                <VisuallyHidden>Goto Previous Page</VisuallyHidden>
+                {
+                  isHovered("previous") && 
+                  <MotionBackground id={id} showEnterAnimation={isUserComingFromOutsidePagination()} />
+                }
+                <span className={styles["button-text"]}>{<ChevronLeft />}</span>
+                <VisuallyHidden>Goto previous</VisuallyHidden>
               </Button>
             </li>
 
@@ -68,8 +113,19 @@ const Pagination = ({
               ) {
                 return (
                   <li key={pageNumber}>
-                    <Button disabled variant={"ghost"} asChild>
-                      <span>{CHARACTERS.ellipsis}</span>
+                    <Button
+                      onMouseEnter={() => setHoveredNavItem(pageNumber)}
+                      disabled
+                      variant={"link"}
+                      asChild
+                      style={{
+                        fontWeight: "bold",
+                        color: "inherit"
+                      }}
+                    >
+                      <span className={styles["button-text"]}>
+                        {CHARACTERS.ellipsis}
+                      </span>
                     </Button>
                   </li>
                 );
@@ -80,11 +136,23 @@ const Pagination = ({
                   <Button
                     title={`Page ${pageNumber}`}
                     key={pageNumber}
-                    disabled={page == pageNumber}
                     onClick={() => onPageChange(Number(pageNumber))}
-                    variant={page == pageNumber ? "default" : "secondary"}
+                    variant={"link"}
+                    onMouseEnter={() => setHoveredNavItem(Number(pageNumber))}
+                    style={{
+                      position: "relative",
+                      textDecoration: "none",
+                      fontWeight: "bold",
+                      color: page === pageNumber ? "hsl(var(--primary))" : "inherit" ,
+                    }}
                   >
-                    {pageNumber}
+                    {
+                      isHovered(Number(pageNumber)) && 
+                      <MotionBackground id={id} showEnterAnimation={isUserComingFromOutsidePagination()} />
+                    }
+                    <span className={styles["button-text"]}>
+                      {pageNumber}
+                    </span>
                     <VisuallyHidden>{`Goto Page ${pageNumber}`}</VisuallyHidden>
                   </Button>
                 </li>
@@ -94,13 +162,26 @@ const Pagination = ({
             {/*  Right Navigation arrow */}
             <li key={"next"}>
               <Button
-                title="Next Page"
-                variant={"secondary"}
-                disabled={page >= count}
+                title="next"
+                variant={"link"}
                 onClick={onNext}
+                onMouseEnter={() => setHoveredNavItem("next")}
+                disabled={page >= count}
+                style={{
+                  position: "relative",
+                  textDecoration: "none",
+                  fontWeight: "bold",
+                  color: "inherit"
+                }}
               >
-                <ChevronRight />
-                <VisuallyHidden>Goo Next Page</VisuallyHidden>
+                {
+                  isHovered("next") && 
+                  <MotionBackground id={id} showEnterAnimation={isUserComingFromOutsidePagination()} />
+                }
+                <span className={styles["button-text"]}>
+                  {<ChevronRight />}
+                </span>
+                <VisuallyHidden>Goto next</VisuallyHidden>
               </Button>
             </li>
           </ul>
@@ -109,5 +190,28 @@ const Pagination = ({
     </Flex>
   );
 };
+
+interface MotionBackgroundProps {
+  id: string
+  showEnterAnimation: boolean
+}
+
+const MotionBackground = ({id, showEnterAnimation}: MotionBackgroundProps) => {
+  return (
+    <motion.div
+      layoutId={`${id}-hovered-backdrop`}
+      className={styles.backdrop}
+      initial={{
+        borderRadius: "12px",
+        opacity: showEnterAnimation ? 0 : 1,
+        scale: showEnterAnimation ? 0.1 : 1,
+      }}
+      animate={{
+        opacity: 1,
+        scale: 1,
+      }}
+    />
+  )
+} 
 
 export default Pagination;
