@@ -5,6 +5,7 @@ import {
   motion,
   useMotionValueEvent,
   useScroll,
+  useSpring,
 } from 'framer-motion';
 import { MoveUp } from 'lucide-react';
 import { useEffect, useId, useRef, useState } from 'react';
@@ -22,7 +23,13 @@ const ScrollToTop = ({}: Props): JSX.Element => {
 
   const [scroll, setScroll] = useState(0);
 
-  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
+  const scrollY = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
+  useMotionValueEvent(scrollY, 'change', (latest) => {
     setScroll(latest);
   });
 
