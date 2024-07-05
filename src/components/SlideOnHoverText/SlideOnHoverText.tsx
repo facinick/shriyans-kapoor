@@ -1,9 +1,16 @@
 'use client';
+import { useIsTouchDevice } from '@/lib/hooks/useIsTouchDevice';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 
-function SlideOnHoverText({ children }: { children: React.ReactNode }) {
+interface Props {
+  slideOnHoverCharacter?: string;
+  children: React.ReactNode;
+}
+
+function SlideOnHoverText({ children, slideOnHoverCharacter = '» ' }: Props) {
   const [hovered, setHovered] = useState(false);
+  const isTouchDevice = useIsTouchDevice();
 
   return (
     <span
@@ -12,7 +19,7 @@ function SlideOnHoverText({ children }: { children: React.ReactNode }) {
       style={{ display: 'inline-block', position: 'relative' }}
     >
       <AnimatePresence>
-        {hovered && (
+        {!isTouchDevice && hovered && (
           <motion.span
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
@@ -20,14 +27,14 @@ function SlideOnHoverText({ children }: { children: React.ReactNode }) {
             transition={{ type: 'tween', duration: 0.3 }}
             style={{ position: 'absolute', left: 0 }}
           >
-            {'» '}
+            {slideOnHoverCharacter}
           </motion.span>
         )}
       </AnimatePresence>
       <span
         style={{
           position: 'relative',
-          left: hovered ? '1em' : '0',
+          left: hovered && !isTouchDevice ? '1em' : '0',
           transition: 'left 0.3s',
         }}
       >

@@ -1,3 +1,4 @@
+import SlideOnHoverText from '../SlideOnHoverText';
 import { Link } from '../ui/Link';
 import styles from './ReadMore.module.css';
 interface Props {
@@ -9,7 +10,7 @@ export const ReadMore = ({ href }: Props): JSX.Element => {
     <>
       <Link className={styles['read-more-link']} href={href}>
         {' '}
-        View the entire post
+        <SlideOnHoverText>View the entire post</SlideOnHoverText>
       </Link>
     </>
   );

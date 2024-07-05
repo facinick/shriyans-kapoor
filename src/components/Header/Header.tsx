@@ -7,6 +7,7 @@ import { Box } from '../ui/Box';
 import { Flex } from '../ui/Flex';
 import { Link } from '../ui/Link';
 import styles from './Header.module.css';
+import SlideOnHoverText from '../SlideOnHoverText';
 
 interface Props {}
 
@@ -22,7 +23,10 @@ const Header = ({}: Props): JSX.Element => {
             className={clsx(styles.link, styles.title, headingFont.className)}
             title="Goto Home"
           >
-            {APP_TITLE}
+            <SlideOnHoverText slideOnHoverCharacter="@ ">
+              {APP_TITLE}
+            </SlideOnHoverText>
+            {/* {APP_TITLE} */}
           </Link>
           <Box>
             <Flex align={'center'} gap={2}>
