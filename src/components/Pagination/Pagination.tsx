@@ -6,7 +6,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import VisuallyHidden from '../VisuallyHidden';
 import { Button } from '../ui/Button';
 import { Flex } from '../ui/Flex';
-import { LazyMotion, m, motion } from 'framer-motion';
+import { AnimatePresence, LazyMotion, m, motion } from 'framer-motion';
 import { useId, useState } from 'react';
 import styles from './Pagination.module.css';
 import { usePrevious } from '@/lib/hooks/usePrevious';
@@ -153,6 +153,7 @@ const Pagination = ({
                         showEnterAnimation={isUserComingFromOutsidePagination()}
                       />
                     )}
+
                     <span className={styles['button-text']}>{pageNumber}</span>
                     <VisuallyHidden>{`Goto Page ${pageNumber}`}</VisuallyHidden>
                   </Button>
@@ -181,6 +182,7 @@ const Pagination = ({
                     showEnterAnimation={isUserComingFromOutsidePagination()}
                   />
                 )}
+
                 <span className={styles['button-text']}>
                   {<ChevronRight />}
                 </span>
