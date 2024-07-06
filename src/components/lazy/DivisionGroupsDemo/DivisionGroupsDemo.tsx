@@ -50,7 +50,7 @@ function DivisionGroupsDemo({
             step={1}
             min={1}
             max={4}
-            defaultValue={[3]}
+            defaultValue={[initialNumOfGroups]}
             value={[numOfGroups]}
             onValueChange={(v) => setNumOfGroups(v[0])}
           />
