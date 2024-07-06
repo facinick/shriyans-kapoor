@@ -5,10 +5,11 @@ import styles from './Footer.module.css';
 import { Flex } from '../ui/Flex';
 import { Box } from '../ui/Box/Box';
 import { Link } from '../ui/Link';
+import SlideOnHoverText from '../SlideOnHoverText';
 
-interface Props {}
+interface Props { }
 
-const Footer = ({}: Props): JSX.Element => {
+const Footer = ({ }: Props): JSX.Element => {
   return (
     <footer className={styles.footer}>
       <Box className={styles['footer-content']}>
@@ -33,7 +34,9 @@ const Footer = ({}: Props): JSX.Element => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    message on telegram
+                    <SlideOnHoverText slideOnHoverCharacter=':) '>
+                      message on telegram
+                    </SlideOnHoverText>
                   </Link>
                 </li>
                 <li>
@@ -43,12 +46,16 @@ const Footer = ({}: Props): JSX.Element => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    view github
+                    <SlideOnHoverText slideOnHoverCharacter='# '>
+                      view github
+                    </SlideOnHoverText>
                   </Link>
                 </li>
                 <li>
                   <Link className={styles['footer-link']} href={SOCIALS.gmail}>
-                    mail on gmail
+                    <SlideOnHoverText slideOnHoverCharacter='@ '>
+                      mail on gmail
+                    </SlideOnHoverText>
                   </Link>
                 </li>
               </ul>
