@@ -10,8 +10,8 @@ import { notFound } from 'next/navigation';
 import styles from './page.module.css';
 import PostPagePostFooter from '@/components/PostPagePostFooter';
 import clsx from 'clsx';
-import env from '@/lib/helpers/env';
-import Disqus from '@/components/Disqus/Disqus';
+import React from 'react';
+import { Skeleton } from '@/components/ui/Skeleton';
 
 interface PageProps {
   params: { postSlug: string };
@@ -22,41 +22,39 @@ export async function generateStaticParams() {
   return posts.map((post) => ({ postSlug: post.slug }));
 }
 
-export async function generateMetadata({ params }: PageProps) {
-  let post;
+/*
+  wrapping in react cache here works, moving react cache to another level down the call doesnt. why.
+*/
+const getPostData = React.cache(async (slug: string) => {
   try {
-    post = await loadBlogPost({ slug: params.postSlug });
+    return await loadBlogPost({ slug });
   } catch (error) {
-    return null;
+    return null
   }
+})
+
+export async function generateMetadata({ params }: PageProps) {
+  const post = await getPostData(params.postSlug);
+  if (!post) return null;
 
   const { title, abstract } = post.frontmatter;
-
-  const metadataTitle = `${title}`;
-
   return {
-    title: metadataTitle,
+    title: title,
     description: abstract,
-  };
+  }
 }
 
 async function BlogPost({ params }: PageProps) {
-  let post;
-  try {
-    post = await loadBlogPost({ slug: params.postSlug });
-  } catch (error) {
-    notFound();
+  const post = await getPostData(params.postSlug);
+  if (!post) {
+    notFound()
   }
 
   const { frontmatter, content } = post;
-
   const backLinkOrNull = getBackLinkOrNullFromRequest();
-
-  const shouldLoadDisqusComments = env.NODE_ENV === 'production';
-
-  const pageUrl = `${PROD_APP_SITE_URL}/${params.postSlug}`;
-  const pageIdentifier = params.postSlug;
-
+  // const shouldLoadDisqusComments = env.NODE_ENV === 'production';
+  // const pageUrl = `${PROD_APP_SITE_URL}/${params.postSlug}`;
+  // const pageIdentifier = params.postSlug;
   return (
     <>
       <Flex direction={'column'} gap={5} asChild>

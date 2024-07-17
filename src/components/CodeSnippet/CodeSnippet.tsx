@@ -19,7 +19,10 @@ const CodeSnippet = ({ children, className, ...props }: CodeSnippetProps) => {
           light: 'github-light',
           lightSelector: '[data-color-scheme="light"]',
         }}
-        className={clsx(styles.wrapper, className)}
+        style={{
+          borderRadius: "var(--radius)"
+        }}
+        className={clsx(className, styles.wrapper)}
       >
         {children}
       </Code>
