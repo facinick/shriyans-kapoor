@@ -16,20 +16,20 @@ body {
 
 @layer base {
   * {
-    @apply border-border;
-
     /* smooth transition on theme change */
-    transition: background 0.5s ease 0s;
+    transition: background-color 0.5s ease 0s;
 
     /* remove tap highlight from touch devices */
     -webkit-tap-highlight-color: transparent;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  }
-  html {
-    @apply bg-background text-foreground;
+
+    -webkit-font-smoothing: antialiased;
+
+    /* color: #202124; */
   }
   body {
     @apply bg-background text-foreground;
+    @apply border-border;
   }
 }
 

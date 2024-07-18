@@ -5,6 +5,7 @@ import styles from './CodeSnippet.module.css';
 import { Box } from '../ui/Box';
 import CopyToClipboardButton from '../CopyToClipboardButton/CopyToClipboardButton';
 import React from 'react';
+import { monoFont } from '@/lib/helpers/font-helper';
 
 type CodeSnippetProps = ComponentProps<typeof Code>;
 
@@ -22,7 +23,7 @@ const CodeSnippet = ({ children, className, ...props }: CodeSnippetProps) => {
         style={{
           borderRadius: "var(--radius)"
         }}
-        className={clsx(className, styles.wrapper)}
+        className={clsx(className, styles.wrapper, monoFont.className)}
       >
         {children}
       </Code>
