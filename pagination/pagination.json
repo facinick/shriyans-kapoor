@@ -2,6 +2,14 @@
   "1": {
     "data": [
       {
+        "slug": "site-under-maintenance",
+        "title": "Site Under Maintenance - ongoing migration and testing please do not rely on any post here yet.",
+        "abstract": "Site Under Maintenance - ongoing migration and testing please do not rely on any post here yet.",
+        "publishedOn": "2024-08-01T08:00:00-0800",
+        "author": "facinick SDE@Verizon",
+        "category": "Notice"
+      },
+      {
         "slug": "javascript-modulo-operator",
         "title": "Understanding the JavaScript Modulo Operator",
         "abstract": "One of the most commonly-misunderstood operators is Modulo (%). In this tutorial, we'll unpack exactly what this little bugger does, and learn how it can help us solve practical problems.",
@@ -24,14 +32,6 @@
         "publishedOn": "2024-06-25T08:50:18.327Z",
         "author": "facinick",
         "category": "Software Engineering"
-      },
-      {
-        "slug": "ddd-unleashing-the-power-of-strategic-design-thinking",
-        "title": "Domain-Driven Design: Unleashing the Power of Strategic Design Thinking",
-        "abstract": "Enter the world of Domain-Driven Design (DDD), where software development meets strategic design thinking. Explore the principles, patterns, and practices that empower teams to create software systems that reflect the real-world domains they inhabit. Dive into the concepts of bounded contexts, ubiquitous language, and aggregate roots, and learn how to model complex business domains with clarity and precision. Join us on a journey to unlock the full potential of DDD and revolutionize your approach to software development.",
-        "publishedOn": "2024-03-01T08:00:00-0800",
-        "author": "CodeCraftsman",
-        "category": "Software Engineering"
       }
     ],
     "pagination": {
@@ -39,11 +39,19 @@
       "end": false,
       "count": 4,
       "totalPages": 3,
-      "totalCount": 11
+      "totalCount": 12
     }
   },
   "2": {
     "data": [
+      {
+        "slug": "ddd-unleashing-the-power-of-strategic-design-thinking",
+        "title": "Domain-Driven Design: Unleashing the Power of Strategic Design Thinking",
+        "abstract": "Enter the world of Domain-Driven Design (DDD), where software development meets strategic design thinking. Explore the principles, patterns, and practices that empower teams to create software systems that reflect the real-world domains they inhabit. Dive into the concepts of bounded contexts, ubiquitous language, and aggregate roots, and learn how to model complex business domains with clarity and precision. Join us on a journey to unlock the full potential of DDD and revolutionize your approach to software development.",
+        "publishedOn": "2024-03-01T08:00:00-0800",
+        "author": "CodeCraftsman",
+        "category": "Software Engineering"
+      },
       {
         "slug": "journey-to-singularity",
         "title": "Exploring the Depths of Singularity: A Journey into Technological Transcendence",
@@ -67,14 +75,6 @@
         "publishedOn": "2024-03-01T08:00:00-0800",
         "author": "Soul Voyager",
         "category": "Psychology"
-      },
-      {
-        "slug": "the-science-of-decision-making",
-        "title": "The Science of Decision-Making: Exploring the Mind's Choices",
-        "abstract": "Delve into the intricate world of decision-making, where the mind navigates through a maze of options to arrive at choices that shape our lives. Explore the cognitive processes, biases, and heuristics that influence our decisions, and uncover strategies for making more informed and rational choices. From simple everyday decisions to complex life-altering ones, gain insights into the science behind decision-making and empower yourself to navigate the complexities of choice with clarity and confidence.",
-        "publishedOn": "2024-03-01T08:00:00-0800",
-        "author": "Choice Connoisseur",
-        "category": "Psychology"
       }
     ],
     "pagination": {
@@ -82,11 +82,19 @@
       "end": false,
       "count": 4,
       "totalPages": 3,
-      "totalCount": 11
+      "totalCount": 12
     }
   },
   "3": {
     "data": [
+      {
+        "slug": "the-science-of-decision-making",
+        "title": "The Science of Decision-Making: Exploring the Mind's Choices",
+        "abstract": "Delve into the intricate world of decision-making, where the mind navigates through a maze of options to arrive at choices that shape our lives. Explore the cognitive processes, biases, and heuristics that influence our decisions, and uncover strategies for making more informed and rational choices. From simple everyday decisions to complex life-altering ones, gain insights into the science behind decision-making and empower yourself to navigate the complexities of choice with clarity and confidence.",
+        "publishedOn": "2024-03-01T08:00:00-0800",
+        "author": "Choice Connoisseur",
+        "category": "Psychology"
+      },
       {
         "slug": "the-spiritual-journey",
         "title": "The Spiritual Journey: Navigating the Path to Inner Peace",
@@ -115,9 +123,9 @@
     "pagination": {
       "page": 3,
       "end": true,
-      "count": 3,
+      "count": 4,
       "totalPages": 3,
-      "totalCount": 11
+      "totalCount": 12
     }
   }
 }
