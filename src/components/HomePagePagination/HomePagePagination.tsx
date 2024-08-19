@@ -2,6 +2,7 @@
 
 import { useRouter, useSearchParams } from 'next/navigation';
 import Pagination from '../Pagination';
+import { useTransitionRouter } from 'next-view-transitions';
 
 interface Props {
   count: number;
@@ -10,7 +11,8 @@ interface Props {
 
 const HomePagePagination = ({ count, page }: Props): JSX.Element => {
   const searchParams = useSearchParams();
-  const router = useRouter();
+  const router = useTransitionRouter()
+
 
   const handlePageChange = (nextPage: number) => {
     const newParams = new URLSearchParams(searchParams.toString());

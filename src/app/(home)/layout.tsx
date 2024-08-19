@@ -13,6 +13,7 @@ import { ColorScheme, Theme } from '@/types/Theme';
 import { Metadata } from 'next';
 import '../globals.css';
 import styles from './layout.module.css';
+import { ViewTransitions } from 'next-view-transitions';
 
 export const metadata: Metadata = {
   title: {
@@ -31,22 +32,24 @@ export default function RootLayout({
   const theme: Theme = getThemeFromRequest() || 'blue';
 
   return (
-    <html lang="en" data-color-scheme={colorScheme} data-theme={theme}>
-      <head>
-        {/* <meta name="theme-color" content={"hsl(var(--background))"} /> */}
-      </head>
-      <body className={mainFont.className}>
-        {/* <SessionProvider> */}
-        <ThemeProvider initialColorScheme={colorScheme} initialTheme={theme}>
-          <MotionConfig>
-            <Header />
-            <main className={styles.main}>{children}</main>
-            <Footer />
-            <ScrollToTop />
-          </MotionConfig>
-        </ThemeProvider>
-        {/* </SessionProvider> */}
-      </body>
-    </html>
+    <ViewTransitions>
+      <html lang="en" data-color-scheme={colorScheme} data-theme={theme}>
+        <head>
+          {/* <meta name="theme-color" content={"hsl(var(--background))"} /> */}
+        </head>
+        <body className={mainFont.className}>
+          {/* <SessionProvider> */}
+          <ThemeProvider initialColorScheme={colorScheme} initialTheme={theme}>
+            <MotionConfig>
+              <Header />
+              <main className={styles.main}>{children}</main>
+              <Footer />
+              <ScrollToTop />
+            </MotionConfig>
+          </ThemeProvider>
+          {/* </SessionProvider> */}
+        </body>
+      </html>
+    </ViewTransitions>
   );
 }

@@ -1,14 +1,14 @@
 import { ComponentProps, ElementRef, forwardRef } from 'react';
 import { Button } from '../Button/Button';
-import NextLink from 'next/link';
+import { Link as ViewTransitionLink } from 'next-view-transitions'
 
 type LinkProps = ComponentProps<typeof Button> &
-  Pick<ComponentProps<typeof NextLink>, 'href' | 'target'>;
+  Pick<ComponentProps<typeof ViewTransitionLink>, 'href' | 'target'>;
 
 const Link = forwardRef<ElementRef<typeof Button>, LinkProps>(
   ({ href, target, children, ...props }, ref) => (
     <Button variant={'link'} ref={ref} {...props} asChild>
-      <NextLink scroll={true} prefetch={true} href={href}>{children}</NextLink>
+      <ViewTransitionLink scroll={true} prefetch={true} href={href}>{children}</ViewTransitionLink>
     </Button>
   )
 );
