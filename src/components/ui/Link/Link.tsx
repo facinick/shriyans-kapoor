@@ -8,7 +8,7 @@ type LinkProps = ComponentProps<typeof Button> &
 const Link = forwardRef<ElementRef<typeof Button>, LinkProps>(
   ({ href, target, children, ...props }, ref) => (
     <Button variant={'link'} ref={ref} {...props} asChild>
-      <ViewTransitionLink scroll={true} prefetch={true} href={href}>{children}</ViewTransitionLink>
+      <ViewTransitionLink prefetch={true} href={href}>{children}</ViewTransitionLink>
     </Button>
   )
 );
