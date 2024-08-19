@@ -6,7 +6,7 @@ import React from 'react';
 const paragraphVariants = cva('', {
   variants: {
     variant: {
-      medium: 'leading-7 [&:not(:first-child)]:mt-3',
+      medium: 'text-base leading-relaxed',
       large: 'text-lg font-semibold',
       small: 'text-sm font-medium leading-none',
       muted: 'text-sm text-muted-foreground',

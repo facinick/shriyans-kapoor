@@ -1,4 +1,4 @@
-import { Bodoni_Moda, Merriweather, Open_Sans } from 'next/font/google';
+import { Bodoni_Moda, Merriweather, Open_Sans, Playfair_Display, Roboto_Slab } from 'next/font/google';
 
 const acccentFont = Bodoni_Moda({
   weight: 'variable',
@@ -6,8 +6,8 @@ const acccentFont = Bodoni_Moda({
   subsets: ['latin'],
 });
 
-const headingFont = Merriweather({
-  weight: '700',
+const headingFont = Roboto_Slab({
+  weight: '500',
   subsets: ['latin'],
 });
 

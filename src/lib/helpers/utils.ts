@@ -8,11 +8,12 @@ export function cn(...inputs: ClassValue[]) {
 export function formatDate(isoDateString: string) {
   const date = new Date(isoDateString);
 
-  return date.toLocaleDateString('en-US', {
-    day: '2-digit',
-    month: 'long',
-    year: 'numeric',
-  });
+  // Extract the year and month
+  const year = date.getFullYear();
+  const month = date.toLocaleDateString('en-US', { month: 'long' });
+
+  // Return the formatted string
+  return `${year} • ${month}`;
 }
 
 export function min(a: number, b: number): number {

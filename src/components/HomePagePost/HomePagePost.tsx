@@ -11,6 +11,7 @@ import { motion } from 'framer-motion';
 import { Link } from '../ui/Link';
 import SlideOnHoverText from '../SlideOnHoverText';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/Avatar';
+import { CHARACTERS } from '@/lib/helpers/string-helper';
 
 interface Props {
   post: Frontmatter & {
@@ -24,18 +25,6 @@ const HomePagePost = ({ post }: Props): JSX.Element => {
   return (
     <Flex asChild direction={'column'} gap={2}>
       <article>
-
-        {/* <div className='flex gap-2'>
-          <Avatar>
-            <AvatarImage src="https://github.com/shadcn.png" />
-            <AvatarFallback>FA</AvatarFallback>
-          </Avatar>
-          <div className='flex flex-col'>
-              <Paragraph>facinick.xyz</Paragraph>
-              <Paragraph>https://facinick.xyz/blog/.../this-is-sparta</Paragraph>
-          </div>
-        </div> */}
-
         <Link className={clsx(styles.link, styles.head)} href={slug}>
           <Heading
             level={3}
@@ -47,21 +36,24 @@ const HomePagePost = ({ post }: Props): JSX.Element => {
             </h2>
           </Heading>
         </Link>
+        <Paragraph className={styles.abstract}>
+          {`${abstract} `} <ReadMore href={slug} />
+        </Paragraph>
         {/* <Flex asChild> */}
-        <Flex className={styles['author-time']} gap={3}>
-          <address className={styles['author']}>
-            <VisuallyHidden>Published By </VisuallyHidden>
-            {author}
-          </address>
+        <Flex className={styles['author-time']}>
           <time dateTime={publishedOn}>
             <VisuallyHidden>Published On </VisuallyHidden>
             {formatDate(publishedOn)}
           </time>
+          &nbsp;
+          {CHARACTERS.bullet}
+          &nbsp;
+          <address className={styles['author']}>
+            <VisuallyHidden>Published By </VisuallyHidden>
+            {author}
+          </address>
         </Flex>
         {/* </Flex> */}
-        <Paragraph className={styles.abstract}>
-          {`${abstract} `} <ReadMore href={slug} />
-        </Paragraph>
       </article>
     </Flex>
   );
