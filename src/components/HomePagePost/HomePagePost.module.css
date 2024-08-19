@@ -9,6 +9,7 @@
 
 .heading {
   transition: var(--title-hover-color-transition);
+  font-weight: 500;
 }
 
 .heading:hover {
