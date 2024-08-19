@@ -57,6 +57,8 @@ async function Home({ searchParams }: PageProps) {
           count={paginationResponse.pagination.totalPages}
           page={page}
         />
+
+        <Separator />
       </section>
     </Flex>
   );
