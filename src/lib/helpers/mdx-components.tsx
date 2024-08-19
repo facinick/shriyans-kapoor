@@ -6,6 +6,7 @@ import { Paragraph } from '@/components/ui/Typography/Paragraph';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { ComponentProps } from 'react';
 import PercolatingGrid from '@/components/lazy/PercolatingGrid';
+import { Ul } from '@/components/ui/Typography/Ul';
 
 const MDX_COMPONENTS_MAP: ComponentProps<typeof MDXRemote>['components'] = {
   pre: CodeSnippet,
@@ -36,6 +37,9 @@ const MDX_COMPONENTS_MAP: ComponentProps<typeof MDXRemote>['components'] = {
       </Heading>
     );
   },
+  ul: ({ children, ...rest }: { children?: React.ReactNode }) => {
+    return <Ul {...rest}>{children}</Ul>;
+  }
 };
 
 export default MDX_COMPONENTS_MAP;
