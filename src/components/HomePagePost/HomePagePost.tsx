@@ -29,7 +29,7 @@ const HomePagePost = ({ post }: Props): JSX.Element => {
           <Heading
             level={3}
             asChild
-            className={clsx(styles['heading'], headingFont.className)}
+            className={clsx(styles['heading'], headingFont.className, 'font-medium')}
           >
             <h2>
               <SlideOnHoverText>{title}</SlideOnHoverText>
