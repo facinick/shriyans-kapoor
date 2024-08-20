@@ -10,7 +10,6 @@ import clsx from 'clsx';
 import { motion } from 'framer-motion';
 import { Link } from '../ui/Link';
 import SlideOnHoverText from '../SlideOnHoverText';
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/Avatar';
 import { CHARACTERS } from '@/lib/helpers/string-helper';
 
 interface Props {
@@ -29,7 +28,7 @@ const HomePagePost = ({ post }: Props): JSX.Element => {
           <Heading
             level={3}
             asChild
-            className={clsx(styles['heading'], headingFont.className, 'font-medium')}
+            className={clsx(styles.heading, headingFont.className)}
           >
             <h2>
               <SlideOnHoverText>{title}</SlideOnHoverText>

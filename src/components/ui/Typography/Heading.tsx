@@ -6,14 +6,14 @@ import React from 'react';
 const headingVariants = cva('', {
   variants: {
     level: {
-      1: 'scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl',
-      2: 'scroll-m-20 pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0',
-      3: 'scroll-m-20 text-2xl font-semibold tracking-tight',
-      4: 'scroll-m-20 text-xl font-semibold tracking-tight',
-      5: 'scroll-m-20 text-lg font-semibold tracking-tight',
-      6: 'scroll-m-20 text-base font-semibold tracking-tight',
-      7: 'scroll-m-20 text-sm font-semibold tracking-tight',
-      8: 'scroll-m-20 text-xs font-semibold tracking-tight',
+      1: 'scroll-m-20 text-4xl lg:text-5xl',
+      2: 'scroll-m-20 text-3xl',
+      3: 'scroll-m-20 text-2xl',
+      4: 'scroll-m-20 text-xl',
+      5: 'scroll-m-20 text-lg',
+      6: 'scroll-m-20 text-base',
+      7: 'scroll-m-20 text-sm',
+      8: 'scroll-m-20 text-xs',
     },
   },
   defaultVariants: {
