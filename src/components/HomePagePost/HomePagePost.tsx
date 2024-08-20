@@ -36,7 +36,7 @@ const HomePagePost = ({ post }: Props): JSX.Element => {
           </Heading>
         </Link>
         <Paragraph className={styles.abstract}>
-          {`${abstract} `} <ReadMore href={slug} />
+          {`${abstract} `} <ReadMore href={slug}>view entire post</ReadMore>
         </Paragraph>
         {/* <Flex asChild> */}
         <Flex className={styles['author-time']}>

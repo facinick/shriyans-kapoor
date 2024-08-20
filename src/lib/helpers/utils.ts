@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
+import { APP_SITE_URL, PROD_APP_SITE_URL } from '../constants';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -52,6 +53,8 @@ export const copyToClipboard = async (text: string) => {
 };
 
 export const noop = () => {};
+
+export const getBaseUrl = () => process.env.NODE_ENV === 'production' ? PROD_APP_SITE_URL : APP_SITE_URL
 
 export function extractTimeDigitsFromDate(date: Date) {
   const hour = date.getHours();

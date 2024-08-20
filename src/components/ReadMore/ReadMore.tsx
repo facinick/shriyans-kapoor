@@ -3,14 +3,15 @@ import { Link } from '../ui/Link';
 import styles from './ReadMore.module.css';
 interface Props {
   href: string;
+  children?: React.ReactNode
 }
 
-export const ReadMore = ({ href }: Props): JSX.Element => {
+export const ReadMore = ({ href, children }: Props): JSX.Element => {
   return (
     <>
       <Link className={styles['read-more-link']} href={href}>
         {' '}
-        <SlideOnHoverText>View the entire post</SlideOnHoverText>
+        <SlideOnHoverText>{children}</SlideOnHoverText>
       </Link>
     </>
   );
