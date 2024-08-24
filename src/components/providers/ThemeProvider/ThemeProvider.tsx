@@ -12,8 +12,8 @@ export const ThemeContext = createContext<{
 }>({
   colorScheme: 'light',
   theme: 'blue',
-  toggleColorScheme: () => {},
-  changeTheme: (to: Theme) => {},
+  toggleColorScheme: () => { },
+  changeTheme: (to: Theme) => { },
 });
 
 interface Props {
@@ -52,6 +52,7 @@ function ThemeProvider({ initialColorScheme, initialTheme, children }: Props) {
   useEffect(() => {
     Cookie.set('color-scheme', colorScheme, {
       expires: 1000,
+      sameSite: "Strict",
     });
     document.documentElement.setAttribute('data-color-scheme', colorScheme);
   }, [colorScheme]);
@@ -59,6 +60,7 @@ function ThemeProvider({ initialColorScheme, initialTheme, children }: Props) {
   useEffect(() => {
     Cookie.set('theme', theme, {
       expires: 1000,
+      sameSite: "Strict",
     });
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);

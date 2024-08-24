@@ -1,13 +1,15 @@
-interface DocumentEventMap {
-  msvisibilitychange: Event;
-  webkitvisibilitychange: Event;
-}
-interface Document {
-  msHidden: boolean;
-  webkitHidden: boolean;
-}
-
 declare global {
+  interface Document {
+    msHidden?: boolean;
+    webkitHidden?: boolean;
+    startViewTransition?(callback: () => void): ViewTransition;
+  }
+
+  interface DocumentEventMap {
+    msvisibilitychange: Event;
+    webkitvisibilitychange: Event;
+  }
+
   interface Window {
     disqus_config: () => void;
     DISQUS: any;
@@ -17,8 +19,8 @@ declare global {
     };
     callbacks: {
       onReady: [() => void];
-    };
+    }
   }
 }
 
-export {};
+export { };

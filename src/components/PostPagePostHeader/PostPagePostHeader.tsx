@@ -1,13 +1,11 @@
 "use client"
 
-import { Link } from '@/components/ui/Link';
 import { Heading } from '@/components/ui/Typography';
 import { headingFont } from '@/lib/helpers/font-helper';
+import { useRouter } from '@/lib/hooks/useRouter';
 import { ArrowLeft } from 'lucide-react';
-import styles from './PostPagePostHeader.module.css';
-import { useTransitionRouter } from 'next-view-transitions';
 import { Button } from '../ui/Button';
-import { useRouter } from 'next/navigation';
+import styles from './PostPagePostHeader.module.css';
 
 interface Props {
   children?: React.ReactNode;
@@ -19,7 +17,7 @@ export const PostPagePostHeader = ({
   backLinkOrNull,
 }: Props): JSX.Element => {
 
-  const router = useTransitionRouter()
+  const router = useRouter()
 
   const onBack = () => {
     router.back()

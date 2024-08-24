@@ -2,14 +2,14 @@
 
 import { CHARACTERS } from '@/lib/helpers/string-helper';
 import { usePagination } from '@/lib/hooks/usePagination';
+import { usePrevious } from '@/lib/hooks/usePrevious';
+import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useId, useState } from 'react';
 import VisuallyHidden from '../VisuallyHidden';
 import { Button } from '../ui/Button';
 import { Flex } from '../ui/Flex';
-import { AnimatePresence, LazyMotion, m, motion } from 'framer-motion';
-import { useId, useState } from 'react';
 import styles from './Pagination.module.css';
-import { usePrevious } from '@/lib/hooks/usePrevious';
 
 interface Props {
   count: number;

@@ -1,9 +1,8 @@
 'use client';
 
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import Pagination from '../Pagination';
-import { useTransitionRouter } from 'next-view-transitions';
-
+import { useRouter } from '@/lib/hooks/useRouter';
 interface Props {
   count: number;
   page: number;
@@ -11,8 +10,7 @@ interface Props {
 
 const HomePagePagination = ({ count, page }: Props): JSX.Element => {
   const searchParams = useSearchParams();
-  const router = useTransitionRouter()
-
+  const router = useRouter()
 
   const handlePageChange = (nextPage: number) => {
     const newParams = new URLSearchParams(searchParams.toString());
