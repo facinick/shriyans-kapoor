@@ -24,7 +24,7 @@ function SlideOnHoverText({ children, slideOnHoverCharacter = '» ' }: Props) {
             initial={{ x: -20, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: -20, opacity: 0 }}
-            transition={{ type: 'tween', duration: 0.3 }}
+            transition={{ type: 'tween', duration: 0.2 }}
             style={{ position: 'absolute', left: 0 }}
           >
             {slideOnHoverCharacter}
@@ -35,7 +35,7 @@ function SlideOnHoverText({ children, slideOnHoverCharacter = '» ' }: Props) {
         style={{
           position: 'relative',
           left: hovered && !isTouchDevice ? '1em' : '0',
-          transition: 'left 0.3s',
+          transition: 'left 0.2s',
         }}
       >
         {children}
