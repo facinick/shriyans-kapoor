@@ -18,7 +18,7 @@ const HomePagePagination = ({ count, page }: Props): JSX.Element => {
     newParams.delete('page');
     newParams.set('page', String(nextPage));
 
-    router.push(`?${newParams.toString()}`);
+    router?.push(`?${newParams.toString()}`);
   };
 
   return (
