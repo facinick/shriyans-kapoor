@@ -6,12 +6,13 @@ import styles from './PostPagePostFooter.module.css';
 import { formatDate } from '@/lib/helpers/utils';
 import { Flex } from '../ui/Flex';
 import VisuallyHidden from '../VisuallyHidden';
-import { Frontmatter } from '@/types/Post';
+import { Metadata } from '@/types/Post';
+import { z } from 'zod';
 
 interface Props {
   children?: React.ReactNode;
-  author: Frontmatter['author'];
-  publishedOn: Frontmatter['publishedOn'];
+  author: z.infer<typeof Metadata>['author'];
+  publishedOn: z.infer<typeof Metadata>['publishedOn'];
 }
 
 export const PostPagePostFooter = ({

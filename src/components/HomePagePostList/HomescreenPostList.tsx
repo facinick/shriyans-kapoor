@@ -1,12 +1,11 @@
-import { Frontmatter } from '@/types/Post';
+import { MetadataWithSlug } from '@/types/Post';
 import HomescreenPost from '../HomePagePost';
 import { Flex } from '../ui/Flex/Flex';
 import { Paragraph } from '../ui/Typography/Paragraph';
+import { z } from 'zod';
 
 interface Props {
-  posts: (Frontmatter & {
-    slug: string;
-  })[];
+  posts: z.infer<typeof MetadataWithSlug>[];
 }
 
 const HomePagePostList = ({ posts }: Props): JSX.Element => {

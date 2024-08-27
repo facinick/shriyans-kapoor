@@ -34,8 +34,6 @@ export const PercolatingGrid = (): JSX.Element => {
     percolation.getSiteState()
   );
 
-  const GRID_WIDTH = SETTINGS.NODE_WIDTH * nCols;
-  const GRID_HEIGHT = SETTINGS.NODE_HEIGHT * nRows;
   const [flooding, setFlooding] = useState<Array<boolean>>(() => {
     return percolation
       .getSiteState()

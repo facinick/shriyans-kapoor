@@ -7,12 +7,14 @@ import { MDXRemote } from 'next-mdx-remote/rsc';
 import { ComponentProps } from 'react';
 import PercolatingGrid from '@/components/lazy/PercolatingGrid';
 import { Ul } from '@/components/ui/Typography/Ul';
+import PathFindingGrid from '@/components/lazy/PathFindingGrid';
 
 const MDX_COMPONENTS_MAP: ComponentProps<typeof MDXRemote>['components'] = {
   pre: CodeSnippet,
   DivisionGroupsDemo,
   CircularColorsDemo,
   PercolatingGrid,
+  PathFindingGrid,
   p: ({ children, ...rest }: { children?: React.ReactNode }) => {
     return <Paragraph {...rest}>{children}</Paragraph>;
   },
