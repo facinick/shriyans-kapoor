@@ -9,9 +9,9 @@ import { Link } from '../ui/Link';
 import styles from './Header.module.css';
 import SlideOnHoverText from '../SlideOnHoverText';
 
-interface Props {}
+interface Props { }
 
-const Header = ({}: Props): JSX.Element => {
+const Header = ({ }: Props): JSX.Element => {
   return (
     <>
       <header className={styles.header}>

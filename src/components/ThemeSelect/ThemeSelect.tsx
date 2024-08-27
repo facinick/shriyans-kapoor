@@ -1,5 +1,4 @@
 'use client';
-import { APP_THEMES } from '@/lib/constants';
 import { Theme } from '@/types/Theme';
 import { Label } from '@radix-ui/react-label';
 import { useContext, useId } from 'react';
@@ -16,9 +15,9 @@ import {
 } from '../ui/Select/Select';
 import styles from './ThemeSelect.module.css';
 
-interface Props {}
+interface Props { }
 
-const ThemeSelect = ({}: Props): JSX.Element => {
+const ThemeSelect = ({ }: Props): JSX.Element => {
   const { theme, changeTheme } = useContext(ThemeContext);
 
   const handleChange = async (value: string): Promise<void> => {
@@ -43,7 +42,7 @@ const ThemeSelect = ({}: Props): JSX.Element => {
         <SelectContent>
           <SelectGroup>
             <SelectLabel>Themes</SelectLabel>
-            {APP_THEMES.map((value) => (
+            {Object.keys(Theme).map((value) => (
               <SelectItem key={`${id}${value}`} value={value}>
                 {value}
               </SelectItem>

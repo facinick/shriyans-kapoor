@@ -10,8 +10,8 @@ export const ThemeContext = createContext<{
   toggleColorScheme: () => void;
   changeTheme: (to: Theme) => void;
 }>({
-  colorScheme: 'light',
-  theme: 'blue',
+  colorScheme: ColorScheme.light,
+  theme: Theme.blue,
   toggleColorScheme: () => { },
   changeTheme: (to: Theme) => { },
 });
@@ -28,7 +28,7 @@ function ThemeProvider({ initialColorScheme, initialTheme, children }: Props) {
   const [theme, setTheme] = React.useState<Theme>(initialTheme);
 
   function toggleColorScheme() {
-    const nextColorScheme = colorScheme === 'light' ? 'dark' : 'light';
+    const nextColorScheme = colorScheme === ColorScheme.light ? ColorScheme.dark : ColorScheme.light;
     setColorScheme(nextColorScheme);
   }
 
@@ -39,7 +39,7 @@ function ThemeProvider({ initialColorScheme, initialTheme, children }: Props) {
   // change theme on OS theme change
   useEffect(() => {
     function handleOSThemeToggle(event: MediaQueryListEvent) {
-      setColorScheme(event.matches ? 'dark' : 'light');
+      setColorScheme(event.matches ? ColorScheme.dark : ColorScheme.light);
     }
 
     const themeQuery = window.matchMedia('(prefers-color-scheme: dark)');

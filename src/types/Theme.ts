@@ -1,2 +1,10 @@
-export type Theme = 'orange' | 'black' | 'blue';
-export type ColorScheme = 'light' | 'dark';
+export enum Theme {
+    'blue' = 'blue',
+    'orange' = 'orange',
+    'black' = 'black',
+}
+
+export enum ColorScheme {
+    'light' = 'light',
+    'dark' = 'dark'
+}

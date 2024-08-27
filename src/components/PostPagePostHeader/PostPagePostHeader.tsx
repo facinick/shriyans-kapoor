@@ -20,7 +20,7 @@ export const PostPagePostHeader = ({
   const router = useRouter()
 
   const onBack = () => {
-    router.back()
+    router?.back()
   }
 
   return (
