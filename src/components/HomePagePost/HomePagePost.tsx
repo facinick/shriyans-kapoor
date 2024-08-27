@@ -33,11 +33,12 @@ const HomePagePost = ({ post }: Props): JSX.Element => {
             </h2>
           </Heading>
         </Link>
+        <Tags tags={tags} />
         <Paragraph className={styles.abstract}>
           {`${abstract} `} <ReadMore href={slug}>view entire post</ReadMore>
         </Paragraph>
         {/* <Flex asChild> */}
-        <Tags tags={tags} />
+
         <Flex className={styles['author-time']}>
           <time dateTime={publishedOn}>
             <VisuallyHidden>Published On </VisuallyHidden>
