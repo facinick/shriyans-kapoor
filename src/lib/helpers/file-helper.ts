@@ -4,9 +4,14 @@ import path from 'path';
 export type FileError = {
   message: string;
 };
-/* 
-  read a directory and return all the filenames from that directory
-*/
+
+/**
+ * Reads a directory and returns an array of filenames.
+ *
+ * @param localPath - The relative path to the directory to be read.
+ * @returns A promise that resolves to an array of filenames as strings.
+ * @throws A FileError if the directory cannot be read.
+ */
 export async function readDirectory(localPath: string): Promise<string[]> {
   const directoryPath = path.join(process.cwd(), localPath);
   try {
@@ -20,9 +25,13 @@ export async function readDirectory(localPath: string): Promise<string[]> {
   }
 }
 
-/* 
-  read a file and return it's content as string
-*/
+/**
+ * Reads a file and returns its content as a string.
+ *
+ * @param localPath - The relative path to the file to be read.
+ * @returns A promise that resolves to the content of the file as a string.
+ * @throws A FileError if the file cannot be read.
+ */
 export async function readFile(localPath: string): Promise<string> {
   const filePath = path.join(process.cwd(), localPath);
   try {
@@ -36,9 +45,14 @@ export async function readFile(localPath: string): Promise<string> {
   }
 }
 
-/* 
-  read content to a file at localPath parameter
-*/
+/**
+ * Writes content to a file at the specified path.
+ *
+ * @param localPath - The relative path to the file where content will be written.
+ * @param content - The content to be written to the file.
+ * @returns A promise that resolves when the content has been successfully written.
+ * @throws A FileError if the file cannot be written.
+ */
 export async function writeFile(
   localPath: string,
   content: string
@@ -54,6 +68,12 @@ export async function writeFile(
   }
 }
 
+/**
+ * Extracts the error message from an unknown error type.
+ *
+ * @param error - The unknown error object.
+ * @returns The extracted error message as a string.
+ */
 export function getErrorMessage(error: unknown): string {
   if (error instanceof Error) {
     return error.message;
