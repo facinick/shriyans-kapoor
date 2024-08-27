@@ -1,5 +1,4 @@
 'use client';
-
 import { CHARACTERS } from '@/lib/helpers/string-helper';
 import { usePagination } from '@/lib/hooks/usePagination';
 import { usePrevious } from '@/lib/hooks/usePrevious';

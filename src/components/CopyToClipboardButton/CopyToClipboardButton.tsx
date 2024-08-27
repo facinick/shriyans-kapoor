@@ -1,14 +1,11 @@
 'use client';
-import { Code } from 'bright';
-import clsx from 'clsx';
-import { ComponentProps, useState } from 'react';
-import styles from './CopyToClipboardButton.module.css';
-import { Button } from '../ui/Button';
-import { Check, Copy } from 'lucide-react';
-import VisuallyHidden from '../VisuallyHidden';
 import { copyToClipboard } from '@/lib/helpers/utils';
-import useVibrate from '@/lib/hooks/useVibrate';
 import { useVibrateOnce } from '@/lib/hooks/useVibrateOnce';
+import { Check, Copy } from 'lucide-react';
+import { useState } from 'react';
+import { Button } from '../ui/Button';
+import VisuallyHidden from '../VisuallyHidden';
+import styles from './CopyToClipboardButton.module.css';
 
 type CopyToClipboardButtonProps = {
   copyText: string;

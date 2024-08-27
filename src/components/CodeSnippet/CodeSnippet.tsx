@@ -1,11 +1,10 @@
+import { monoFont } from '@/lib/helpers/font-helper';
 import { Code } from 'bright';
 import clsx from 'clsx';
-import { ComponentProps, isValidElement, ReactNode } from 'react';
-import styles from './CodeSnippet.module.css';
-import { Box } from '../ui/Box';
+import { ComponentProps, isValidElement } from 'react';
 import CopyToClipboardButton from '../CopyToClipboardButton/CopyToClipboardButton';
-import React from 'react';
-import { monoFont } from '@/lib/helpers/font-helper';
+import { Box } from '../ui/Box';
+import styles from './CodeSnippet.module.css';
 
 type CodeSnippetProps = ComponentProps<typeof Code>;
 

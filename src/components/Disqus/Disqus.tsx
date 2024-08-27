@@ -1,13 +1,12 @@
 'use client';
-import { Children, useContext, useEffect, useRef, useState } from 'react';
-import styles from './Disqus.module.css';
 import { DISQUS_SHORT_NAME } from '@/lib/constants';
+import { cn, minWithCap } from '@/lib/helpers/utils';
+import { motion } from 'framer-motion';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { ThemeContext } from '../providers/ThemeProvider';
-import ThemeConfig from '../../../tailwind.config';
-import { LazyMotion, m, motion } from 'framer-motion';
-import { cn, min, minWithCap } from '@/lib/helpers/utils';
-import { Heading } from '../ui/Typography';
 import { Skeleton } from '../ui/Skeleton';
+import { Heading } from '../ui/Typography';
+import styles from './Disqus.module.css';
 
 interface Props {
   url: string;

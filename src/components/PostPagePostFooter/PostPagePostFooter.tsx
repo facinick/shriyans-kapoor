@@ -1,13 +1,9 @@
-import { Link } from '@/components/ui/Link';
-import { Heading } from '@/components/ui/Typography';
-import { headingFont } from '@/lib/helpers/font-helper';
-import { ArrowLeft } from 'lucide-react';
-import styles from './PostPagePostFooter.module.css';
 import { formatDate } from '@/lib/helpers/utils';
-import { Flex } from '../ui/Flex';
-import VisuallyHidden from '../VisuallyHidden';
 import { Metadata } from '@/types/Post';
 import { z } from 'zod';
+import { Flex } from '../ui/Flex';
+import VisuallyHidden from '../VisuallyHidden';
+import styles from './PostPagePostFooter.module.css';
 
 interface Props {
   children?: React.ReactNode;
