@@ -1,17 +1,16 @@
 import { headingFont } from '@/lib/helpers/font-helper';
+import { CHARACTERS } from '@/lib/helpers/string-helper';
 import { formatDate } from '@/lib/helpers/utils';
 import { Frontmatter } from '@/types/Post';
+import clsx from 'clsx';
 import { ReadMore } from '../ReadMore/ReadMore';
+import SlideOnHoverText from '../SlideOnHoverText';
+import { Tags } from '../Tags';
 import VisuallyHidden from '../VisuallyHidden';
 import { Flex } from '../ui/Flex';
+import { Link } from '../ui/Link';
 import { Heading, Paragraph } from '../ui/Typography';
 import styles from './HomePagePost.module.css';
-import clsx from 'clsx';
-import { motion } from 'framer-motion';
-import { Link } from '../ui/Link';
-import SlideOnHoverText from '../SlideOnHoverText';
-import { CHARACTERS } from '@/lib/helpers/string-helper';
-
 interface Props {
   post: Frontmatter & {
     slug: string;
@@ -19,7 +18,7 @@ interface Props {
 }
 
 const HomePagePost = ({ post }: Props): JSX.Element => {
-  const { author, publishedOn, abstract, title, slug } = post;
+  const { author, publishedOn, abstract, title, slug, tags } = post;
 
   return (
     <Flex asChild direction={'column'} gap={2}>
@@ -39,6 +38,7 @@ const HomePagePost = ({ post }: Props): JSX.Element => {
           {`${abstract} `} <ReadMore href={slug}>view entire post</ReadMore>
         </Paragraph>
         {/* <Flex asChild> */}
+        <Tags tags={tags} />
         <Flex className={styles['author-time']}>
           <time dateTime={publishedOn}>
             <VisuallyHidden>Published On </VisuallyHidden>

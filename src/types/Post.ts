@@ -4,6 +4,7 @@ interface Frontmatter {
   publishedOn: string;
   author: string;
   category: string;
+  tags: string[];
 }
 
 type Post = {
