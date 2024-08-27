@@ -7,17 +7,17 @@ import { Box } from '../ui/Box/Box';
 import { Link } from '../ui/Link';
 import SlideOnHoverText from '../SlideOnHoverText';
 import Image from 'next/image';
+import { AspectRatio } from '../ui/aspect-ratio';
 
 interface Props { }
 
 const Footer = ({ }: Props): JSX.Element => {
   return (
-    <footer className={styles.footer}>
-      <Box className={styles['footer-content']}>
+    <Flex asChild gap={4} direction={'column'} className={styles['footer-content']}>
+      <footer className={styles.footer}>
         <Heading level={6} asChild className={styles['links-category']}>
           <span>contact</span>
         </Heading>
-
         <Flex asChild direction={'column'} className={styles['nav']}>
           <Nav>
             <Flex
@@ -63,11 +63,11 @@ const Footer = ({ }: Props): JSX.Element => {
             </Flex>
           </Nav>
         </Flex>
-      </Box>
-      <Box className={styles['footer-content']}>
-        <Image style={{ aspectRatio: '16/4' }} height={100} alt={'abstract image'} width={800} src="/footer_image.jpg"></Image>
-      </Box>
-    </footer>
+        <AspectRatio ratio={16 / 4}>
+          <Image fill={true} height={0} alt={'abstract footer image'} src="/footer_image.jpg"></Image>
+        </AspectRatio>
+      </footer>
+    </Flex>
   );
 };
 

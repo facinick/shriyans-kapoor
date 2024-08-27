@@ -18,6 +18,13 @@ const MDX_COMPONENTS_MAP: ComponentProps<typeof MDXRemote>['components'] = {
   p: ({ children, ...rest }: { children?: React.ReactNode }) => {
     return <Paragraph {...rest}>{children}</Paragraph>;
   },
+  h1: ({ children, ...rest }: { children?: React.ReactNode }) => {
+    return (
+      <Heading level={1} asChild {...rest}>
+        <h1>{children}</h1>
+      </Heading>
+    );
+  },
   h2: ({ children, ...rest }: { children?: React.ReactNode }) => {
     return (
       <Heading level={2} asChild {...rest}>
