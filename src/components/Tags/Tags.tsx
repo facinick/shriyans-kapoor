@@ -15,7 +15,7 @@ export const Tags = ({ tags }: Props): JSX.Element => {
             <Flex className={styles.tags} dir="column" gap={2}>
                 {tags.map((tag) => {
                     return (
-                        <Badge variant={'outline'}>{tag}</Badge>
+                        <Badge key={tag} variant={'outline'}>{tag}</Badge>
                     )
                 })}
             </Flex>
