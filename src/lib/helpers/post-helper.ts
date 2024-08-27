@@ -1,14 +1,9 @@
-import {
-  Frontmatter,
-  PaginationResponse,
-  Post,
-  PostOrderBy,
-} from '@/types/Post';
+import { Metadata, MetadataWithSlug, PaginationResponse, PostOrderBy } from '@/types/Post';
 import matter from 'gray-matter';
+import { z } from 'zod';
 import {
-  PAGINATION_READ_PATH,
-  POSTS_DIRECTORY,
   PAGINATION_DIRECTORY,
+  POSTS_DIRECTORY
 } from '../constants';
 import {
   FileError,
@@ -17,25 +12,25 @@ import {
   readFile,
 } from './file-helper';
 
-const cache = new Map<number, PaginationResponse>();
+type IPaginationResponse = z.infer<typeof PaginationResponse>
+type IMetadata = z.infer<typeof Metadata>
+
+const cache = new Map<number, IPaginationResponse>();
 
 const getDataFromCacheOrNull = async ({
   page,
 }: {
   page: number;
-}): Promise<PaginationResponse> => {
+}): Promise<IPaginationResponse> => {
   if (cache.has(page)) {
-    return cache.get(page) as PaginationResponse;
+    return cache.get(page)!
   }
 
   const paginationData = await readFile(
     `${PAGINATION_DIRECTORY}/pagination.json`
   );
 
-  const paginationJson = JSON.parse(paginationData) as Record<
-    number,
-    PaginationResponse
-  >;
+  const paginationJson = z.record(z.string(), PaginationResponse).parse(JSON.parse(paginationData))
 
   if (page in paginationJson) {
     cache.set(page, paginationJson[page]);
@@ -59,10 +54,7 @@ export async function getNumberOfPages() {
     `${PAGINATION_DIRECTORY}/pagination.json`
   );
 
-  const paginationJson = JSON.parse(paginationData) as Record<
-    number,
-    PaginationResponse
-  >;
+  const paginationJson = z.record(z.string(), PaginationResponse).parse(JSON.parse(paginationData))
 
   return Object.keys(paginationJson).length;
 }
@@ -77,18 +69,16 @@ export async function getBlogPostList({
 }) {
   try {
     const fileNames = await readDirectory(POSTS_DIRECTORY);
-    const blogPosts: Array<Frontmatter & { slug: string }> = [];
+    const blogPosts: Array<z.infer<typeof MetadataWithSlug>> = [];
 
     for (let fileName of fileNames) {
       const rawContent = await readFile(`${POSTS_DIRECTORY}/${fileName}`);
 
-      const { data: frontmatter } = matter(rawContent) as unknown as {
-        data: Frontmatter;
-      };
+      const { data: metadata } = matter(rawContent)
 
       blogPosts.push({
         slug: fileName.replace('.mdx', ''),
-        ...frontmatter,
+        ...Metadata.parse(metadata)
       });
     }
 
@@ -115,9 +105,7 @@ export async function getBlogPostList({
 export async function loadBlogPost({ slug }: { slug: string }) {
   try {
     const rawContent = await readFile(`${POSTS_DIRECTORY}/${slug}.mdx`);
-    const { data: frontmatter, content } = matter(
-      rawContent as unknown as Post
-    );
+    const { data: frontmatter, content } = matter(rawContent)
     return { frontmatter, content };
   } catch (error) {
     if (error instanceof Error) {

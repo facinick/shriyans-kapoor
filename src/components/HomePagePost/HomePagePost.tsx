@@ -1,7 +1,6 @@
 import { headingFont } from '@/lib/helpers/font-helper';
 import { CHARACTERS } from '@/lib/helpers/string-helper';
 import { formatDate } from '@/lib/helpers/utils';
-import { Frontmatter } from '@/types/Post';
 import clsx from 'clsx';
 import { ReadMore } from '../ReadMore/ReadMore';
 import SlideOnHoverText from '../SlideOnHoverText';
@@ -11,10 +10,10 @@ import { Flex } from '../ui/Flex';
 import { Link } from '../ui/Link';
 import { Heading, Paragraph } from '../ui/Typography';
 import styles from './HomePagePost.module.css';
+import { z } from 'zod';
+import { MetadataWithSlug } from '@/types/Post';
 interface Props {
-  post: Frontmatter & {
-    slug: string;
-  };
+  post: z.infer<typeof MetadataWithSlug>
 }
 
 const HomePagePost = ({ post }: Props): JSX.Element => {

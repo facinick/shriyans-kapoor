@@ -1,16 +1,28 @@
-interface Frontmatter {
-  title: string;
-  abstract: string;
-  publishedOn: string;
-  author: string;
-  category: string;
-  tags: string[];
-}
+import { z } from 'zod'
 
-type Post = {
-  data: Frontmatter;
-  content: string;
-};
+const Metadata = z.object({
+  title: z.string(),
+  abstract: z.string(),
+  publishedOn: z.string(),
+  author: z.string(),
+  category: z.string(),
+  tags: z.array(z.string())
+})
+
+const MetadataWithSlug = z.object({
+  title: z.string(),
+  abstract: z.string(),
+  publishedOn: z.string(),
+  author: z.string(),
+  category: z.string(),
+  tags: z.array(z.string()),
+  slug: z.string()
+})
+
+const Post = z.object({
+  metadata: Metadata,
+  content: z.string(),
+})
 
 type OrderKey = 'publishedOn';
 
@@ -20,15 +32,17 @@ type PostOrderBy = {
   [key in OrderKey]?: OrderDirection;
 };
 
-type PaginationResponse = {
-  data: Array<Frontmatter & { slug: string }>;
-  pagination: {
-    page: number;
-    end: boolean;
-    count: number;
-    totalPages: number;
-    totalCount: number;
-  };
-};
+const PaginationResponse = z.object({
+  data: z.array(MetadataWithSlug),
+  pagination: z.object({
+    page: z.number(),
+    end: z.boolean(),
+    count: z.number(),
+    totalPages: z.number(),
+    totalCount: z.number(),
+  })
+})
 
-export type { Frontmatter, PaginationResponse, Post, PostOrderBy };
+export { Metadata, PaginationResponse, Post, MetadataWithSlug };
+export type { PostOrderBy };
+

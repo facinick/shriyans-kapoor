@@ -2,13 +2,12 @@ import { PAGINATION_WRITE_PATH, POSTS_PER_PAGE } from '@/lib/constants';
 import { writeFile } from '@/lib/helpers/file-helper';
 import { getBlogPostList } from '@/lib/helpers/post-helper';
 import { PaginationResponse } from '@/types/Post';
-
+import { z } from 'zod'
 async function generatePagination() {
   const files = await getBlogPostList({ orderBy: { publishedOn: 'desc' } });
 
   const totalPages = Math.ceil(files.length / POSTS_PER_PAGE);
-
-  const paginationInfo: Record<number, PaginationResponse> = {};
+  const paginationInfo: Record<number, z.infer<typeof PaginationResponse>> = {};
   let currentPage = [];
 
   let paginationIndex = 1;
