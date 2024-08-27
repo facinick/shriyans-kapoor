@@ -6,6 +6,7 @@ import { Flex } from '../ui/Flex';
 import { Box } from '../ui/Box/Box';
 import { Link } from '../ui/Link';
 import SlideOnHoverText from '../SlideOnHoverText';
+import Image from 'next/image';
 
 interface Props { }
 
@@ -62,6 +63,9 @@ const Footer = ({ }: Props): JSX.Element => {
             </Flex>
           </Nav>
         </Flex>
+      </Box>
+      <Box className={styles['footer-content']}>
+        <Image style={{ aspectRatio: '16/4' }} height={100} alt={'abstract image'} width={800} src="/footer_image.jpg"></Image>
       </Box>
     </footer>
   );

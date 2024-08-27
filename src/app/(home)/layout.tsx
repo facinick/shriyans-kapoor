@@ -29,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const colorScheme: ColorScheme = getColorSchemeFromRequest() || ColorScheme.light
-  const theme: Theme = getThemeFromRequest() || Theme.blue
+  const theme: Theme = getThemeFromRequest() || Theme.black
 
   return (
     <ViewTransitions>
