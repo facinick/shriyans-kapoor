@@ -16,16 +16,6 @@ export default function CategorySelector({ categories, currentCategory, currentP
   const [selectedCategory, setSelectedCategory] = useState(currentCategory);
 
   useEffect(() => {
-    // Component mounted
-    console.log('CS Component mounted');
-
-    // Cleanup function to run when the component unmounts
-    return () => {
-      console.log('CS Component unmounted');
-    };
-  }, []);
-
-  useEffect(() => {
     // Update state if the URL category changes
     setSelectedCategory(currentCategory);
   }, [currentCategory]);
@@ -39,6 +29,7 @@ export default function CategorySelector({ categories, currentCategory, currentP
 
   return (
     <Select
+      name={'category-selector'}
       value={selectedCategory}
       onValueChange={handleCategoryChange} // Trigger URL update when a new category is selected
     >
