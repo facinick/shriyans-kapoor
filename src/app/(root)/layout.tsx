@@ -93,6 +93,7 @@ export default async function RootLayout({
                         style={{
                           display: 'flex',
                           justifyContent: 'space-between',
+                          gap: 10
                         }}
                       >
                         <CategorySelector
