@@ -1,5 +1,3 @@
-
-
 import { Badge } from "@/components/ui/badge";
 import { Flex } from "../ui/Flex";
 import styles from './Tags.module.css';
@@ -11,14 +9,8 @@ interface Props {
 export const Tags = ({ tags }: Props): JSX.Element => {
 
     return (
-        <>
-            <Flex wrap={'wrap'} className={styles.tags} dir="column" gap={2}>
-                {tags.map((tag) => {
-                    return (
-                        <Badge className="text-nowrap" key={tag} variant={'default'}>{tag}</Badge>
-                    )
-                })}
-            </Flex>
-        </>
+        <Flex wrap={'wrap'} className={styles.tags} dir="column" gap={2}>
+            {tags.map((tag) => <Badge className={styles.badge} key={tag} variant={'default'}>{tag}</Badge>)}
+        </Flex>
     );
 };

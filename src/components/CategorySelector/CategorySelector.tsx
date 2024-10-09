@@ -29,11 +29,11 @@ export default function CategorySelector({ categories, currentCategory, currentP
 
   return (
     <Select
-      name={'category-selector'}
+      name={'Category selector'}
       value={selectedCategory}
       onValueChange={handleCategoryChange} // Trigger URL update when a new category is selected
     >
-      <SelectTrigger className="w-[180px]">
+      <SelectTrigger title="Select Category" aria-label="Select Category" name={'Select Category'} className="w-[180px]">
         <SelectValue placeholder="Category" />
       </SelectTrigger>
       <SelectContent>

@@ -1,3 +1,7 @@
 .tags {
     /* flex-wrap: wrap; */
 }
+
+.badge {
+    text-wrap: nowrap;
+}

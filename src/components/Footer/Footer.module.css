@@ -22,3 +22,8 @@
 .links-category {
   color: hsl(var(--muted-foreground));
 }
+
+.image {
+  border-radius: var(--radius);
+  overflow: hidden;
+}

@@ -62,8 +62,12 @@ const Footer = ({ }: Props): JSX.Element => {
             </Flex>
           </Nav>
         </Flex>
-        <AspectRatio ratio={16 / 4}>
-          <Image fill={true} height={0} alt={'abstract footer image'} src="/footer_image.jpg"></Image>
+        <AspectRatio className={styles.image} ratio={16 / 4}>
+          <Image fill={true} height={0} alt={'abstract footer image'} src="/footer_image.jpg">
+          </Image>
+          {/* <span>
+            <Heading>FACINICK</Heading>
+          </span> */}
         </AspectRatio>
       </footer>
     </Flex>

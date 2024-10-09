@@ -13,8 +13,17 @@
   font-size: var(--digit-size);
 }
 
+@media (max-width: 480px) {
+  .wrapper {
+    --digit-size: 18px;
+    --separator-size: 6px;
+  }
+}
+
 .separator {
   width: var(--separator-size);
+  display: flex;
+  align-items: center;
   /* font-size: var(--digit-size); */
 }
 
