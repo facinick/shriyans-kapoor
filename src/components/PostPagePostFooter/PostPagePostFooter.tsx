@@ -1,5 +1,5 @@
 import { formatDate } from '@/lib/helpers/utils';
-import { Metadata } from '@/types/Post';
+import { PostMetadata } from '@/types/Post';
 import { z } from 'zod';
 import { Flex } from '../ui/Flex';
 import VisuallyHidden from '../VisuallyHidden';
@@ -7,8 +7,8 @@ import styles from './PostPagePostFooter.module.css';
 
 interface Props {
   children?: React.ReactNode;
-  author: z.infer<typeof Metadata>['author'];
-  publishedOn: z.infer<typeof Metadata>['publishedOn'];
+  author: z.infer<typeof PostMetadata>['author'];
+  publishedOn: z.infer<typeof PostMetadata>['publishedOn'];
 }
 
 export const PostPagePostFooter = ({

@@ -1,8 +1,8 @@
 // import { APP_DESCRIPTION, APP_TITLE } from "@/lib/constants";
-// import { getBlogPostList } from "@/lib/helpers/post-helper";
+// import { getBlogPostListForCategory } from "@/lib/helpers/post-helper";
 
 // async function generateRss() {
-//   const blogPosts = await getBlogPostList({ orderBy: { publishedOn: "desc" } });
+//   const blogPosts = await getBlogPostListForCategory({ orderBy: { publishedOn: "desc" } });
 
 //   const feed = new RSS({
 //     title: APP_TITLE,

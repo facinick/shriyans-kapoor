@@ -9,7 +9,7 @@ import {
   MotionProps,
   motion
 } from 'framer-motion';
-import { ComponentProps, useId } from 'react';
+import React, { ComponentProps, useEffect, useId, useRef } from 'react';
 import { Box } from '../ui/Box';
 import { Flex } from '../ui/Flex';
 import VisuallyHidden from '../VisuallyHidden';
@@ -18,6 +18,21 @@ import styles from './Clock.module.css';
 type ClockProps = ComponentProps<typeof Box>;
 
 const Clock = ({ className }: ClockProps): JSX.Element => {
+
+  const isMounted = useRef(false);
+
+  useEffect(() => {
+    // Component mounted
+    isMounted.current = true;
+    console.log('Clock Component mounted');
+
+    // Cleanup function to run when the component unmounts
+    return () => {
+      isMounted.current = false;
+      console.log('Clock Component unmounted');
+    };
+  }, []);
+
   const currentTime = useCurrentTime({
     unit: 's',
     every: 1,
@@ -162,4 +177,6 @@ const MOTION_VALUES: MotionProps = {
   },
 };
 
-export default Clock;
+const MemoizedClock = React.memo(Clock);
+
+export default MemoizedClock;

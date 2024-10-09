@@ -17,12 +17,12 @@ const ERROR_MESSAGE = '404, page not found.';
 
 async function NotFound() {
   return (
-    <Card className={styles.card}>
+    <Card>
       <CardHeader>
-        <CardTitle className={styles.title}>
+        <CardTitle>
           <TerminalAnimationText>{ERROR_MESSAGE}</TerminalAnimationText>
         </CardTitle>
-        <CardDescription style={{ textAlign: 'center' }}>
+        <CardDescription className={styles.description}>
           <Link href={'/'}>Go Home</Link>
         </CardDescription>
       </CardHeader>

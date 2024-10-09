@@ -1,18 +1,18 @@
-import { MetadataWithSlug } from '@/types/Post';
+import { Post } from '@/types/Post';
+import { z } from 'zod';
 import HomescreenPost from '../HomePagePost';
 import { Flex } from '../ui/Flex/Flex';
 import { Paragraph } from '../ui/Typography/Paragraph';
-import { z } from 'zod';
 
 interface Props {
-  posts: z.infer<typeof MetadataWithSlug>[];
+  posts: z.infer<typeof Post>[];
 }
 
 const HomePagePostList = ({ posts }: Props): JSX.Element => {
   if (posts.length === 0) {
     return (
       <>
-        <Paragraph>No posts on this page</Paragraph>
+        <Paragraph>No posts, much empty!</Paragraph>
       </>
     );
   }

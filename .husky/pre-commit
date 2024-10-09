@@ -1,1 +1,0 @@
-pnpm run clear-pagination && pnpm run generate-pagination && git add ./pagination/pagination.json

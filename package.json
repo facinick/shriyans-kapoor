@@ -7,8 +7,6 @@
   },
   "scripts": {
     "dev": "next dev",
-    "generate-pagination": "tsx ./scripts/generate-pagination.ts",
-    "clear-pagination": "rimraf './pagination/pagination.json'",
     "build": "next build",
     "start": "next start",
     "prepare": "husky",
@@ -39,6 +37,7 @@
     "gray-matter": "^4.0.3",
     "husky": "^9.0.11",
     "js-cookie": "^3.0.5",
+    "lenis": "^1.1.13",
     "lucide-react": "^0.284.0",
     "next": "14.2.3",
     "next-auth": "^4.23.2",

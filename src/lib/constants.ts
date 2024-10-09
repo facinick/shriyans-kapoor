@@ -2,10 +2,9 @@ export const APP_TITLE = 'facinick';
 export const APP_TIMEZONE = 'Asia/Calcutta';
 export const APP_DESCRIPTION = 'Record of stuff.';
 export const POSTS_DIRECTORY = '/posts';
-export const PAGINATION_DIRECTORY = '/pagination';
-export const PAGINATION_READ_PATH = `/pagination/pagination.json`;
-export const PAGINATION_WRITE_PATH = `/pagination/pagination.json`;
-export const POSTS_PER_PAGE = 4;
+export const CATEGORY_ALL = 'all';
+export const DEFAULT_PAGE = 1;
+export const POSTS_PER_PAGE = 3;
 // Dev
 export const HOSTNAME = 'localhost';
 export const PORT = '3000';

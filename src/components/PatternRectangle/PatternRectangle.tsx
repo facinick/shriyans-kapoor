@@ -1,5 +1,5 @@
-// src/components/Pattern/Pattern.tsx
 import React from 'react';
+
 export enum PatternType {
     DIAMOND = 'diamond',
     CIRCLE = 'circle',
@@ -66,7 +66,7 @@ const defaultColors = ['#025952', '#FAE3BA', '#F1523E', '#F27B35', '#FCA521'];
 
 const sample = (arr: string[]) => arr[Math.floor(Math.random() * arr.length)];
 
-export const HeaderBackground: React.FC<PatternProps> = ({ width, height, colors = defaultColors, shape = PatternType.CIRCLE }) => {
+export const PatternRectangle: React.FC<PatternProps> = ({ width, height, colors = defaultColors, shape = PatternType.CIRCLE }) => {
     const renderShape = (x: number, y: number) => {
         const fill = sample(colors);
 
@@ -92,3 +92,5 @@ export const HeaderBackground: React.FC<PatternProps> = ({ width, height, colors
         </svg>
     );
 };
+
+export default PatternRectangle

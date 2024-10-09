@@ -1,0 +1,16 @@
+.main {
+  max-width: var(--main-max-width);
+  min-height: var(--main-min-height);
+  margin: auto;
+}
+
+.heading {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main-content {
+  padding: 30px var(--padding-edges);
+}
