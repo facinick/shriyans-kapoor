@@ -4,7 +4,7 @@ export const APP_DESCRIPTION = 'Record of stuff.';
 export const POSTS_DIRECTORY = '/posts';
 export const CATEGORY_ALL = 'all';
 export const DEFAULT_PAGE = 1;
-export const POSTS_PER_PAGE = 3;
+export const POSTS_PER_PAGE = 8;
 // Dev
 export const HOSTNAME = 'localhost';
 export const PORT = '3000';
