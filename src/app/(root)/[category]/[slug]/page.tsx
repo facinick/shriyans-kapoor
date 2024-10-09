@@ -11,6 +11,8 @@ import { notFound } from 'next/navigation';
 import React from 'react';
 import styles from './page.module.css';
 
+// trigger redploy
+
 export async function generateStaticParams() {
   try {
     const allPosts = await getAllPosts()
