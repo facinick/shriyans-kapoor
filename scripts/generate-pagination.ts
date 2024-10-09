@@ -1,3 +1,5 @@
+// Kept for Reference
+
 // import { POSTS_DIRECTORY, POSTS_PER_PAGE } from '@/lib/constants';
 // import { writeFile } from '@/lib/helpers/file-helper';
 // import { getBlogPostListForCategory } from '@/lib/helpers/post-helper';

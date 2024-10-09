@@ -12,10 +12,10 @@ export const Tags = ({ tags }: Props): JSX.Element => {
 
     return (
         <>
-            <Flex className={styles.tags} dir="column" gap={2}>
+            <Flex wrap={'wrap'} className={styles.tags} dir="column" gap={2}>
                 {tags.map((tag) => {
                     return (
-                        <Badge key={tag} variant={'default'}>{tag}</Badge>
+                        <Badge className="text-nowrap" key={tag} variant={'default'}>{tag}</Badge>
                     )
                 })}
             </Flex>
