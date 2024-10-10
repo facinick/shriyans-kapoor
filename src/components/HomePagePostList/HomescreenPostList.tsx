@@ -22,10 +22,10 @@ const HomePagePostList = ({ posts }: Props): JSX.Element => {
     <>
       <Flex gap={12} direction={'column'} asChild>
         <ul>
-          {posts.map((post, index) => {
+          {posts.map((post) => {
             return (
               <li key={`${post.category}/${post.slug}`}>
-                <FadeUp delay={0.25} duration={1}>
+                <FadeUp>
                   <HomescreenPost post={post} />
                 </FadeUp>
               </li>
