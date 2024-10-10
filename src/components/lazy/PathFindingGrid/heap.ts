@@ -152,7 +152,7 @@ class Heap<T extends HeapNode<T>> implements Iterable<T> {
      */
     public updateItem(element: T): void {
         if (element.heapIndex < 0 || element.heapIndex >= this.size()) {
-            console.log(element)
+            // console.log(element)
             throw new Error("Invalid heapIndex");
         }
         this._heap[element.heapIndex] = element;
@@ -272,6 +272,6 @@ class Heap<T extends HeapNode<T>> implements Iterable<T> {
 export {
     Heap,
     HeapNode
-}
+};
 
 export type { Comparable };

@@ -21,12 +21,15 @@ const HomePagePost = ({ post }: Props): JSX.Element => {
   const { author, publishedOn, abstract, title, tags } = post.metadata;
   const { category, slug } = post
 
-  const href = `${category}/${slug}`
+  const postLink = `${category}/${slug}`
 
   return (
     <Flex asChild direction={'column'} gap={2}>
       <article>
-        <Link className={clsx(styles.link, styles.head)} href={href}>
+        <Link
+          className={clsx(styles.link, styles.head)}
+          href={postLink}
+        >
           <Heading
             level={3}
             asChild
@@ -39,7 +42,7 @@ const HomePagePost = ({ post }: Props): JSX.Element => {
         </Link>
         <Tags tags={tags} />
         <Paragraph className={styles.abstract}>
-          {`${abstract} `} <ReadMore href={slug}>view entire post</ReadMore>
+          {`${abstract} `} <ReadMore href={postLink}>view entire post</ReadMore>
         </Paragraph>
         {/* <Flex asChild> */}
 

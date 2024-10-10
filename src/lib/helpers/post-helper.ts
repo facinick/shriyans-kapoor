@@ -200,8 +200,6 @@ export async function getCategories(): Promise<CategoryCacheValue> {
 }
 export async function getAllPosts(): Promise<PostsCacheValue> {
 
-  console.log(`DEBUG: getAllPosts`)
-
   const categories = (await getCategories()).data
 
   const allPosts: Array<z.infer<typeof Post>> = [];

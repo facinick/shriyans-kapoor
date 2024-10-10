@@ -2,20 +2,18 @@ import HomePagePagination from '@/components/HomePagePagination';
 import HomePagePostList from '@/components/HomePagePostList';
 import { CATEGORY_ALL, DEFAULT_PAGE } from '@/lib/constants';
 import { getCategories, getPosts } from '@/lib/helpers/post-helper';
-import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
-  try {
-    const allCategories = await getCategories()
-    // Flatten the array of categories and return parameters
-    const params = allCategories!.data.flat().map(category => ({
-      category,
-    }));
+  // console.log(`DEBUG: Generating Static Params...`)
+  const allCategories = await getCategories()
 
-    return [...params, { category: CATEGORY_ALL }];
-  } catch (error) {
-    return []
-  }
+  const params = [...allCategories.data, CATEGORY_ALL].map(category => ({
+    category,
+  }))
+
+  // console.log(`DEBUG: Generated:`, params)
+
+  return params
 }
 
 interface PageProps {
@@ -40,22 +38,9 @@ async function CategoryPage({ params, searchParams }: PageProps) {
   const category = String(params?.category || CATEGORY_ALL);
   const page = Number(searchParams?.page || DEFAULT_PAGE);
 
-  let posts: Awaited<ReturnType<typeof getPosts>>;
-
-  try {
-    posts = await getPosts({ page, category });
-    if (!posts) {
-      // return serverError()
-      return notFound();
-    }
-
-    // if(posts.data.length === 0) {
-    // return // no posts
-    // }
-  } catch (error) {
-    // return serverError()
-    return notFound();
-  }
+  // console.time(`DEBUG: getPosts ${category} ${page}`)
+  const posts = await getPosts(category, page);
+  // console.timeEnd(`DEBUG: getPosts ${category} ${page}`)
 
   return (
     <>

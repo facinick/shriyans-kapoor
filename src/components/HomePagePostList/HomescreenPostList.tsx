@@ -23,7 +23,7 @@ const HomePagePostList = ({ posts }: Props): JSX.Element => {
         <ul>
           {posts.map((post) => {
             return (
-              <li key={post.slug}>
+              <li key={`${post.category}/${post.slug}`}>
                 <HomescreenPost post={post} />
               </li>
             );
