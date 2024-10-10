@@ -1,5 +1,6 @@
 import { Post } from '@/types/Post';
 import { z } from 'zod';
+import { FadeUp } from '../FadeUp';
 import HomescreenPost from '../HomePagePost';
 import { Flex } from '../ui/Flex/Flex';
 import { Paragraph } from '../ui/Typography/Paragraph';
@@ -21,10 +22,12 @@ const HomePagePostList = ({ posts }: Props): JSX.Element => {
     <>
       <Flex gap={12} direction={'column'} asChild>
         <ul>
-          {posts.map((post) => {
+          {posts.map((post, index) => {
             return (
               <li key={`${post.category}/${post.slug}`}>
-                <HomescreenPost post={post} />
+                <FadeUp delay={0.25} duration={1}>
+                  <HomescreenPost post={post} />
+                </FadeUp>
               </li>
             );
           })}
