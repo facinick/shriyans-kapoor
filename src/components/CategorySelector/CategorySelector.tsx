@@ -2,8 +2,9 @@
 
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/Select/Select';
 import { CATEGORY_ALL } from '@/lib/constants';
-import { useRouter } from 'next/navigation';
+import { useRouter } from '@/lib/hooks/useRouter';
 import { useEffect, useState } from 'react';
+import { DEFAULT_LINK_SETTINGS } from '../ui/Link/Link';
 
 interface CategorySelectorProps {
   categories: Array<string>;
@@ -24,7 +25,7 @@ export default function CategorySelector({ categories, currentCategory, currentP
     setSelectedCategory(newCategory);
 
     // Update the URL with the new category without losing the page query param
-    router.push(`/${newCategory}?page=${currentPage || '1'}`)
+    router?.push(`/${newCategory}?page=${currentPage || '1'}`, DEFAULT_LINK_SETTINGS)
   };
 
   return (

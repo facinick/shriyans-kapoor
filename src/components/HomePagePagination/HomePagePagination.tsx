@@ -1,8 +1,9 @@
 'use client';
 
+import { useRouter } from '@/lib/hooks/useRouter';
 import { useSearchParams } from 'next/navigation';
 import Pagination from '../Pagination';
-import { useRouter } from '@/lib/hooks/useRouter';
+import { DEFAULT_LINK_SETTINGS } from '../ui/Link/Link';
 interface Props {
   count: number;
   page: number;
@@ -18,7 +19,7 @@ const HomePagePagination = ({ count, page }: Props): JSX.Element => {
     newParams.delete('page');
     newParams.set('page', String(nextPage));
 
-    router?.push(`?${newParams.toString()}`);
+    router?.push(`?${newParams.toString()}`, DEFAULT_LINK_SETTINGS);
   };
 
   return (
