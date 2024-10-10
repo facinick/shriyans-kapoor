@@ -40,7 +40,7 @@ const HomePagePost = ({ post }: Props): JSX.Element => {
             </h2>
           </Heading>
         </Link>
-        <Tags tags={tags} />
+        {tags.length > 0 && <Tags tags={tags} />}
         <Paragraph className={styles.abstract}>
           {`${abstract} `} <ReadMore href={postLink}>view entire post</ReadMore>
         </Paragraph>
