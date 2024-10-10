@@ -62,6 +62,8 @@ function Layout({
     <html lang="en" data-color-scheme={colorScheme} data-theme={theme}>
       <head>
         {/* <meta name="theme-color" content={"hsl(var(--background))"} /> */}
+        <meta name="robots" content="all" />
+        <meta name="googlebot" content="all" />
       </head>
       <body className={mainFont.className}>
         <ThemeProvider initialColorScheme={colorScheme} initialTheme={theme}>
