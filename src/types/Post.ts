@@ -6,7 +6,6 @@ const PostMetadata =
     abstract: z.string(),
     publishedOn: z.string(),
     author: z.string(),
-    category: z.string(),
     tags: z.array(z.string())
   })
 
