@@ -58,3 +58,5 @@ The blog is built using the following technologies:
     7. Spotify / YouTube Music / Apple Music / SoundCloud link / Thoughts or Quotes
 - [ ] Lottie Animations
 - [ ] X-Robots Tag Issue for SEO
+- [ ] Automatic rss, lighthouse score, prettier, lint.
+- [ ] Tests, Security audits.
