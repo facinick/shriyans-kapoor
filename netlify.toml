@@ -1,6 +1,2 @@
 [functions]
   included_files = ["posts/**"]
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Robots-Tag = all
