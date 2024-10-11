@@ -1,5 +1,7 @@
 # Shriyans Kapoor's Personal Blog
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/55205328-9705-4a25-a7bf-ed133859b9a0/deploy-status)](https://app.netlify.com/sites/shriyans-kapoor/deploys)
+
 This repository contains the source code for Shriyans Kapoor's personal blog.
 
 - Repository: [facinick/shriyans-kapoor](https://github.com/facinick/shriyans-kapoor.git)
