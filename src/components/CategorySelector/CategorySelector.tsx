@@ -1,10 +1,11 @@
 'use client';
-
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/Select/Select';
 import { CATEGORY_ALL } from '@/lib/constants';
 import { useRouter } from '@/lib/hooks/useRouter';
 import { Label } from '@radix-ui/react-label';
+import { FolderOpen } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { Flex } from '../ui/Flex';
 import { DEFAULT_LINK_SETTINGS } from '../ui/Link/Link';
 import VisuallyHidden from '../VisuallyHidden';
 
@@ -47,14 +48,20 @@ export default function CategorySelector({ categories, currentCategory, currentP
           name={'Select Category'}
           className="w-[150px]"
         >
-          <SelectValue placeholder="Category">{selectedCategory}</SelectValue>
+          <SelectValue placeholder="Category">
+            <Flex align={'center'} gap={2}>
+              <FolderOpen size={16} />
+              {selectedCategory}
+            </Flex>
+          </SelectValue>
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
-            <SelectLabel>Categories</SelectLabel>
+            <SelectLabel>Folders</SelectLabel>
             <SelectItem key={CATEGORY_ALL} value={CATEGORY_ALL}>
               {CATEGORY_ALL}
             </SelectItem>
+
             {categories.map((category) => (
               <SelectItem key={category} value={category}>
                 {category}
@@ -62,7 +69,7 @@ export default function CategorySelector({ categories, currentCategory, currentP
             ))}
           </SelectGroup>
         </SelectContent>
-      </Select>
+      </Select >
     </>
   );
 }
