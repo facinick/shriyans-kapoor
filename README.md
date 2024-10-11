@@ -1,8 +1,6 @@
-# Shriyans Kapoor's Personal Blog
+# Personal Blog
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/55205328-9705-4a25-a7bf-ed133859b9a0/deploy-status)](https://app.netlify.com/sites/shriyans-kapoor/deploys)
-
-This repository contains the source code for Shriyans Kapoor's personal blog.
+This repository contains the source code for my personal blog.
 
 - Repository: [facinick/shriyans-kapoor](https://github.com/facinick/shriyans-kapoor.git)
 - Website: [https://shriyans-kapoor.netlify.app/](https://shriyans-kapoor.netlify.app/)
@@ -15,6 +13,15 @@ The blog is built using the following technologies:
 - **MDX**: Used for rendering .mdx posts, enabling markdown support.
 - **Radix UI**: Provides components for a consistent and accessible UI.
 - **Framer Motion**: Adds smooth animations to enhance the user experience.
+
+## Lighthouse
+[![Lighthouse Accessibility Badge](./lighthouse_badges/lighthouse_accessibility.svg)](https://github.com/emazzotta/lighthouse-badges)
+[![Lighthouse Best Practices Badge](./lighthouse_badges/lighthouse_best-practices.svg)](https://github.com/emazzotta/lighthouse-badges)
+[![Lighthouse Performance Badge](./lighthouse_badges/lighthouse_performance.svg)](https://github.com/emazzotta/lighthouse-badges)
+[![Lighthouse SEO Badge](./lighthouse_badges/lighthouse_seo.svg)](https://github.com/emazzotta/lighthouse-badges)
+
+## Deployment
+[![Netlify Status](https://api.netlify.com/api/v1/badges/55205328-9705-4a25-a7bf-ed133859b9a0/deploy-status)](https://app.netlify.com/sites/shriyans-kapoor/deploys)
 
 ## Features
 

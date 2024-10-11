@@ -14,7 +14,8 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write \"./**/*.{ts,tsx,json,css,mdx}\"",
     "check-outdated-packages": "pnpm outdated",
-    "update-all-packages": "pnpm up -L"
+    "update-all-packages": "pnpm up -L",
+    "generate-lighthouse": "npx lighthouse-badges --url https://www.facinick.xyz/ -o lighthouse_badges"
   },
   "dependencies": {
     "@radix-ui/react-aspect-ratio": "^1.1.0",
