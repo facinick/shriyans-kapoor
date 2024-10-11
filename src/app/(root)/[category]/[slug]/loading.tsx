@@ -1,7 +1,9 @@
+import { Paragraph } from "@/components/ui/Typography";
+
 export default async function Loading() {
   return (
     <div>
-      Loading Post...
+      <Paragraph>Loading Post...</Paragraph>
     </div>
   )
 }

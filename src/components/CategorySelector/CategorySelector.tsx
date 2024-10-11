@@ -3,8 +3,10 @@
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/Select/Select';
 import { CATEGORY_ALL } from '@/lib/constants';
 import { useRouter } from '@/lib/hooks/useRouter';
+import { Label } from '@radix-ui/react-label';
 import { useEffect, useState } from 'react';
 import { DEFAULT_LINK_SETTINGS } from '../ui/Link/Link';
+import VisuallyHidden from '../VisuallyHidden';
 
 interface CategorySelectorProps {
   categories: Array<string>;
@@ -29,27 +31,38 @@ export default function CategorySelector({ categories, currentCategory, currentP
   };
 
   return (
-    <Select
-      name={'Category selector'}
-      value={selectedCategory}
-      onValueChange={handleCategoryChange} // Trigger URL update when a new category is selected
-    >
-      <SelectTrigger title="Select Category" aria-label="Select Category" name={'Select Category'} className="w-[180px]">
-        <SelectValue placeholder="Category" />
-      </SelectTrigger>
-      <SelectContent>
-        <SelectGroup>
-          <SelectLabel>Categories</SelectLabel>
-          <SelectItem key={CATEGORY_ALL} value={CATEGORY_ALL}>
-            {CATEGORY_ALL}
-          </SelectItem>
-          {categories.map((category) => (
-            <SelectItem key={category} value={category}>
-              {category}
+    <>
+      <VisuallyHidden>
+        <Label htmlFor="category-select">Select Category</Label>
+      </VisuallyHidden>
+      <Select
+        name={'Category selector'}
+        value={selectedCategory}
+        onValueChange={handleCategoryChange}
+      >
+        <SelectTrigger
+          id='category-select'
+          title="Select Category"
+          aria-label="Select Category"
+          name={'Select Category'}
+          className="w-[150px]"
+        >
+          <SelectValue placeholder="Category">{selectedCategory}</SelectValue>
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectLabel>Categories</SelectLabel>
+            <SelectItem key={CATEGORY_ALL} value={CATEGORY_ALL}>
+              {CATEGORY_ALL}
             </SelectItem>
-          ))}
-        </SelectGroup>
-      </SelectContent>
-    </Select>
+            {categories.map((category) => (
+              <SelectItem key={category} value={category}>
+                {category}
+              </SelectItem>
+            ))}
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+    </>
   );
 }
