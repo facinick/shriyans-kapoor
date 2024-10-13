@@ -7,10 +7,11 @@ import ThemeSelect from '../ThemeSelect'
 import { Box } from '../ui/Box'
 import { Flex } from '../ui/Flex'
 import { Link } from '../ui/Link'
+import styles from './Header.module.css'
 
-interface Props {}
+interface Props { }
 
-const Header = ({}: Props): JSX.Element => {
+const Header = ({ }: Props): JSX.Element => {
   return (
     <>
       <header className={styles.header}>
