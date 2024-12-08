@@ -10,7 +10,7 @@ type CodeSnippetProps = ComponentProps<typeof Code>;
 
 const CodeSnippet = ({ children, className, ...props }: CodeSnippetProps) => {
   return (
-    <Box style={{ position: 'relative' }}>
+    <Box style={{ position: "relative" }}>
       <Code
         {...props}
         lineNumbers
