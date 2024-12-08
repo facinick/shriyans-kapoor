@@ -19,8 +19,8 @@ declare global {
     };
     callbacks: {
       onReady: [() => void];
-    }
+    };
   }
 }
 
-export { };
+export {};

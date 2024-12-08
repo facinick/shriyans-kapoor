@@ -11,15 +11,19 @@ export const DEFAULT_LINK_SETTINGS = {
   scroll: true,
   prefetch: true,
   replace: false,
-}
+};
 
 const Link = forwardRef<ElementRef<typeof Button>, LinkProps>(
   ({ href, target, children, ...props }, ref) => (
     <Button variant={'link'} ref={ref} {...props} asChild>
       {USE_VIEW_TRANSITIONS ? (
-        <ViewTransitionLink {...DEFAULT_LINK_SETTINGS} href={href}>{children}</ViewTransitionLink>
+        <ViewTransitionLink {...DEFAULT_LINK_SETTINGS} href={href}>
+          {children}
+        </ViewTransitionLink>
       ) : (
-        <NextLink {...DEFAULT_LINK_SETTINGS} href={href}>{children}</NextLink>
+        <NextLink {...DEFAULT_LINK_SETTINGS} href={href}>
+          {children}
+        </NextLink>
       )}
     </Button>
   )

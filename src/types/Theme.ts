@@ -1,10 +1,10 @@
 export enum Theme {
-    'blue' = 'blue',
-    'orange' = 'orange',
-    'black' = 'black',
+  blue = 'blue',
+  orange = 'orange',
+  black = 'black',
 }
 
 export enum ColorScheme {
-    'light' = 'light',
-    'dark' = 'dark'
+  light = 'light',
+  dark = 'dark',
 }

@@ -4,11 +4,7 @@ import { extractTimeDigitsFromDate } from '@/lib/helpers/utils';
 import { useCurrentTime } from '@/lib/hooks/useCurrentTime';
 import usePageVisibility from '@/lib/hooks/usePageVisibility';
 import clsx from 'clsx';
-import {
-  AnimatePresence,
-  MotionProps,
-  motion
-} from 'framer-motion';
+import { AnimatePresence, MotionProps, motion } from 'framer-motion';
 import React, { ComponentProps, useId } from 'react';
 import { Box } from '../ui/Box';
 import { Flex } from '../ui/Flex';
@@ -18,7 +14,6 @@ import styles from './Clock.module.css';
 type ClockProps = ComponentProps<typeof Box>;
 
 const Clock = ({ className }: ClockProps): JSX.Element => {
-
   const currentTime = useCurrentTime({
     unit: 's',
     every: 1,

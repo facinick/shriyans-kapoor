@@ -12,8 +12,8 @@ export const ThemeContext = createContext<{
 }>({
   colorScheme: ColorScheme.light,
   theme: Theme.blue,
-  toggleColorScheme: () => { },
-  changeTheme: (to: Theme) => { },
+  toggleColorScheme: () => {},
+  changeTheme: (to: Theme) => {},
 });
 
 interface Props {
@@ -28,7 +28,8 @@ function ThemeProvider({ initialColorScheme, initialTheme, children }: Props) {
   const [theme, setTheme] = React.useState<Theme>(initialTheme);
 
   function toggleColorScheme() {
-    const nextColorScheme = colorScheme === ColorScheme.light ? ColorScheme.dark : ColorScheme.light;
+    const nextColorScheme =
+      colorScheme === ColorScheme.light ? ColorScheme.dark : ColorScheme.light;
     setColorScheme(nextColorScheme);
   }
 
@@ -52,7 +53,7 @@ function ThemeProvider({ initialColorScheme, initialTheme, children }: Props) {
   useEffect(() => {
     Cookie.set('color-scheme', colorScheme, {
       expires: 1000,
-      sameSite: "Strict",
+      sameSite: 'Strict',
     });
     document.documentElement.setAttribute('data-color-scheme', colorScheme);
   }, [colorScheme]);
@@ -60,7 +61,7 @@ function ThemeProvider({ initialColorScheme, initialTheme, children }: Props) {
   useEffect(() => {
     Cookie.set('theme', theme, {
       expires: 1000,
-      sameSite: "Strict",
+      sameSite: 'Strict',
     });
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
@@ -73,7 +74,6 @@ function ThemeProvider({ initialColorScheme, initialTheme, children }: Props) {
       colorScheme,
       toggleColorScheme,
       changeTheme,
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     }),
     [theme, colorScheme]
   );

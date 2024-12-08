@@ -48,7 +48,7 @@ const MDX_COMPONENTS_MAP: ComponentProps<typeof MDXRemote>['components'] = {
   },
   ul: ({ children, ...rest }: { children?: React.ReactNode }) => {
     return <Ul {...rest}>{children}</Ul>;
-  }
+  },
 };
 
 export default MDX_COMPONENTS_MAP;

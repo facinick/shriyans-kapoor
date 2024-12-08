@@ -3,8 +3,7 @@ import { Slot } from '@radix-ui/react-slot';
 import { VariantProps, cva } from 'class-variance-authority';
 import React from 'react';
 
-export interface UlProps
-  extends React.HTMLAttributes<HTMLUListElement> {
+export interface UlProps extends React.HTMLAttributes<HTMLUListElement> {
   asChild?: boolean;
 }
 

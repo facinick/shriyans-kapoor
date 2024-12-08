@@ -8,11 +8,16 @@ import { Nav } from '../ui/Nav/Nav';
 import { Heading } from '../ui/Typography/Heading';
 import styles from './Footer.module.css';
 
-interface Props { }
+interface Props {}
 
-const Footer = ({ }: Props): JSX.Element => {
+const Footer = ({}: Props): JSX.Element => {
   return (
-    <Flex asChild gap={4} direction={'column'} className={styles['footer-content']}>
+    <Flex
+      asChild
+      gap={4}
+      direction={'column'}
+      className={styles['footer-content']}
+    >
       <footer className={styles.footer}>
         <Heading level={6} asChild className={styles['links-category']}>
           <span>contact</span>
@@ -34,7 +39,7 @@ const Footer = ({ }: Props): JSX.Element => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <SlideOnHoverText slideOnHoverCharacter=':) '>
+                    <SlideOnHoverText slideOnHoverCharacter=":) ">
                       message on telegram
                     </SlideOnHoverText>
                   </Link>
@@ -46,14 +51,14 @@ const Footer = ({ }: Props): JSX.Element => {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <SlideOnHoverText slideOnHoverCharacter='# '>
+                    <SlideOnHoverText slideOnHoverCharacter="# ">
                       view github
                     </SlideOnHoverText>
                   </Link>
                 </li>
                 <li>
                   <Link className={styles['footer-link']} href={SOCIALS.gmail}>
-                    <SlideOnHoverText slideOnHoverCharacter='@ '>
+                    <SlideOnHoverText slideOnHoverCharacter="@ ">
                       mail on gmail
                     </SlideOnHoverText>
                   </Link>
@@ -63,8 +68,12 @@ const Footer = ({ }: Props): JSX.Element => {
           </Nav>
         </Flex>
         <AspectRatio className={styles.image} ratio={16 / 4}>
-          <Image fill={true} height={0} alt={'abstract footer image'} src="/footer_image.jpg">
-          </Image>
+          <Image
+            fill={true}
+            height={0}
+            alt={'abstract footer image'}
+            src="/footer_image.jpg"
+          ></Image>
           {/* <span>
             <Heading>FACINICK</Heading>
           </span> */}

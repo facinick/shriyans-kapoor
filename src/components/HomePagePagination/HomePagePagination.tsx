@@ -11,7 +11,7 @@ interface Props {
 
 const HomePagePagination = ({ count, page }: Props): JSX.Element => {
   const searchParams = useSearchParams();
-  const router = useRouter()
+  const router = useRouter();
 
   const handlePageChange = (nextPage: number) => {
     const newParams = new URLSearchParams(searchParams.toString());

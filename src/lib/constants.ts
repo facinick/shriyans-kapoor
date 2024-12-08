@@ -1,4 +1,4 @@
-import { ColorScheme, Theme } from "@/types/Theme";
+import { ColorScheme, Theme } from '@/types/Theme';
 
 export const APP_TITLE = 'facinick';
 export const APP_TIMEZONE = 'Asia/Calcutta';
@@ -7,9 +7,9 @@ export const POSTS_DIRECTORY = '/posts';
 export const CATEGORY_ALL = 'all';
 // Defaults & Settings
 export const DEFAULT_PAGE = 1;
-export const DEFAULT_THEME = Theme.black
-export const DEFAULT_COLOR_SCHEME = ColorScheme.dark
-export const POSTS_PER_PAGE = 8
+export const DEFAULT_THEME = Theme.black;
+export const DEFAULT_COLOR_SCHEME = ColorScheme.dark;
+export const POSTS_PER_PAGE = 8;
 export const USE_VIEW_TRANSITIONS = false;
 // Dev
 export const HOSTNAME = 'localhost';

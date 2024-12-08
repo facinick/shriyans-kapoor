@@ -1,127 +1,135 @@
-"use client"
-import { motion } from 'framer-motion'
-import { useEffect, useMemo, useRef, useState } from 'react'
-import styles from './PathFindingGrid.module.css'
-import { Cell } from './cell'
-import { someDistance } from './heuristic'
-import { getRandomTerrainCost } from './terrain'
-import { Heap } from './heap'
+'use client';
+import { motion } from 'framer-motion';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import styles from './PathFindingGrid.module.css';
+import { Cell } from './cell';
+import { someDistance } from './heuristic';
+import { getRandomTerrainCost } from './terrain';
+import { Heap } from './heap';
 
 function getBackgroundColor(terrainCost: number): string {
   // Calculate the grayscale value (0 for white, 255 for black)
   // const grayValue = Math.round((1 - terrainCost) * 255)
   // return `rgb(${grayValue},${grayValue},${grayValue})`
-  return terrainCost === 1 ? `rgb(0,0,0)` : `rgb(64,64,64)`
+  return terrainCost === 1 ? `rgb(0,0,0)` : `rgb(64,64,64)`;
 }
 
 function generateGrid(nRows: number, nCols: number): Cell[][] {
-  const grid: Cell[][] = new Array(nRows)
+  const grid: Cell[][] = new Array(nRows);
   for (let rowIndex = 0; rowIndex < nRows; rowIndex++) {
-    const column: Cell[] = new Array(nCols)
+    const column: Cell[] = new Array(nCols);
     for (let colIndex = 0; colIndex < nCols; colIndex++) {
-      column[colIndex] = new Cell(rowIndex, colIndex, getRandomTerrainCost())
+      column[colIndex] = new Cell(rowIndex, colIndex, getRandomTerrainCost());
     }
-    grid[rowIndex] = column
+    grid[rowIndex] = column;
   }
-  return grid
+  return grid;
 }
 
 function getStartAndEndCells(grid: Cell[][]): {
-  from: Cell,
-  to: Cell
+  from: Cell;
+  to: Cell;
 } {
-  const validCells = grid.flat().filter(cell => cell.difficulty !== 1)
+  const validCells = grid.flat().filter((cell) => cell.difficulty !== 1);
 
   if (validCells.length < 2) {
     // Not enough valid cells to select two distinct cells
-    throw new Error(`Cannot select start and end cells as grid doesn't have enough free cells`)
+    throw new Error(
+      `Cannot select start and end cells as grid doesn't have enough free cells`
+    );
   }
 
-  let cell1: Cell
-  let cell2: Cell
+  let cell1: Cell;
+  let cell2: Cell;
 
   do {
-    cell1 = validCells[Math.floor(Math.random() * validCells.length)]
-    cell2 = validCells[Math.floor(Math.random() * validCells.length)]
-  } while (cell1.x === cell2.x && cell1.y === cell2.y)
+    cell1 = validCells[Math.floor(Math.random() * validCells.length)];
+    cell2 = validCells[Math.floor(Math.random() * validCells.length)];
+  } while (cell1.x === cell2.x && cell1.y === cell2.y);
 
   return {
     from: cell1,
-    to: cell2
-  }
+    to: cell2,
+  };
 }
 
 function getMoveCost(_from: Cell, to: Cell) {
-  return to.difficulty
+  return to.difficulty;
 }
 
 function getEstimatedMoveCost(from: Cell, to: Cell) {
-  return someDistance(
-    from.x,
-    from.y,
-    to.x,
-    to.y
-  )
+  return someDistance(from.x, from.y, to.x, to.y);
 }
 
-function getNeighbourNodes(grid: Cell[][], node: Cell, allowDiagonals: boolean = true): Cell[] {
-
+function getNeighbourNodes(
+  grid: Cell[][],
+  node: Cell,
+  allowDiagonals: boolean = true
+): Cell[] {
   const directions = [
     { dx: 0, dy: -1 },
     { dx: -1, dy: 0 },
     { dx: 1, dy: 0 },
     { dx: 0, dy: 1 },
-  ]
+  ];
 
   if (allowDiagonals) {
-    directions.push({ dx: -1, dy: -1 })
-    directions.push({ dx: 1, dy: 1 })
-    directions.push({ dx: 1, dy: -1 })
-    directions.push({ dx: -1, dy: 1 })
+    directions.push({ dx: -1, dy: -1 });
+    directions.push({ dx: 1, dy: 1 });
+    directions.push({ dx: 1, dy: -1 });
+    directions.push({ dx: -1, dy: 1 });
   }
 
   return directions.reduce<Cell[]>((neighbors, { dx, dy }) => {
-    const newX = node.x + dx
-    const newY = node.y + dy
+    const newX = node.x + dx;
+    const newY = node.y + dy;
     if (newX >= 0 && newX < grid.length && newY >= 0 && newY < grid[0].length) {
-      neighbors.push(grid[newX][newY])
+      neighbors.push(grid[newX][newY]);
     }
-    return neighbors
-  }, [])
+    return neighbors;
+  }, []);
 }
 
-function isNodeTraversable(grid: Cell[][], from: Cell, node: Cell, allowDiagonal: boolean): boolean {
-  if (node.difficulty === 1) return false
+function isNodeTraversable(
+  grid: Cell[][],
+  from: Cell,
+  node: Cell,
+  allowDiagonal: boolean
+): boolean {
+  if (node.difficulty === 1) return false;
 
   if (!allowDiagonal) {
-    return true
+    return true;
   }
 
-  const isDiagonalMove = Math.abs(from.x - node.x) === 1 && Math.abs(from.y - node.y) === 1
+  const isDiagonalMove =
+    Math.abs(from.x - node.x) === 1 && Math.abs(from.y - node.y) === 1;
   if (isDiagonalMove) {
-    const blockedHorizontally = grid[from.x + (node.x - from.x)][from.y].difficulty === 1
-    const blockedVertically = grid[from.x][from.y + (node.y - from.y)].difficulty === 1
-    return !(blockedHorizontally && blockedVertically)
+    const blockedHorizontally =
+      grid[from.x + (node.x - from.x)][from.y].difficulty === 1;
+    const blockedVertically =
+      grid[from.x][from.y + (node.y - from.y)].difficulty === 1;
+    return !(blockedHorizontally && blockedVertically);
   }
 
-  return true
+  return true;
 }
 
 function getCellId(grid: Cell[][], cell: Cell) {
-  return cell.x + cell.y * grid[0].length
+  return cell.x + cell.y * grid[0].length;
 }
 
 interface PathFindingGridSettings {
-  ROWS?: number
-  COLS?: number
-  NODE_WIDTH?: number
-  NODE_HEIGHT?: number
-  REFRESH_INTERVAL_MS?: number
-  pathAnimationSpeedMs?: number
-  algorithmSpeedMs?: number
-  allowDiagonalMovements?: boolean
-  debug?: boolean
-  showOpenClosedNodes?: boolean
+  ROWS?: number;
+  COLS?: number;
+  NODE_WIDTH?: number;
+  NODE_HEIGHT?: number;
+  REFRESH_INTERVAL_MS?: number;
+  pathAnimationSpeedMs?: number;
+  algorithmSpeedMs?: number;
+  allowDiagonalMovements?: boolean;
+  debug?: boolean;
+  showOpenClosedNodes?: boolean;
 }
 
 enum AnimationState {
@@ -142,63 +150,70 @@ export const PathFindingGrid = ({
   algorithmSpeedMs = 10,
   allowDiagonalMovements = true,
   debug = false,
-  showOpenClosedNodes = true
+  showOpenClosedNodes = true,
 }: PathFindingGridSettings) => {
   // grid ----------------
-  const [nRows] = useState<number>(ROWS)
-  const [nCols] = useState<number>(COLS)
-  const [grid, setGrid] = useState<Cell[][]>(() => generateGrid(nRows, nCols))
+  const [nRows] = useState<number>(ROWS);
+  const [nCols] = useState<number>(COLS);
+  const [grid, setGrid] = useState<Cell[][]>(() => generateGrid(nRows, nCols));
 
   // algorithm -----------
-  const { from, to } = useMemo(() => getStartAndEndCells(grid), [grid])
-  const [currentNode, setCurrentNode] = useState<Cell | null>(null)
-  const [openSet, setOpenSet] = useState<Cell[]>([])
-  const [closedSet, setClosedSet] = useState<Set<Cell>>(new Set())
-  const [path, setPath] = useState<Cell[]>([])
+  const { from, to } = useMemo(() => getStartAndEndCells(grid), [grid]);
+  const [currentNode, setCurrentNode] = useState<Cell | null>(null);
+  const [openSet, setOpenSet] = useState<Cell[]>([]);
+  const [closedSet, setClosedSet] = useState<Set<Cell>>(new Set());
+  const [path, setPath] = useState<Cell[]>([]);
 
   // step state -----------
-  const [state, setState] = useState<AnimationState>(AnimationState.initialized)
+  const [state, setState] = useState<AnimationState>(
+    AnimationState.initialized
+  );
   // one iteration of pathFinding, algorithm moves from one cell to next cell
-  const currentIterationRef = useRef<NodeJS.Timeout | null>(null)
-  // how long after current round end, to restart everything 
-  const startPathFindingDelayRef = useRef<NodeJS.Timeout | null>(null)
+  const currentIterationRef = useRef<NodeJS.Timeout | null>(null);
+  // how long after current round end, to restart everything
+  const startPathFindingDelayRef = useRef<NodeJS.Timeout | null>(null);
 
-  const pathBounds: { minX: number; maxX: number; minY: number; maxY: number } = useMemo(() => {
-    if (path.length === 0) {
-      return { minX: -Infinity, maxX: Infinity, minY: -Infinity, maxY: Infinity };
-    }
+  const pathBounds: { minX: number; maxX: number; minY: number; maxY: number } =
+    useMemo(() => {
+      if (path.length === 0) {
+        return {
+          minX: -Infinity,
+          maxX: Infinity,
+          minY: -Infinity,
+          maxY: Infinity,
+        };
+      }
 
-    let minX = path[0].x;
-    let maxX = path[0].x;
-    let minY = path[0].y;
-    let maxY = path[0].y;
+      let minX = path[0].x;
+      let maxX = path[0].x;
+      let minY = path[0].y;
+      let maxY = path[0].y;
 
-    for (const cell of path) {
-      if (cell.x < minX) minX = cell.x;
-      if (cell.x > maxX) maxX = cell.x;
-      if (cell.y < minY) minY = cell.y;
-      if (cell.y > maxY) maxY = cell.y;
-    }
+      for (const cell of path) {
+        if (cell.x < minX) minX = cell.x;
+        if (cell.x > maxX) maxX = cell.x;
+        if (cell.y < minY) minY = cell.y;
+        if (cell.y > maxY) maxY = cell.y;
+      }
 
-    return { minX, maxX, minY, maxY };
-  }, [path])
+      return { minX, maxX, minY, maxY };
+    }, [path]);
 
   function clearIterationTimeout() {
     if (currentIterationRef.current) {
-      clearTimeout(currentIterationRef.current)
-      currentIterationRef.current = null
+      clearTimeout(currentIterationRef.current);
+      currentIterationRef.current = null;
     }
   }
 
   function clearPathFindingDelayTimeout() {
     if (currentIterationRef.current) {
-      clearTimeout(currentIterationRef.current)
-      currentIterationRef.current = null
+      clearTimeout(currentIterationRef.current);
+      currentIterationRef.current = null;
     }
   }
 
   useEffect(() => {
-
     const openSet: Heap<Cell> = new Heap();
     const closedSet: Set<Cell> = new Set();
 
@@ -206,9 +221,12 @@ export const PathFindingGrid = ({
       // Path doesn't exist -> gotta stop everything and restart
       if (openSet.isEmpty()) {
         setState(AnimationState.pathFindFinished);
-        clearIterationTimeout()
-        clearPathFindingDelayTimeout()
-        startPathFindingDelayRef.current = setTimeout(reset, REFRESH_INTERVAL_MS);
+        clearIterationTimeout();
+        clearPathFindingDelayTimeout();
+        startPathFindingDelayRef.current = setTimeout(
+          reset,
+          REFRESH_INTERVAL_MS
+        );
         return;
       }
 
@@ -224,8 +242,8 @@ export const PathFindingGrid = ({
       // if current is the target node // path has been found
       if (currentNode === to) {
         setState(AnimationState.pathFindFinished);
-        clearIterationTimeout()
-        clearPathFindingDelayTimeout()
+        clearIterationTimeout();
+        clearPathFindingDelayTimeout();
         // Reconstruct path
         const path: Cell[] = [];
         for (let temp: Cell | null = currentNode; temp; temp = temp.parent) {
@@ -236,21 +254,36 @@ export const PathFindingGrid = ({
         return;
       }
 
-      const neighbors = getNeighbourNodes(grid, currentNode, allowDiagonalMovements);
+      const neighbors = getNeighbourNodes(
+        grid,
+        currentNode,
+        allowDiagonalMovements
+      );
       // for each neighbor of the current node
       for (const neighbor of neighbors) {
         // if neighbor is not traversable or neighbour is in closed
-        if (closedSet.has(neighbor) || !isNodeTraversable(grid, currentNode, neighbor, allowDiagonalMovements)) {
+        if (
+          closedSet.has(neighbor) ||
+          !isNodeTraversable(
+            grid,
+            currentNode,
+            neighbor,
+            allowDiagonalMovements
+          )
+        ) {
           // skip to the next neighbor
           continue;
         }
 
         // new path to neighbor
-        const newMovementCostToNeighbor = currentNode.gCost + getMoveCost(currentNode, neighbor);
+        const newMovementCostToNeighbor =
+          currentNode.gCost + getMoveCost(currentNode, neighbor);
 
         // new path to neighbor is shorter or neighbor is not in open
-        if (newMovementCostToNeighbor < neighbor.gCost || !openSet.contains(neighbor)) {
-
+        if (
+          newMovementCostToNeighbor < neighbor.gCost ||
+          !openSet.contains(neighbor)
+        ) {
           neighbor.gCost = newMovementCostToNeighbor;
           neighbor.hCost = getEstimatedMoveCost(neighbor, to);
           neighbor.parent = currentNode;
@@ -267,9 +300,9 @@ export const PathFindingGrid = ({
           setOpenSet([...openSet]);
         }
       }
-      clearIterationTimeout()
+      clearIterationTimeout();
       currentIterationRef.current = setTimeout(iterate, algorithmSpeedMs);
-    }
+    };
 
     const startPathFinding = () => {
       setState(AnimationState.pathFindStarted);
@@ -288,48 +321,48 @@ export const PathFindingGrid = ({
 
     // Cleanup on unmount or effect re-run
     return () => {
-      clearIterationTimeout()
-      clearPathFindingDelayTimeout()
+      clearIterationTimeout();
+      clearPathFindingDelayTimeout();
     };
   }, [from, to, grid]);
 
   const reset = () => {
-    setPath([])
-    setGrid(generateGrid(nRows, nCols))
-    setOpenSet([])
-    setClosedSet(new Set())
-    setCurrentNode(null)
-    setState(AnimationState.initialized)
-    clearIterationTimeout()
-    clearPathFindingDelayTimeout()
-  }
+    setPath([]);
+    setGrid(generateGrid(nRows, nCols));
+    setOpenSet([]);
+    setClosedSet(new Set());
+    setCurrentNode(null);
+    setState(AnimationState.initialized);
+    clearIterationTimeout();
+    clearPathFindingDelayTimeout();
+  };
 
   const animatePath = async (path: Cell[]) => {
-    clearIterationTimeout()
-    clearPathFindingDelayTimeout()
+    clearIterationTimeout();
+    clearPathFindingDelayTimeout();
     const timeouts = path.map((cell, index) => {
       return new Promise<void>((resolve) => {
         setTimeout(() => {
-          setPath(prevPath => [...prevPath, cell]);
+          setPath((prevPath) => [...prevPath, cell]);
           resolve();
         }, index * pathAnimationSpeedMs);
       });
     });
 
-    setState(AnimationState.pathAnimationStarted)
-    await Promise.all(timeouts)
-    setState(AnimationState.pathAnimationFinished)
+    setState(AnimationState.pathAnimationStarted);
+    await Promise.all(timeouts);
+    setState(AnimationState.pathAnimationFinished);
 
-    startPathFindingDelayRef.current = setTimeout(reset, REFRESH_INTERVAL_MS)
+    startPathFindingDelayRef.current = setTimeout(reset, REFRESH_INTERVAL_MS);
   };
 
   const isWithinFocus = (cell: Cell) => {
-    const { minX, maxX, minY, maxY } = pathBounds
+    const { minX, maxX, minY, maxY } = pathBounds;
     return cell.x >= minX && cell.x <= maxX && cell.y >= minY && cell.y <= maxY;
-  }
+  };
 
-  const pathFound = state === AnimationState.pathFindFinished
-  const animationFinished = state === AnimationState.pathAnimationFinished
+  const pathFound = state === AnimationState.pathFindFinished;
+  const animationFinished = state === AnimationState.pathAnimationFinished;
 
   return (
     <div
@@ -339,7 +372,7 @@ export const PathFindingGrid = ({
         gridTemplateColumns: `repeat(${nCols}, ${NODE_WIDTH}px)`,
         gridTemplateRows: `repeat(${nRows}, ${NODE_HEIGHT}px)`,
         ...(animationFinished && {
-          filter: 'brightness(0.7)'
+          filter: 'brightness(0.7)',
         }),
         width: nCols * NODE_WIDTH,
         height: nRows * NODE_HEIGHT,
@@ -360,89 +393,96 @@ export const PathFindingGrid = ({
             left: cell.x * NODE_WIDTH,
             width: NODE_WIDTH,
             height: NODE_HEIGHT,
-            zIndex: 0.96
+            zIndex: 0.96,
           }}
           animate={{
             scale: isWithinFocus(cell) && animationFinished ? 0.96 : 0.86,
-            backgroundColor: animationFinished && !isWithinFocus(cell) ? 'rgb(14,14,14)' : getBackgroundColor(cell.difficulty),
+            backgroundColor:
+              animationFinished && !isWithinFocus(cell)
+                ? 'rgb(14,14,14)'
+                : getBackgroundColor(cell.difficulty),
           }}
         />
       ))}
       {/* Render Open Cells */}
-      {showOpenClosedNodes && !animationFinished && openSet.map(cell => (
-        <motion.div
-          suppressHydrationWarning
-          data-id={`${getCellId(grid, cell)}-open`}
-          key={`${getCellId(grid, cell)}-open`}
-          className={styles.cell}
-          style={{
-            top: cell.y * NODE_HEIGHT,
-            left: cell.x * NODE_WIDTH,
-            width: NODE_WIDTH,
-            height: NODE_HEIGHT,
-            zIndex: 2,
-            scale: 0.86,
-          }}
-
-
-          animate={{
-            backgroundColor: 'rgb(179, 19, 18)',
-          }}
-        />
-      ))}
+      {showOpenClosedNodes &&
+        !animationFinished &&
+        openSet.map((cell) => (
+          <motion.div
+            suppressHydrationWarning
+            data-id={`${getCellId(grid, cell)}-open`}
+            key={`${getCellId(grid, cell)}-open`}
+            className={styles.cell}
+            style={{
+              top: cell.y * NODE_HEIGHT,
+              left: cell.x * NODE_WIDTH,
+              width: NODE_WIDTH,
+              height: NODE_HEIGHT,
+              zIndex: 2,
+              scale: 0.86,
+            }}
+            animate={{
+              backgroundColor: 'rgb(179, 19, 18)',
+            }}
+          />
+        ))}
       {/* Render Closed Cells */}
-      {showOpenClosedNodes && !animationFinished && Array.from(closedSet).map(cell => (
-        <motion.div
-          suppressHydrationWarning
-          data-id={`${getCellId(grid, cell)}-closed`}
-          key={`${getCellId(grid, cell)}-closed`}
-          className={styles.cell}
-          style={{
-            top: cell.y * NODE_HEIGHT,
-            left: cell.x * NODE_WIDTH,
-            width: NODE_WIDTH,
-            height: NODE_HEIGHT,
-            zIndex: 2,
-            scale: 0.86,
-          }}
-          animate={{
-            backgroundColor: 'rgb(179, 19, 18)',
-          }}
-        />
-      ))}
+      {showOpenClosedNodes &&
+        !animationFinished &&
+        Array.from(closedSet).map((cell) => (
+          <motion.div
+            suppressHydrationWarning
+            data-id={`${getCellId(grid, cell)}-closed`}
+            key={`${getCellId(grid, cell)}-closed`}
+            className={styles.cell}
+            style={{
+              top: cell.y * NODE_HEIGHT,
+              left: cell.x * NODE_WIDTH,
+              width: NODE_WIDTH,
+              height: NODE_HEIGHT,
+              zIndex: 2,
+              scale: 0.86,
+            }}
+            animate={{
+              backgroundColor: 'rgb(179, 19, 18)',
+            }}
+          />
+        ))}
       {/* Render Path Cells */}
-      {
-        path.map(cell => {
-          const isFrom = cell.x === from.x && cell.y === from.y;
-          const isTo = cell.x === to.x && cell.y === to.y;
+      {path.map((cell) => {
+        const isFrom = cell.x === from.x && cell.y === from.y;
+        const isTo = cell.x === to.x && cell.y === to.y;
 
-          const backgroundColor = isFrom ? 'rgb(132, 94, 237)' : isTo ? 'rgb(85, 182, 133)' : 'rgb(255, 255, 255)';
+        const backgroundColor = isFrom
+          ? 'rgb(132, 94, 237)'
+          : isTo
+            ? 'rgb(85, 182, 133)'
+            : 'rgb(255, 255, 255)';
 
-          return (
-            <motion.div
-              suppressHydrationWarning
-              data-id={`${getCellId(grid, cell)}-path`}
-              key={`${getCellId(grid, cell)}-path`}
-              className={styles.cell}
-              style={{
-                backgroundColor,
-                top: cell.y * NODE_HEIGHT,
-                left: cell.x * NODE_WIDTH,
-                width: NODE_WIDTH,
-                height: NODE_HEIGHT,
-                zIndex: 3
-              }}
-              initial={{
-                scale: 0.86
-              }}
-              animate={{
-                scale: 0.96,
-                backgroundColor
-              }}
-            />
-          )
-        })
-      }
+        return (
+          <motion.div
+            suppressHydrationWarning
+            data-id={`${getCellId(grid, cell)}-path`}
+            key={`${getCellId(grid, cell)}-path`}
+            className={styles.cell}
+            style={{
+              backgroundColor,
+              top: cell.y * NODE_HEIGHT,
+              left: cell.x * NODE_WIDTH,
+              width: NODE_WIDTH,
+              height: NODE_HEIGHT,
+              zIndex: 3,
+            }}
+            initial={{
+              scale: 0.86,
+            }}
+            animate={{
+              scale: 0.96,
+              backgroundColor,
+            }}
+          />
+        );
+      })}
       {/* Render Current Cell */}
       {currentNode && (
         <motion.div
@@ -475,7 +515,7 @@ export const PathFindingGrid = ({
             left: from.x * NODE_WIDTH,
             width: NODE_WIDTH,
             height: NODE_HEIGHT,
-            zIndex: 5
+            zIndex: 5,
           }}
           animate={{
             scale: pathFound ? 0.96 : 0.86,
@@ -509,16 +549,19 @@ export const PathFindingGrid = ({
           }}
         />
       )}
-      {debug &&
-        <div style={{
-          position: 'absolute',
-          zIndex: 6,
-          background: 'black'
-        }}>
+      {debug && (
+        <div
+          style={{
+            position: 'absolute',
+            zIndex: 6,
+            background: 'black',
+          }}
+        >
           {state}
-        </div>}
-    </div >
-  )
-}
+        </div>
+      )}
+    </div>
+  );
+};
 
-export default PathFindingGrid
+export default PathFindingGrid;

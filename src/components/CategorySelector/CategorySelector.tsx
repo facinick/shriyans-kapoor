@@ -1,5 +1,13 @@
 'use client';
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/Select/Select';
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/Select/Select';
 import { CATEGORY_ALL } from '@/lib/constants';
 import { useRouter } from '@/lib/hooks/useRouter';
 import { Label } from '@radix-ui/react-label';
@@ -15,7 +23,11 @@ interface CategorySelectorProps {
   currentPage: number;
 }
 
-export default function CategorySelector({ categories, currentCategory, currentPage }: CategorySelectorProps) {
+export default function CategorySelector({
+  categories,
+  currentCategory,
+  currentPage,
+}: CategorySelectorProps) {
   const router = useRouter();
   const [selectedCategory, setSelectedCategory] = useState(currentCategory);
 
@@ -28,7 +40,10 @@ export default function CategorySelector({ categories, currentCategory, currentP
     setSelectedCategory(newCategory);
 
     // Update the URL with the new category without losing the page query param
-    router?.push(`/${newCategory}?page=${currentPage || '1'}`, DEFAULT_LINK_SETTINGS)
+    router?.push(
+      `/${newCategory}?page=${currentPage || '1'}`,
+      DEFAULT_LINK_SETTINGS
+    );
   };
 
   return (
@@ -42,7 +57,7 @@ export default function CategorySelector({ categories, currentCategory, currentP
         onValueChange={handleCategoryChange}
       >
         <SelectTrigger
-          id='category-select'
+          id="category-select"
           title="Select Category"
           aria-label="Select Category"
           name={'Select Category'}
@@ -69,7 +84,7 @@ export default function CategorySelector({ categories, currentCategory, currentP
             ))}
           </SelectGroup>
         </SelectContent>
-      </Select >
+      </Select>
     </>
   );
 }

@@ -13,22 +13,22 @@ import styles from './page.module.css';
 
 export async function generateStaticParams() {
   // console.log(`DEBUG: Generating Static Params...`)
-  const allPosts = await getAllPosts()
+  const allPosts = await getAllPosts();
 
-  const params = allPosts.data.map(post => ({
+  const params = allPosts.data.map((post) => ({
     category: post.category,
     slug: post.slug,
-  }))
+  }));
 
   // console.log(`DEBUG: Generated:`, params)
 
-  return params
+  return params;
 }
 
 interface PageProps {
   params: {
-    slug: string,
-    category: string
+    slug: string;
+    category: string;
   };
 }
 
@@ -38,30 +38,29 @@ interface PageProps {
   */
 const getPostCached = React.cache(async (category: string, slug: string) => {
   return await getPost(category, slug);
-})
+});
 
 // because extremely slow rn, what to do?
 export async function generateMetadata({ params }: PageProps) {
   // console.log(`DEBUG: get post meta`)
-  const post = await getPostCached(params.category, params.slug,)
+  const post = await getPostCached(params.category, params.slug);
 
   if (!post) return null;
 
   return {
     title: post.metadata.title,
     description: post.metadata.abstract,
-  }
+  };
 }
 
 async function PostPage({ params }: PageProps) {
-
   // console.time(`DEBUG: getPost ${params.category}/${params.slug}`)
-  const post = await getPostCached(params.category, params.slug)
+  const post = await getPostCached(params.category, params.slug);
   // console.timeEnd(`DEBUG: getPost ${params.category}/${params.slug}`)
 
   if (!post) {
     // maybe some error occured, couldn't read post? read but couldn't process?
-    notFound()
+    notFound();
   }
 
   const { metadata, content } = post;
