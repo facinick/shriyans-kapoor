@@ -8,7 +8,7 @@ import styles from './CodeSnippet.module.css';
 
 type CodeSnippetProps = ComponentProps<typeof Code>;
 
-const CodeSnippet = ({ children, className, ...props }: CodeSnippetProps) => {
+const CodeSnippet =             ({ children, className, ...props }: CodeSnippetProps) => {
   return (
     <Box style={{ position: "relative" }}>
       <Code
