@@ -1,13 +1,21 @@
-import CircularColorsDemo from '@/components/lazy/CircularColorsDemo';
 import CodeSnippet from '@/components/CodeSnippet';
+import CircularColorsDemo from '@/components/lazy/CircularColorsDemo';
 import DivisionGroupsDemo from '@/components/lazy/DivisionGroupsDemo';
+import PathFindingGrid from '@/components/lazy/PathFindingGrid';
+import PercolatingGrid from '@/components/lazy/PercolatingGrid';
 import { Heading } from '@/components/ui/Typography/Heading';
 import { Paragraph } from '@/components/ui/Typography/Paragraph';
+import { Ul } from '@/components/ui/Typography/Ul';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { ComponentProps } from 'react';
-import PercolatingGrid from '@/components/lazy/PercolatingGrid';
-import { Ul } from '@/components/ui/Typography/Ul';
-import PathFindingGrid from '@/components/lazy/PathFindingGrid';
 
 const MDX_COMPONENTS_MAP: ComponentProps<typeof MDXRemote>['components'] = {
   pre: CodeSnippet,
@@ -48,6 +56,24 @@ const MDX_COMPONENTS_MAP: ComponentProps<typeof MDXRemote>['components'] = {
   },
   ul: ({ children, ...rest }: { children?: React.ReactNode }) => {
     return <Ul {...rest}>{children}</Ul>;
+  },
+  table: ({ children, ...rest }: { children?: React.ReactNode }) => {
+    return <Table {...rest}>{children}</Table>;
+  },
+  thead: ({ children, ...rest }: { children?: React.ReactNode }) => {
+    return <TableHeader {...rest}>{children}</TableHeader>;
+  },
+  tbody: ({ children, ...rest }: { children?: React.ReactNode }) => {
+    return <TableBody {...rest}>{children}</TableBody>;
+  },
+  tr: ({ children, ...rest }: { children?: React.ReactNode }) => {
+    return <TableRow {...rest}>{children}</TableRow>;
+  },
+  th: ({ children, ...rest }: { children?: React.ReactNode }) => {
+    return <TableHead {...rest}>{children}</TableHead>;
+  },
+  td: ({ children, ...rest }: { children?: React.ReactNode }) => {
+    return <TableCell {...rest}>{children}</TableCell>;
   },
 };
 
