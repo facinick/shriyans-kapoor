@@ -12,7 +12,7 @@ const Ul = React.forwardRef<HTMLUListElement, UlProps>(
     const Comp = asChild ? Slot : 'ul';
     return (
       <Comp
-        className={cn('my-6 ml-6 list-disc [&>li]:mt-2', className)}
+        className={cn(' ml-6 list-disc [&>li]:mt-2', className)}
         ref={ref}
         {...props}
       />
