@@ -1,1 +1,1 @@
-pnpm run biome:lint && pnpm run biome:format
+"pnpm run biome:lint -- staged && pnpm run biome:format -- staged"
