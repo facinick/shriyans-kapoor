@@ -8,4 +8,4 @@
 [] - Post types (1. Links, 2. Full posts, 3. Book Reviews, 4. Collections / lists, 5. Location, 6. Bookmarks, 7. Spotify / youtubemusic / apple music / soundcloud link / Thoughts or Quotes) [high]
 [] - Lotti animations
 [] - X Robots Tag issue for SEO
-[] - Move to BiomeJS
+[x] - Move to BiomeJS
