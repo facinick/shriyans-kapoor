@@ -10,9 +10,8 @@
     "build": "next build",
     "start": "next start",
     "prepare": "husky",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "format": "prettier --write \"./**/*.{ts,tsx,json,css,mdx}\"",
+    "biome:lint": "biome lint --write src",
+    "biome:format": "biome format --write src",
     "check-outdated-packages": "pnpm outdated",
     "update-all-packages": "pnpm up -L",
     "generate-lighthouse": "npx lighthouse-badges --url https://www.facinick.xyz/ -o lighthouse_badges"
@@ -34,8 +33,6 @@
     "bright": "^0.8.5",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
-    "eslint": "^9.12.0",
-    "eslint-config-next": "14.2.15",
     "framer-motion": "^11.11.8",
     "gray-matter": "^4.0.3",
     "husky": "^9.1.6",
@@ -48,7 +45,6 @@
     "next-view-transitions": "^0.3.2",
     "pinst": "^3.0.0",
     "postcss": "^8.4.47",
-    "prettier": "^3.3.3",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "rimraf": "^6.0.1",
@@ -58,5 +54,8 @@
     "tsx": "^4.19.1",
     "typescript": "5.6.3",
     "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4"
   }
 }
