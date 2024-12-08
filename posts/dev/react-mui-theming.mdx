@@ -42,7 +42,7 @@ Now open the repo in an IDE, for example if you’re using VSCode and you’ve s
 
 your project should look similar to this
 
-![Screenshot 2022-06-01 at 3.27.21 PM.png](../assets/Screenshot_2022-06-01_at_3.27.21_PM.png)
+![Screenshot 2022-06-01 at 3.27.21 PM.png](/assets/Screenshot_2022-06-01_at_3.27.21_PM.png)
 
 Go ahead and enter the following command in terminal to start the project and have our react app run in live reload mode in the browser
 
@@ -307,13 +307,13 @@ How material UI’s theming works is, there is a theme palette object that conta
 
 Head over to [https://mui.com/material-ui/customization/default-theme/](https://mui.com/material-ui/customization/default-theme/) to checkout the default theme palette object and it’s values for light and dark mode. This is the default set of values you get, for example when you add `color={’primary’}` props to a MUI Button, this theme object tells what button background and its text is going to look like. Expand the `palette` key of the entire theme object. That’s what we will be tweaking to create a set of colours.
 
-![Screenshot 2022-06-01 at 7.19.03 PM.png](../assets/Screenshot_2022-06-01_at_7.19.03_PM.png)
+![Screenshot 2022-06-01 at 7.19.03 PM.png](/assets/Screenshot_2022-06-01_at_7.19.03_PM.png)
 
 Now checkout `theme.palette.primary` key, whose value is an object with four keys namely **main**, **light**, **dark**, **contrastText**.
 
 when you set `color={’primary’}` to your button, it applies the main colour to its background and contrastText to its foreground like text color. You can also tell MUI to use light or dark variants of your main colour.
 
-![Screenshot 2022-06-01 at 7.19.30 PM.png](../assets/Screenshot_2022-06-01_at_7.19.30_PM.png)
+![Screenshot 2022-06-01 at 7.19.30 PM.png](/assets/Screenshot_2022-06-01_at_7.19.30_PM.png)
 
 This means if we need to create additional themes, lets say a reddish theme named Dracula… we will have to decide most of these default values (if not all) for light as well as dark modes (the above screenshot is of light mode theme palette object) 
 
@@ -323,15 +323,15 @@ One fun way (not the only) that I’ll show you is as follows:
 
 Head over to [https://material-foundation.github.io/material-theme-builder/#/custom](https://material-foundation.github.io/material-theme-builder/#/custom) , click on Custom 
 
-![Screenshot 2022-06-01 at 7.27.04 PM.png](../assets/Screenshot_2022-06-01_at_7.27.04_PM.png)
+![Screenshot 2022-06-01 at 7.27.04 PM.png](/assets/Screenshot_2022-06-01_at_7.27.04_PM.png)
 
 now from the left most panel, click on Primary, select any colour you like. This will generate an entire palette to use for you on the right side.
 
-![Screenshot 2022-06-01 at 7.27.22 PM.png](../assets/Screenshot_2022-06-01_at_7.27.22_PM.png)
+![Screenshot 2022-06-01 at 7.27.22 PM.png](/assets/Screenshot_2022-06-01_at_7.27.22_PM.png)
 
 Like so:
 
-![Screenshot 2022-06-01 at 7.28.08 PM.png](../assets/Screenshot_2022-06-01_at_7.28.08_PM.png)
+![Screenshot 2022-06-01 at 7.28.08 PM.png](/assets/Screenshot_2022-06-01_at_7.28.08_PM.png)
 
 What does this mean? How will it help us colour our components and pages?
 
