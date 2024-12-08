@@ -9,6 +9,7 @@ import clsx from 'clsx';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { notFound } from 'next/navigation';
 import React from 'react';
+import remarkGfm from 'remark-gfm';
 import styles from './page.module.css';
 
 export async function generateStaticParams() {
@@ -77,7 +78,15 @@ async function PostPage({ params }: PageProps) {
           </PostPagePostHeader>
           <Separator />
           {/* <div className={styles.page}> */}
-          <MDXRemote components={MDX_COMPONENTS_MAP} source={content} />
+          <MDXRemote
+            options={{
+              mdxOptions: {
+                remarkPlugins: [remarkGfm],
+              },
+            }}
+            components={MDX_COMPONENTS_MAP}
+            source={content}
+          />
           {/* </div> */}
           <PostPagePostFooter
             author={metadata.author}
