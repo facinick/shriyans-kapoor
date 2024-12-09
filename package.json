@@ -58,5 +58,6 @@
     "tsx": "^4.19.1",
     "typescript": "5.6.3",
     "zod": "^3.23.8"
-  }
+  },
+  "packageManager": "pnpm@9.13.2+sha1.969cc200a41db98449afee1bfa7578b3ce6ff330"
 }
