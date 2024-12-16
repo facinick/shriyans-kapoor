@@ -1,0 +1,1291 @@
+---
+title: "React JS MUI Theming tutorial"
+abstract: "In this blog, I will guide you through the process of setting up a React TypeScript application with Material UI (MUI) and implementing customizable themes. I’ll cover how to create a default theme that reacts to the user's system theme preferences, and how to design three custom themes (red, blue, and green) with both light and dark modes. By extending MUI's default theme, we will introduce custom components that adapt to these themes, such as a button with unique background and text colors. Additionally, we’ll demonstrate how to dynamically switch between these themes and share best practices for theme usage while avoiding common development pitfalls."
+publishedOn: "2021-12-07T08:50:18.327Z"
+author: "Shriyans Kapoor"
+tags: ["react", "tutorial"]
+---
+
+demo link: [https://mui-theming.vercel.app/](https://mui-theming.vercel.app/)
+
+code repo: https://github.com/facinick/MuiTheming
+
+## What are we doing today
+
+1. Create a blank react typescript application, set it up with MUI.
+2. Switch theme mode between `Night` and `Dark` (default value taken from user system, also reacts to user system theme changes).
+3. Create 3 different Themes (red, blue and green) other than default MUI theme. We will use external tool to help us create colour palette. Each theme has dark and light colour palette.
+4. Extend default theme with our own custom variables, so we can do `<Button color=’google’ />` and button knows what background and text colour to use.
+5. Shuffle between these theme modes. 
+6. Common ways to use the theme in our app.
+7. Checkout common mistakes to avoid that waste dev time on forums and stack.
+
+## Create a blank React Typescript application
+
+Create a new react typescript app with create-react-app by running 
+
+`npx create-react-app awesome --template typescript` 
+
+in a terminal window, 
+
+*NOTE: this will create an app named **awesome** as given in the command… you can go ahead and give it whatever name you like for ex `npx create-react-app spiderman --template typescript` will create an app named **spiderman** (reference: [https://create-react-app.dev/docs/adding-typescript/](https://create-react-app.dev/docs/adding-typescript/) )*
+
+Great, now CD into the newly created app. (use whatever app name you gave instead of my-app)
+
+`cd ./awesome`
+
+Now open the repo in an IDE, for example if you’re using VSCode and you’ve setup it’s command in your PATH, run
+
+`code .` 
+
+*(notice the full-stop that tells VSCode to open project in current directory, i.e. the directory we CDed into)*
+
+your project should look similar to this
+
+![Screenshot 2022-06-01 at 3.27.21 PM.png](/assets/Screenshot_2022-06-01_at_3.27.21_PM.png)
+
+Go ahead and enter the following command in terminal to start the project and have our react app run in live reload mode in the browser
+
+`npm run start` 
+
+or yarn
+
+`yarn start`
+
+If all worked properly, you should be seeing a Pop culture atom symbol of React! 
+
+*next, we are going to install MUI packages that uses ‘styled’ as its theming engine.*
+
+## Install MUI5 packages
+
+Now we are going to install MUI 5 dependencies (reference: [https://mui.com/material-ui/getting-started/installation/](https://mui.com/material-ui/getting-started/installation/))
+
+`npm install @mui/material @emotion/react @emotion/styled @mui/icons-material`
+
+or yarn
+
+`yarn add @mui/material @emotion/react @emotion/styled @mui/icons-material`
+
+Done, that should be all the packages we need to build our theming demo.
+
+*next, we are going to create a theme provider (sort of a store that will have our **theme** to use anywhere in our app and provide us functions to **change theme** from anywhere in our app).*
+
+## Creating the Context
+
+Now we are going to create a Context Provider component, which will provide our various themes (red blue default green - light/dark) to our entire app. This works on react context api under the hood. More on react context api: [https://reactjs.org/docs/context.html](https://reactjs.org/docs/context.html)
+
+As the react docs say: *Context provides a way to pass data through the component tree without having to pass props down manually at every level.* 
+
+So now once we provide our theme at the top most level, we can directly use it anywhere in our app. You’ll see more of its working later in this tutorial.
+
+Create a file called `MyThemeProvider.tsx` in the following path: `src/theme/MyThemeProvider.tsx`
+
+Add the following code to it:
+
+```tsx
+import React, { useEffect } from "react";
+import CssBaseline from "@mui/material/CssBaseline";
+import GlobalStyles from "@mui/material/GlobalStyles";
+import { ThemeProvider, createTheme, ThemeOptions } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+
+export const ThemeContext = React.createContext({});
+
+type MyThemeProviderProps = {
+  children?: React.ReactNode;
+};
+
+export default function MyThemeProvider(props: MyThemeProviderProps) {
+  return (
+    <ThemeContext.Provider value={{}}> {/* We **WILL** provide functions to change theme here */}
+      <ThemeProvider theme={{}}> {/* We **WILL** provide theme here */}
+        <GlobalStyles styles={{}} />
+        <CssBaseline enableColorScheme />
+        {props.children}
+      </ThemeProvider>
+    </ThemeContext.Provider>
+  );
+}
+```
+
+This is our boilerplate for our Theme Context Provider
+
+1. We will supply our **theme** (that we will use everywhere) into this
+2. We will supply our **functions to change theme** into this
+
+*typical flow: MUI renders components with default theme → User changes theme → new theme is sent to MUI → MUI re renders it’s components with new theme*
+
+ℹ️ note: **do not** miss **GlobalStyles** and **CssBaseLine** components.
+
+CssBaseline use: [https://stackoverflow.com/a/59145819/17449710](https://stackoverflow.com/a/59145819/17449710)  [very imp]
+
+GlobalStyles use: [https://stackoverflow.com/a/69905540/17449710](https://stackoverflow.com/a/69905540/17449710) [less imp]
+
+Sure we will use our theme to provide colours to buttons and various components but we can’t change our App’s background and font color dynamically (technically that can be done but this is the MUI way). CssBaseline provides this functionality to manage background and text color of our app automatically based on what theme we provide it. (ex body html tag) 
+
+GlobalStyles just retains the page’s default css that gets reset/removed by CssBaseline. (ex body has a margin of 8px by default .. or something)
+
+Don’t worry if you are not understanding this, once we are done building our demo, you can try remove those components to see what difference does it make to our app.
+
+note: we still haven’t provided
+
+1. theme
+2. functions to change theme
+
+to our context above, so it’s essentially useless at the moment. first we will connect this to our app and then we will add functionality to it so we don’t have to deal with connecting stuff later.
+
+Now be a good human and head over to `src/index.tsx`
+
+It must look similar to this as of now:
+
+```tsx
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
+
+const root = ReactDOM.createRoot(
+  document.getElementById('root') as HTMLElement
+);
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
+```
+
+We are going to provide our Context store here by wrapping `<App />` with `ThemeProvider` that we **exported** **earlier** and `StyledEngineProvider` from `@mui/material/styles` package
+
+Below is the updated code in this file `src/index.tsx`, follow along the comments to know what is done:
+
+```tsx
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+// 1. Import StyledEngineProvider from MUI
+import { StyledEngineProvider } from "@mui/material/styles";
+// 2. Import ThemeProvider that we just created
+import MyThemeProvider from "./theme/MyThemeProvider";
+
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement
+);
+
+root.render(
+  <React.StrictMode>
+		{/* 4. Wrap Theme provider with MUI Styled engine */}
+    <StyledEngineProvider injectFirst>
+		{/* 5. Wrap your app with the Theme Provider */}
+      <MyThemeProvider>
+        <App />
+      </MyThemeProvider>
+    </StyledEngineProvider>
+  </React.StrictMode>
+);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+reportWebVitals();
+```
+
+Now that we have connected out Context provider, let’s add in our functions to change theme and also the theme itself that’s to be used by our components
+
+## Providing theme and functions to change theme
+
+head over to `src/theme/ThemeProvider.tsx`
+
+we are going to have two react states: theme (0=red,1=blue,2=green,3=default) and mode (light, dark)
+
+Below is the updated code in this file, follow along the comments to know what is done:
+
+```tsx
+import CssBaseline from "@mui/material/CssBaseline";
+import GlobalStyles from "@mui/material/GlobalStyles";
+import { ThemeProvider, createTheme, ThemeOptions } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import React from "react";
+import { useEffect } from "react";
+
+// 1. create context with default values. This context will be used in places where we need to
+// change themes and modes. we will update the context vaules below to actual functions
+export const ThemeContext = React.createContext({
+  toggleColorMode: () => {},
+  shuffleColorTheme: () => {},
+});
+
+type MyThemeProviderProps = {
+  children?: React.ReactNode;
+};
+
+export default function MyThemeProvider(props: MyThemeProviderProps) {
+
+	// 2. take user theme preference using media query
+  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+	// 3. init state to store mode value
+  const [mode, setMode] = React.useState<"light" | "dark">(
+    prefersDarkMode ? "dark" : "light"
+  );
+  /* 4. init state to store theme value. values can be 0,1,2,3 as of now for four themes.
+  // later we will create theme presets, and export them all in an object like so
+		export const AllThemes = {
+			0: {
+				light: { blue light theme preset... },
+				dark : { blue dark theme preset... },
+			},
+			1: {
+				light: { red light theme preset...},
+				dark : { red dark theme preset...},
+			}
+			...
+		}
+    and read them like AllThemes[theme][mode], then provide this value to MUI ThemeProvider in comment 8 below . */
+
+  const [theme, setTheme] = React.useState<0 | 1 | 2 | 3>(0);
+
+  // 5. this is to ensure, whenever user changes their system preference our code reacts to it
+  useEffect(() => {
+    setMode(prefersDarkMode ? "dark" : "light");
+  }, [prefersDarkMode]);
+
+  // 6. create a colorMode memo, memo makes sure colorMode is only initialized once (with the anonymous function)
+	// and not on every render. 
+  // here is a great example of what it's useful for [https://dmitripavlutin.com/react-usememo-hook/](https://dmitripavlutin.com/react-usememo-hook/)
+  // don't worry too much about it, it's basically used for performance reasons and avoid unnecess recalculations.
+  // colorMode will be an object with keys toggleColorMode and shuffleColorTheme
+  const colorMode = React.useMemo(
+    () => ({
+      toggleColorMode: () => {
+        setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
+      },
+      shuffleColorTheme: () => {
+        setTheme((prevTheme) => ((prevTheme + 1) % 4) as 0 | 1 | 2 | 3);
+      },
+    }),
+    []
+  );
+
+  return (
+	{/* 
+			7. finally, provide the colorMode constant to our theme context provider
+			later in the components where we need to call the toggleColorMode and shuffleColorTheme methods
+			we will do something like colorMode.toggleColorMode() and toggleColorMode.shuffleColorTheme()
+	*/}
+    <ThemeContext.Provider value={colorMode}>
+	{/* 
+			8. we still haven't provided any theme object to material ui's theme provider. this part is still pending and 
+      we will do this after we have craeted various light and dark themes, combined them into an object and export
+			then import it in this file, use current value of mode and theme to pick the right theme object and supply 
+      to the ThemeProvider like  <ThemeProvider theme={theme}>
+	*/}
+      <ThemeProvider theme={{}}>
+        <GlobalStyles styles={{}} />
+        <CssBaseline enableColorScheme />
+        {props.children}
+      </ThemeProvider>
+    </ThemeContext.Provider>
+  );
+}
+```
+
+Once this is done, now all that’s left is
+
+1. create theme objects and export them in a format so we can use theme and mode values to pick the proper theme
+2. add logic of importing theme and supplying it to MUI’s ThemeProvider
+
+## Themes
+
+How material UI’s theming works is, there is a theme palette object that contains colours for everything. App background, text that’ll appear on app background, primary colours, text colours to use when background is of primary colours, basically everything is predetermined. From fonts to spacings to colours to everything.
+
+Head over to [https://mui.com/material-ui/customization/default-theme/](https://mui.com/material-ui/customization/default-theme/) to checkout the default theme palette object and it’s values for light and dark mode. This is the default set of values you get, for example when you add `color={’primary’}` props to a MUI Button, this theme object tells what button background and its text is going to look like. Expand the `palette` key of the entire theme object. That’s what we will be tweaking to create a set of colours.
+
+![Screenshot 2022-06-01 at 7.19.03 PM.png](/assets/Screenshot_2022-06-01_at_7.19.03_PM.png)
+
+Now checkout `theme.palette.primary` key, whose value is an object with four keys namely **main**, **light**, **dark**, **contrastText**.
+
+when you set `color={’primary’}` to your button, it applies the main colour to its background and contrastText to its foreground like text color. You can also tell MUI to use light or dark variants of your main colour.
+
+![Screenshot 2022-06-01 at 7.19.30 PM.png](/assets/Screenshot_2022-06-01_at_7.19.30_PM.png)
+
+This means if we need to create additional themes, lets say a reddish theme named Dracula… we will have to decide most of these default values (if not all) for light as well as dark modes (the above screenshot is of light mode theme palette object) 
+
+How do we decide what values to put for our Dracula theme and ensure we don’t mess up accessibility?
+
+One fun way (not the only) that I’ll show you is as follows:
+
+Head over to [https://material-foundation.github.io/material-theme-builder/#/custom](https://material-foundation.github.io/material-theme-builder/#/custom) , click on Custom 
+
+![Screenshot 2022-06-01 at 7.27.04 PM.png](/assets/Screenshot_2022-06-01_at_7.27.04_PM.png)
+
+now from the left most panel, click on Primary, select any colour you like. This will generate an entire palette to use for you on the right side.
+
+![Screenshot 2022-06-01 at 7.27.22 PM.png](/assets/Screenshot_2022-06-01_at_7.27.22_PM.png)
+
+Like so:
+
+![Screenshot 2022-06-01 at 7.28.08 PM.png](/assets/Screenshot_2022-06-01_at_7.28.08_PM.png)
+
+What does this mean? How will it help us colour our components and pages?
+
+imagine a homepage, 
+
+It’ll take background colour of **background** and font colour of **onBackground (from the above image)**
+
+A card on homepage will take background colour of **primaryContainer** and font colour of **onPrimaryContainer**
+
+A button on that card will take background colour of lets say **primary** and text on button will take font colour of **onPrimary**
+
+all of this is for light theme, for dark there is another set of colours.
+
+now we just need to create a theme out of these values, and tell material UI when to use what.
+
+don’t worry if things don’t make much sense, follow along:
+
+create a file called `blue.ts` in `src/theme/presets/blue.ts`
+
+add the following code in it and follow along the comments to know what’s done: (If you’re seeing typescript errors, don’t worry we shall get rid of them soon)
+
+```tsx
+import { createTheme } from "@mui/material/styles";
+
+const { palette } = createTheme();
+
+// 1. we defined a new theme object which has two keys, light and dark.
+// light and dark will store palette values in a way MUI understands. 
+// these palette value are picked from the obove mentioned website
+// what colour to put where? keep reading...
+export const theme = {
+  dark: {
+    palette: {
+      mode: "dark",
+			// this method augmentColor creates a MUI colour object, with other values automatically like light and dark
+			// as a colour object has main, contrastText, light and dark keys. but we need not provide light and dark keys.
+      primary: palette.augmentColor({
+        color: {
+					// pick the primary colour OF DARK and paste it here
+          main: "#cdbeff",
+					// pick the onPrimary colour OF DARK and paste it here
+          contrastText: "#32009a",
+        },
+      }),
+      secondary: palette.augmentColor({
+        color: {
+					// pick the secondary colour OF DARK and paste it here
+          main: "#cac3dc",
+					// pick the onSecondary colour OF DARK and paste it here
+          contrastText: "#322e41",
+        },
+      }),
+      text: {
+				// pick the onBackground colour OF DARK and paste it here
+        primary: "#e6e1e6",
+				// pick the onSurface colour OF DARK and paste it here
+        secondary: "#e6e1e6",
+      },
+      background: {
+				// pick the background colour OF DARK and paste it here
+        default: "#1c1b1e",
+				// pick the surface colour and OF DARK paste it here
+        paper: "#1c1b1e",
+      },
+      error: palette.augmentColor({
+        color: {
+					// pick the error colour OF DARK and paste it here
+          main: "#ffb4a9",
+					// pick the onError colour OF DARK and paste it here
+          contrastText: "#680003",
+        },
+      }),
+      success: palette.augmentColor({
+        color: {
+					// where did this come from? there is no succeess colour mentioned in thatpalette generator, but you can go ahead
+					// and add custom colours (on bottom left side of the material-theme-builder page and it'll generate palette 
+          // for success for you on the right side. from there just pick success OF DARK and onSuccess OF DARK and paste here
+          main: "#79dd72",
+          contrastText: "#003a03",
+        },
+      }),
+      info: palette.augmentColor({
+        color: {
+	        // same as above
+          main: "#99cbff",
+          contrastText: "#003257",
+        },
+      }),
+      warning: palette.augmentColor({
+        color: {
+					// same as above
+          main: "#cace09",
+          contrastText: "#313300",
+        },
+      }),
+			// I put the outline colour here
+      divider: "#938f99",
+	    // important: these are custom variables
+			// suppose instead of doing <Button colour={'primary'} /> you want to do something like <Button colour={'upvote'} />
+      // for an upvote button? here I am creating custom variabels and supplying colours that I want based on my product design 
+      upvote: palette.augmentColor({
+        color: {
+          main: "#cdbeff",
+          contrastText: "#32009a",
+        },
+      }),
+			// same as above
+      downvote: palette.augmentColor({
+        color: {
+          main: "#ffb4a9",
+          contrastText: "#680003",
+        },
+      })
+      containerPrimary: palette.augmentColor({
+        color: {
+					// pick the primary Conatiner colour OF DARK and paste it here 
+          main: "#4b24ba",
+					// pick the On primary Conatiner colour OF DARK and paste it here 
+          contrastText: "#e8deff",
+        },
+      }),
+      containerSecondary: palette.augmentColor({
+        color: {
+          // pick the secondary Conatiner colour OF DARK and paste it here 
+          main: "#494458",
+          // pick the On secondary Conatiner colour OF DARK and paste it here 
+          contrastText: "#e7dff8",
+        },
+      }),
+    },
+  },
+// REPEAT FOR LIGHT. instead of picking colours from dark palette, pick colours from the light one and repeat as above
+  light: {
+    palette: {
+      mode: "light",
+      primary: palette.augmentColor({
+        color: {
+          main: "#6342d2",
+          contrastText: "#ffffff",
+        },
+      }),
+      secondary: palette.augmentColor({
+        color: {
+          main: "#605b71",
+          contrastText: "#ffffff",
+        },
+      }),
+      text: {
+        primary: "#1c1b1e",
+        secondary: "#1c1b1e",
+      },
+      background: {
+        default: "#fffbff",
+        paper: "#fffbff",
+      },
+      error: palette.augmentColor({
+        color: {
+          main: "#ba1b1b",
+          contrastText: "#ffffff",
+        },
+      }),
+      success: palette.augmentColor({
+        color: {
+          main: "#006e10",
+          contrastText: "#ffffff",
+        },
+      }),
+      info: palette.augmentColor({
+        color: {
+          main: "#0062a2",
+          contrastText: "#ffffff",
+        },
+      }),
+      warning: palette.augmentColor({
+        color: {
+          main: "#606200",
+          contrastText: "#313300",
+        },
+      }),
+      divider: "#79757f",
+      upvote: palette.augmentColor({
+        color: {
+          main: "#6342d2",
+          contrastText: "#ffffff",
+        },
+      }),
+      downvote: palette.augmentColor({
+        color: {
+          main: "#ba1b1b",
+          contrastText: "#ffffff",
+        },
+      }),
+      containerPrimary: palette.augmentColor({
+        color: {
+          main: "#e8deff",
+          contrastText: "#1c0062",
+        },
+      }),
+      containerSecondary: palette.augmentColor({
+        color: {
+          main: "#e7dff8",
+          contrastText: "#1d192b",
+        },
+      }),
+    },
+  },
+};
+```
+
+Once this is done, I want you to create 3 more similar files namely `red.ts`, `green.ts`, `default,ts` in the same directory as `blue.ts`
+
+I’m pasting theme presets for red green and default below, just paste them as it is in your files.
+
+```tsx
+import { createTheme } from "@mui/material/styles";
+
+const { palette } = createTheme();
+
+export const theme = {
+  dark: {
+    palette: {
+      mode: "dark",
+      primary: palette.augmentColor({
+        color: {
+          main: "#ffb3b0",
+          contrastText: "#68000c",
+        },
+      }),
+      secondary: palette.augmentColor({
+        color: {
+          main: "#4fd8eb",
+          contrastText: "#00363d",
+        },
+      }),
+      text: {
+        primary: "#E6E1E5",
+        secondary: "#E6E1E5",
+      },
+      background: {
+        default: "#1C1B1F",
+        paper: "#1C1B1F",
+      },
+      error: palette.augmentColor({
+        color: {
+          main: "#F2B8B5",
+          contrastText: "#601410",
+        },
+      }),
+      success: palette.augmentColor({
+        color: {
+          main: "#79dd72",
+          contrastText: "#003a03",
+        },
+      }),
+      info: palette.augmentColor({
+        color: {
+          main: "#99cbff",
+          contrastText: "#003257",
+        },
+      }),
+      warning: palette.augmentColor({
+        color: {
+          main: "#cace09",
+          contrastText: "#313300",
+        },
+      }),
+      divider: "#938F99",
+      upvote: palette.augmentColor({
+        color: {
+          main: "#bd0b25",
+          contrastText: "#68000c",
+        },
+      }),
+      downvote: palette.augmentColor({
+        color: {
+          main: "#4fd8eb",
+          contrastText: "#00363d",
+        },
+      }),
+      containerPrimary: palette.augmentColor({
+        color: {
+          main: "#920016",
+          contrastText: "#ffdad6",
+        },
+      }),
+      containerSecondary: palette.augmentColor({
+        color: {
+          main: "#5c3f3d",
+          contrastText: "#ffdad8",
+        },
+      }),
+    },
+  },
+  light: {
+    palette: {
+      mode: "light",
+      primary: palette.augmentColor({
+        color: {
+          main: "#bd0b25",
+          contrastText: "#ffffff",
+        },
+      }),
+      secondary: palette.augmentColor({
+        color: {
+          main: "#006874",
+          contrastText: "#ffffff",
+        },
+      }),
+      text: {
+        primary: "#1C1B1F",
+        secondary: "#1C1B1F",
+      },
+      background: {
+        default: "#FFFBFE",
+        paper: "#fffbff",
+      },
+      error: palette.augmentColor({
+        color: {
+          main: "#B3261E",
+          contrastText: "#FFFFFF",
+        },
+      }),
+      success: palette.augmentColor({
+        color: {
+          main: "#006e10",
+          contrastText: "#ffffff",
+        },
+      }),
+      info: palette.augmentColor({
+        color: {
+          main: "#0062a2",
+          contrastText: "#ffffff",
+        },
+      }),
+      warning: palette.augmentColor({
+        color: {
+          main: "#606200",
+          contrastText: "#313300",
+        },
+      }),
+      divider: "#79747E",
+      upvote: palette.augmentColor({
+        color: {
+          main: "#bd0b25",
+          contrastText: "#ffffff",
+        },
+      }),
+      downvote: palette.augmentColor({
+        color: {
+          main: "#006874",
+          contrastText: "#ffffff",
+        },
+      }),
+      containerPrimary: palette.augmentColor({
+        color: {
+          main: "#ffdad6",
+          contrastText: "#410005",
+        },
+      }),
+      containerSecondary: palette.augmentColor({
+        color: {
+          main: "#ffdad8",
+          contrastText: "#2d1514",
+        },
+      }),
+    },
+  },
+};
+```
+
+```tsx
+import { createTheme } from "@mui/material/styles";
+
+const { palette } = createTheme();
+
+export const theme = {
+  dark: {
+    palette: {
+      mode: "dark",
+      primary: palette.augmentColor({
+        color: {
+          main: "#acd452",
+          contrastText: "#253600",
+        },
+      }),
+      secondary: palette.augmentColor({
+        color: {
+          main: "#c2caaa",
+          contrastText: "#2c331c",
+        },
+      }),
+      text: {
+        primary: "#e4e2db",
+        secondary: "#e4e2db",
+      },
+      background: {
+        default: "#1b1c17",
+        paper: "#1b1c17",
+      },
+      error: palette.augmentColor({
+        color: {
+          main: "#ffb4a9",
+          contrastText: "#680003",
+        },
+      }),
+      success: palette.augmentColor({
+        color: {
+          main: "#79dd72",
+          contrastText: "#003a03",
+        },
+      }),
+      info: palette.augmentColor({
+        color: {
+          main: "#0062a2",
+          contrastText: "#ffffff",
+        },
+      }),
+      warning: palette.augmentColor({
+        color: {
+          main: "#606200",
+          contrastText: "#ffffff",
+        },
+      }),
+      divider: "#909284",
+      upvote: palette.augmentColor({
+        color: {
+          main: "#acd452",
+          contrastText: "#253600",
+        },
+      }),
+      downvote: palette.augmentColor({
+        color: {
+          main: "#ffb4a9",
+          contrastText: "#680003",
+        },
+      }),
+      containerPrimary: palette.augmentColor({
+        color: {
+          main: "#374e00",
+          contrastText: "#c8f16c",
+        },
+      }),
+      containerSecondary: palette.augmentColor({
+        color: {
+          main: "#3d4a36",
+          contrastText: "#d8e8cb",
+        },
+      }),
+    },
+  },
+  light: {
+    palette: {
+      mode: "light",
+      primary: palette.augmentColor({
+        color: {
+          main: "#4a6800",
+          contrastText: "#ffffff",
+        },
+      }),
+      secondary: palette.augmentColor({
+        color: {
+          main: "#5a6147",
+          contrastText: "#ffffff",
+        },
+      }),
+      text: {
+        primary: "#1b1c17",
+        secondary: "#1b1c17",
+      },
+      background: {
+        default: "#fefdf4",
+        paper: "#fefcf4",
+      },
+      error: palette.augmentColor({
+        color: {
+          main: "#ba1b1b",
+          contrastText: "#ffffff",
+        },
+      }),
+      success: palette.augmentColor({
+        color: {
+          main: "#006e10",
+          contrastText: "#ffffff",
+        },
+      }),
+      info: palette.augmentColor({
+        color: {
+          main: "#0062a2",
+          contrastText: "#ffffff",
+        },
+      }),
+      warning: palette.augmentColor({
+        color: {
+          main: "#606200",
+          contrastText: "#ffffff",
+        },
+      }),
+      divider: "#75786a",
+      upvote: palette.augmentColor({
+        color: {
+          main: "#4a6800",
+          contrastText: "#ffffff",
+        },
+      }),
+      downvote: palette.augmentColor({
+        color: {
+          main: "#ba1b1b",
+          contrastText: "#ffffff",
+        },
+      }),
+      containerPrimary: palette.augmentColor({
+        color: {
+          main: "#c8f16c",
+          contrastText: "#131f00",
+        },
+      }),
+      containerSecondary: palette.augmentColor({
+        color: {
+          main: "#d8e8cb",
+          contrastText: "#131f0e",
+        },
+      }),
+    },
+  },
+};
+```
+
+```tsx
+import { createTheme } from "@mui/material/styles";
+
+const { palette } = createTheme();
+
+const defaultLight = createTheme({
+  palette: {
+    mode: "light",
+  },
+});
+
+const defaultDark = createTheme({
+  palette: {
+    mode: "dark",
+  },
+});
+
+export const theme = {
+  dark: {
+    palette: {
+      ...defaultDark.palette,
+      upvote: palette.augmentColor({
+        color: {
+          main: "#66bb6a",
+          contrastText: "rgba(0,0,0,0.87)",
+        },
+      }),
+      downvote: palette.augmentColor({
+        color: {
+          main: "#f44336",
+          contrastText: "#fff",
+        },
+      }),
+      containerPrimary: palette.augmentColor({
+        color: {
+          main: "#121212",
+          contrastText: "white",
+        },
+      }),
+      containerSecondary: palette.augmentColor({
+        color: {
+          main: "#121212",
+          contrastText: "white",
+        },
+      }),
+    },
+  },
+  light: {
+    palette: {
+      ...defaultLight.palette,
+      upvote: palette.augmentColor({
+        color: {
+          main: "#2e7d32",
+          contrastText: "#32009a",
+        },
+      }),
+      downvote: palette.augmentColor({
+        color: {
+          main: "#d32f2f",
+          contrastText: "#fff",
+        },
+      }),
+      containerPrimary: palette.augmentColor({
+        color: {
+          main: "#fff",
+          contrastText: "#black",
+        },
+      }),
+      containerSecondary: palette.augmentColor({
+        color: {
+          main: "#fff",
+          contrastText: "#black",
+        },
+      }),
+    },
+  },
+};
+```
+
+Okay this is done, now how do we tell typescript that if I do `<Button colour={’upvote’} />` then don’t throw an error? because I’ve supplied the values here in this object? also we haven’t added proper types to our current theme files. lets create some types.
+
+create a file called `index.ts` at `src/theme/index.ts`
+
+add the following code and read along:
+
+```tsx
+import { theme as green } from "./presets/green";
+import { theme as blue } from "./presets/blue";
+import { theme as _default } from "./presets/default";
+import { theme as red } from "./presets/red";
+import { Palette, PaletteColor } from "@mui/material/styles";
+
+// this is a typescript utility, if I say DeepPartial<Object> it means any key of that object, is not reauired.
+// this works even when we have nested objects and we want all the keys to be optional. why is this being used?
+// I'd recommend you try to omit this at the end of the tutorial to findout the errors you get to understand it's importance
+type DeepPartial<T> = {
+  [P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P];
+};
+
+declare module "@mui/material/styles" {
+	// these are the extra keys we added to our theme palette if you recall
+	// we are telling TS to chill out incase it encounters these keys 
+  interface Palette {
+    upvote?: PaletteColor;
+    downvote?: PaletteColor;
+    containerPrimary?: PaletteColor;
+    containerSecondary?: PaletteColor;
+  }
+	// we need to supply it here too, PaletteOptions are used while supplying theme to the context
+  interface PaletteOptions {
+    upvote?: PaletteColor;
+    downvote?: PaletteColor;
+    containerPrimary?: PaletteColor;
+    containerSecondary?: PaletteColor;
+  }
+}
+
+// [IMP] in order to use colour={'upvote'} you need to tell ts this like so:
+declare module "@mui/material/Button" {
+  interface ButtonPropsColorOverrides {
+    upvote: true;
+    downvote: true;
+  }
+}
+
+// similarly i want to use upvote as a colour in circular progress component as well
+declare module "@mui/material/CircularProgress" {
+  interface CircularProgressPropsColorOverrides {
+    upvote: true;
+    downvote: true;
+  }
+}
+
+// this will be our Theme Type. remember how we created themes earlier? those objects 
+// are of type AppTheme, we will add this type to those files
+export interface AppTheme {
+  dark: {
+    palette: DeepPartial<Palette>;
+  };
+  light: {
+    palette: DeepPartial<Palette>;
+  };
+}
+
+// finally we export a final object that contains all our themes which we can
+// use to pick our desired palette.
+export const color = {
+  0: _default,
+  1: green,
+  2: blue,
+  3: red,
+};
+```
+
+small change before we move forward:
+
+in **ALL** the four files `blue.ts` `red.ts` `green.ts` `default.ts` make the following change:
+
+\import this newly created AppTheme type (add this entire line at the top of the file):
+
+`import { AppTheme } from "..";`
+
+use it to add explicit typing to our theme object (add ‘**: AppTheme**’ in front of ‘theme’):
+
+`export const theme: AppTheme = {`
+
+That’s it!
+
+if you feel confused about anything, checkout blue.ts source here: [https://github.com/facinick/MuiTheming/blob/master/src/theme/presets/blue.ts](https://github.com/facinick/MuiTheming/blob/master/src/theme/presets/blue.ts)
+
+if your code looks the same, move ahead.
+
+Let’s go back to our Theme provider and get them themes!
+
+Following is the file `src/theme/ThemeProvider.tsx` after new changes, follow the comments in the code below:
+
+```tsx
+import CssBaseline from "@mui/material/CssBaseline";
+import GlobalStyles from "@mui/material/GlobalStyles";
+import { ThemeProvider, createTheme, ThemeOptions } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import React from "react";
+import { useEffect } from "react";
+// 1. import our newly fresh yum exported theme
+import { color as ThemeColors } from "./index";
+
+export const ThemeContext = React.createContext({
+  toggleColorMode: () => {},
+  shuffleColorTheme: () => {},
+});
+
+type MyThemeProviderProps = {
+  children?: React.ReactNode;
+};
+
+export default function MyThemeProvider(props: MyThemeProviderProps) {
+  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+
+  const [mode, setMode] = React.useState<"light" | "dark">(
+    prefersDarkMode ? "dark" : "light"
+  );
+  const [theme, setTheme] = React.useState<0 | 1 | 2 | 3>(0);
+
+  useEffect(() => {
+    setMode(prefersDarkMode ? "dark" : "light");
+  }, [prefersDarkMode]);
+
+  const colorMode = React.useMemo(
+    () => ({
+      toggleColorMode: () => {
+        setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
+      },
+      shuffleColorTheme: () => {
+        setTheme((prevTheme) => ((prevTheme + 1) % 4) as 0 | 1 | 2 | 3);
+      },
+    }),
+    []
+  );
+
+// 2. create theme object, pick theme from the mega theme object we exported earlier
+// based on our theme and mode values
+  const _theme = React.useMemo(
+    () => createTheme(ThemeColors[theme][mode] as ThemeOptions),
+    [mode, theme]
+  );
+
+  return (
+    <ThemeContext.Provider value={colorMode}>
+      {/* 3. supply it to MUI ThemeProvider */}
+      <ThemeProvider theme={_theme}>
+        <GlobalStyles styles={{}} />
+        <CssBaseline enableColorScheme />
+        {props.children}
+      </ThemeProvider>
+    </ThemeContext.Provider>
+  );
+}
+```
+
+We are 99% done, let’s move to the final part of the tutorial:
+
+What’s left? 
+
+we have created bunch of themes.
+
+we have a context that provides two functions to change theme and modes.
+
+we are picking out the correct theme and supplying it to MUI provider.
+
+we still need to pick the theme and apply it to our components!
+
+Open `src/App.tsx` and add the following code
+
+```tsx
+import React from "react";
+import Container from "@mui/material/Container";
+import {
+  Box,
+  Card,
+  CardContent,
+  Checkbox,
+  CircularProgress,
+  Slider,
+  Switch,
+  TextField,
+  TextFieldProps,
+  Typography,
+  useTheme,
+} from "@mui/material";
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
+import { styled } from "@mui/material/styles";
+
+// how to change theme and modes? check below:
+
+// this is a Component that'll on button click
+// read the colorMode from context (which had our two functions to change theme and mode)
+// use colorMode to call the toggleColorMode function
+const ThemeModeSwitch = () => {
+  const theme = useTheme();
+  const colorMode = React.useContext(ThemeContext);
+  return (
+    <ToggleButton
+      style={{ borderRadius: "50px", border: "none" }}
+      value="check"
+      onChange={colorMode.toggleColorMode}
+    >
+      change mode
+      {theme.palette.mode === "dark" && <LightModeIcon color={"secondary"} />}
+      {theme.palette.mode === "light" && <DarkModeIcon color={"secondary"} />}
+    </ToggleButton>
+  );
+};
+
+// this is a Component that'll on button click
+// read the colorMode from context (which had our two functions to change theme and mode)
+// use colorMode to call the shuffleColorTheme function
+const ThemeSwitch = () => {
+  const colorMode = React.useContext(ThemeContext);
+  return (
+    <ToggleButton
+      value={"check"}
+      style={{ borderRadius: "50px", border: "none" }}
+      onChange={colorMode.shuffleColorTheme}
+    >
+      change theme
+      <ColorLensIcon color={"secondary"} />
+    </ToggleButton>
+  );
+};
+// see? because of context api, we didn't have to pass those functions all the way down till here. We
+// can just React.useContext(Context);
+
+// this is a way to create styled MUI components with our theme values
+// here I want the input field to have font color I've chosen for containerSecondary
+// and background color of containerSecondary
+// I could pick current themes colors like theme.palette.primary.main
+// or theme.palette.upvote.main etc
+
+const StyledTextField = styled(TextField)<TextFieldProps>(({ theme }) => ({
+  color: theme?.palette?.containerSecondary?.contrastText,
+  backgroundColor: theme?.palette?.containerSecondary?.main,
+  "& .MuiInputBase-root": {
+    color: theme?.palette?.containerSecondary?.contrastText,
+  },
+  "& .MuiInputLabel-root": {
+    color: theme?.palette?.containerSecondary?.contrastText,
+  },
+}));
+
+export const Main = () => {
+  // we can also get theme this way
+  const theme = useTheme();
+
+  return (
+    <Card>
+      <CardContent>
+        <Stack direction="column" spacing={5}>
+          <Stack direction="row" spacing={5}>
+						{/* Our buttons to toggle theme and modes */}
+            <ThemeModeSwitch />
+            <ThemeSwitch />
+          </Stack>
+          <Stack direction="row" spacing={5}>
+            <Button variant={"contained"} color={"primary"}>
+              Primary Button
+            </Button>
+            <Button variant={"contained"} color={"secondary"}>
+              Secondary Button
+            </Button>
+            <Button variant={"contained"} color={"upvote"}>
+              Custom Button
+            </Button>
+          </Stack>
+          <Stack direction="row" spacing={5}>
+            <TextField value={"Un styled text field"} color={"primary"} />
+            <StyledTextField
+              value={"styled text field"}
+              multiline
+              size="small"
+              rows={4}
+            />
+          </Stack>
+          <Stack alignItems={"center"} direction="row" spacing={5}>
+            <Switch defaultChecked />
+            <Checkbox color={"primary"} defaultChecked />
+            <Checkbox color={"error"} defaultChecked />
+            <Checkbox color={"secondary"} defaultChecked />
+            <Slider />
+          </Stack>
+          <Stack alignItems={"center"} direction="row" spacing={5}>
+            <Box
+								{/* Here I am using the theme variables to style my box element to container secondary */}
+              sx={{
+                color: theme?.palette?.containerSecondary?.contrastText,
+                backgroundColor: theme?.palette?.containerSecondary?.main,
+                padding: 1,
+              }}
+            >
+              <Typography>Use Theme</Typography>
+            </Box>
+            <CircularProgress color={"downvote"} />
+          </Stack>
+        </Stack>
+      </CardContent>
+    </Card>
+  );
+};
+
+function App() {
+  return (
+    <div className="app">
+      <Container maxWidth="md">
+        <Main />
+      </Container>
+    </div>
+  );
+}
+
+export default App;
+```
+
+when you supply `colour={’primary’}` to a button, it’ll automatically pick background and text colour from theme
+
+but in case of let’s say Box, you’ll have to specify background and font colour as we are doing above.
+
+generally, like the name suggests, 
+
+use primary colours for important UI elements that will draw user attention
+
+use secondary colours for not so important ui elements
+
+use container colours for well container elements like cards, boxes, paper etc.
+
+again, primary containers are important UI containers and primary container contrastText is the text to be shown on it
+
+---
+
+## Resources
+
+1. MUI Default theme: [https://mui.com/material-ui/customization/default-theme/](https://mui.com/material-ui/customization/default-theme/)
+2. Material You Theme Builder: [https://material-foundation.github.io/material-theme-builder/#/custom](https://material-foundation.github.io/material-theme-builder/#/custom)
+3. Demo: [https://mui-theming.vercel.app/](https://mui-theming.vercel.app/)
+4. MUI Components: [https://mui.com/components/](https://mui.com/components/)
+5. useMemo hook: [https://dmitripavlutin.com/react-usememo-hook/](https://dmitripavlutin.com/react-usememo-hook/)
+
+## Tips
+
+1. Make sure you \import methods, classes, variables etc from correct package.
+2. Make sure you extend typescript definition of MUI theme to incorporate your custom variables

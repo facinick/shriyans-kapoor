@@ -1,15 +1,15 @@
 'use client';
+import { Button } from '@/components/ui/Button';
+import { Card } from '@/components/ui/Card';
+import { Flex } from '@/components/ui/Flex';
+import { Grid } from '@/components/ui/Grid';
+import { Heading, Paragraph } from '@/components/ui/Typography';
+import { getRandomIntBetween } from '@/lib/helpers/utils';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { GridNode } from './Node';
 import styles from './PercolatingGrid.module.css';
 import { Stats } from './Stats/Stats';
 import { Percolation, SiteState } from './percolation';
-import { Card } from '@/components/ui/Card';
-import { Grid } from '@/components/ui/Grid';
-import { Flex } from '@/components/ui/Flex';
-import { Button } from '@/components/ui/Button';
-import { getRandomIntBetween } from '@/lib/helpers/utils';
-import { Heading } from '@/components/ui/Typography';
 
 const SETTINGS = {
   ROWS: 15,
@@ -177,6 +177,10 @@ export const PercolatingGrid = (): JSX.Element => {
             <header className={styles.header}>
               <Heading>Percolating Grid</Heading>
             </header>
+            <Paragraph>
+              Try <strong>tapping/clicking</strong> the top layer, breaking them
+              will allow water to come through!
+            </Paragraph>
             <Grid
               style={{
                 gridTemplateColumns: `repeat(${nCols}, ${SETTINGS.NODE_WIDTH}px)`,

@@ -1,6 +1,6 @@
-"use client"
-import { motion, useInView } from "framer-motion";
-import { ReactNode, useEffect, useRef, useState } from "react";
+'use client';
+import { motion, useInView } from 'framer-motion';
+import { ReactNode, useEffect, useRef, useState } from 'react';
 
 export function FadeUp({
   children,
@@ -35,8 +35,8 @@ export function FadeUp({
         },
       }}
       initial="hidden"
-      animate={isVisible ? "visible" : "hidden"}
-      transition={{ delay, type: "spring", duration }}
+      animate={isVisible ? 'visible' : 'hidden'}
+      transition={{ delay, type: 'spring', duration }}
     >
       {children}
     </motion.div>

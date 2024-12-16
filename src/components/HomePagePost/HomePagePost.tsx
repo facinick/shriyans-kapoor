@@ -14,22 +14,19 @@ import { Heading, Paragraph } from '../ui/Typography';
 import styles from './HomePagePost.module.css';
 
 interface Props {
-  post: z.infer<typeof Post>
+  post: z.infer<typeof Post>;
 }
 
 const HomePagePost = ({ post }: Props): JSX.Element => {
   const { author, publishedOn, abstract, title, tags } = post.metadata;
-  const { category, slug } = post
+  const { category, slug } = post;
 
-  const postLink = `${category}/${slug}`
+  const postLink = `${category}/${slug}`;
 
   return (
     <Flex asChild direction={'column'} gap={2}>
       <article>
-        <Link
-          className={clsx(styles.link, styles.head)}
-          href={postLink}
-        >
+        <Link className={clsx(styles.link, styles.head)} href={postLink}>
           <Heading
             level={3}
             asChild

@@ -20,7 +20,7 @@ const CodeSnippet = ({ children, className, ...props }: CodeSnippetProps) => {
           lightSelector: '[data-color-scheme="light"]',
         }}
         style={{
-          borderRadius: "var(--radius)"
+          borderRadius: 'var(--radius)',
         }}
         className={clsx(className, styles.wrapper, monoFont.className)}
       >

@@ -1,17 +1,17 @@
-import { APP_TITLE } from '@/lib/constants'
-import { headingFont } from '@/lib/helpers/font-helper'
-import clsx from 'clsx'
-import ColorSchemeToggle from '../ColorSchemeToggle'
-import SlideOnHoverText from '../SlideOnHoverText'
-import ThemeSelect from '../ThemeSelect'
-import { Box } from '../ui/Box'
-import { Flex } from '../ui/Flex'
-import { Link } from '../ui/Link'
-import styles from './Header.module.css'
+import { APP_TITLE } from '@/lib/constants';
+import { headingFont } from '@/lib/helpers/font-helper';
+import clsx from 'clsx';
+import ColorSchemeToggle from '../ColorSchemeToggle';
+import SlideOnHoverText from '../SlideOnHoverText';
+import ThemeSelect from '../ThemeSelect';
+import { Box } from '../ui/Box';
+import { Flex } from '../ui/Flex';
+import { Link } from '../ui/Link';
+import styles from './Header.module.css';
 
-interface Props { }
+interface Props {}
 
-const Header = ({ }: Props): JSX.Element => {
+const Header = ({}: Props): JSX.Element => {
   return (
     <>
       <header className={styles.header}>
@@ -38,7 +38,7 @@ const Header = ({ }: Props): JSX.Element => {
         </Flex>
       </header>
     </>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

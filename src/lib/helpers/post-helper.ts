@@ -4,15 +4,8 @@ import { readdir } from 'fs/promises';
 import matter from 'gray-matter';
 import path from 'path';
 import { z } from 'zod';
-import {
-  CATEGORY_ALL,
-  POSTS_DIRECTORY,
-  POSTS_PER_PAGE
-} from '../constants';
-import {
-  readDirectory,
-  readFile
-} from './file-helper';
+import { CATEGORY_ALL, POSTS_DIRECTORY, POSTS_PER_PAGE } from '../constants';
+import { readDirectory, readFile } from './file-helper';
 
 // server side caching
 type CategoryCacheValue = {
@@ -47,8 +40,10 @@ const categoryCache: Map<string, CategoryCacheValue> = new Map();
 const postCache: Map<string, PostCacheValue> = new Map();
 const postsCache: Map<string, PaginatedPostsCacheValue> = new Map();
 
-export async function getPosts(category: string, page: number): Promise<PaginatedPostsCacheValue> {
-
+export async function getPosts(
+  category: string,
+  page: number
+): Promise<PaginatedPostsCacheValue> {
   const cacheKey = `${category}-${page}`;
 
   // Check if the result is already in the cache
@@ -56,9 +51,8 @@ export async function getPosts(category: string, page: number): Promise<Paginate
     return postsCache.get(cacheKey) as unknown as PaginatedPostsCacheValue;
   }
 
-  const categories = category !== CATEGORY_ALL
-    ? [category]
-    : (await getCategories()).data;
+  const categories =
+    category !== CATEGORY_ALL ? [category] : (await getCategories()).data;
 
   const blogPosts: Array<z.infer<typeof Post>> = [];
 
@@ -127,8 +121,10 @@ export async function getPosts(category: string, page: number): Promise<Paginate
 
   return result;
 }
-export async function getPost(category: string, slug: string): Promise<PostCacheValue | null> {
-
+export async function getPost(
+  category: string,
+  slug: string
+): Promise<PostCacheValue | null> {
   const cacheKey = `${category}-${slug}`;
 
   // Check if the post is already in the cache
@@ -139,7 +135,9 @@ export async function getPost(category: string, slug: string): Promise<PostCache
   let rawMetaAndContent = '';
 
   try {
-    rawMetaAndContent = await readFile(`${POSTS_DIRECTORY}/${category}/${slug}.mdx`);
+    rawMetaAndContent = await readFile(
+      `${POSTS_DIRECTORY}/${category}/${slug}.mdx`
+    );
   } catch (error) {
     console.error(`Error reading post file: ${slug}.mdx in ${category}`, error);
     return null;
@@ -165,7 +163,6 @@ export async function getPost(category: string, slug: string): Promise<PostCache
   }
 }
 export async function getCategories(): Promise<CategoryCacheValue> {
-
   const cacheKey = 'categories';
 
   // Check if categories are already in the cache
@@ -184,8 +181,8 @@ export async function getCategories(): Promise<CategoryCacheValue> {
   }
 
   const directories = fileLike
-    .filter(file => file.isDirectory())
-    .map(file => file.name);
+    .filter((file) => file.isDirectory())
+    .map((file) => file.name);
 
   const result = {
     data: directories,
@@ -199,34 +196,31 @@ export async function getCategories(): Promise<CategoryCacheValue> {
   return result;
 }
 export async function getAllPosts(): Promise<PostsCacheValue> {
-
-  const categories = (await getCategories()).data
+  const categories = (await getCategories()).data;
 
   const allPosts: Array<z.infer<typeof Post>> = [];
 
   // Loop through each category and fetch posts
   for (let category of categories) {
-
     const categoryDirectory = `${POSTS_DIRECTORY}/${category}`;
 
-    let fileNames: string[] = []
+    let fileNames: string[] = [];
 
     try {
       fileNames = await readDirectory(categoryDirectory);
     } catch (error) {
-      console.error(error)
-      continue // skip this category
+      console.error(error);
+      continue; // skip this category
     }
 
     for (let fileName of fileNames) {
-
-      let rawContent: string
+      let rawContent: string;
 
       try {
         rawContent = await readFile(`${categoryDirectory}/${fileName}`);
       } catch (error) {
-        console.error(error)
-        continue // skip this file
+        console.error(error);
+        continue; // skip this file
       }
 
       try {
@@ -238,7 +232,7 @@ export async function getAllPosts(): Promise<PostsCacheValue> {
           content: PostContent.parse(content),
         });
       } catch (error) {
-        console.error(`error parsing rawContent: ${rawContent}`, error)
+        console.error(`error parsing rawContent: ${rawContent}`, error);
       }
     }
   }
@@ -252,13 +246,14 @@ export async function getAllPosts(): Promise<PostsCacheValue> {
   const result = {
     data: allPosts,
     pagination: {
-      totalResults
+      totalResults,
     },
   };
 
   return result;
 }
 export {
-  type CategoryCacheValue, type PaginatedPostsCacheValue, type PostCacheValue
+  type CategoryCacheValue,
+  type PaginatedPostsCacheValue,
+  type PostCacheValue,
 };
-

@@ -3,7 +3,7 @@ import { Link } from '../ui/Link';
 import styles from './ReadMore.module.css';
 interface Props {
   href: string;
-  children?: React.ReactNode
+  children?: React.ReactNode;
 }
 
 export const ReadMore = ({ href, children }: Props): JSX.Element => {

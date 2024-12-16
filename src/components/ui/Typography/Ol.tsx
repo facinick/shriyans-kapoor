@@ -3,22 +3,22 @@ import { Slot } from '@radix-ui/react-slot';
 import { VariantProps, cva } from 'class-variance-authority';
 import React from 'react';
 
-export interface UlProps extends React.HTMLAttributes<HTMLUListElement> {
+export interface OlProps extends React.HTMLAttributes<HTMLUListElement> {
   asChild?: boolean;
 }
 
-const Ul = React.forwardRef<HTMLUListElement, UlProps>(
+const Ol = React.forwardRef<HTMLOListElement, OlProps>(
   ({ className, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : 'ul';
+    const Comp = asChild ? Slot : 'ol';
     return (
       <Comp
-        className={cn(' ml-6 list-disc [&>li]:mt-2', className)}
+        className={cn(' ml-6 list-decimal [&>li]:mt-2', className)}
         ref={ref}
         {...props}
       />
     );
   }
 );
-Ul.displayName = 'Ul';
+Ol.displayName = 'Ol';
 
-export { Ul };
+export { Ol };

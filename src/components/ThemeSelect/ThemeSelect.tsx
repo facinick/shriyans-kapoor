@@ -15,9 +15,9 @@ import {
 } from '../ui/Select/Select';
 import styles from './ThemeSelect.module.css';
 
-interface Props { }
+interface Props {}
 
-const ThemeSelect = ({ }: Props): JSX.Element => {
+const ThemeSelect = ({}: Props): JSX.Element => {
   const { theme, changeTheme } = useContext(ThemeContext);
 
   const handleChange = async (value: string): Promise<void> => {

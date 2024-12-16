@@ -5,21 +5,21 @@ import { getCategories, getPosts } from '@/lib/helpers/post-helper';
 
 export async function generateStaticParams() {
   // console.log(`DEBUG: Generating Static Params...`)
-  const allCategories = await getCategories()
+  const allCategories = await getCategories();
 
-  const params = [...allCategories.data, CATEGORY_ALL].map(category => ({
+  const params = [...allCategories.data, CATEGORY_ALL].map((category) => ({
     category,
-  }))
+  }));
 
   // console.log(`DEBUG: Generated:`, params)
 
-  return params
+  return params;
 }
 
 interface PageProps {
   params: {
     category?: string;
-  },
+  };
   searchParams: {
     page?: string;
   };
@@ -44,17 +44,11 @@ async function CategoryPage({ params, searchParams }: PageProps) {
 
   return (
     <>
-      <HomePagePagination
-        count={posts.pagination.totalPages}
-        page={page}
-      />
+      <HomePagePagination count={posts.pagination.totalPages} page={page} />
 
       <HomePagePostList posts={posts.data} />
 
-      <HomePagePagination
-        count={posts.pagination.totalPages}
-        page={page}
-      />
+      <HomePagePagination count={posts.pagination.totalPages} page={page} />
     </>
   );
 }

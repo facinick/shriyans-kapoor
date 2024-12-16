@@ -5,9 +5,9 @@ import { useContext } from 'react';
 import VisuallyHidden from '../VisuallyHidden/VisuallyHidden';
 import { ThemeContext } from '../providers/ThemeProvider';
 import { Button } from '../ui/Button/Button';
-interface Props { }
+interface Props {}
 
-const ColorSchemeToggle = ({ }: Props): JSX.Element => {
+const ColorSchemeToggle = ({}: Props): JSX.Element => {
   const { colorScheme, toggleColorScheme } = useContext(ThemeContext);
 
   const handleToggle = async (): Promise<void> => {
@@ -25,7 +25,7 @@ const ColorSchemeToggle = ({ }: Props): JSX.Element => {
       >
         <motion.button
           whileTap={{ scale: 0.9 }}
-        // transition={{ duration: 0.2 }}
+          // transition={{ duration: 0.2 }}
         >
           {colorScheme === 'dark' ? <Sun /> : <Moon />}
           <VisuallyHidden>Color Scheme Toggle</VisuallyHidden>

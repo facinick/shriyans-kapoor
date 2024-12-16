@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import { Heading } from '@/components/ui/Typography';
 import { headingFont } from '@/lib/helpers/font-helper';
@@ -16,12 +16,11 @@ export const PostPagePostHeader = ({
   children,
   backLinkOrNull,
 }: Props): JSX.Element => {
-
-  const router = useRouter()
+  const router = useRouter();
 
   const onBack = () => {
-    router?.back()
-  }
+    router?.back();
+  };
 
   return (
     <>

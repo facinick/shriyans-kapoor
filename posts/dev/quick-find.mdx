@@ -1,0 +1,434 @@
+---
+title: "Quick Find"
+abstract: "Learn the Union-Find algorithm, a foundational tool in algorithms and data structures. We'll explore dynamic connectivity, Quick-Find, Quick-Union, and its optimized variations, along with fascinating real-world applications like percolation in grids."
+publishedOn: "2024-12-07T08:50:18.327Z"
+author: "Shriyans Kapoor"
+tags: ["algorithms", "animation", "typescript"]
+---
+
+When I first encountered the concept of dynamic connectivity, it felt like stumbling upon a hidden superpower in the world of computer science. 🕵️‍♀️ The Union-Find algorithm isn't just a data structure—it's a mathematical marvel that can solve problems ranging from social network analysis to physical system modeling.
+
+## Understanding Dynamic Connectivity
+
+Let's start with a fundamental question: How do we efficiently track connections between objects?
+
+Imagine you have a set of objects, and you want to:
+- Connect specific objects
+- Check if two objects are already connected
+- Determine the number of distinct groups or components
+
+This is the essence of the dynamic connectivity problem.
+
+## The Core Challenges
+
+When designing a Union-Find data structure, we face several critical constraints:
+- Handle a potentially massive number of objects (N can be huge)
+- Support multiple operations efficiently
+- Manage both union commands and connectivity queries
+
+### The Union-Find API
+
+Here's what our ideal data structure needs to support:
+
+```typescript
+class UnionFind {
+    constructor(N: number) {
+        // Initialize with N objects (0 to N-1)
+    }
+
+    union(p: number, q: number): void {
+        // Add connection between p and q
+    }
+
+    connected(p: number, q: number): boolean {
+        // Are p and q in the same component?
+        return false;
+    }
+
+    find(p: number): number {
+        // Find the component identifier for p
+        return -1;
+    }
+
+    count(): number {
+        // Number of distinct components
+        return 0;
+    }
+}
+```
+
+## The Evolution of Approaches
+
+### Quick Find: The Naive First Attempt
+
+Our first approach might look straightforward:
+
+```typescript
+class QuickFind {
+
+  // interperation of the id array
+  // p and q are connected if they have the same id
+  private id: Array<number>;
+  private N: number;
+  private nComponents: number;
+
+  constructor(n: number) {
+    this.N = n;
+    this.nComponents = n;
+    this.id = new Array<number>(n).fill(0);
+
+    // each id or node is connected to only itself. so let them have same value as their id
+    this.id.forEach((_, index, array) => {
+      array[index] = index;
+    })
+  }
+
+  // every element that's in same component as p, will have same value in id array.
+  // find all such and change them to id of q node
+  // N operations everytime a union is performed.
+  public union(p: number, q: number): void {
+
+    if(this.connected(p,q)) {
+      return;
+    }
+
+    const idOfComponentContainingP = this.id[p];
+    const idOfComponentContainingQ = this.id[q];
+
+    this.id.forEach((_,index,array) => {
+      // if it belongs to component same as p
+      if(array[index] === idOfComponentContainingP) {
+        // change it to make it a part of component same as q
+        array[index] = idOfComponentContainingQ
+      }
+    })
+
+    this.nComponents -= 1;
+  }
+
+  // constant time operation every time connected is performed
+  public connected(p: number, q: number): boolean {
+    return this.id[p] === this.id[q];
+  }
+
+  // same as root(p: number): number
+  // every component has one id, lets call it it's root. 
+  public find(p: number): number {
+    return this.id[p]
+  }
+
+  public count(): number {
+    return this.nComponents;
+  }
+
+  public display(): void {
+    const n = this.id.length;
+    let result = "";
+    for (let i = 0; i < n; i++) {
+        result += `${this.id[i]} `;
+    }
+    console.log(`[${result}]`);
+  }
+}
+
+export {
+  QuickFind
+};
+```
+
+**The Problem**: This approach is catastrophically slow! 
+
+- Initialization: O(N)
+- Union operation: O(N²)
+- Connected check: O(1)
+
+For 10⁹ operations on 10⁹ objects, this would take over 30 years of computation time. 😱
+
+### Quick Union: A Lazy Approach
+
+We can do better by using a tree-like structure:
+
+```typescript
+class QuickUnion {
+
+  // this array now represents a set of trees. each entry points to id of it's aprent in the array
+  // initially all are their own parent
+  private id: Array<number>;
+  private N: number;
+  private nComponents: number;
+
+  constructor(n: number) {
+    this.N = n;
+    this.nComponents = n;
+
+    this.id = new Array<number>(n).fill(0);
+    this.id.forEach((_, index, array) => {
+      // every element / node is their own parent hence storing value of their own id;
+      array[index] = index;
+    })
+  }
+
+  union(p: number, q: number): void {
+
+    if(this.connected(p,q)) {
+      return;
+    }
+
+    const rootP = this.find(p);
+    const rootQ = this.find(q);
+
+    this.id[rootP] = rootQ;
+    this.nComponents -= 1;
+  }
+
+  // this time same as checking if p and q have same root / same identifier for their component.
+  // earlier we were storing the identifier tiself in array, but now we are storing parent
+  // so new indirect identifier is the ROOT. keep going from parent to parent untill u cant
+  connected(p: number, q: number): boolean {
+    return this.find(p) === this.find(q);
+  }
+
+  // same as root(p: number): number
+  find(p: number): number {
+    let child = p;
+    let parent = this.id[p];
+
+    // in case we find root element, it's value will point to it's own id. 
+    // child is the element / id / node
+    // parent is the value of that id in array, id of another element. sighs
+    while(child !== parent) {
+      child = parent
+      parent = this.id[child]
+    }
+    return parent;
+  }
+
+  count(): number {
+    return this.nComponents;
+  }
+
+  public display(): void {
+    const n = this.id.length;
+    let result = "";
+    for (let i = 0; i < n; i++) {
+        result += `${this.id[i]} `;
+    }
+    console.log(`[${result}]`);
+  }
+}
+
+export { QuickUnion };
+```
+
+**The Improvement**: 
+- Trees are flatter
+- Union is cheaper
+- But find can still be expensive
+
+### Weighted Quick Union: Balancing the Tree
+
+The breakthrough comes with weighted quick union:
+
+```typescript
+/*
+  Proposition: Depth of any node is at max Log(n), therefore
+  cost of finding roots is easier, in previous (quick union, this wasn't the case)
+*/
+
+// depth of any node here is at most log base 2 of N
+
+class WeightedQuickUnion {
+
+  private id: Array<number>;
+  private N: number;
+  private nComponents: number;
+  // keeps weight of tree with root at the item
+  // = number of items with root as the node INDEX
+  private weights: Array<number>;
+  // for visualisation, not required for this algorithm
+  // private tree: Map<number, Array<number>>;
+
+  /*
+    cost: n
+  */
+  constructor(n: number) {
+    this.N = n;
+    this.nComponents = n;
+
+    // not needed for this algorithm
+    // this.tree = new Map();
+
+    this.id = new Array<number>(n).fill(0);
+    this.id.forEach((_, index, array) => {
+      // every element / node is their own parent hence storing value of their own id;
+      array[index] = index;
+    })
+
+    // weight at node i is the number of elements that has it as it's root.
+    this.weights = new Array<number>(n).fill(1);
+  }
+
+  // same as root(p: number): number
+  find(p: number): number {
+    let child = p;
+    let parent = this.id[p];
+
+    // in case we find root element, it's value will point to it's own id. 
+    // child is the element / id / node
+    // parent is the value of that id in array, id of another element. sighs
+    while(child !== parent) {
+      child = parent
+      parent = this.id[child]
+    }
+    return parent;
+  }
+
+  // constant time operation every time connected is performed
+  public connected(p: number, q: number): boolean {
+    return this.find(p) === this.find(q);
+  }
+
+  /*
+    link root of smaller tree to root of larger tree
+  */
+  public union(p: number, q: number): void {
+
+    const rootP = this.find(p)
+    const rootQ = this.find(q)
+
+    if(rootP === rootQ) {
+      return;
+    }
+
+    // p is in smaller tree, make p's root's parent q's root
+    if(this.weights[rootP] < this.weights[rootQ]) {
+      this.id[rootP] = rootQ
+      this.weights[rootQ] = this.weights[rootQ] + this.weights[rootP];
+
+      // Update tree structure
+      // this.tree.has(rootQ) ? this.tree.get(rootQ)?.push(rootP) : this.tree.set(rootQ, [rootP])
+    } else {
+      this.id[rootQ] = rootP
+      this.weights[rootP] = this.weights[rootQ] + this.weights[rootP]
+
+      // Update tree structure
+      // this.tree.has(rootP) ? this.tree.get(rootP)?.push(rootQ) : this.tree.set(rootP, [rootQ])
+    }
+
+    this.nComponents -= 1;
+  }
+
+  count(): number {
+    return this.nComponents;
+  }
+
+  public display(): void {
+    const n = this.id.length;
+    let result = "";
+    for (let i = 0; i < n; i++) {
+        result += `${this.id[i]} `;
+    }
+    console.log(`[${result}]`);
+  }
+
+  public getData(): typeof this.id {
+    return this.id
+  }
+
+  public findComponent(p: number): Array<number> {
+    const rootP = this.find(p);
+    const component = [];
+
+    for (let i = 0; i < this.N; i++) {
+      if (this.find(i) === rootP) {
+        component.push(i);
+      }
+    }
+
+    return component;
+  }
+
+  // public getTree(): Map<number, Array<number>> {
+  //   return this.tree;
+  // }
+}
+
+export { WeightedQuickUnion };
+
+```
+
+**Key Insight**: By always attaching the smaller tree to the larger one, we keep the tree nearly balanced.
+
+### Path Compression: The Final Optimization
+
+The ultimate optimization is path compression:
+
+```typescript
+// same as root(p: number): number
+  find(p: number): number | null {
+
+    if(p < 0 || p >= this.N) {
+      return null
+    }
+
+    let child = p;
+    let parent = this.id[p];
+
+    // in case we find root element, it's value will point to it's own id. 
+    // child is the element / id / node
+    // parent is the value of that id in array, id of another element. sighs
+    while(child !== parent) {
+      child = parent
+      parent = this.id[child]
+    }
+
+    // apply path compression here ----------------------------
+    child = p;
+    while (child !== parent) {
+      let next = this.id[child];
+      this.id[child] = parent;
+      child = next;
+    }
+    // --------------------------------------------------------
+    return parent;
+  }
+```
+
+## Real-World Applications
+
+Union-Find isn't just a theoretical construct. It's used in:
+- Percolation models
+- Social network analysis
+- Image processing
+- Game development (Go, Hex)
+- Kruskal's minimum spanning tree algorithm
+
+### The Percolation Problem
+
+One of the most fascinating applications is the percolation model:
+- Imagine an N×N grid
+- Each site can be open or blocked
+- Goal: Determine if a path exists from top to bottom
+
+<PercolatingGrid />
+
+The magic happens at a critical threshold (around 0.592746), where the system transitions from not percolating to percolating.
+
+## Performance Breakdown
+
+| Algorithm | Initialize | Union | Connected | Notes |
+|-----------|------------|-------|-----------|-------|
+| Quick Find | N | N | 1 | Too slow for large N |
+| Quick Union | N | N | N | Tall trees are problematic |
+| Weighted Quick Union | N | log N | log N | Much more efficient |
+| Weighted Quick Union + Path Compression | N | nearly constant | nearly constant | Almost optimal! |
+
+## The Bigger Picture
+
+Union-Find teaches us a crucial lesson in algorithm design:
+1. Start with a naive solution
+2. Identify performance bottlenecks
+3. Incrementally optimize
+4. Use clever data structure transformations
+
+Sometimes, a small tweak can transform an unusable algorithm into a blazing-fast solution!

@@ -8,7 +8,15 @@ import ThemeProvider from '@/components/providers/ThemeProvider/ThemeProvider';
 import { Flex } from '@/components/ui/Flex';
 import { Separator } from '@/components/ui/Separator';
 import { Heading } from '@/components/ui/Typography';
-import { APP_DESCRIPTION, APP_TITLE, CATEGORY_ALL, DEFAULT_COLOR_SCHEME, DEFAULT_PAGE, DEFAULT_THEME, USE_VIEW_TRANSITIONS } from '@/lib/constants';
+import {
+  APP_DESCRIPTION,
+  APP_TITLE,
+  CATEGORY_ALL,
+  DEFAULT_COLOR_SCHEME,
+  DEFAULT_PAGE,
+  DEFAULT_THEME,
+  USE_VIEW_TRANSITIONS,
+} from '@/lib/constants';
 import { headingFont, mainFont } from '@/lib/helpers/font-helper';
 import { getCategories } from '@/lib/helpers/post-helper';
 import {
@@ -34,7 +42,7 @@ export const metadata: Metadata = {
 interface RootLayoutProps {
   params: {
     category?: string;
-  },
+  };
   searchParams: {
     page?: string;
   };
@@ -110,15 +118,14 @@ function Layout({
 export default async function RootLayout({
   children,
   params,
-  searchParams
+  searchParams,
 }: RootLayoutProps) {
-
-  const colorScheme = getColorSchemeFromRequest() || DEFAULT_COLOR_SCHEME
-  const theme = getThemeFromRequest() || DEFAULT_THEME
+  const colorScheme = getColorSchemeFromRequest() || DEFAULT_COLOR_SCHEME;
+  const theme = getThemeFromRequest() || DEFAULT_THEME;
   const category = String(params?.category || CATEGORY_ALL);
   const page = Number(searchParams?.page || DEFAULT_PAGE);
 
-  const categories = await getCategories()
+  const categories = await getCategories();
 
   return USE_VIEW_TRANSITIONS ? (
     <ViewTransitions>
@@ -131,7 +138,7 @@ export default async function RootLayout({
       >
         {children}
       </Layout>
-    </ViewTransitions >
+    </ViewTransitions>
   ) : (
     <Layout
       categories={categories}
