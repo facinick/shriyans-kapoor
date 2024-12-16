@@ -24,6 +24,10 @@ The blog is built using the following technologies:
 ## Deployment
 [![Netlify Status](https://api.netlify.com/api/v1/badges/55205328-9705-4a25-a7bf-ed133859b9a0/deploy-status)](https://app.netlify.com/sites/shriyans-kapoor/deploys)
 
+## Lint & Format
+[![Formatted with Biome](https://img.shields.io/badge/Formatted_with-Biome-60a5fa?style=flat&logo=biome)](https://biomejs.dev/)
+[![Linted with Biome](https://img.shields.io/badge/Linted_with-Biome-60a5fa?style=flat&logo=biome)](https://biomejs.dev)
+
 ## Features
 
 - **SSR Supported Dark/Light Mode**: Prevents initial white flicker for a smoother user experience. (2 pass rendering to enable ssr theming)
