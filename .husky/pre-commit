@@ -1,18 +1,16 @@
-# # Get all staged files (Added or Modified)
-# STAGED_FILES=$(git diff --name-only --cached --diff-filter=AM | grep '\.ts\|\.tsx\|\.css\|\.json$')
+#!/usr/bin/env sh
 
-# # Debugging: Print staged files
-# echo "Formattable Staged files: $STAGED_FILES"
+# Get staged files in src directory with specific extensions
+FILES=$(git diff --cached --name-only --diff-filter=ACMR "src/*.ts" "src/*.tsx" "src/*.css" "src/*.json")
 
-# # If no relevant files are staged, skip the hook
-# if [ -z "$STAGED_FILES" ]; then
-#   echo "No relevant files to lint or format. Skipping pre-commit hook."
-#   exit 0
-# fi
+# Exit if no files are staged
+if [ -z "$FILES" ]; then
+    exit 0
+fi
 
-# # Lint and format the staged files
-# echo "$STAGED_FILES" | xargs pnpm biome lint --write
-# echo "$STAGED_FILES" | xargs pnpm biome format --write
+# Run biome on staged files
+npx biome format $FILES
+npx biome lint $FILES
 
-# # Re-add modified files to the staging area
-# echo "$STAGED_FILES" | xargs git add
+# Add back the modified files to staging
+git add $FILES
