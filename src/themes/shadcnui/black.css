@@ -1,4 +1,4 @@
-:root[data-theme='black'] {
+:root[data-theme="black"] {
   --background: 0 0% 96.2%;
   --foreground: 222.2 84% 4.9%;
   --card: 0 0% 100%;
@@ -21,7 +21,7 @@
   --radius: 0rem;
 }
 
-:root[data-color-scheme='dark'][data-theme='black'] {
+:root[data-color-scheme="dark"][data-theme="black"] {
   --background: 222.2 84% 4.9%;
   --foreground: 210 40% 98%;
   --card: 222.2 84% 4.9%;

@@ -69,7 +69,7 @@ const Disqus = ({ url, identifier }: Props): JSX.Element => {
         transition={{ duration: 0.5 }}
         className={cn(styles['disqus_thread'], styles.disqus)}
         ref={discusThreadRef}
-        id="disqus_thread"
+        id='disqus_thread'
       />
       <Skeleton
         style={{

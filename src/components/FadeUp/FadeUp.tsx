@@ -34,7 +34,7 @@ export function FadeUp({
           y: 0,
         },
       }}
-      initial="hidden"
+      initial='hidden'
       animate={isVisible ? 'visible' : 'hidden'}
       transition={{ delay, type: 'spring', duration }}
     >

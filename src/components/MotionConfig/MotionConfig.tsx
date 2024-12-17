@@ -5,7 +5,7 @@ interface Props {
   children?: React.ReactNode;
 }
 const MotionConfig = ({ children }: Props) => {
-  return <MC reducedMotion="user">{children}</MC>;
+  return <MC reducedMotion='user'>{children}</MC>;
 };
 
 export default MotionConfig;

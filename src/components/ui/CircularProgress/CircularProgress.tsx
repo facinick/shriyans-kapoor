@@ -48,9 +48,9 @@ const CircularProgress = React.forwardRef<SVGSVGElement, CircularProgressProps>(
     return (
       <svg
         className={clsx(styles.progress, className)}
-        width="100%"
-        height="100%"
-        viewBox="0 0 100 100"
+        width='100%'
+        height='100%'
+        viewBox='0 0 100 100'
         ref={ref}
         // fallback styles incase css doesn't load on page
         style={{ width: '70px', height: '70px' }}
@@ -65,16 +65,16 @@ const CircularProgress = React.forwardRef<SVGSVGElement, CircularProgressProps>(
           style={{
             ...trackStyle,
           }}
-          cx="50"
-          cy="50"
-          r="42"
-          pathLength="1"
+          cx='50'
+          cy='50'
+          r='42'
+          pathLength='1'
         />
         <circle
-          cx="50"
-          cy="50"
-          r="42"
-          pathLength="0.99"
+          cx='50'
+          cy='50'
+          r='42'
+          pathLength='0.99'
           className={clsx(
             styles.filled,
             styles.circle,

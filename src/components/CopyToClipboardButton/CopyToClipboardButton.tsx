@@ -37,7 +37,7 @@ const CopyToClipboardButton = ({ copyText }: CopyToClipboardButtonProps) => {
     >
       {copied ? (
         <>
-          <Check color="green" />
+          <Check color='green' />
           <VisuallyHidden>Copied</VisuallyHidden>
         </>
       ) : (

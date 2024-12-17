@@ -49,7 +49,7 @@ export default function CategorySelector({
   return (
     <>
       <VisuallyHidden>
-        <Label htmlFor="category-select">Select Category</Label>
+        <Label htmlFor='category-select'>Select Category</Label>
       </VisuallyHidden>
       <Select
         name={'Category selector'}
@@ -57,13 +57,13 @@ export default function CategorySelector({
         onValueChange={handleCategoryChange}
       >
         <SelectTrigger
-          id="category-select"
-          title="Select Category"
-          aria-label="Select Category"
+          id='category-select'
+          title='Select Category'
+          aria-label='Select Category'
           name={'Select Category'}
-          className="w-[150px]"
+          className='w-[150px]'
         >
-          <SelectValue placeholder="Category">
+          <SelectValue placeholder='Category'>
             <Flex align={'center'} gap={2}>
               <FolderOpen size={16} />
               {selectedCategory}

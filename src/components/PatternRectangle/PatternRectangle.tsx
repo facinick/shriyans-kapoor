@@ -50,13 +50,13 @@ export const Hex: React.FC<ShapeProps> = ({ x, y, fill }) => {
       ? `M ${0.75 * x + 1} ${2 * y + ox + 1} L ${0.75 * x + 1.5} ${2 * y + ox} L ${0.75 * x + 1} ${2 * y + ox - 1} L ${0.75 * x} ${2 * y + ox - 1} Z`
       : `M ${cx} ${2 * y + px - 1} L ${cx + 0.5} ${2 * y + px} L ${cx + 1.5} ${2 * y + px} L ${cx + 0.5} ${2 * y + px - 2} Z`;
 
-  return <path d={pathString} fill={fill} transform="scale(1, 0.85)" />;
+  return <path d={pathString} fill={fill} transform='scale(1, 0.85)' />;
 };
 
 export const Triangle: React.FC<ShapeProps> = ({ x, y, fill }) => {
   return (
     <>
-      <rect x={x} y={y} width="1" height="1" fill={fill} />
+      <rect x={x} y={y} width='1' height='1' fill={fill} />
       <path
         d={`M ${x} ${y} L ${x + 1} ${y} L ${x + 1} ${y + 1} Z`}
         fill={fill}
@@ -93,7 +93,7 @@ export const PatternRectangle: React.FC<PatternProps> = ({
   };
 
   return (
-    <svg viewBox="0 0 25 25" style={{ width: '100%', height: '100%' }}>
+    <svg viewBox='0 0 25 25' style={{ width: '100%', height: '100%' }}>
       {Array.from({ length: width }, (_, x) =>
         Array.from({ length: height }, (_, y) => renderShape(x, y))
       )}

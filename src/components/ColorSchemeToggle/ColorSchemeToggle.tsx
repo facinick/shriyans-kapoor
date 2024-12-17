@@ -18,7 +18,7 @@ const ColorSchemeToggle = ({}: Props): JSX.Element => {
     <>
       <Button
         title={colorScheme === 'dark' ? 'Light Mode' : 'Dark Mode'}
-        size="icon"
+        size='icon'
         variant={'secondary'}
         onClick={handleToggle}
         asChild

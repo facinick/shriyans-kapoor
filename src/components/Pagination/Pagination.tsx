@@ -82,7 +82,7 @@ const Pagination = ({
           <ul>
             <li key={'previous'}>
               <Button
-                title="previous"
+                title='previous'
                 variant={'link'}
                 disabled={page <= 1}
                 onClick={onPrevious}
@@ -163,7 +163,7 @@ const Pagination = ({
             {/*  Right Navigation arrow */}
             <li key={'next'}>
               <Button
-                title="next"
+                title='next'
                 variant={'link'}
                 onClick={onNext}
                 onMouseEnter={() => setHoveredNavItem('next')}

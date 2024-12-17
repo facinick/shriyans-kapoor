@@ -9,12 +9,12 @@
   padding: 30px var(--padding-edges);
 }
 
-[data-color-scheme='light'] .article p code {
+[data-color-scheme="light"] .article p code {
   background-color: hsl(var(--secondary));
   color: hsl(var(--secondary-foreground));
 }
 
-[data-color-scheme='dark'] .article p code {
+[data-color-scheme="dark"] .article p code {
   background-color: hsl(var(--secondary));
   color: hsl(var(--secondary-foreground));
 }

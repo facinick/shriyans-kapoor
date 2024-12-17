@@ -29,12 +29,12 @@ const ThemeSelect = ({}: Props): JSX.Element => {
   return (
     <>
       <VisuallyHidden>
-        <Label htmlFor="theme">Select Theme</Label>
+        <Label htmlFor='theme'>Select Theme</Label>
       </VisuallyHidden>
       <Select onValueChange={handleChange} value={theme}>
         <SelectTrigger
           title={'Change Theme'}
-          id="theme"
+          id='theme'
           className={styles.trigger}
         >
           <SelectValue aria-label={theme}>{theme}</SelectValue>

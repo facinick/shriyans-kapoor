@@ -21,9 +21,9 @@ const Header = ({}: Props): JSX.Element => {
             href={'/'}
             size={'lg'}
             className={clsx(styles.link, styles.title, headingFont.className)}
-            title="Goto Home"
+            title='Goto Home'
           >
-            <SlideOnHoverText slideOnHoverCharacter="@ ">
+            <SlideOnHoverText slideOnHoverCharacter='@ '>
               {APP_TITLE}
             </SlideOnHoverText>
             {/* {APP_TITLE} */}

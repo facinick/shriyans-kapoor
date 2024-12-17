@@ -1,5 +1,5 @@
 .skeleton {
-  border-radius: var('--radius');
+  border-radius: var("--radius");
   position: absolute;
   top: 0;
   width: 100%;

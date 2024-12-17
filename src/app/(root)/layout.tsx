@@ -67,7 +67,7 @@ function Layout({
   theme,
 }: LayoutProps) {
   return (
-    <html lang="en" data-color-scheme={colorScheme} data-theme={theme}>
+    <html lang='en' data-color-scheme={colorScheme} data-theme={theme}>
       <head>
         {/* <meta name="theme-color" content={"hsl(var(--background))"} /> */}
         {/* <meta name="robots" content="all" />

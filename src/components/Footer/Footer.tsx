@@ -36,10 +36,10 @@ const Footer = ({}: Props): JSX.Element => {
                   <Link
                     className={styles['footer-link']}
                     href={SOCIALS.telegram}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    target='_blank'
+                    rel='noopener noreferrer'
                   >
-                    <SlideOnHoverText slideOnHoverCharacter=":) ">
+                    <SlideOnHoverText slideOnHoverCharacter=':) '>
                       message on telegram
                     </SlideOnHoverText>
                   </Link>
@@ -48,17 +48,17 @@ const Footer = ({}: Props): JSX.Element => {
                   <Link
                     className={styles['footer-link']}
                     href={SOCIALS.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    target='_blank'
+                    rel='noopener noreferrer'
                   >
-                    <SlideOnHoverText slideOnHoverCharacter="# ">
+                    <SlideOnHoverText slideOnHoverCharacter='# '>
                       view github
                     </SlideOnHoverText>
                   </Link>
                 </li>
                 <li>
                   <Link className={styles['footer-link']} href={SOCIALS.gmail}>
-                    <SlideOnHoverText slideOnHoverCharacter="@ ">
+                    <SlideOnHoverText slideOnHoverCharacter='@ '>
                       mail on gmail
                     </SlideOnHoverText>
                   </Link>
@@ -72,7 +72,7 @@ const Footer = ({}: Props): JSX.Element => {
             fill={true}
             height={0}
             alt={'abstract footer image'}
-            src="/footer_image.jpg"
+            src='/footer_image.jpg'
           ></Image>
           {/* <span>
             <Heading>FACINICK</Heading>

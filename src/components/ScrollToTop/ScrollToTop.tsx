@@ -84,7 +84,7 @@ const ScrollToTop = ({}: Props): JSX.Element => {
         }}
       >
         <Button
-          title="Scroll to top"
+          title='Scroll to top'
           onClick={scrollToTop}
           className={styles.button}
           ref={buttonRef}

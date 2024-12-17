@@ -18,7 +18,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { MDXRemote } from 'next-mdx-remote/rsc';
-import Image from 'next/image'
+import Image from 'next/image';
 import { ComponentProps, ReactNode } from 'react';
 
 const MDX_COMPONENTS_MAP: ComponentProps<typeof MDXRemote>['components'] = {
@@ -114,17 +114,20 @@ const MDX_COMPONENTS_MAP: ComponentProps<typeof MDXRemote>['components'] = {
     );
   },
   img: ({ ...props }: React.ImgHTMLAttributes<HTMLImageElement>) => {
-
     const src = props['src'];
     const alt = props['alt'];
 
     if (src === undefined || alt === undefined) {
-      throw new Error('arc and alt are required is required for the Image component');
+      throw new Error(
+        'arc and alt are required is required for the Image component'
+      );
     }
 
     // Ensure images are loaded from the public folder
     const imageSrc = src.startsWith('/') ? src : `/public/assets/${src}`;
-    return <Image src={imageSrc} alt={alt} {...props} width={200} height={200} />;
+    return (
+      <Image src={imageSrc} alt={alt} {...props} width={200} height={200} />
+    );
   },
 };
 

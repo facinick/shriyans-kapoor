@@ -27,7 +27,7 @@ export const PostPagePostHeader = ({
       <Heading level={2} asChild className={headingFont.className}>
         <h1>
           {backLinkOrNull && (
-            <Button variant={'link'} onClick={onBack} title="Go Back">
+            <Button variant={'link'} onClick={onBack} title='Go Back'>
               {' '}
               <ArrowLeft />
             </Button>
