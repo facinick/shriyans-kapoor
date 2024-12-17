@@ -1,7 +1,9 @@
+import JsonLd from '@/components/JsonLd/JsonLd';
 import PostPagePostFooter from '@/components/PostPagePostFooter';
 import PostPagePostHeader from '@/components/PostPagePostHeader';
 import { Flex } from '@/components/ui/Flex/Flex';
 import { Separator } from '@/components/ui/Separator';
+import { PROD_APP_SITE_URL } from '@/lib/constants';
 import MDX_COMPONENTS_MAP from '@/lib/helpers/mdx-components';
 import { getAllPosts, getPost } from '@/lib/helpers/post-helper';
 import { getBackLinkOrNullFromRequest } from '@/lib/helpers/request-helpers';
@@ -43,14 +45,29 @@ const getPostCached = React.cache(async (category: string, slug: string) => {
 
 // because extremely slow rn, what to do?
 export async function generateMetadata({ params }: PageProps) {
-  // console.log(`DEBUG: get post meta`)
   const post = await getPostCached(params.category, params.slug);
-
   if (!post) return null;
 
+  const { title, abstract, publishedOn, author, tags } = post.metadata;
+  const url = `${PROD_APP_SITE_URL}/${params.category}/${params.slug}`;
+
   return {
-    title: post.metadata.title,
-    description: post.metadata.abstract,
+    title,
+    description: abstract,
+    openGraph: {
+      title,
+      description: abstract,
+      type: 'article',
+      publishedTime: publishedOn,
+      authors: [author],
+      tags,
+      url,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description: abstract,
+    },
   };
 }
 
@@ -71,6 +88,7 @@ async function PostPage({ params }: PageProps) {
   // const pageIdentifier = params.slug;
   return (
     <>
+      <JsonLd post={post} />
       <Flex direction={'column'} gap={5} asChild>
         <article className={clsx(styles.article, styles.content)}>
           <PostPagePostHeader backLinkOrNull={backLinkOrNull}>

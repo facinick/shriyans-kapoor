@@ -15,6 +15,7 @@ import {
   DEFAULT_COLOR_SCHEME,
   DEFAULT_PAGE,
   DEFAULT_THEME,
+  PROD_APP_SITE_URL,
   USE_VIEW_TRANSITIONS,
 } from '@/lib/constants';
 import { headingFont, mainFont } from '@/lib/helpers/font-helper';
@@ -32,11 +33,51 @@ import '../globals.css';
 import styles from './layout.module.css';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(PROD_APP_SITE_URL),
   title: {
     default: APP_TITLE,
     template: `%s • ${APP_TITLE}`,
   },
   description: APP_DESCRIPTION,
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://facinick.xyz',
+    siteName: APP_TITLE,
+    title: APP_TITLE,
+    description: APP_DESCRIPTION,
+    // images: [
+    //   {
+    //     url: '/og-image.jpg',  // You'll need to create this
+    //     width: 1200,
+    //     height: 630,
+    //     alt: APP_TITLE,
+    //   },
+    // ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: APP_TITLE,
+    description: APP_DESCRIPTION,
+    // images: ['/og-image.jpg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  manifest: '/manifest.json',
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon-16x16.png',
+    apple: '/apple-touch-icon.png',
+  },
 };
 
 interface RootLayoutProps {
