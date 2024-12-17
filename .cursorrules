@@ -1,0 +1,159 @@
+# shriyanskapoor
+
+Every time you choose to apply a rule(s), explicitly state the rule(s) in the output. You can abbreviate the rule description to a single word or phrase.
+
+## Project Context
+Project is my personal blog
+- I create posts in .mdx format in <root>/[category] folder as per the category it blongs to.
+- Project uses SSR to server redner components, SSG to statically generate posts at compile time.
+- blog uses clean minimal look, cute subtle animations and responsive layout
+
+## Features
+
+- **SSR Supported Dark/Light Mode**: Prevents initial white flicker for a smoother user experience. (2 pass rendering to enable ssr theming)
+- **SSR Supported Black/Blue/Orange Themes**: Offers multiple theme options without initial white flicker.
+- **.mdx Posts**: Supports markdown-based posts for easy content creation.
+- **Pagination**: Implements pagination for better navigation through posts.
+- **SSR Pages**: All pages are server-side rendered for optimal performance.
+- **SSG Pages**: Build time generation of `/[category]` and `/[category]/[slug]` routes for faster serving.
+- **Best React Practices**: Follows best practices for React development to ensure maintainability and scalability.
+- **Extensible UI Components**: Implements Component API design principles like polymorphism, delegated props, slots, etc., making it easy to extend and customize the UI components.
+- **Supports reduced motion**: Web app respects readers decision to not give them seizures.
+- **Lazy loading**: Lazy loading costly components so readers browser loads less data at first with `React.lazy()`
+- **Caching**: Server caching through in-memory variables and client caching through `React.cache()`
+- **Semantic HTML**: Is this a feature? With a lot fo developers not caring 1 bit about this, I'm sad to say yes it is. We need to support readers whose life we haven't lived. Don't make assumptions about anyone. We provide content to read, the reader should be able to. This feature is an ever extending one, I have a lot to learn still about this and I am constantly improving.
+- **Support for categories**: Add new categories by created new folders inside `/posts` firectory, and add new posts by creating `.mdx` files inside the `[category]` folder.
+
+## Code Style and Structure
+- Write concise, technical TypeScript code with accurate examples and jsdocs
+- Follow conventions of the file you're working on
+- Always build inhouse solution, don't rely on any more external packages that already are in use
+- Everything should be perfectly typed, don't use 'any'.
+- Code should be highly accessible, accessibility is must.
+- Code should be highly performant, performance is must.
+- Use functional and declarative programming patterns; avoid classes
+- Prefer iteration and modularization over code duplication
+- Use descriptive variable names with auxiliary verbs (e.g., isLoading, hasError)
+- Structure repository files as follows:
+```
+.
+├── src/
+    ├── app/     # Server rendered next js routed pages
+    ├── components/        # custom components built on top of primitive components
+        ├── ui/        # shadcn ui primitive components
+        ├── providers/        # all provider components that provide react context
+        ├── lazy/        # all components that I load into my markdown lazily using react.lazy
+    ├── lib/          # all helper functions, hooks, constants
+    ├── themes/shadcnui/        # css theme files that set global css variables consumed by shadcn ui
+    ├── types/          # typescript types for my repository
+        ├── global.d.ts     # anything we need to add to global namspace
+        ├── Post.ts     # zod validation stuff from which i infer types in my repo
+├── posts/
+    ├── [category]/[slug].mdx          # mdx files that are used by next-mdx-remote package to render posts, stored in a folder which is the [category] it belongs to
+├── public/             # site specific images / other assets
+    ├── assets          # post specific images (used by my mdx files)   
+├── components.json       # shadcn config
+├── tailwind.config.css    # tailwind config  
+```
+
+## Tech Stack
+- React
+- NextJS (App router)
+- TypeScript
+- Tailwind CSS
+- Shadcn UI for primitive components
+- MDX
+- Framer Motion for animations
+- Netlify for deploy
+
+## Naming Conventions
+- Favor named exports always
+- Use PascalCase for component files (e.g., VisaForm.tsx)
+- Use camelCase for utility files (e.g., formValidator.ts)
+
+## TypeScript Usage
+- Use TypeScript for all code; prefer interfaces over types
+- Avoid enums; use const objects with 'as const' assertion
+- Use functional components with TypeScript interfaces
+- Define strict types for message passing between different parts of the extension
+- Use absolute imports for all files @/...
+- Avoid try/catch blocks unless there's good reason to translate or handle error in that abstraction
+- Use explicit return types for all functions
+
+## Chrome Extension Specific
+- Use Manifest V3 standards
+- Implement proper message passing between components:
+  ```typescript
+  interface MessagePayload {
+    type: string;
+    data: unknown;
+  }
+  ```
+- Handle permissions properly in manifest.json
+- Use chrome.storage.local for persistent data
+- Implement proper error boundaries and fallbacks
+- Use lib/storage for storage related logic
+- For the async injected scripts in content/, 
+  - they must not close over variables from the outer scope
+  - they must not use imported functions from the outer scope
+  - they must have wrapped error handling so the error message is returned to the caller
+
+## State Management
+- Global state using react context
+- Local state using react hooks
+- URL state is source of truth
+- Server state: there is none
+
+## Syntax and Formatting
+- Use "function" keyword for pure functions
+- Avoid unnecessary curly braces in conditionals
+- Use declarative TSX
+- Implement proper TypeScript discriminated unions for message types
+
+## UI and Styling
+- Use Shadcn UI and Radix for components
+- use `npx shadcn@latest add <component-name>` to add new shadcn components
+- Implement Tailwind CSS for styling
+- When adding new shadcn component, document the installation command
+- Always reuse inhouse primitive ui components to build any component
+
+## Error Handling
+- Implement proper error boundaries
+- Log errors appropriately for debugging
+- Provide user-friendly error messages
+- Handle network failures gracefully
+
+## Testing
+- Write unit tests for utilities and components
+- Implement E2E tests for critical flows
+- Test across different Chrome versions
+- Test memory usage and performance
+
+## Security
+- Implement Content Security Policy
+- Sanitize user inputs
+- Handle sensitive data properly
+- Implement proper CORS handling
+
+## Git Usage
+Commit Message Prefixes:
+strictly follow conventional commit message style
+
+Rules:
+- Use lowercase for commit messages
+- Keep the summary line concise
+- Include description for non-obvious changes
+- Reference issue numbers when applicable
+- No fullstops in commit message
+
+## Documentation
+- Maintain clear README with setup instructions
+- Document API interactions and data flows
+- Don't include comments unless it's for complex logic, always use comments for "why" and not "what"
+- Document permission requirements
+
+## Development Workflow
+- Use proper version control
+- Implement proper code review process
+- Test in multiple environments
+- Follow semantic versioning for releases
