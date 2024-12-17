@@ -6,6 +6,7 @@ import path from 'path';
 import { z } from 'zod';
 import { CATEGORY_ALL, POSTS_DIRECTORY, POSTS_PER_PAGE } from '../constants';
 import { readDirectory, readFile } from './file-helper';
+import { calculateReadingTime } from './reading-time';
 
 // server side caching
 type CategoryCacheValue = {
@@ -19,6 +20,7 @@ type PostCacheValue = {
   metadata: z.infer<typeof PostMetadata>;
   content: z.infer<typeof PostContent>;
   category: string;
+  readingTimeInMinutes: number;
 };
 type PaginatedPostsCacheValue = {
   data: PostCacheValue[];
@@ -85,6 +87,7 @@ export async function getPosts(
           metadata: PostMetadata.parse(metadata),
           category,
           content: PostContent.parse(content),
+          readingTimeInMinutes: calculateReadingTime(content),
         });
       } catch (error) {
         console.error(`Error parsing post: ${fileName}`, error);
@@ -151,6 +154,7 @@ export async function getPost(
       metadata: PostMetadata.parse(metadata),
       content: PostContent.parse(content),
       category,
+      readingTimeInMinutes: calculateReadingTime(content),
     };
 
     // Cache the post
@@ -230,6 +234,7 @@ export async function getAllPosts(): Promise<PostsCacheValue> {
           metadata: PostMetadata.parse(metadata),
           category,
           content: PostContent.parse(content),
+          readingTimeInMinutes: calculateReadingTime(content),
         });
       } catch (error) {
         console.error(`error parsing rawContent: ${rawContent}`, error);

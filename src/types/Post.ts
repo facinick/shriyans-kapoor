@@ -14,11 +14,14 @@ const PostCategory = z.string();
 
 const PostSlug = z.string();
 
+const PostReadingTime = z.number();
+
 const Post = z.object({
   metadata: PostMetadata,
   content: PostContent,
   slug: PostSlug,
   category: PostCategory,
+  readingTimeInMinutes: PostReadingTime,
 });
 
 export { Post, PostContent, PostMetadata };

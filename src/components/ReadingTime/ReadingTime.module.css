@@ -1,0 +1,4 @@
+.wrapper {
+  color: hsl(var(--muted-foreground));
+  width: unset;
+}
