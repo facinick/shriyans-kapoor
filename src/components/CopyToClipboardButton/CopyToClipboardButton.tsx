@@ -3,8 +3,8 @@ import { copyToClipboard } from '@/lib/helpers/utils';
 import { useVibrateOnce } from '@/lib/hooks/useVibrateOnce';
 import { Check, Copy } from 'lucide-react';
 import { useState } from 'react';
-import { Button } from '../ui/Button';
 import VisuallyHidden from '../VisuallyHidden';
+import { Button } from '../ui/Button';
 import styles from './CopyToClipboardButton.module.css';
 
 type CopyToClipboardButtonProps = {

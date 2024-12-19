@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from '@/lib/hooks/useRouter';
-import { useSearchParams } from 'next/navigation';
+import { usePathname, useSearchParams } from 'next/navigation';
 import Pagination from '../Pagination';
 import { DEFAULT_LINK_SETTINGS } from '../ui/Link/Link';
 interface Props {
@@ -11,6 +11,7 @@ interface Props {
 
 const HomePagePagination = ({ count, page }: Props): JSX.Element => {
   const searchParams = useSearchParams();
+  const pathname = usePathname();
   const router = useRouter();
 
   const handlePageChange = (nextPage: number) => {
@@ -19,7 +20,12 @@ const HomePagePagination = ({ count, page }: Props): JSX.Element => {
     newParams.delete('page');
     newParams.set('page', String(nextPage));
 
-    router?.push(`?${newParams.toString()}`, DEFAULT_LINK_SETTINGS);
+    // homepage is implicitly /all, so when we are at only home page, next page will be not /?page=2 but /all?page=2
+    const categoryPath = pathname === '/' ? '/all' : pathname;
+    router?.push(
+      `${categoryPath}?${newParams.toString()}`,
+      DEFAULT_LINK_SETTINGS
+    );
   };
 
   return (

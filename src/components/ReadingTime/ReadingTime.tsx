@@ -1,6 +1,6 @@
 import { Clock } from 'lucide-react';
-import { Flex } from '../ui/Flex';
 import VisuallyHidden from '../VisuallyHidden';
+import { Flex } from '../ui/Flex';
 import styles from './ReadingTime.module.css';
 
 interface Props {

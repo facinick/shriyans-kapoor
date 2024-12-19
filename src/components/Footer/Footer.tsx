@@ -1,11 +1,11 @@
 import { SOCIALS } from '@/lib/constants';
 import Image from 'next/image';
 import SlideOnHoverText from '../SlideOnHoverText';
-import { AspectRatio } from '../ui/aspect-ratio';
 import { Flex } from '../ui/Flex';
 import { Link } from '../ui/Link';
 import { Nav } from '../ui/Nav/Nav';
 import { Heading } from '../ui/Typography/Heading';
+import { AspectRatio } from '../ui/aspect-ratio';
 import styles from './Footer.module.css';
 
 interface Props {}

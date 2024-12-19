@@ -1,8 +1,8 @@
-import { Post, PostContent, PostMetadata } from '@/types/Post';
 import { Dirent } from 'fs';
+import path from 'path';
+import { Post, PostContent, PostMetadata } from '@/types/Post';
 import { readdir } from 'fs/promises';
 import matter from 'gray-matter';
-import path from 'path';
 import { z } from 'zod';
 import { CATEGORY_ALL, POSTS_DIRECTORY, POSTS_PER_PAGE } from '../constants';
 import { readDirectory, readFile } from './file-helper';

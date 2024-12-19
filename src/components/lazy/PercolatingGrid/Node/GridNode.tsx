@@ -1,6 +1,6 @@
 import clsx from 'clsx';
-import styles from './GridNode.module.css';
 import { SiteState } from '../percolation';
+import styles from './GridNode.module.css';
 
 interface Props {
   id: number;

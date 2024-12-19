@@ -13,9 +13,9 @@ import { useRouter } from '@/lib/hooks/useRouter';
 import { Label } from '@radix-ui/react-label';
 import { FolderOpen } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import VisuallyHidden from '../VisuallyHidden';
 import { Flex } from '../ui/Flex';
 import { DEFAULT_LINK_SETTINGS } from '../ui/Link/Link';
-import VisuallyHidden from '../VisuallyHidden';
 
 interface CategorySelectorProps {
   categories: Array<string>;
