@@ -6,12 +6,13 @@
     "name": "Shriyans Kapoor"
   },
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 9967",
     "build": "next build",
     "start": "next start",
     "prepare": "husky",
     "biome:lint": "biome lint --write src",
     "biome:format": "biome format --write src",
+    "biome:check": "biome check --write src",
     "check-outdated-packages": "pnpm outdated",
     "update-all-packages": "pnpm up -L",
     "generate-lighthouse": "npx lighthouse-badges --url https://www.facinick.xyz/ -o lighthouse_badges"
