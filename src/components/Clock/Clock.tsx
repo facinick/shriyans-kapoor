@@ -6,9 +6,9 @@ import usePageVisibility from '@/lib/hooks/usePageVisibility';
 import clsx from 'clsx';
 import { AnimatePresence, MotionProps, motion } from 'framer-motion';
 import React, { ComponentProps, useId } from 'react';
+import VisuallyHidden from '../VisuallyHidden';
 import { Box } from '../ui/Box';
 import { Flex } from '../ui/Flex';
-import VisuallyHidden from '../VisuallyHidden';
 import styles from './Clock.module.css';
 
 type ClockProps = ComponentProps<typeof Box>;

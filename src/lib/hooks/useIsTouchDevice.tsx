@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 function useIsTouchDevice() {
   const [isTouchDevice, setIsTouchDevice] = useState(false);

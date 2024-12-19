@@ -1,9 +1,9 @@
 'use client';
 import { Card } from '@/components/ui/Card';
-import styles from './Stats.module.css';
-import { Percolation, SiteState } from '../percolation';
-import { useState, useRef, useEffect } from 'react';
 import { Paragraph } from '@/components/ui/Typography';
+import { useEffect, useRef, useState } from 'react';
+import { Percolation, SiteState } from '../percolation';
+import styles from './Stats.module.css';
 
 interface Props {
   percolation: Percolation;

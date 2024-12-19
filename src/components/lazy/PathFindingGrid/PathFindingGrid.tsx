@@ -3,9 +3,9 @@ import { motion } from 'framer-motion';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import styles from './PathFindingGrid.module.css';
 import { Cell } from './cell';
+import { Heap } from './heap';
 import { someDistance } from './heuristic';
 import { getRandomTerrainCost } from './terrain';
-import { Heap } from './heap';
 
 function getBackgroundColor(terrainCost: number): string {
   // Calculate the grayscale value (0 for white, 255 for black)

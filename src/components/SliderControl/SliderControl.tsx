@@ -1,7 +1,7 @@
 import React, { ComponentProps } from 'react';
 
-import styles from './SliderControl.module.css';
 import { Slider } from '../ui/Slider';
+import styles from './SliderControl.module.css';
 
 export interface SliderControlProps extends ComponentProps<typeof Slider> {
   label: string;

@@ -1,8 +1,8 @@
 import { formatDate } from '@/lib/helpers/utils';
 import { PostMetadata } from '@/types/Post';
 import { z } from 'zod';
-import { Flex } from '../ui/Flex';
 import VisuallyHidden from '../VisuallyHidden';
+import { Flex } from '../ui/Flex';
 import styles from './PostPagePostFooter.module.css';
 
 interface Props {

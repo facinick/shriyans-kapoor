@@ -2,12 +2,12 @@
 import clsx from 'clsx';
 import React, { ChangeEvent, useId } from 'react';
 
-import { LayoutGroup, LazyMotion, m, motion } from 'framer-motion';
-import styles from './DivisionGroupsDemo.module.css';
-import Equation from './Equation';
 import { range } from '@/lib/helpers/utils';
+import { LayoutGroup, LazyMotion, m, motion } from 'framer-motion';
 import SliderControl from '../../SliderControl';
 import { Card } from '../../ui/Card';
+import styles from './DivisionGroupsDemo.module.css';
+import Equation from './Equation';
 
 interface Props {
   numOfItems: number;

@@ -1,9 +1,9 @@
 import { Theme } from '@/types/Theme';
 import { cookies } from 'next/headers';
 
+import { URL } from 'url';
 import { ColorScheme } from '@/types/Theme';
 import { headers } from 'next/headers';
-import { URL } from 'url';
 import {
   APP_SITE_URL,
   HOSTNAME,
