@@ -5,7 +5,7 @@ const nextConfig = {
       {
         source: '/', // The root URL
         destination: '/all?page=1', // Redirect to this URL
-        permanent: true, // Set to `true` for a 301 permanent redirect
+        permanent: false, // Set to `false` for a 302 permanent redirect
       },
     ];
   },
