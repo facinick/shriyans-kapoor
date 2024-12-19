@@ -1,8 +1,9 @@
 import { ColorScheme, Theme } from '@/types/Theme';
 
 export const APP_TITLE = 'facinick';
+export const APP_SHORT_TITLE = 'facinick';
 export const APP_TIMEZONE = 'Asia/Calcutta';
-export const APP_DESCRIPTION = 'Record of stuff.';
+export const APP_DESCRIPTION = "facinick's blog powered by Next.js";
 export const POSTS_DIRECTORY = '/posts';
 export const CATEGORY_ALL = 'all';
 // Defaults & Settings
