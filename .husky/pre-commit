@@ -9,8 +9,7 @@ if [ -z "$FILES" ]; then
 fi
 
 # Run biome on staged files
-npx biome format $FILES
-npx biome lint $FILES
+npx biome check $FILES
 
 # Add back the modified files to staging
 git add $FILES
