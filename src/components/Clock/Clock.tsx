@@ -16,7 +16,7 @@ type ClockProps = ComponentProps<typeof Box>;
 const Clock = ({ className }: ClockProps): JSX.Element => {
   const currentTime = useCurrentTime({
     unit: 's',
-    every: 1,
+    every: 1.01,
     timezone: APP_TIMEZONE,
   });
 
