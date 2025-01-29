@@ -11,6 +11,15 @@ export async function generateStaticParams() {
   return params;
 }
 
+export async function generateMetadata() {
+  const category = String(CATEGORY_ALL);
+
+  return {
+    title: category,
+    description: `Posts on ${category} | @facinick`,
+  };
+}
+
 // home page is implicitly /all
 async function HomePage() {
   const category = CATEGORY_ALL; // Default to "all"
