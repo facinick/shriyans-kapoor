@@ -26,7 +26,8 @@ export async function generateStaticParams() {
   return params;
 }
 
-interface PageProps {
+// Avoid naming collision with Next.js generated PageProps type
+interface PostRouteProps {
   params: {
     slug: string;
     category: string;
@@ -42,7 +43,7 @@ const getPostCached = React.cache(async (category: string, slug: string) => {
 });
 
 // because extremely slow rn, what to do?
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata({ params }: PostRouteProps) {
   // console.log(`DEBUG: get post meta`)
   const post = await getPostCached(params.category, params.slug);
 
@@ -54,7 +55,7 @@ export async function generateMetadata({ params }: PageProps) {
   };
 }
 
-async function PostPage({ params }: PageProps) {
+async function PostPage({ params }: PostRouteProps) {
   // console.time(`DEBUG: getPost ${params.category}/${params.slug}`)
   const post = await getPostCached(params.category, params.slug);
   // console.timeEnd(`DEBUG: getPost ${params.category}/${params.slug}`)
